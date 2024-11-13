@@ -8,10 +8,10 @@ defineProps<{
   <div class="greetings">
     <h1 class="green">{{ msg }}</h1>
     <h3>
-      You’ve successfully created a project with
-      <a href="https://vite.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
+      Gebe den Code ein um beizutreten
     </h3>
+    <input type="text" id="rommnr" name="romm">
+    <input type="submit" value="Submit">
   </div>
 </template>
 
