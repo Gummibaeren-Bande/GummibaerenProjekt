@@ -22,6 +22,11 @@ with open("Burn-Up-Chart/log.csv", "r") as file:
     
     plt.axis([0,len(dates)+5, 0, max_estimate+5]) # Fixes the viewport for the Plot
     plt.hlines(max_estimate, 0, len(dates)+5) # Plots the total estimate line (Goal line)
+
+    plt.title("Burn Up Chart")
+    plt.xlabel("Dates in days starting 21.10.2024")
+    plt.ylabel("Estimates")
+
     plt.plot(date_pos, estimates) # Plots a line with the done estimates
     plt.plot(date_pos, estimates, 'o') # Plors Dots for the done estimates
     plt.savefig("Burn-Up-Chart/Brunup-plot.png")
