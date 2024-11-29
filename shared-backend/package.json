@@ -4,7 +4,7 @@
     "description": "the nestjs backend running socket.io",
     "type": "module",
     "scripts": {
-        "start": "tsc -b && tsx index.ts"
+        "start": "tsc -b && tsx src/index.ts"
       },
     "dependencies": {
         "socket.io": "^4.8.1"
