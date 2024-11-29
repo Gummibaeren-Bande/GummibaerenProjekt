@@ -1,0 +1,19 @@
+{
+    "name": "socket-backend-aks",
+    "version": "0.0.1",
+    "description": "the nestjs backend running socket.io",
+    "type": "module",
+    "scripts": {
+        "start": "tsc -b && tsx index.ts"
+      },
+    "dependencies": {
+        "socket.io": "^4.8.1"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "express": "^4.21.1",
+        "ts-node": "^10.9.2",
+        "tsx": "^4.19.2",
+        "typescript": "^5.7.2"
+    }
+}

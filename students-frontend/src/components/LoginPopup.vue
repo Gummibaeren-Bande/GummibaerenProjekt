@@ -20,8 +20,8 @@
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
+import { io } from "socket.io-client";
 </script>
-
 
 <script lang="ts">
 
@@ -30,6 +30,12 @@ const TEAM_NAME_CONFIG = {
     MAX_LENGTH: 20,
     VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
 };
+
+const socket = io('http://localhost:3000');
+
+socket.on("connect", () => {
+    console.log(`connected to socket id ${socket.id}` );
+});
 
 export default {
     data() {
@@ -42,11 +48,15 @@ export default {
         handleSignIn(closeCallback: () => void) {
             if (this.testTeamName(this.teamName)) {
                 console.log(`Signing in with teamname: ${this.teamName}`);
-                // Add your sign-in logic here
+                this.authentificateTeam(this.teamName)
+                // TODO: handle authentification error
                 closeCallback(); // Close the dialog
             } else {
                 this.teamName = '';
             }
+        },
+        authentificateTeam(name: string) {
+            socket.emit('add-team', name);
         },
         testTeamName(name: string) {
             if (this.isEmpty(name)) {
