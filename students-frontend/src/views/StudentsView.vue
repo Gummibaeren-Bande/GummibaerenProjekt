@@ -1,11 +1,12 @@
 <template>
     <div>
-      Hello
       <LoginPopup />
+      <TaskDisplay />
     </div>
 </template>
   
 <script setup lang="ts">
     import LoginPopup from '../components/LoginPopup.vue'
+    import TaskDisplay from '../components/TaskDisplay.vue'
 </script>
   
