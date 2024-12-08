@@ -20,3 +20,7 @@ Stand vom 25.11.24:
 * Wie unterstützen uns gegenseitig bei Problemen jeglicher Art. Wir wollen als Team erfolgreich sein und arbeiten dahingegend zusammen.
 * Wir kommunizieren stets offen und ehrlich miteinander. Wir haben stets ein offenes Ohr für die projektbezogenen Probleme der anderen.
 * Dienstags wird sich um 11:30 in der Mensa getroffen.
+
+
+## Burn Up chart
+![image](Burn-Up-Chart/Burnup-plot.png)
