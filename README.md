@@ -23,4 +23,4 @@ Stand vom 25.11.24:
 
 
 ## Burn Up chart
-![image](Burn-Up-Chart/Brunup-plot.png)
+![image](Burn-Up-Chart/Burnup-plot.png)
