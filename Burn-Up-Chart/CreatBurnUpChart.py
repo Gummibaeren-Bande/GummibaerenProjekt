@@ -3,7 +3,7 @@ import numpy as np
 import datetime
 import csv
 
-max_estimate = 154  #Current total Estimate
+max_estimate = 75  #Current total Estimate
 
 with open("Burn-Up-Chart/log.csv", "r") as file:
     dates = []      # will hold the Dates of the log.csv
