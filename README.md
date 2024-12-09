@@ -24,5 +24,12 @@ Stand vom 25.11.24:
 * Dienstags wird sich um 11:30 in der Mensa getroffen.
 
 
+## Epic
+Die Lehrkraft möchte numerische und MultipleChoice Aufgaben als Teil eines Aufgabensets zur Verfügung stellen, um diese ihren Schüler:innen in einer klaren und übersichtlichen Struktur zur Verfügung zu stellen. Dabei wird eine URL generiert, die den Schüler:innen Zugriff auf dieses Aufgabenset ermöglicht. Die Schüler:innen geben diese URL an ihren Geräten ein, wählen einen Gruppennamen und erstellen damit ihre Gruppe in welcher sie gemeinsam die Aufgaben bearbeiten.
+Während die Schüler:innen die Aufgaben bearbeiten sieht die Lehrkraft den Bearbeitungsprozess der einzelnen Gruppen in Echtzeit. Dabei bekommt sie angezeigt, welche Aufgaben von Gruppen bereits gelöst wurden, wie lange sie für die einzelnen Aufgaben gebraucht haben und wie viele Versuche sie benötigt haben, um die Aufgaben zu lösen. Um die Schwierigkeit individuell an die Gruppen anzupassen hat die Lehrkraft die Möglichkeit, Aufgaben zu entfernen oder Alternativaufgaben zu aktivieren.
+Das iPad einer Gruppe hat keinen Akku mehr. Sie können sich an einem anderen Gerät mit dem Gruppennamen anmelden und dort weiterarbeiten, wo sie aufgehört haben.
+Die Schüler:innen bearbeiten eine Aufgabe nach der anderen. Wenn sie die Lösung zu einer Aufgabe abschicken bekommen sie direkt eine automatische Rückmeldung und werden gegebenefalls zur nächsten Aufgabe weitergeleitet. Jede Gruppe sieht, wie viele Aufgaben sie bereits gelöst hat.
+
+
 ## Burn Up chart
 ![image](Burn-Up-Chart/Burnup-plot.png)
