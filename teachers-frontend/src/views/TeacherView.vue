@@ -1,6 +1,8 @@
 <template>
     <div>
-        Hier entsteht der teachers-view aaaaaaaaaaaaaaaaaaaaaaaaa
+        Hier entsteht der teachers-view
+    </div>
+    <div>
         <GroupProgress></GroupProgress>
     </div>
 </template>
