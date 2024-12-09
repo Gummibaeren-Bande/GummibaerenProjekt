@@ -2,15 +2,17 @@
 ## Produktziel
 
 Stand vom 25.11.24:
-> Das "Aufgaben Kontroll-System" dient als Lehrwerkzeug. Die Lehrkraft kann ein Aufgabenset auf einem Server hochladen, auf das die Schüler:innen über eine Website zugreifen können um die Aufgaben zu bearbeiten. Nachdem sie eine Aufgabe bearbeitet haben, senden sie ihre Lösung ab und erhalten sofort Rückmeldung darüber, ob es korrekt ist. Die Schüler:innen können entweder individuell auf ihren eigenen Geräten oder als Gruppe auf einem gemeinsamen Gerät arbeiten. Währenddessen hat die Lehrkraft die Möglichkeit, den Fortschritt der Nutzer:innen zu verfolgen. Über diese Ansicht kann sie auch Aufgaben entfernen, die noch nicht bearbeitet wurden, oder sie durch andere  Aufgaben zu ersetzen. So kann die Lehrkraft gezielt auf die Leistungen einzelner Schüler:innen reagieren.
+> Mit dem "Aufgaben Kontroll-System" wird Unterricht smarter: Aufgaben verteilen, Ergebnisse vergleichen und Fortschritte in Echtzeit verfolgen – für effektives Lernen und schnelles Handeln im Klassenzimmer. Die Lehrkraft kann ein Aufgabenset auf einem Server hochladen, auf das die Schüler:innen über eine Website zugreifen können um die Aufgaben zu bearbeiten. Nachdem sie eine Aufgabe bearbeitet haben, senden sie ihre Lösung ab und erhalten sofort Rückmeldung darüber, ob es korrekt ist. Die Schüler:innen können entweder individuell auf ihren eigenen Geräten oder als Gruppe auf einem gemeinsamen Gerät arbeiten. Währenddessen hat die Lehrkraft die Möglichkeit, den Fortschritt der Nutzer:innen zu verfolgen. Über diese Ansicht kann sie auch Aufgaben entfernen, die noch nicht bearbeitet wurden, oder sie durch andere  Aufgaben zu ersetzen. So kann die Lehrkraft gezielt auf die Leistungen einzelner Schüler:innen reagieren.
 
 
 ## Definition of Done
-* Mindestens zwei Personen (die codende Person selbst sowie eine weitere) überprüfen den Code bzw. das Ergebnis mit verschiedenen Testfällen.
-* Jedes Increment soll ausführbar sein und vorhandenen Code nicht verschlechtern.
-* Code soll lesbar und für andere nachvollziehbar sein. Dazu schreiben wir zum Verständnis nötige Kommentare.
-* Der neue Code aus jedem Increment ist im selben Stil geschrieben wie der gesamte vorhergehende Code (Checkstyle Guidelines sollen erfüllt sein)
-
+- [ ] Diese Checkliste wird pro Increment von zwei Personen durchlaufen. Mir selbst und einer weiteren Person, die ich gezielt angesprochen habe.
+- [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings.
+- [ ] Der Code besteht alle Testfälle.
+- [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter).
+- [ ] Jede neue Methode hat einen Kommentar, was sie tut. In diesem Kommentar steht auch etwas zum eventuellen return-wert (Ausnahmen: getter/setter).
+- [ ] Das System kann auf dem Handy, iPad und im Browser genutzt werden, alles ist sichtbar.
+- [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten.
 
 
 ## Definition of Fun
