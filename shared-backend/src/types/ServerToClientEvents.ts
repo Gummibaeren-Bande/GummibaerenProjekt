@@ -1,3 +1,5 @@
+import GroupServiceEmits from "../handlers/group-handler/interfaces/GroupServiceEmits"
+
 /**
  * all interfaces specifying server to client events (Emit-Interfaces) must be registered here
  */

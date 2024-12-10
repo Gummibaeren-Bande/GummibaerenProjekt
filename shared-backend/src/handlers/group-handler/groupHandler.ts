@@ -13,7 +13,7 @@ const service = new GroupService();
  */
 function groupHandler(io: IoServer, socket: IoSocket) {
 
-    socket.on("addGroup", (name: string) => service.addGroup(name));
+    socket.on("addGroup", (name, callback) => service.addGroup(name, callback));
 
 }
 

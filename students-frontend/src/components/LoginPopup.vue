@@ -13,10 +13,10 @@
         "
       >
         <div>
-          <label for="teamName"><h2>Wähle einen Teamnamen</h2></label>
+          <label for="groupName"><h2>Wähle einen Teamnamen</h2></label>
         </div>
         <div>
-          <InputText id="teamName" v-model="teamName"></InputText>
+          <InputText id="groupName" v-model="groupName"></InputText>
         </div>
         <div>
           <Button label="Starten" @click="handleSignIn(closeCallback)" text></Button>
@@ -50,39 +50,47 @@ export default {
   data() {
     return {
       visible: true,
-      teamName: '',
+      groupName: '',
     }
   },
   methods: {
     /**
-     * Handles the sign-in process by validating the team name and authenticating the team.
+     * Handles the sign-in process by validating the group name and authenticating the group.
      * @param {Function} closeCallback - Function to close the dialog.
      */
     handleSignIn(closeCallback: () => void) {
-      if (this.testTeamName(this.teamName)) {
-        console.log(`Signing in with teamname: ${this.teamName}`)
-        this.authentificateTeam(this.teamName)
+      if (this.testGroupName(this.groupName)) {
+        console.log(`Signing in with groupname: ${this.groupName}`)
+        this.authentificateGroup(this.groupName)
         // TODO: handle authentification error
         closeCallback() // Close the dialog
       } else {
-        this.teamName = ''
+        this.groupName = ''
       }
     },
 
     /**
-     * Authenticates the team by sending the team name to the server.
-     * @param {string} name - The name of the team to authenticate.
+     * Authenticates the group by sending the group name to the server.
+     * @param {string} name - The name of the group to authenticate.
      */
-    authentificateTeam(name: string) {
-      socket.emit('addGroup', name)
+    authentificateGroup(name: string) {
+      socket.emit('addGroup', name, (response: { success: boolean; message: string }) => {
+        if (response.success) {
+            console.log("Team added successfully:", response.message);
+            // Handle successful addition (e.g., update UI, notify user)
+        } else {
+            console.error("Failed to add group:", response.message);
+            // Handle failure (e.g., show error message to the user)
+        }
+    });
     },
 
     /**
-     * Validates the provided team name based on several rules.
-     * @param {string} name - The team name to validate.
+     * Validates the provided group name based on several rules.
+     * @param {string} name - The group name to validate.
      * @returns {boolean} - Returns `true` if the name is valid, otherwise `false`.
      */
-    testTeamName(name: string) {
+    testGroupName(name: string) {
       if (this.isEmpty(name)) {
         alert('Bitte gebe einen Teamnamen ein!')
         return false
