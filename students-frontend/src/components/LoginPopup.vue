@@ -60,6 +60,8 @@ export default {
      */
     async handleSignIn(closeCallback: () => void) {
       if (this.testGroupName(this.groupName) && (await this.authentificateGroup(this.groupName))) {
+        this.pushGroupNameToURL()
+        this.$emit('group-selected', this.groupName) // Emit the group name
         closeCallback() // Close the dialog
       } else {
         this.groupName = ''
@@ -112,6 +114,17 @@ export default {
         return false
       }
       return true
+    },
+
+    pushGroupNameToURL() {
+      // Get the current URL
+      const currentUrl = new URL(window.location.href)
+
+      // Set the "group" query parameter
+      currentUrl.searchParams.set('group', this.groupName)
+
+      // Update the browser's URL without reloading the page
+      window.history.pushState({}, '', currentUrl)
     },
 
     /**
