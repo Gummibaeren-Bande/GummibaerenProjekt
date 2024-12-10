@@ -1,14 +1,13 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mount } from '@vue/test-utils';
-import LoginPopup from '../LoginPopup.vue';
-import Dialog from 'primevue/dialog';
-import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
-import PrimeVue from 'primevue/config';
-
+import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { mount } from '@vue/test-utils'
+import LoginPopup from '../LoginPopup.vue'
+import Dialog from 'primevue/dialog'
+import Button from 'primevue/button'
+import InputText from 'primevue/inputtext'
+import PrimeVue from 'primevue/config'
 
 describe('LoginPopup', () => {
-  let wrapper: any;
+  let wrapper: any
 
   beforeEach(() => {
     wrapper = mount(LoginPopup, {
@@ -23,90 +22,90 @@ describe('LoginPopup', () => {
           alert: vi.fn(), // Mock alert calls
         },
       },
-    });
-  });
+    })
+  })
 
   describe('testTeamName', () => {
     it('should return false for an empty string', () => {
-      expect(wrapper.vm.testTeamName('')).toBe(false);
-    });
+      expect(wrapper.vm.testTeamName('')).toBe(false)
+    })
 
     it('should return true for string with 4 letters', () => {
-      expect(wrapper.vm.isEmpty('Test')).toBe(false);
-    });
+      expect(wrapper.vm.isEmpty('Test')).toBe(false)
+    })
 
     it('should return false for whitespace only', () => {
-      expect(wrapper.vm.isEmpty('    ')).toBe(false);
-    });
-  });
+      expect(wrapper.vm.isEmpty('    ')).toBe(false)
+    })
+  })
 
   describe('isEmpty', () => {
     it('should return true for an empty string', () => {
-      expect(wrapper.vm.isEmpty('')).toBe(true);
-    });
+      expect(wrapper.vm.isEmpty('')).toBe(true)
+    })
 
     it('should return false for a non-empty string', () => {
-      expect(wrapper.vm.isEmpty('Test')).toBe(false);
-    });
+      expect(wrapper.vm.isEmpty('Test')).toBe(false)
+    })
 
     it('should return true for whitespace only', () => {
-      expect(wrapper.vm.isEmpty('    ')).toBe(false);
-    });
-  });
+      expect(wrapper.vm.isEmpty('    ')).toBe(false)
+    })
+  })
 
   describe('isNotRequiredLength', () => {
     it('should return true for too short a name', () => {
-      expect(wrapper.vm.isNotRequiredLength('Ab')).toBe(true);
-    });
+      expect(wrapper.vm.isNotRequiredLength('Ab')).toBe(true)
+    })
 
     it('should return true for too long a name', () => {
-      expect(wrapper.vm.isNotRequiredLength('A'.repeat(21))).toBe(true);
-    });
+      expect(wrapper.vm.isNotRequiredLength('A'.repeat(21))).toBe(true)
+    })
 
     it('should return false for a valid-length name', () => {
-      expect(wrapper.vm.isNotRequiredLength('Valid')).toBe(false);
-    });
-  });
+      expect(wrapper.vm.isNotRequiredLength('Valid')).toBe(false)
+    })
+  })
 
   describe('startsWithSpace', () => {
     it('should return true if the name starts with a space', () => {
-      expect(wrapper.vm.startsWithSpace(' Test')).toBe(true);
-    });
+      expect(wrapper.vm.startsWithSpace(' Test')).toBe(true)
+    })
 
     it('should return false if the name does not start with a space', () => {
-      expect(wrapper.vm.startsWithSpace('Test')).toBe(false);
-    });
+      expect(wrapper.vm.startsWithSpace('Test')).toBe(false)
+    })
 
     it('should return false for an empty string', () => {
-      expect(wrapper.vm.startsWithSpace('')).toBe(false);
-    });
-  });
+      expect(wrapper.vm.startsWithSpace('')).toBe(false)
+    })
+  })
 
   describe('endsWithSpace', () => {
     it('should return true if the name ends with a space', () => {
-      expect(wrapper.vm.endsWithSpace('Test ')).toBe(true);
-    });
+      expect(wrapper.vm.endsWithSpace('Test ')).toBe(true)
+    })
 
     it('should return false if the name does not end with a space', () => {
-      expect(wrapper.vm.endsWithSpace('Test')).toBe(false);
-    });
+      expect(wrapper.vm.endsWithSpace('Test')).toBe(false)
+    })
 
     it('should return false for an empty string', () => {
-      expect(wrapper.vm.endsWithSpace('')).toBe(false);
-    });
-  });
+      expect(wrapper.vm.endsWithSpace('')).toBe(false)
+    })
+  })
 
   describe('hasIllegalCharacters', () => {
     it('should return true for a name with illegal characters', () => {
-      expect(wrapper.vm.hasIllegalCharacters('Test@123')).toBe(true);
-    });
+      expect(wrapper.vm.hasIllegalCharacters('Test@123')).toBe(true)
+    })
 
     it('should return false for a name with valid characters', () => {
-      expect(wrapper.vm.hasIllegalCharacters('Valid Name 123')).toBe(false);
-    });
+      expect(wrapper.vm.hasIllegalCharacters('Valid Name 123')).toBe(false)
+    })
 
     it('should return true for a name with special symbols', () => {
-      expect(wrapper.vm.hasIllegalCharacters('Invalid!Name')).toBe(true);
-    });
-  });
-});
+      expect(wrapper.vm.hasIllegalCharacters('Invalid!Name')).toBe(true)
+    })
+  })
+})
