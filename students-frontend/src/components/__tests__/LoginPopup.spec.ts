@@ -8,7 +8,7 @@ import PrimeVue from 'primevue/config'
 import type { ComponentPublicInstance } from 'vue'
 
 describe('LoginPopup', () => {
-  let wrapper: VueWrapper<ComponentPublicInstance<typeof LoginPopup>>;
+  let wrapper: VueWrapper<ComponentPublicInstance<typeof LoginPopup>>
 
   beforeEach(() => {
     wrapper = mount(LoginPopup, {
