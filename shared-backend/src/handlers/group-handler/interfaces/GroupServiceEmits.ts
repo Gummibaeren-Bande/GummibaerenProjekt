@@ -1,5 +1,5 @@
 interface GroupServiceEmits {
-    groupAlreadyExists: () => void
+  groupAlreadyExists: () => void;
 }
 
-export default GroupServiceEmits
+export default GroupServiceEmits;

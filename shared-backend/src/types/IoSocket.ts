@@ -5,6 +5,6 @@ import ServerToClientEvents from "./ServerToClientEvents";
 /**
  * type declaration of the socketIO socket type
  */
-type IoSocket = Socket<ClientToServerEvents, ServerToClientEvents> // Note: reverese the generics ClientToServerEvents, ServerToClientEvents on client side
+type IoSocket = Socket<ClientToServerEvents, ServerToClientEvents>; // Note: reverese the generics ClientToServerEvents, ServerToClientEvents on client side
 
-export default IoSocket
+export default IoSocket;

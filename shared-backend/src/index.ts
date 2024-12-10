@@ -3,7 +3,7 @@
 import express from "express";
 import { createServer } from "http";
 import { Server, Socket } from "socket.io";
-import welcomeHandler from './handlers/welcome-handler/welcomeHandler'
+import welcomeHandler from "./handlers/welcome-handler/welcomeHandler";
 import groupHandler from "./handlers/group-handler/groupHandler";
 import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
@@ -29,7 +29,7 @@ const onConnection = (socket: IoSocket) => {
   // add all handler functions here
   welcomeHandler(io, socket);
   groupHandler(io, socket);
-}
+};
 
 // serve the handler functions when connected
 io.on("connection", onConnection);
