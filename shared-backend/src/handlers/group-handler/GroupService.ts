@@ -11,17 +11,14 @@ class GroupService implements GroupServiceEmits, GroupServiceListeners {
         this.groupCollection = new GroupCollection();
     }
     
-    addGroup(name: string, callback: (response: { success: boolean; message: string }) => void): boolean {
+    addGroup(name: string, callback: (response: { success: boolean; message: string }) => void): void {
         const successful = this.groupCollection.addNewGroup(name)
         
         if(!successful) {
-            callback({ success: false, message: `Group "${name}" already exists.` });
-            console.log("group with name " + name + " already exists");
-            return false;
+            callback({ success: false, message: `Eine Gruppe mit dem Namen "${name}" existiert bereits. Bitte wählt einen anderen Namen` });
+            return;
         }
-        callback({ success: true, message: `Group "${name}" added successfully.` });
-        console.log("added group with name " + name);
-        return true;
+        callback({ success: true, message: `Die Gruppe "${name}" wurde erfolgreich erstellt` });
     }
 
     groupAlreadyExists(): void {

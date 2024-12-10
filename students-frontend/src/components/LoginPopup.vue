@@ -58,11 +58,8 @@ export default {
      * Handles the sign-in process by validating the group name and authenticating the group.
      * @param {Function} closeCallback - Function to close the dialog.
      */
-    handleSignIn(closeCallback: () => void) {
-      if (this.testGroupName(this.groupName)) {
-        console.log(`Signing in with groupname: ${this.groupName}`)
-        this.authentificateGroup(this.groupName)
-        // TODO: handle authentification error
+    async handleSignIn(closeCallback: () => void) {
+      if (this.testGroupName(this.groupName) && (await this.authentificateGroup(this.groupName))) {
         closeCallback() // Close the dialog
       } else {
         this.groupName = ''
@@ -72,17 +69,20 @@ export default {
     /**
      * Authenticates the group by sending the group name to the server.
      * @param {string} name - The name of the group to authenticate.
+     * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
-    authentificateGroup(name: string) {
-      socket.emit('addGroup', name, (response: { success: boolean; message: string }) => {
-        if (response.success) {
-            console.log("Team added successfully:", response.message);
-            // Handle successful addition (e.g., update UI, notify user)
-        } else {
-            console.error("Failed to add group:", response.message);
-            // Handle failure (e.g., show error message to the user)
-        }
-    });
+    async authentificateGroup(name: string): Promise<boolean> {
+      return new Promise((resolve) => {
+        socket.emit('addGroup', name, (response: { success: boolean; message: string }) => {
+          if (response.success) {
+            this.diplayGroupCreationSuccess(response.message)
+            resolve(true)
+          } else {
+            this.diplayGroupCreationError(response.message)
+            resolve(false)
+          }
+        })
+      })
     },
 
     /**
@@ -92,24 +92,52 @@ export default {
      */
     testGroupName(name: string) {
       if (this.isEmpty(name)) {
-        alert('Bitte gebe einen Teamnamen ein!')
+        this.diplayGroupCreationError('Bitte gebe einen Teamnamen ein!')
         return false
       } else if (this.isNotRequiredLength(name)) {
-        alert(
+        this.diplayGroupCreationError(
           `Der Teamname muss zwischen ${TEAM_NAME_CONFIG.MIN_LENGTH} und ${TEAM_NAME_CONFIG.MAX_LENGTH} Zeichen lang sein!`,
         )
         return false
       } else if (this.startsWithSpace(name)) {
-        alert('Der Teamname muss mit einem Buchstaben beginnen!')
+        this.diplayGroupCreationError('Der Teamname muss mit einem Buchstaben beginnen!')
         return false
       } else if (this.endsWithSpace(name)) {
-        alert('Der Teamname darf nicht mit einem Leerzeichen enden!')
+        this.diplayGroupCreationError('Der Teamname darf nicht mit einem Leerzeichen enden!')
         return false
       } else if (this.hasIllegalCharacters(name)) {
-        alert('Der Teamname darf nur aus Buchstaben, Leerzeichen und Zahlen bestehen!')
+        this.diplayGroupCreationError(
+          'Der Teamname darf nur aus Buchstaben, Leerzeichen und Zahlen bestehen!',
+        )
         return false
       }
       return true
+    },
+
+    /**
+     * Displays a group creation error
+     * @param error the error message to display
+     */
+    diplayGroupCreationError(error: string) {
+      this.$toast.add({
+        severity: 'error',
+        summary: 'Fehler beim Erstellen der Gruppe',
+        detail: error,
+        life: 4000,
+      })
+    },
+
+    /**
+     * Displays a group creation success
+     * @param message the success message to display
+     */
+    diplayGroupCreationSuccess(message: string) {
+      this.$toast.add({
+        severity: 'success',
+        summary: 'Gruppenerstellung erfolgreich',
+        detail: message,
+        life: 4000,
+      })
     },
 
     /**
