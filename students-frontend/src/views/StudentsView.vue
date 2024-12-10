@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TaskDisplay v-if="groupIsSpecified"> </TaskDisplay>
+    <TaskDisplay :group-name="groupName" v-if="groupIsSpecified"> </TaskDisplay>
     <LoginPopup v-else @group-selected="onGroupSelected" />
   </div>
 </template>

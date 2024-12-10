@@ -40,6 +40,7 @@ const TEAM_NAME_CONFIG = {
   VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
 }
 
+// socket for backend communication
 const socket = io('http://localhost:3000')
 
 socket.on('connect', () => {
@@ -116,13 +117,14 @@ export default {
       return true
     },
 
+    /**
+     * pushes the groupName to the URL as a parameter without reloading the page
+     */
     pushGroupNameToURL() {
       // Get the current URL
       const currentUrl = new URL(window.location.href)
-
       // Set the "group" query parameter
       currentUrl.searchParams.set('group', this.groupName)
-
       // Update the browser's URL without reloading the page
       window.history.pushState({}, '', currentUrl)
     },
