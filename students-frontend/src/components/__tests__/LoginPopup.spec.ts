@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { mount } from '@vue/test-utils';
+import { mount, VueWrapper } from '@vue/test-utils';
 import LoginPopup from '../LoginPopup.vue';
 import Dialog from 'primevue/dialog';
 import Button from 'primevue/button';
@@ -8,7 +8,7 @@ import PrimeVue from 'primevue/config';
 
 
 describe('LoginPopup', () => {
-  let wrapper: any;
+  let wrapper: VueWrapper<LoginPopup>;
 
   beforeEach(() => {
     wrapper = mount(LoginPopup, {
