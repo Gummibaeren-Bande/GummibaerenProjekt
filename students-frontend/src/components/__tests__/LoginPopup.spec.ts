@@ -1,13 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { mount } from '@vue/test-utils'
+import { mount, VueWrapper } from '@vue/test-utils'
 import LoginPopup from '../LoginPopup.vue'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
 import PrimeVue from 'primevue/config'
+import type { ComponentPublicInstance } from 'vue'
 
 describe('LoginPopup', () => {
-  let wrapper: any
+  let wrapper: VueWrapper<ComponentPublicInstance<typeof LoginPopup>>;
 
   beforeEach(() => {
     wrapper = mount(LoginPopup, {
