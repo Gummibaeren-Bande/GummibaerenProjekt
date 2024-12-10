@@ -1,3 +1,3 @@
 interface GroupServiceEmits {
-    sendErrorMessage: () => void
+    groupAlreadyExists: () => void
 }

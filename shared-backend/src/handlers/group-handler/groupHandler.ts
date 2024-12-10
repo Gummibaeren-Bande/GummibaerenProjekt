@@ -3,7 +3,7 @@ import IoSocket from "../../types/IoSocket";
 import GroupService from "./GroupService";
 
 
-const service = new GroupService()
+const service = new GroupService();
 
 /**
  * handles creation and rejoining of groups
@@ -13,7 +13,7 @@ const service = new GroupService()
  */
 function groupHandler(io: IoServer, socket: IoSocket) {
 
-    socket.on("addGroup", service.addGroup);
+    socket.on("addGroup", (name: string) => service.addGroup(name));
 
 }
 

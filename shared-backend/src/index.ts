@@ -9,6 +9,7 @@ import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
 import ClientToServerEvents from "./types/ClientToServerEvents";
 import ServerToClientEvents from "./types/ServerToClientEvents";
+import GroupService from "./handlers/group-handler/GroupService";
 
 // scaffold new server
 const app = express();
@@ -23,8 +24,6 @@ const io: IoServer = new Server<
     origin: ["http://localhost:8080", "http://localhost:8081"], // specify who can access this backend
   },
 });
-
-
 
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
