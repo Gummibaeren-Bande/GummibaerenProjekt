@@ -120,7 +120,7 @@ export default {
      */
     isNotRequiredLength(text: string) {
       const length = text.length
-      return length <= TEAM_NAME_CONFIG.MIN_LENGTH || length >= TEAM_NAME_CONFIG.MAX_LENGTH
+      return length < TEAM_NAME_CONFIG.MIN_LENGTH || length > TEAM_NAME_CONFIG.MAX_LENGTH
     },
 
     /**
