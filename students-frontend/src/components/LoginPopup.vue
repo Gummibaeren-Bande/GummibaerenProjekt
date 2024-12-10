@@ -45,6 +45,10 @@ export default {
         };
     },
     methods: {
+        /**
+         * Handles the sign-in process by validating the team name and authenticating the team.
+         * @param {Function} closeCallback - Function to close the dialog.
+         */
         handleSignIn(closeCallback: () => void) {
             if (this.testTeamName(this.teamName)) {
                 console.log(`Signing in with teamname: ${this.teamName}`);
@@ -55,9 +59,20 @@ export default {
                 this.teamName = '';
             }
         },
+
+        /**
+         * Authenticates the team by sending the team name to the server.
+         * @param {string} name - The name of the team to authenticate.
+         */
         authentificateTeam(name: string) {
             socket.emit('add-team', name);
         },
+
+        /**
+         * Validates the provided team name based on several rules.
+         * @param {string} name - The team name to validate.
+         * @returns {boolean} - Returns `true` if the name is valid, otherwise `false`.
+         */
         testTeamName(name: string) {
             if (this.isEmpty(name)) {
                 alert('Bitte gebe einen Teamnamen ein!');
@@ -81,19 +96,49 @@ export default {
             }
             return true;
         },
+
+        /**
+         * Checks if the provided text is empty.
+         * @param {string} text - The text to check.
+         * @returns {boolean} - Returns `true` if the text is empty, otherwise `false`.
+         */
         isEmpty(text: string) {
             return text.length === 0;
         },
+
+        /**
+         * Checks if the provided text is not within the required length range.
+         * @param {string} text - The text to check.
+         * @returns {boolean} - Returns `true` if the text is too short or too long, otherwise `false`.
+         */
         isNotRequiredLength(text: string) {
             const length = text.length
             return length <= TEAM_NAME_CONFIG.MIN_LENGTH || length >= TEAM_NAME_CONFIG.MAX_LENGTH;
         },
+
+        /**
+         * Checks if the provided text starts with a space.
+         * @param {string} text - The text to check.
+         * @returns {boolean} - Returns `true` if the text starts with a space, otherwise `false`.
+         */
         startsWithSpace(text: string) {
             return text.startsWith(' ')
         },
+
+        /**
+         * Checks if the provided text ends with a space.
+         * @param {string} text - The text to check.
+         * @returns {boolean} - Returns `true` if the text ends with a space, otherwise `false`.
+         */
         endsWithSpace(text: string) {
             return text.endsWith(' ')
         },
+
+        /**
+         * Checks if the provided text contains illegal characters.
+         * @param {string} text - The text to check.
+         * @returns {boolean} - Returns `true` if the text contains illegal characters, otherwise `false`.
+         */
         hasIllegalCharacters(text: string) {
             const validCharacterRegex = TEAM_NAME_CONFIG.VALID_CHARACTER_REGEX;
             return !validCharacterRegex.test(text)
