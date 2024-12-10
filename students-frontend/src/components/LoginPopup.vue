@@ -74,7 +74,7 @@ export default {
      * @param {string} name - The name of the team to authenticate.
      */
     authentificateTeam(name: string) {
-      socket.emit('add-team', name)
+      socket.emit('addGroup', name)
     },
 
     /**
