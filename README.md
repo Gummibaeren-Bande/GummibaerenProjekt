@@ -33,3 +33,8 @@ Die Schüler:innen bearbeiten eine Aufgabe nach der anderen. Wenn sie die Lösun
 
 ## Burn Up chart
 ![image](Burn-Up-Chart/Burnup-plot.png)
+
+## Weitere Readme-Dateien
+* [Backend](shared-backend/README.md)
+* [Students-Frontend](students-frontend/README.md)
+* [Teachers-Frontend](teachers-frontend/README.md)
