@@ -1,7 +1,8 @@
 import IoServer from "../../types/IoServer";
 import IoSocket from "../../types/IoSocket";
-import userConnected from "./services/userConnected";
-import userDisonnected from "./services/userDisconnected";
+import WelcomeService from "./WelcomeService";
+
+const service = new WelcomeService();
 
 /**
  * the welcome handler handles all connection and disconnection events of clients
@@ -10,9 +11,9 @@ import userDisonnected from "./services/userDisconnected";
  * @param socket the dynamic socket dependet on the current connection
  */
 function welcomeHandler(io: IoServer, socket: IoSocket) {
-  userConnected();
+  service.socketConnectionOpened(socket);
 
-  socket.on("disconnect", userDisonnected);
+  socket.on("disconnect", (reason) => service.socketConnectionClosed(reason));
 }
 
 export default welcomeHandler;
