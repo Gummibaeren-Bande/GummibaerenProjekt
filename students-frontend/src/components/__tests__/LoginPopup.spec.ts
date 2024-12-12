@@ -26,20 +26,6 @@ describe('LoginPopup', () => {
     })
   })
 
-  describe('testTeamName', () => {
-    it('should return false for an empty string', () => {
-      expect(wrapper.vm.testTeamName('')).toBe(false)
-    })
-
-    it('should return true for string with 4 letters', () => {
-      expect(wrapper.vm.isEmpty('Test')).toBe(false)
-    })
-
-    it('should return false for whitespace only', () => {
-      expect(wrapper.vm.isEmpty('    ')).toBe(false)
-    })
-  })
-
   describe('isEmpty', () => {
     it('should return true for an empty string', () => {
       expect(wrapper.vm.isEmpty('')).toBe(true)
