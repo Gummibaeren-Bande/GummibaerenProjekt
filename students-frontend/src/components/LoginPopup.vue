@@ -59,7 +59,7 @@ export default {
      * Handles the sign-in process by validating the group name and authenticating the group.
      * @param {Function} closeCallback - Function to close the dialog.
      */
-    async handleSignIn(closeCallback: () => void) {
+    async handleSignIn(closeCallback: () => void): Promise<void> {
       if (this.testGroupName(this.groupName) && (await this.authentificateGroup(this.groupName))) {
         this.pushGroupNameToURL()
         this.$emit('group-selected', this.groupName) // Emit the group name
@@ -93,7 +93,7 @@ export default {
      * @param {string} name - The group name to validate.
      * @returns {boolean} - Returns `true` if the name is valid, otherwise `false`.
      */
-    testGroupName(name: string) {
+    testGroupName(name: string): boolean {
       if (this.isEmpty(name)) {
         this.diplayGroupCreationError('Bitte gebe einen Teamnamen ein!')
         return false
@@ -160,7 +160,7 @@ export default {
      * @param {string} text - The text to check.
      * @returns {boolean} - Returns `true` if the text is empty, otherwise `false`.
      */
-    isEmpty(text: string) {
+    isEmpty(text: string): boolean {
       return text.length === 0
     },
 
@@ -169,7 +169,7 @@ export default {
      * @param {string} text - The text to check.
      * @returns {boolean} - Returns `true` if the text is too short or too long, otherwise `false`.
      */
-    isNotRequiredLength(text: string) {
+    isNotRequiredLength(text: string): boolean {
       const length = text.length
       return length < TEAM_NAME_CONFIG.MIN_LENGTH || length > TEAM_NAME_CONFIG.MAX_LENGTH
     },
@@ -179,7 +179,7 @@ export default {
      * @param {string} text - The text to check.
      * @returns {boolean} - Returns `true` if the text starts with a space, otherwise `false`.
      */
-    startsWithSpace(text: string) {
+    startsWithSpace(text: string): boolean {
       return text.startsWith(' ')
     },
 
@@ -188,7 +188,7 @@ export default {
      * @param {string} text - The text to check.
      * @returns {boolean} - Returns `true` if the text ends with a space, otherwise `false`.
      */
-    endsWithSpace(text: string) {
+    endsWithSpace(text: string): boolean {
       return text.endsWith(' ')
     },
 
@@ -197,7 +197,7 @@ export default {
      * @param {string} text - The text to check.
      * @returns {boolean} - Returns `true` if the text contains illegal characters, otherwise `false`.
      */
-    hasIllegalCharacters(text: string) {
+    hasIllegalCharacters(text: string): boolean {
       const validCharacterRegex = TEAM_NAME_CONFIG.VALID_CHARACTER_REGEX
       return !validCharacterRegex.test(text)
     },
