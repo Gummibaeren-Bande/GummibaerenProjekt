@@ -1,5 +1,5 @@
 <template>
-    <div class="TaksContainer">
+    <div id="TaksContainer">
         In einer gummibärchen Packung gibt es ingesamnnt 256 Gummibärchen.
         Diese sollen jetzt auf Tom, Alice, Jonas, Friedrich, Tabea, Michi,
         Lisa und Felix aufgeteilt werden.
@@ -15,9 +15,11 @@
 </template>
 
 <style scoped>
-        .TaksContainer {
-            background-color: #66cdaa;
-            width: 100%;
+        #TaksContainer {
+            background-color: #ffffff66;
+            color: black;
+            width: 80vw;
+            height: 80vh;
             padding: 20px;
             text-align: left;
             margin-top: 2px;
@@ -40,8 +42,8 @@
         .solution button {
             font-size: 1em;
             padding: 5px 10px;
-            background-color: #008080;
-            color: white;
+            background-color: #ffffff66;
+            color: black;
             border: none;
             border-radius: 5px;
             cursor: pointer;
@@ -51,9 +53,10 @@
         }
 
         #Answerbar {
-            background-color: #66cdaa;
-            padding: 10px;
+            background-color: #ffffff66;
+            padding: 5px;
             border-bottom-left-radius: 15px;
             border-bottom-right-radius: 15px;
         }
     </style>
+

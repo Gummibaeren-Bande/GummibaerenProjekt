@@ -8,7 +8,8 @@
 
 <style scoped>
     #Tasktitle {
-        background-color: #66cdaa;
+        background-color: #ffffff66;
+
         display: flex;
         justify-content: center;
         align-items: center;

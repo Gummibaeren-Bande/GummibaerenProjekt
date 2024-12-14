@@ -1,6 +1,9 @@
 <template>
-    <Title />
-    <NummericTask />
+    <div>
+        <Title />
+        <NummericTask />
+    </div>
+
 </template>
 
 <script setup lang="ts">
