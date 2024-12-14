@@ -12,7 +12,7 @@
         background-color: #ffffff66;
         color: black;
         width: 80vw;
-        height: 50vw;
+        height: 80vh;
         padding: 20px;
         text-align: left;
         margin-top: 2px;
