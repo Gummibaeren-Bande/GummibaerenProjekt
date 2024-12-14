@@ -1,12 +1,13 @@
+import GroupProgress from "./GroupProgress";
+import TaskSet from "./TaskSet";
+
 class Group {
   private readonly name: string;
-  // TODO: add the real type of the class list
-  private readonly taskList: any;
+  private readonly groupProgress: GroupProgress;
 
-  constructor(name: string) {
+  constructor(name: string, taskSet: TaskSet) {
     this.name = name;
-    // TODO: initialize the task list
-    this.taskList = null;
+    this.groupProgress = new GroupProgress(taskSet);
   }
 
   public getName() {

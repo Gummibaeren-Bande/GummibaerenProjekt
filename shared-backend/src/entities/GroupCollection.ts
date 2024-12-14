@@ -1,4 +1,5 @@
 import Group from "./Group";
+import TaskSet from "./TaskSet";
 
 class GroupCollection {
   private readonly groupList: Group[];
@@ -13,12 +14,12 @@ class GroupCollection {
    * @param groupToAdd the name of the new group to add
    * @returns true if the operation was successful and false otherwise
    */
-  public addNewGroup(name: string): boolean {
+  public addNewGroup(name: string, taskSet: TaskSet): boolean {
     if (this.groupList.some((el) => name === el.getName())) {
       // group with the same name already exists
       return false;
     }
-    this.groupList.push(new Group(name));
+    this.groupList.push(new Group(name, taskSet));
     return true;
   }
 }
