@@ -1,6 +1,6 @@
 <template>
     <div>
-      <LoginPopup />
+
       <TaskDisplay />
     </div>
 </template>

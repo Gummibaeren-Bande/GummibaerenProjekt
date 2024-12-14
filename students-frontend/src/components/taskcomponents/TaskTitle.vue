@@ -9,12 +9,11 @@
 <style scoped>
     #Tasktitle {
         background-color: #ffffff66;
-
+        color: black;
         display: flex;
         justify-content: center;
         align-items: center;
         width: auto;
-        border-top-left-radius: 15px;
         border-top-right-radius: 15px;
     }
     #Tasktitle h1 {
