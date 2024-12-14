@@ -14,8 +14,8 @@
         justify-content: center;
         align-items: center;
         width: auto;
-        border-top-right-radius: 15px;
-        border-top-left-radius: 15px;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
     }
     #Tasktitle h1 {
         margin-top: 10px;

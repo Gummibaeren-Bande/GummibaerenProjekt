@@ -1,7 +1,6 @@
 <template>
     <div id="solution">
-        <label for="answer">Antwort:</label>
-        <input type="text" id="answer" placeholder="z. B. 5">
+        <InputNumber id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" />
     </div>
 </template>
 
@@ -13,21 +12,16 @@
         align-items: center;
         background-color: #ffffff66;
         height: inherit;
-        border-bottom-left-radius: 15px;
+        border-bottom-left-radius: 12px;
     }
 
-    #solution input {
-        font-size: 1em;
-        padding: 5px;
-        margin-right: 7px;
-        width: 100%;
-        text-align: center;
+    #answer {
+        margin: 5px;
     }
 
-    #solution label{
-        color: black;
-        font-size: 1em;
-        padding-left: 20px;
-        padding-right: 20px;
-    }
+
 </style>
+
+<script lang="ts" setup>
+    import InputNumber from 'primevue/inputnumber';
+</script>

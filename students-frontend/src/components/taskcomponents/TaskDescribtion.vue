@@ -7,7 +7,7 @@
     </div>
 </template>
 
-<style>
+<style scope>
     #TaksContainer {
         background-color: #ffffff66;
         color: black;

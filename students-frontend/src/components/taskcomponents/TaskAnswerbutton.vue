@@ -1,6 +1,6 @@
 <template>
     <div id="AnswerButton">
-        <button>Abschicken</button>
+        <Button label="Abschicken" fluid/>
     </div>
 </template>
 
@@ -11,13 +11,17 @@
         align-items: center;
         height: inherit;
         background-color: #ffffff66;
-        border: #005959;
-        cursor: pointer;
         margin-left: 2px;
-        border-bottom-right-radius: 15px;
+        border-bottom-right-radius: 12px;
     }
 
-    #AnswerButton button:hover {
-        background-color: #009f9f;
+    #AnswerButton button {
+        margin: 5px;
+        color: black;
     }
+
 </style>
+
+<script lang="ts" setup>
+    import Button from 'primevue/button';
+</script>
