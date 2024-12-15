@@ -1,7 +1,7 @@
 <template>
     <div id="mainDiv">
-        <Title />
-        <TaskDescribtion />
+        <TaskTitle />
+        <TaskBody />
         <TaskNummericAnswerbar />
     </div>
 
@@ -15,7 +15,8 @@
 </style>
 
 <script setup lang="ts">
-    import Title from './taskcomponents/TaskTitle.vue';
-    import TaskDescribtion from './taskcomponents/TaskDescribtion.vue';
+    import TaskTitle from './taskcomponents/TaskTitle.vue';
+    import TaskBody from './taskcomponents/TaskBody.vue';
     import TaskNummericAnswerbar from './taskcomponents/TaskNummericAnswerbar.vue';
+
 </script>

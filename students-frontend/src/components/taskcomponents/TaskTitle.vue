@@ -10,6 +10,7 @@
     div {
         background-color: #ffffff66;
         width: inherit;
+        margin-bottom: 2px;
         border-top-right-radius: 12px;
         border-top-left-radius: 12px;
     }
@@ -17,5 +18,6 @@
         color:black;
         text-align: center;
         padding: 10px;
+        font-weight: 500;
     }
 </style>
