@@ -1,6 +1,6 @@
 <template>
     <div>
-        Hier entsteht der teachers-view
+        <TaskSetTitle></TaskSetTitle>
     </div>
     <div>
         <GroupProgress></GroupProgress>
@@ -8,6 +8,7 @@
 </template>
   
 <script setup lang="ts">
-import GroupProgress from '@/components/GroupProgress.vue';
+    import GroupProgress from '@/components/GroupProgress.vue';
+    import TaskSetTitle from '@/components/TaskSetTitle.vue';
 </script>
   
