@@ -31,6 +31,11 @@ Das iPad einer Gruppe hat keinen Akku mehr. Sie können sich an einem anderen Ge
 Die Schüler:innen bearbeiten eine Aufgabe nach der anderen. Wenn sie die Lösung zu einer Aufgabe abschicken bekommen sie direkt eine automatische Rückmeldung und werden gegebenefalls zur nächsten Aufgabe weitergeleitet. Jede Gruppe sieht, wie viele Aufgaben sie bereits gelöst hat.
 
 
+## wichtige Entscheidungen
+* Die Ansicht für Lehrkräfte wird nur für den Browser optimiert.
+* Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt.
+
+
 ## Burn Up chart
 ![image](Burn-Up-Chart/Burnup-plot.png)
 
