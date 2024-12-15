@@ -9,6 +9,7 @@
         width: auto;
         height: auto;
         font-weight: bold;
+        padding-top: 10px;
     }
 
 </style>
