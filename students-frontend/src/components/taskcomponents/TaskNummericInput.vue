@@ -8,8 +8,6 @@
     
     #solution {
         display: flex;
-        justify-content: left;
-        align-items: center;
         background-color: #ffffff66;
         height: inherit;
         border-bottom-left-radius: 12px;

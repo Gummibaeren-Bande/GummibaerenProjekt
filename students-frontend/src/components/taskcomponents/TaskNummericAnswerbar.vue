@@ -10,10 +10,9 @@
     #AnswerBar {
         display: grid;
         grid-template-columns: 4fr 1fr;
-        width: 80vw;
-        height: 4vh;
-        align-items: center;
-        border-bottom-left-radius: 15px;
+        width: inherit;
+        height: auto;
+        border-bottom-left-radius: 12px;
     }
 
 </style>

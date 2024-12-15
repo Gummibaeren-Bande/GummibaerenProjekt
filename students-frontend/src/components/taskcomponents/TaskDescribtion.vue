@@ -11,7 +11,7 @@
     #TaksContainer {
         background-color: #ffffff66;
         color: black;
-        width: 80vw;
+        width: inherit;
         height: 80vh;
         padding: 20px;
         text-align: left;

@@ -1,5 +1,5 @@
 <template>
-    <div id="Tasktitle">
+    <div>
         <h1>
             Gummibärchen Veteilung
         </h1>
@@ -7,19 +7,15 @@
 </template>
 
 <style scoped>
-    #Tasktitle {
+    div {
         background-color: #ffffff66;
-        color: black;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: auto;
+        width: inherit;
         border-top-right-radius: 12px;
         border-top-left-radius: 12px;
     }
-    #Tasktitle h1 {
-        margin-top: 10px;
-        margin-bottom: 10px;
-        padding: 0%;
+    div h1 {
+        color:black;
+        text-align: center;
+        padding: 10px;
     }
 </style>

@@ -7,8 +7,6 @@
 <style scoped>
     #AnswerButton {
         display: flex;
-        justify-content: center;
-        align-items: center;
         height: inherit;
         background-color: #ffffff66;
         margin-left: 2px;
