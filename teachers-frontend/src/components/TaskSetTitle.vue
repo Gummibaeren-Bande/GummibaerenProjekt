@@ -1,3 +1,4 @@
+<!-- Displays the title of the data set. -->
 <template>
     <div id="TaskSetTitle">
         <h1>

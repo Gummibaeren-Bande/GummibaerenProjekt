@@ -1,3 +1,7 @@
+<!-- Implements a component that displays a task with alternative tasks.
+ On press opens an overlay with options to skip the task or select the alternatives.
+ Has methods to increment the attempts, change the display color and change the alternative.  -->
+
 <template>
     <div id="task">
         <Button @click="showOptions" class="taskAlternativeDisplayButton">

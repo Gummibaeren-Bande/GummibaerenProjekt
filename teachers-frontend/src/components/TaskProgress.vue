@@ -1,3 +1,7 @@
+<!-- Implements a component that displays a task without alternative tasks.
+ On press opens an overlay with only one option: skip the task.
+ Has methods to increment the attempts and change the display color.  -->
+
 <template>
     <div id="task">
         <Button @click="showOptions" class="taskDisplayButton">
@@ -10,7 +14,7 @@
         <Popover ref="overlay">
             <span> Optionen </span>
             <div>
-                <Button label="text" @click="skipTask" />
+                <Button label='text' @click="skipTask"></Button>
             </div>
         </Popover>
         <div>
@@ -18,6 +22,33 @@
         </div>
     </div>
 </template>
+
+
+<script lang="ts" setup>
+    import { ref } from "vue";
+    import Timer from "@/components/Timer.vue";
+    import Popover from "primevue/popover";
+
+    const taskColor = ref('rgb(64, 64, 64)');
+    const attempts = ref(0);
+    const overlay = ref();
+
+    const changeColor = (color: string) => {
+        taskColor.value = color
+    }
+
+    const incrementAttempts = (attempt: boolean) => {
+        attempts.value += 1;
+    }
+
+    const showOptions = (event: Event) => {
+        overlay.value.toggle(event);
+    }
+
+    const skipTask = () => {
+        changeColor('rgb(162, 34, 35)')
+    }
+</script>
 
 
 <style scoped>
@@ -46,29 +77,3 @@
         cursor: pointer;
     }
 </style>
-
-<script lang="ts" setup>
-    import { ref } from "vue";
-    import Timer from "@/components/Timer.vue";
-    import Popover from "primevue/popover";
-
-    const taskColor = ref('rgb(64, 64, 64)');
-    const attempts = ref(0);
-    const overlay = ref();
-
-    const changeColor = (color: string) => {
-        taskColor.value = color
-    }
-
-    const incrementAttempts = (attempt: boolean) => {
-        attempts.value += 1;
-    }
-
-    const showOptions = (event: Event) => {
-        overlay.value.toggle(event);
-    }
-
-    const skipTask = () => {
-        changeColor('rgb(162, 34, 35)')
-    }
-</script>

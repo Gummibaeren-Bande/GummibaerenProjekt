@@ -1,5 +1,9 @@
-<template>
+<!-- Implements the data table that houses all the groups progress.
+ The table contains a header which displays all the tasks names.
+ Each column of the table represents a group and displays the different tasks.
+ Also displays a timer for each task. -->
 
+<template>
   <div>
     <DataTable :value="groups" class="custom-datatable">
       <Column field="groupName" header="Gruppenname"></Column>
