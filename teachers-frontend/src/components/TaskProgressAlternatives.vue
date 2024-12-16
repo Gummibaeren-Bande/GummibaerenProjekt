@@ -64,7 +64,7 @@
     }
 
     const skipTask = () => {
-        changeColor('rgb(255, 0, 0)')
+        changeColor('rgb(162, 34, 35)')
     }
 </script>
 
