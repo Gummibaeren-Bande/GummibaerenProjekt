@@ -1,22 +1,84 @@
 <template>
-    <div id="TaskWithAlternatives" :style="{ backgroundColor: taskColor}">   
-        <span>
-            {{ attempts }}
-        </span>
-        <div id="AlternativeDisplay" :style="{ backgroundColor: taskColor}">
+    <div id="task">
+        <Button @click="showOptions" class="taskAlternativeDisplayButton">
+            <div id="taskAlternativeDisplay" :style="{ backgroundColor: taskColor}">
+                <span>
+                    {{ attempts }}
+                </span>
+            </div>
+        </Button>
+        <div id="alternativeDisplay" :style="{ backgroundColor: taskColor}">
             <span>
                 {{ taskAlternative }}
             </span>
         </div>
-    </div>
-    <div>
-        <Timer></Timer>
+        <Popover ref="overlay">
+            <span> Optionen </span>
+            <div>
+                <Button label="text" @click="skipTask" />
+            </div>
+            <div>
+                <Button label="attempted" @click="incrementAttempts" />
+            </div>
+            <div>
+                <Button label="Alternative B" @click="changeAlternative('B')" />
+            </div>
+            <div>
+                <Button label="Alternative C" @click="changeAlternative('C')" />
+            </div>
+            <div>
+                <Button label="Alternative D" @click="changeAlternative('D')" />
+            </div>
+        </Popover>
+        <div>
+            <Timer></Timer>
+        </div>
     </div>
 </template>
 
 
+<script lang="ts" setup>
+    import { ref } from "vue";
+    import Timer from "@/components/Timer.vue";
+    import Popover from "primevue/popover";
+
+    const taskColor = ref('rgb(64, 64, 64)');
+    const attempts = ref(0);
+    const taskAlternative = ref("A");
+    const overlay = ref();
+
+    const changeColor = (color: string) => {
+        taskColor.value = color
+    }
+
+    const incrementAttempts = () => {
+        attempts.value += 1;
+    }
+
+    const changeAlternative = (alternative: string) => {
+        taskAlternative.value = alternative;
+    }
+
+    const showOptions = (event: Event) => {
+        overlay.value.toggle(event);
+    }
+
+    const skipTask = () => {
+        changeColor('rgb(255, 0, 0)')
+    }
+</script>
+
+
 <style scoped>
-    #TaskWithAlternatives {
+    #task {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #taskAlternativeDisplay {
         height: 75px;
         width: 75px;
         border-radius: 50%;
@@ -29,7 +91,8 @@
         border: none;
     }
 
-    #AlternativeDisplay {
+    #alternativeDisplay {
+        position: absolute;
         height: 35px;
         width: 35px;
         border-radius: 50%;
@@ -39,30 +102,16 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        position: absolute;
         top: -10px;
         right: -10px;
         box-shadow: 0 0 7px black;
     }
 
+    .taskAlternativeDisplayButton {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
     
 </style>
-
-<script lang="ts" setup>
-    import { ref } from "vue";
-    import Timer from "@/components/Timer.vue";
-
-    const taskColor = ref("blue");
-    const attempts = ref(0);
-    const taskAlternative = ref("A");
-
-    const changeColor = (color: string) => {
-        taskColor.value = color
-    }
-    const incrementAttempts = (attempt: boolean) => {
-        attempts.value += 1;
-    }
-    const changeAlternative = (alternative: string) => {
-        taskAlternative.value = alternative;
-    }
-</script>

@@ -1,6 +1,6 @@
 <template>
     <div class="timer">
-      <span>{{ formattedTime }}</span>
+        <span>{{ formattedTime }}</span>
     </div>
   </template>
   
@@ -29,16 +29,10 @@
         return `${minutes}:${seconds}`;
       });
   
-      onMounted(() => {
-        startTimer();
-      });
-  
-      onUnmounted(() => {
-        stopTimer();
-      });
-  
       return {
-        formattedTime
+        formattedTime,
+        startTimer,
+        stopTimer
       };
     }
   };
@@ -46,7 +40,10 @@
   
   <style scoped>
   .timer {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
+    color:#ffffff66;
+
   }
+
   </style>
