@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <TeacherView></TeacherView>
@@ -7,5 +5,5 @@
 </template>
 
 <script setup lang="ts">
-import TeacherView from "./views/TeacherView.vue"
+import TeacherView from './views/TeacherView.vue'
 </script>
