@@ -1,7 +1,7 @@
 #     GummibaerenProjekt
 ## Produktziel
 
-Stand vom 13.12.24:
+Stand vom 17.12.24:
 > Mit dem "Aufgaben Kontroll-System" wird Unterricht smarter: Aufgaben verteilen, Ergebnisse vergleichen und Fortschritte in Echtzeit verfolgen – für effektives Lernen und schnelles Handeln im Klassenzimmer. Die Lehrkraft kann ein Aufgabenset auf einem Server hochladen, auf das die Schüler:innen über eine Website zugreifen können um die Aufgaben zu bearbeiten. Nachdem sie eine Aufgabe bearbeitet haben, senden sie ihre Lösung ab und erhalten sofort Rückmeldung darüber, ob sie korrekt ist. Die Schüler:innen können entweder individuell auf ihren eigenen Geräten oder als Gruppe auf einem gemeinsamen Gerät arbeiten. Währenddessen hat die Lehrkraft die Möglichkeit, den Fortschritt der Nutzer:innen zu verfolgen. Über diese Ansicht kann sie auch Aufgaben entfernen, die noch nicht bearbeitet wurden, oder sie durch andere  Aufgaben zu ersetzen. So kann die Lehrkraft gezielt auf die Leistungen einzelner Schüler:innen reagieren.
 
 
@@ -25,10 +25,13 @@ Stand vom 13.12.24:
 
 
 ## Epic
-Die Lehrkraft möchte numerische und MultipleChoice Aufgaben als Teil eines Aufgabensets zur Verfügung stellen, um diese ihren Schüler:innen in einer klaren und übersichtlichen Struktur zur Verfügung zu stellen. Dabei wird eine URL generiert, die den Schüler:innen Zugriff auf dieses Aufgabenset ermöglicht. Die Schüler:innen geben diese URL an ihren Geräten ein, wählen einen Gruppennamen und erstellen damit ihre Gruppe in welcher sie gemeinsam die Aufgaben bearbeiten.
-Während die Schüler:innen die Aufgaben bearbeiten sieht die Lehrkraft den Bearbeitungsprozess der einzelnen Gruppen in Echtzeit. Dabei bekommt sie angezeigt, welche Aufgaben von Gruppen bereits gelöst wurden, wie lange sie für die einzelnen Aufgaben gebraucht haben und wie viele Versuche sie benötigt haben, um die Aufgaben zu lösen. Um die Schwierigkeit individuell an die Gruppen anzupassen hat die Lehrkraft die Möglichkeit, Aufgaben zu entfernen oder Alternativaufgaben zu aktivieren.
-Das iPad einer Gruppe hat keinen Akku mehr. Sie können sich an einem anderen Gerät mit dem Gruppennamen anmelden und dort weiterarbeiten, wo sie aufgehört haben.
-Die Schüler:innen bearbeiten eine Aufgabe nach der anderen. Wenn sie die Lösung zu einer Aufgabe abschicken bekommen sie direkt eine automatische Rückmeldung und werden gegebenefalls zur nächsten Aufgabe weitergeleitet. Jede Gruppe sieht, wie viele Aufgaben sie bereits gelöst hat.
+In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen Franz, Niki und Luca Schaltkreise wiederholen. Dafür stellt sie den Schüler:innen die AKS-Website mit den Aufgaben zur Verfügung. Die Schüler:innen gehen auf die Website und geben sich ihren eigenen Namen als Gruppenname. Die Lehrkraft sieht auf ihrer Ansicht die Gruppen, die sich einen Namen gegeben haben.
+Die ersten drei Aufgaben haben eine numerische Lösungseingabe, da hier die zu fließende Stromstärke berechnet werden muss. Die Schüler:innen geben ihr Ergebnis ein und schicken die Antwort ab. Die nächsten drei Aufgaben sind Multiplechoice Aufgaben. Hier kreuzen die Schüler:innen die ihrer Meinung nach richtigen Antworten an und schicken diese ab. Sie bekommen eine direkte Rückmeldung über ein Popup, ob ihre Antwort richtig oder falsch ist. Niki schaut sich ihr richtiges Ergebnis immer noch mal an und klickt das Popup zuerst weg, bevor sie auf "Weiter" klickt. 
+Die ersten drei Aufgaben sind Niki sehr leicht gefallen. Die Lehrkraft sieht dies daran, dass Nikis Timer bei den Aufgaben besonders niedrig sind und aktiviert deshalb eine der schwierigeren Alternativen für die nächste Aufgabe. 
+Die Lehrkraft kann ebenso die Anzahl der Fehlversuche sehen. So fällt ihr auf, dass Franz bereits 10-mal die Aufgabe 2 falsch beantwortet hat. Sie deaktiviert deshalb die dritte Aufgabe für ihn. 
+Währenddessen ist der Akku von Lucas Gerät leer. Er holt sich ein neues iPad und verbindet sich wieder mit der Website. Dazu gibt er seinen Gruppennamen ein und bekommt wieder den aktuellen Stand seiner Aufgaben angezeigt. 
+Am Ende der Stunden vergleichen Franz, Niki und Luca wie viele Fragen sie richtig beantwortet haben. Dabei hat Franz 4, Niki 5 und Luca 6 Fragen richtig beantwortet.
+
 
 
 ## wichtige Entscheidungen
