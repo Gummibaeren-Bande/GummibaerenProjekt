@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.3">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="2835" dy="3353" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1984" dy="2859" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -81,7 +81,7 @@
           <mxGeometry x="-360" y="-2030" width="95" height="30" as="geometry" />
         </mxCell>
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-11" value="" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};participant=umlEntity;" vertex="1" parent="1">
-          <mxGeometry x="607.5" y="40" width="40" height="1060" as="geometry" />
+          <mxGeometry x="607.5" y="40" width="40" height="1260" as="geometry" />
         </mxCell>
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-15" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="mfu2dzNHZLcvLbCA3ni9-11">
           <mxGeometry x="10" y="50" width="20" height="240" as="geometry" />
@@ -378,6 +378,9 @@
         </mxCell>
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-195" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="mfu2dzNHZLcvLbCA3ni9-82">
           <mxGeometry x="40" y="621" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-216" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="mfu2dzNHZLcvLbCA3ni9-82">
+          <mxGeometry x="40" y="680" width="20" height="20" as="geometry" />
         </mxCell>
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-83" value="&lt;div&gt;Luca connects&lt;/div&gt;&lt;div&gt;to studentsUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-80">
           <mxGeometry x="0.0256" y="5" width="60" relative="1" as="geometry">
@@ -735,6 +738,18 @@
             <mxPoint x="660" y="850" as="sourcePoint" />
             <mxPoint x="580" y="850" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-215" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+          <mxGeometry x="-51.25" y="990" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-218" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;exitX=1;exitY=1;exitDx=0;exitDy=-5;exitPerimeter=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" source="mfu2dzNHZLcvLbCA3ni9-215" target="mfu2dzNHZLcvLbCA3ni9-216">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="170" y="850" as="sourcePoint" />
+            <mxPoint x="330" y="850" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-219" value="&lt;div&gt;answerExcercise&lt;/div&gt;&lt;div&gt;(id, groupName, answer)&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="-31.25" y="970" width="142.5" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
