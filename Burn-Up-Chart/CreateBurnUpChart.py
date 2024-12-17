@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import datetime
 import csv
+import matplotlib.dates as mdates
 
 max_estimate = 75  #Current total estimate
 
@@ -20,14 +21,22 @@ with open("Burn-Up-Chart/log.csv", "r") as file:
 
     date_pos = np.linspace(1, len(dates), len(dates))   # linear array of all dates for ploting.
     
-    plt.axis([0,len(dates)+5, 0, max_estimate+5]) # Fixes the viewport for the plot
-    plt.hlines(max_estimate, 0, len(dates)+5) # Plots the total estimate line (Goal line)
+    #This Parte sets the x-axis up so that it shows nice dates
+    plt.gca().xaxis.set_major_formatter(mdates.DateFormatter('%d,%m,%Y'))
+    plt.gca().xaxis.set_major_locator(mdates.DayLocator(interval=7))
+    plt.gcf().autofmt_xdate()
+
+    plt.yticks(np.arange(0, max_estimate + 5, step = 5))
+    plt.axhline(max_estimate) # Plots the total estimate line (Goal line)
+    plt.axvline(datetime.datetime.today(), linestyle = '-', color = 'gray')
+
+    plt.grid(True)
 
     plt.title("Burn Up Chart")
-    plt.xlabel("Dates in days starting 21.10.2024")
+    plt.xlabel("Dates")
     plt.ylabel("Estimates")
 
-    plt.plot(date_pos, estimates) # Plots a line with the done estimates
-    plt.plot(date_pos, estimates, 'o') # Plors Dots for the done estimates
+    plt.plot([dates[0], dates[len(dates) - 3]], [0, max_estimate], linestyle='-', color='green') #-3 sets the last date to the last Friday
+    plt.plot(dates, estimates, color='orange') # Plors Dots for the done estimates
     plt.savefig("Burn-Up-Chart/Burnup-plot.png")
 
