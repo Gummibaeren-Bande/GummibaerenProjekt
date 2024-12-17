@@ -266,7 +266,7 @@
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-82" value="luca: Socket" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
           <mxGeometry x="50" y="320" width="100" height="990" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-83" value="&lt;div&gt;teacher connects&lt;/div&gt;&lt;div&gt;to teacherUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-80">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-83" value="&lt;div&gt;Luca connects&lt;/div&gt;&lt;div&gt;to studentsUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-80">
           <mxGeometry x="0.0256" y="5" width="60" relative="1" as="geometry">
             <mxPoint x="-150" y="325" as="sourcePoint" />
             <mxPoint x="-60" y="320" as="targetPoint" />
@@ -286,13 +286,13 @@
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-86" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="mfu2dzNHZLcvLbCA3ni9-85">
           <mxGeometry y="50" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-87" value="Teachers-Frontend" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-87" value="&lt;div&gt;NikisFrontend:&lt;/div&gt;&lt;div&gt;students-frontend&lt;br&gt;&lt;/div&gt;" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
           <mxGeometry x="-340" y="270" width="95" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-88" value="teacher: Socket" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-88" value="niki: Socket" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
           <mxGeometry x="-200" y="350" width="100" height="990" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-89" value="&lt;div&gt;teacher connects&lt;/div&gt;&lt;div&gt;to teacherUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-86">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-89" value="&lt;div&gt;Niki connects&lt;/div&gt;&lt;div&gt;to studentsUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-86">
           <mxGeometry x="0.0256" y="5" width="60" relative="1" as="geometry">
             <mxPoint x="-400" y="355" as="sourcePoint" />
             <mxPoint x="-310" y="350" as="targetPoint" />
@@ -312,13 +312,13 @@
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-92" value="" style="html=1;points=[[0,0,0,0,5],[0,1,0,0,-5],[1,0,0,0,5],[1,1,0,0,-5]];perimeter=orthogonalPerimeter;outlineConnect=0;targetShapes=umlLifeline;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="mfu2dzNHZLcvLbCA3ni9-91">
           <mxGeometry y="50" width="20" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-93" value="Teachers-Frontend" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-93" value="&lt;div&gt;FranzFrontend:&lt;/div&gt;&lt;div&gt;students-frontend&lt;br&gt;&lt;/div&gt;" style="text;align=center;fontStyle=1;verticalAlign=middle;spacingLeft=3;spacingRight=3;strokeColor=none;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;html=1;" vertex="1" parent="1">
           <mxGeometry x="-590" y="300" width="95" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-94" value="teacher: Socket" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-94" value="franz: Socket" style="shape=umlLifeline;perimeter=lifelinePerimeter;whiteSpace=wrap;html=1;container=1;dropTarget=0;collapsible=0;recursiveResize=0;outlineConnect=0;portConstraint=eastwest;newEdgeStyle={&quot;curved&quot;:0,&quot;rounded&quot;:0};" vertex="1" parent="1">
           <mxGeometry x="-450" y="380" width="100" height="990" as="geometry" />
         </mxCell>
-        <mxCell id="mfu2dzNHZLcvLbCA3ni9-95" value="&lt;div&gt;teacher connects&lt;/div&gt;&lt;div&gt;to teacherUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-92">
+        <mxCell id="mfu2dzNHZLcvLbCA3ni9-95" value="&lt;div&gt;Franz connects&lt;/div&gt;&lt;div&gt;to studentsUrl&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=oval;startFill=1;endArrow=block;startSize=8;curved=0;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=5;entryPerimeter=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-92">
           <mxGeometry x="0.0256" y="5" width="60" relative="1" as="geometry">
             <mxPoint x="-650" y="385" as="sourcePoint" />
             <mxPoint x="-560" y="380" as="targetPoint" />
