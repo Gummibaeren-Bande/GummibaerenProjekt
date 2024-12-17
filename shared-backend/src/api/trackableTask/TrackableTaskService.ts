@@ -73,9 +73,7 @@ class TrackableTaskService {
   }
 
   public getHasNextTaskByGroupName(groupName: string): boolean {
-    return this.groupProgressService
-      .getGroupProgressByGroupName(groupName)
-      .hasNextTask();
+    return this.groupProgressService.hasNextTask(groupName);
   }
 
   public getNextTaskOfGroup(groupName: string) {
