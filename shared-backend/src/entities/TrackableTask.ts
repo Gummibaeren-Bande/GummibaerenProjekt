@@ -1,3 +1,4 @@
+import TrackableTaskState from "../enums/TrackableTaskState";
 import Exercise from "../interfaces/Exercise";
 import Task from "./Task";
 
@@ -18,6 +19,19 @@ class TrackableTask {
     this.tries = 0;
     this.skipped = false;
     this.isCompleted = false;
+  }
+
+  get state(): TrackableTaskState {
+    if (this.isCompleted) {
+      return TrackableTaskState.Completed;
+    } else if (this.skipped) {
+      return TrackableTaskState.Skipped;
+    } else if (this.finishedAfterSeconds) {
+      return TrackableTaskState.Completed;
+    } else if (this.startedAt) {
+      return TrackableTaskState.InProgress;
+    }
+    return TrackableTaskState.NotStarted;
   }
 
   public startTask(): void {

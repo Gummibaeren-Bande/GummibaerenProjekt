@@ -4,6 +4,7 @@ import Answer from "../types/Answer";
 
 export default interface Exercise {
   id: string;
+  title: string;
   description: string;
   question: string;
   type: "multiple-choice" | "numerical";

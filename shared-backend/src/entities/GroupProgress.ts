@@ -24,6 +24,11 @@ class GroupProgress {
   }
 
   public finishWork() {
+    if (this.hasNextTask()) {
+      throw new Error(
+        "the group progress can't be finished, there are still unfinished tasks left.",
+      );
+    }
     this.finishedWork = true;
     this.stopTimer();
   }
@@ -43,8 +48,8 @@ class GroupProgress {
     throw new Error("Not Implemented Yet!");
   }
 
-  public goToNextTask() {
-    // if there are no more tasks left to work on, call finishWork()
+  public goToNextTask(): TrackableTask {
+    // if there are no more tasks left to work on, dont call finishWork(), throw an error instead
     throw new Error("Not Implemented Yet!");
   }
 

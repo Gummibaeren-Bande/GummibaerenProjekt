@@ -1,9 +1,11 @@
 import Exercise from "../interfaces/Exercise";
 import Answer from "../types/Answer";
+import { v4 as uuidv4 } from "uuid";
 
 // This class is an implementation of the Exercise interface for multiple choice exercises.
 class MultipleChoiceExercise implements Exercise {
   id: string;
+  title: string;
   description: string;
   question: string;
   type: "multiple-choice";
@@ -11,13 +13,14 @@ class MultipleChoiceExercise implements Exercise {
   correctOptionIndexes: number[] = [];
 
   constructor(
-    id: string,
+    title: string,
     description: string,
     question: string,
     options: string[],
     correctOptionIndexes: number[],
   ) {
-    this.id = id;
+    this.id = uuidv4();
+    this.title = title;
     this.question = question;
     this.options = options;
     this.correctOptionIndexes = correctOptionIndexes;

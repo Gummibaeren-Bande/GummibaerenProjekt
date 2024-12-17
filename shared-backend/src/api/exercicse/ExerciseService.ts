@@ -23,12 +23,17 @@ class ExcerciseService {
    */
   public answerCurrentExcercise(
     groupName: string,
+    excerciseId: string,
     answer: Answer,
     callback: CallbackSuccess,
   ) {
     const currentExercise = this.trackableTaskService
       .getCurrentTaskByGroupName(groupName)
       .getChosenExercise();
+    if (currentExercise.id !== excerciseId) {
+      // TODO: callback failure: given id is not equal to the id of the current execrice of the group
+      return;
+    }
     const correct = currentExercise.answer(answer);
     if (correct) {
       this.trackableTaskService.handleTaskCompleted(groupName);

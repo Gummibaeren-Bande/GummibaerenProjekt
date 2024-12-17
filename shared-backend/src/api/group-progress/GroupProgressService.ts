@@ -1,5 +1,7 @@
 import GroupProgress from "../../entities/GroupProgress";
+import TrackableTask from "../../entities/TrackableTask";
 import CallbackNumber from "../../types/callback-types/CallbackNumber";
+import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import GroupService from "../group/GroupService";
 
 class GroupProgressService {
@@ -12,6 +14,27 @@ class GroupProgressService {
 
   public getGroupProgressByGroupName(groupName: string): GroupProgress {
     return this.groupService.getGroupByName(groupName).getGroupProgress();
+  }
+
+  public hasNextTask(groupName: string): boolean {
+    return this.getGroupProgressByGroupName(groupName).hasNextTask();
+  }
+
+  public goToNextTask(groupName: string): TrackableTask {
+    if (!this.hasNextTask(groupName)) {
+      throw new Error("there is no next task for this group!");
+    }
+    return this.getGroupProgressByGroupName(groupName).goToNextTask();
+  }
+
+  // TODO: register as Listener, handle callback, register method in handler
+  public finishWork(groupName: string, callback: CallbackSuccess) {
+    if (this.hasNextTask(groupName)) {
+      // TODO: callback failure because of unfinished tasks
+      return;
+    }
+    this.getGroupProgressByGroupName(groupName).finishWork();
+    // TODO: callback success
   }
 
   // TODO: register as Listener, handle callback, register method in handler
