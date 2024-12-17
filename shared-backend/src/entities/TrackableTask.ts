@@ -4,22 +4,28 @@ import Task from "./Task";
 class TrackableTask {
   private readonly task: Task;
   private chosenExercise: Exercise;
-  private timer: number;
+  private startedAt: Date | null;
+  private finishedAfterSeconds: number | null;
   private tries: number;
   private skipped: boolean;
   private isCompleted: boolean;
 
   constructor(task: Task) {
     this.task = task;
-    this.chosenExercise = task.getExcercises()[0]
-    this.timer = 0; // in seconds
+    this.chosenExercise = task.getExcercises()[0];
+    this.startedAt = null;
+    this.finishedAfterSeconds = null;
     this.tries = 0;
     this.skipped = false;
     this.isCompleted = false;
   }
 
-  public getTimer(): number {
-    return this.timer;
+  public startTask(): void {
+    this.startedAt = new Date();
+  }
+
+  public getStartedAt(): Date | null {
+    return this.startedAt;
   }
 
   public getTries(): number {
@@ -36,18 +42,36 @@ class TrackableTask {
 
   public setSkipped(skipState: boolean): void {
     this.skipped = skipState;
+    if (this.skipped) {
+      this.stopTimer();
+    } else {
+      this.restartTimer();
+    }
   }
 
   public complete(): void {
     this.isCompleted = true;
+    this.stopTimer();
+  }
+
+  private stopTimer() {
+    const started = this.getStartedAt();
+    if (!started) {
+      throw new Error(
+        "The task was not started yet and can't therefore not be finished",
+      );
+    }
+    this.finishedAfterSeconds =
+      (new Date().getTime() - started.getTime()) / 1000;
+  }
+
+  private restartTimer() {
+    this.finishedAfterSeconds = null;
+    this.startedAt = new Date();
   }
 
   public incrementTries(): void {
     this.tries++;
-  }
-
-  public setTimer(time: number): void {
-    this.timer = time;
   }
 
   public setAlternativeExercise(index: number): void {

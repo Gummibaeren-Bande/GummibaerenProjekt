@@ -2,14 +2,19 @@
 
 import express from "express";
 import { createServer } from "http";
-import { Server, Socket } from "socket.io";
-import welcomeHandler from "./handlers/welcome-handler/welcomeHandler";
-import groupHandler from "./handlers/group-handler/groupHandler";
+import { Server } from "socket.io";
+import welcomeHandler from "./api/welcome/welcomeHandler";
+import groupCollectionHandler from "./api/group-collection/groupCollectionHandler";
 import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
 import ClientToServerEvents from "./types/ClientToServerEvents";
 import ServerToClientEvents from "./types/ServerToClientEvents";
-import GroupService from "./handlers/group-handler/GroupService";
+import GroupCollectionService from "./api/group-collection/GroupCollectionService";
+import TaskService from "./api/task/TaskService";
+import GroupProgressService from "./api/group-progress/GroupProgressService";
+import ExcerciseService from "./api/exercicse/ExerciseService";
+import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
+import GroupService from "./api/group/GroupService";
 
 // scaffold new server
 const app = express();
@@ -25,10 +30,23 @@ const io: IoServer = new Server<
   },
 });
 
+// initialize all services
+const taskService = new TaskService();
+const groupCollectionService = new GroupCollectionService(taskService);
+const groupService = new GroupService(groupCollectionService);
+const groupProgressService = new GroupProgressService(groupService);
+const trackableTaskService = new TrackableTaskService(groupProgressService);
+const excerciseService = new ExcerciseService(trackableTaskService);
+
+// upload dummy task set
+taskService.uploadTaskSet([
+  /*TODO: create hardcoded task list to upload*/
+]);
+
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
   welcomeHandler(io, socket);
-  groupHandler(io, socket);
+  groupCollectionHandler(io, socket, groupCollectionService);
 };
 
 // serve the handler functions when connected

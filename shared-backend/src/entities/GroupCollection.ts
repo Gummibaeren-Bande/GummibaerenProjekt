@@ -22,6 +22,10 @@ class GroupCollection {
     this.groupList.push(new Group(name, taskSet));
     return true;
   }
+
+  public getGroupByName(name: string): Group {
+    throw new Error("Not Implemented yet!");
+  }
 }
 
 export default GroupCollection;

@@ -14,11 +14,8 @@ class Group {
     return this.name;
   }
 
-  /**
-   * get the next task for this group
-   */
-  public nextTask(): any {
-    throw new Error("Not implemented yet!");
+  public getGroupProgress(): GroupProgress {
+    return this.groupProgress;
   }
 }
 

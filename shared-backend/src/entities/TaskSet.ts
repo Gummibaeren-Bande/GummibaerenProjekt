@@ -3,7 +3,11 @@ import Task from "./Task";
 class TaskSet {
   private tasks: Task[];
 
-  constructor(tasks: Task[]) {
+  constructor() {
+    this.tasks = [];
+  }
+
+  public uploadTaskSet(tasks: Task[]) {
     this.tasks = tasks;
   }
 
