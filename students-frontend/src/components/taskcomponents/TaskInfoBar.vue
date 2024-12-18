@@ -20,7 +20,7 @@
         height: auto;
         padding: 4px;
         margin-bottom: 2px;
-        font-size: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+        font-size: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320))); /* Calc for the dynamic Fontsize */
     }
 
     #name {

@@ -8,7 +8,7 @@
     div {
         width: auto;
         height: auto;
-        font-size: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+        font-size: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320))); /* Calc for the dynamic Fontsize */
         text-align: center;
         font-weight: bold;
         padding-top: 10px;

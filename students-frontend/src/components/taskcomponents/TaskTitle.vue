@@ -17,7 +17,7 @@
     div h1 {
         color:black;
         text-align: center;
-        font-size: calc(28px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+        font-size: calc(28px + (28 - 16) * ((100vw - 320px) / (1600 - 320))); /* Calc for the dynamic Fontsize */
         padding: 10px;
         font-weight: 500;
     }
