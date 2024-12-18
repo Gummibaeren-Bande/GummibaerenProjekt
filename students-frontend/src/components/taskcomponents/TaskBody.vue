@@ -8,6 +8,10 @@
 <style scoped>
 
     #body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
         background-color: #ffffff66;
         height: 60vh;
         width: inherit;

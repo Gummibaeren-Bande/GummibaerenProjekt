@@ -17,6 +17,7 @@
     div h1 {
         color:black;
         text-align: center;
+        font-size: calc(28px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
         padding: 10px;
         font-weight: 500;
     }
