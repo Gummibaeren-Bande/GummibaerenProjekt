@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.3">
   <diagram name="Page-1" id="2aDTY9amNtia2wzeplLk">
-    <mxGraphModel dx="1279" dy="249" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1572" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2214,6 +2214,18 @@
             <mxPoint x="-216.5" y="3630" as="sourcePoint" />
             <mxPoint x="-50" y="3630" as="targetPoint" />
             <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_SGCli1s5RP8yjDYndTH-36" value="teacher chooses alternative for niki" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="-20" y="2175" as="sourcePoint" />
+            <mxPoint x="197.75" y="2174.55" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="_SGCli1s5RP8yjDYndTH-37" value="teacher marks Task 2 for Franz as skipped" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="-60" y="2424" as="sourcePoint" />
+            <mxPoint x="197.75" y="2424" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
