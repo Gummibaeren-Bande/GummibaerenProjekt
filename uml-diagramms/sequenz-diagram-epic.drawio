@@ -2203,7 +2203,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="_SGCli1s5RP8yjDYndTH-34" value="&lt;div&gt;Luca enters name and clicks&lt;br&gt;&lt;/div&gt;&lt;div align=&quot;left&quot;&gt;&quot;letzten Stand abrufen&quot;&lt;br&gt;&lt;/div&gt;" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;" edge="1" parent="1">
-          <mxGeometry x="0.1625" width="80" relative="1" as="geometry">
+          <mxGeometry x="-0.0875" y="5" width="80" relative="1" as="geometry">
             <mxPoint x="-213" y="3085" as="sourcePoint" />
             <mxPoint x="-53" y="3085" as="targetPoint" />
             <mxPoint as="offset" />
