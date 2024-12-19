@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:133.0) Gecko/20100101 Firefox/133.0" version="25.0.3">
   <diagram name="Page-1" id="2YBvvXClWsGukQMizWep">
-    <mxGraphModel dx="2269" dy="1317" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="722" dy="420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -223,6 +223,18 @@
         </mxCell>
         <mxCell id="mfu2dzNHZLcvLbCA3ni9-118" value="&amp;nbsp;connect" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="880" y="640" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="if9TOhZrL9IHwH22qfpK-1" value="new socket is found" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-99">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="1250" y="630" as="sourcePoint" />
+            <mxPoint x="1220" y="629.55" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="if9TOhZrL9IHwH22qfpK-2" value="new socket is found" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;" edge="1" parent="1" target="mfu2dzNHZLcvLbCA3ni9-100">
+          <mxGeometry width="80" relative="1" as="geometry">
+            <mxPoint x="1250" y="660" as="sourcePoint" />
+            <mxPoint x="1240" y="659.55" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
       </root>
     </mxGraphModel>
