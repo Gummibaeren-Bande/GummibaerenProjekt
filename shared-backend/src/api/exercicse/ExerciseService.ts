@@ -41,6 +41,14 @@ class ExcerciseService {
   }
 
   // TODO: register as Listener, handle callback, register method in handler
+  public getCurrentExcerciceOfGroup(
+    groupName: string,
+    callback: CallbackExcercise,
+  ) {
+    throw new Error("Not Implemented Yet");
+  }
+
+  // TODO: register as Listener, handle callback, register method in handler
   /**
    * tries to deliver the next Excercise in the callback. If the given group is finished and therefore does
    * not have a next task the callback specifies that in its message and the delivered Excercise is null
