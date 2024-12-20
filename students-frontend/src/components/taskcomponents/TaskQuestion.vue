@@ -11,6 +11,6 @@
     ); /* Calculation for the dynamic fontsize */
     text-align: center;
     font-weight: bold;
-    padding-top: 10px;
+    padding: 0px;
   }
 </style>

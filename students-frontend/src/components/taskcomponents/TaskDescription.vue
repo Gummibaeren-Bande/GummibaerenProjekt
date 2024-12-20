@@ -1,9 +1,10 @@
 <template>
   <div id="TaksContainer">
     <ScrollPanel>
-      In einer Gummibärchenpackung gibt es ingesamt 256 Gummibärchen. Diese sollen jetzt auf Tom,
-      Alice, Jonas, Friedrich, Tabea, Michi, Lisa und Felix aufgeteilt werden.
-      <p>
+      <p>  
+        In einer Gummibärchenpackung gibt es ingesamt 256 Gummibärchen. Diese sollen jetzt auf Tom,
+        Alice, Jonas, Friedrich, Tabea, Michi, Lisa und Felix aufgeteilt werden.
+
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
         labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
         laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
@@ -31,6 +32,9 @@
 
 <style scope>
   #TaksContainer {
+    min-height: 0;
+    display: block;
+    flex: 1 1 auto;
     text-align: center;
     font-size: calc(
       16px + (28 - 16) * ((100vw - 320px) / (1600 - 320))
@@ -40,9 +44,11 @@
   }
 
   .p-scrollpanel {
-    width: 100%;
-    height: 50vh;
+    width: auto;
+    min-height: 0px;
+    height: 100%;
   }
+
 </style>
 
 <script lang="ts" setup>

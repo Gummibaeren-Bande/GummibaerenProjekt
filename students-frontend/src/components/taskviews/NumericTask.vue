@@ -1,4 +1,5 @@
 <template>
+  <TaskTitle/>
   <TaskInfoBar />
   <TaskBody />
   <TaskNumericAnswerbar />
@@ -8,4 +9,5 @@
   import TaskInfoBar from '../taskcomponents/TaskInfoBar.vue'
   import TaskBody from '../taskcomponents/TaskBody.vue'
   import TaskNumericAnswerbar from '../taskcomponents/TaskNumericAnswerbar.vue'
+  import TaskTitle from '../taskcomponents/TaskTitle.vue';
 </script>

@@ -9,21 +9,21 @@
   #body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: end;
     align-items: center;
+    min-height: 0;
+    flex: 1 1 auto;
     background-color: #ffffff66;
-    height: 60vh;
+    height: auto;
     width: inherit;
     color: black;
     text-align: left;
     font-size: large;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-top: 10px;
+    padding: 10px;
   }
 </style>
 
 <script setup lang="ts">
-import TaskDescription from './TaskDescription.vue'
-import TaskQuestion from './TaskQuestion.vue'
+  import TaskDescription from './TaskDescription.vue'
+  import TaskQuestion from './TaskQuestion.vue'
 </script>

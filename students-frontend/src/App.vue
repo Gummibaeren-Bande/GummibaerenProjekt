@@ -9,8 +9,12 @@ import StudentsView from './views/StudentsView.vue'
 <style>
 #app {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
 }
 </style>
