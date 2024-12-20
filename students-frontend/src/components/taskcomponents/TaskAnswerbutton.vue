@@ -5,18 +5,18 @@
 </template>
 
 <style scoped>
-#AnswerButton {
-  display: flex;
-  height: inherit;
-  background-color: #ffffff66;
-  margin-left: 2px;
-  border-bottom-right-radius: 12px;
-}
+  #AnswerButton {
+    display: flex;
+    height: inherit;
+    background-color: #ffffff66;
+    margin-left: 2px;
+    border-bottom-right-radius: 12px;
+  }
 
-#AnswerButton button {
-  margin: 5px;
-  color: black;
-}
+  #AnswerButton button {
+    margin: 5px;
+    color: black;
+  }
 </style>
 
 <script lang="ts" setup>
