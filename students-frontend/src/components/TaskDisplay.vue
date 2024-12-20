@@ -14,5 +14,5 @@
 </style>
 
 <script setup lang="ts">
-  import NumericTask from './taskviews/NumericTask.vue'
+import NumericTask from './taskviews/NumericTask.vue'
 </script>
