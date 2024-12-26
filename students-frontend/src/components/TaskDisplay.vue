@@ -2,10 +2,21 @@
   <div id="mainDiv">
     <TaskTitle />
     <TaskInfoBar />
-    <NumericTask v-if="nummericTask"/>
-    <MultipaleChoiceTask v-if="nummericTask"/>
+    <NumericTask v-if="isNummericTaks"/>
+    <MultipaleChoiceTask v-else />
   </div>
 </template>
+
+<script lang="ts" setup>
+import { ref } from 'vue';
+import TaskInfoBar from './taskcomponents/TaskInfoBar.vue'
+import TaskTitle from './taskcomponents/TaskTitle.vue'
+import MultipaleChoiceTask from './taskviews/MultipaleChoiceTask.vue';
+import NumericTask from './taskviews/NumericTask.vue'
+
+const isNummericTaks = ref(false)
+</script>
+
 
 <style>
 #mainDiv {
@@ -16,11 +27,3 @@
 }
 </style>
 
-<script setup lang="ts">
-import TaskInfoBar from './taskcomponents/TaskInfoBar.vue'
-import TaskTitle from './taskcomponents/TaskTitle.vue'
-import MultipaleChoiceTask from './taskviews/MultipaleChoiceTask.vue';
-import NumericTask from './taskviews/NumericTask.vue'
-
-const nummericTask = false
-</script>

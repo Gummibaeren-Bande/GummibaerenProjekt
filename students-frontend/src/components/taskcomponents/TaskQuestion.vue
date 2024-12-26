@@ -1,5 +1,5 @@
 <template>
-  <div>Wie viele Gummibärchen bekommt jeder?</div>
+  <div>{{ question }}</div>
 </template>
 
 <style scoped>
@@ -12,5 +12,12 @@ div {
   text-align: center;
   font-weight: bold;
   padding: 0px;
+  padding-bottom: 5px;
 }
 </style>
+
+<script lang="ts" setup>
+  defineProps({
+    question : String
+  })
+</script>
