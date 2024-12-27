@@ -25,7 +25,7 @@ class ExcerciseService {
     groupName: string,
     excerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess,
+    callback: CallbackSuccess
   ) {
     const currentExercise = this.trackableTaskService
       .getCurrentTaskByGroupName(groupName)
@@ -43,7 +43,7 @@ class ExcerciseService {
   // TODO: register as Listener, handle callback, register method in handler
   public getCurrentExcerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise,
+    callback: CallbackExcercise
   ) {
     throw new Error("Not Implemented Yet");
   }
@@ -58,7 +58,7 @@ class ExcerciseService {
    */
   public getNextExerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise,
+    callback: CallbackExcercise
   ) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);

@@ -1,18 +1,16 @@
 import Group from "../../entities/Group";
-import GroupCollectionService from "../group-collection/GroupCollectionService";
+import GroupSetService from "../group-set/GroupSetService";
 
 class GroupService {
-  private readonly groupCollectionService: GroupCollectionService;
+  private readonly groupCollectionService: GroupSetService;
 
-  constructor(groupCollectionService: GroupCollectionService) {
+  constructor(groupCollectionService: GroupSetService) {
     this.groupCollectionService = groupCollectionService;
     console.log("Group service was successfully started");
   }
 
   public getGroupByName(name: string): Group {
-    return this.groupCollectionService
-      .getGroupCollection()
-      .getGroupByName(name);
+    return this.groupCollectionService.getGroupSet().getGroupByName(name);
   }
 }
 

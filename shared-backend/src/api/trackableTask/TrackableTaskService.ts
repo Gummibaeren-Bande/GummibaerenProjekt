@@ -64,7 +64,7 @@ class TrackableTaskService {
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,
-    indexOfAlternative: number,
+    indexOfAlternative: number
   ) {
     this.groupProgressService
       .getGroupProgressByGroupName(groupName)
