@@ -1,4 +1,4 @@
-import Exercise from "../interfaces/Exercise";
+import Exercise from "../abstract-classes/Exercise";
 import { v4 as uuidv4 } from "uuid";
 
 class Task {

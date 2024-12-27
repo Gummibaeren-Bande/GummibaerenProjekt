@@ -1,32 +1,33 @@
-import Exercise from "../interfaces/Exercise";
+import Exercise from "../abstract-classes/Exercise";
 import Answer from "../types/Answer";
 import { v4 as uuidv4 } from "uuid";
 
-// This class is an implementation of the Exercise interface for numerical exercises.
-class NumericalExercise implements Exercise {
-  id: string;
-  title: string;
-  description: string;
-  question: string;
-  type: "numerical";
-  correctAnswer: number;
+// This class is an implementation of the Exercise abstract class for numerical exercises.
+class NumericalExercise extends Exercise {
+  readonly type: "numerical";
+  private readonly correctAnswer: number;
 
   constructor(
     title: string,
     description: string,
     question: string,
-    correctAnswer: number,
+    correctAnswer: number
   ) {
+    super();
     this.id = uuidv4();
     this.title = title;
-    this.question = question;
-    this.correctAnswer = correctAnswer;
     this.description = description;
+    this.question = question;
     this.type = "numerical";
+    this.correctAnswer = correctAnswer;
   }
 
-  public answer(answer: Answer): boolean {
-    throw new Error("Not Implemented yet!");
+  public checkAnswer(answer: Answer): boolean {
+    return answer === this.correctAnswer;
+  }
+
+  public getCorrectAnswer(): number {
+    return this.correctAnswer;
   }
 }
 
