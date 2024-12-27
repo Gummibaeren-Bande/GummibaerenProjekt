@@ -1,5 +1,5 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
-import Exercise from "../interfaces/Exercise";
+import Exercise from "../abstract-classes/Exercise";
 import Task from "./Task";
 
 class TrackableTask {
@@ -9,7 +9,6 @@ class TrackableTask {
   private finishedAfterSeconds: number | null;
   private tries: number;
   private skipped: boolean;
-  private isCompleted: boolean;
 
   constructor(task: Task) {
     this.task = task;
@@ -18,13 +17,10 @@ class TrackableTask {
     this.finishedAfterSeconds = null;
     this.tries = 0;
     this.skipped = false;
-    this.isCompleted = false;
   }
 
   get state(): TrackableTaskState {
-    if (this.isCompleted) {
-      return TrackableTaskState.Completed;
-    } else if (this.skipped) {
+    if (this.skipped) {
       return TrackableTaskState.Skipped;
     } else if (this.finishedAfterSeconds) {
       return TrackableTaskState.Completed;
@@ -50,10 +46,6 @@ class TrackableTask {
     return this.skipped;
   }
 
-  public getIsCompleted(): boolean {
-    return this.isCompleted;
-  }
-
   public setSkipped(skipState: boolean): void {
     this.skipped = skipState;
     if (this.skipped) {
@@ -64,7 +56,6 @@ class TrackableTask {
   }
 
   public complete(): void {
-    this.isCompleted = true;
     this.stopTimer();
   }
 
@@ -72,7 +63,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task was not started yet and can't therefore not be finished",
+        "The task was not started yet and can't therefore not be finished"
       );
     }
     this.finishedAfterSeconds =
