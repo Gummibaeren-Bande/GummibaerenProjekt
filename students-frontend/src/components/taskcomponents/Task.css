@@ -1,64 +1,58 @@
 .mainComponent {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: inherit;
-    margin-bottom: 2px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  margin-bottom: 2px;
 }
 
 .mainComponentColor {
-    background-color: #ffffff66;
+  background-color: #ffffff66;
 }
 
 .mainDivSize {
-    width: 90vw;
-    height: 90vh;
+  width: 90vw;
+  height: 90vh;
 }
 
 .textColor {
-    color: black;
+  color: black;
 }
 
 .textTitle {
-    text-align: center;
-    font-size: calc(
-        28px + (28 - 16) * ((100vw - 320px) / (1600 - 320))
-      );
-    padding: 10px;
-    font-weight: 500;
+  text-align: center;
+  font-size: calc(28px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+  padding: 10px;
+  font-weight: 500;
 }
 
 .textBold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .textNormall {
-    text-align: center;
-    font-size: calc(
-        16px + (28 - 16) * ((100vw - 320px) / (1600 - 320))
-      );
+  text-align: center;
+  font-size: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
 }
 
 .textSmaller {
-    text-align: center;
-    font-size: calc(
-        10px + (28 - 16) * ((100vw - 320px) / (1600 - 320))
-      );
+  text-align: center;
+  font-size: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
 }
 
 .taskBody {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    min-height: 0;
-    height: 100%;
-    width: inherit;
-    padding: 10px;
-  }
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  height: 100%;
+  width: inherit;
+  padding: 10px;
+}
 
-  .taskAnswerbar {
-    display: flex;
-    height: inherit;
-  }
+.taskAnswerbar {
+  display: flex;
+  height: inherit;
+}

@@ -12,7 +12,7 @@ div {
 <script lang="ts" setup>
 import './Task.css'
 
-  defineProps({
-    question : String
-  })
+defineProps({
+  question: String,
+})
 </script>

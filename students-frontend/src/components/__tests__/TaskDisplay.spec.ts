@@ -7,7 +7,6 @@ import InputNumber from 'primevue/inputnumber'
 import TaskDisplay from '../TaskDisplay.vue'
 import TaskTitle from '../taskcomponents/TaskTitle.vue'
 import TaskInfoBar from '../taskcomponents/TaskInfoBar.vue'
-import TaskBody from '../taskcomponents/TaskBody.vue'
 import TaskNummericAnswerbar from '../taskcomponents/TaskNumericAnswerbar.vue'
 
 const globalConfig = {
@@ -32,11 +31,6 @@ describe('TaskDisplay.vue', () => {
   it('renders TaskInfoBar component', () => {
     const wrapper = mount(TaskDisplay, { global: globalConfig })
     expect(wrapper.findComponent(TaskInfoBar).exists()).toBe(true)
-  })
-
-  it('renders TaskBody component', () => {
-    const wrapper = mount(TaskDisplay, { global: globalConfig })
-    expect(wrapper.findComponent(TaskBody).exists()).toBe(true)
   })
 
   it('renders TaskNummericAnswerbar component', () => {

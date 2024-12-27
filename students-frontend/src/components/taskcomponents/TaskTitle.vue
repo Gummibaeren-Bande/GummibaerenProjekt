@@ -1,5 +1,5 @@
 <template>
-  <div class="mainComponent   mainComponentColor">
+  <div class="mainComponent mainComponentColor">
     <h1 class="textTitle textColor">Gummibärchen Verteilung</h1>
   </div>
 </template>
