@@ -1,14 +1,11 @@
 <template>
-  <div id="AnswerButton">
+  <div id="AnswerButton" class="taskAnswerbar mainComponentColor">
     <Button label="Abschicken" fluid />
   </div>
 </template>
 
 <style scoped>
 #AnswerButton {
-  display: flex;
-  height: inherit;
-  background-color: #ffffff66;
   margin-left: 2px;
   border-bottom-right-radius: 12px;
 }
@@ -20,5 +17,6 @@
 </style>
 
 <script lang="ts" setup>
+import './Task.css'
 import Button from 'primevue/button'
 </script>

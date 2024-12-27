@@ -1,5 +1,5 @@
 <template>
-  <div id="mainDiv">
+  <div class="mainComponent mainDivSize">
     <TaskTitle />
     <TaskInfoBar />
     <NumericTask v-if="isNummericTaks"/>
@@ -8,6 +8,7 @@
 </template>
 
 <script lang="ts" setup>
+import './taskcomponents/Task.css'
 import { ref } from 'vue';
 import TaskInfoBar from './taskcomponents/TaskInfoBar.vue'
 import TaskTitle from './taskcomponents/TaskTitle.vue'
@@ -16,14 +17,3 @@ import NumericTask from './taskviews/NumericTask.vue'
 
 const isNummericTaks = ref(false)
 </script>
-
-
-<style>
-#mainDiv {
-  display: flex;
-  flex-direction: column;
-  width: 80vw; /* Makes the Div 80% of the ViewPort. This width will be inheritet by all child Components. So it defines the Displayed width. */
-  height: 90vh;
-}
-</style>
-

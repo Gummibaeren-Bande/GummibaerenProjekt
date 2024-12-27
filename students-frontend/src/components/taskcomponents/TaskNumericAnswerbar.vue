@@ -10,7 +10,6 @@
   display: grid;
   grid-template-columns: 4fr 1fr;
   width: inherit;
-  height: auto;
   margin-top: 2px;
   border-bottom-left-radius: 12px;
 }

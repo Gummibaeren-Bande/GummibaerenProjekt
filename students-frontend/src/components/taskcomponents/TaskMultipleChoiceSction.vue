@@ -2,12 +2,13 @@
     <div id="ChoiceContainer">
         <div v-for="option in options" :key="option.value" class="p-field-checkbox">
             <Checkbox v-model="selectedOptions" :inputId="option.value" :value="option.value" />
-            <label :for="option.value">{{ option.label }}</label>
+            <label :for="option.value" class="textNormall textColor">{{ option.label }}</label>
         </div>
     </div>
 </template>
 
 <script lang="ts" setup>
+import './Task.css'
 import { ref } from 'vue'
 import Checkbox from 'primevue/checkbox'
 
@@ -27,7 +28,6 @@ const selectedOptions = ref<string[]>([]);
     width: fit-content;
     margin-bottom: 5px;
     margin-left: 5px;
-    text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;

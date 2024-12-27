@@ -1,5 +1,5 @@
 <template>
-  <div id="TaksContainer">
+  <div id="TaksContainer" class="textNormall textColor">
     <ScrollPanel>
       <p>
         In einer Gummibärchenpackung gibt es ingesamt 256 Gummibärchen. Diese sollen jetzt auf Tom,
@@ -32,14 +32,8 @@
 <style scope>
 #TaksContainer {
   min-height: 0;
-  display: block;
-  flex: 1 1 auto;
-  text-align: center;
-  font-size: calc(
-    16px + (28 - 16) * ((100vw - 320px) / (1600 - 320))
-  ); /* Calculation for the dynamic fontsize */
-  width: auto;
-  height: auto;
+  width: 100%;
+  height: 100%;
 }
 
 .p-scrollpanel {
@@ -50,5 +44,6 @@
 </style>
 
 <script lang="ts" setup>
+import './Task.css'
 import ScrollPanel from 'primevue/scrollpanel'
 </script>

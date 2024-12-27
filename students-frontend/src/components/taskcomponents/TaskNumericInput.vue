@@ -1,14 +1,11 @@
 <template>
-  <div id="solution">
+  <div id="solution" class="taskAnswerbar mainComponentColor">
     <InputNumber id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" />
   </div>
 </template>
 
 <style scoped>
 #solution {
-  display: flex;
-  background-color: #ffffff66;
-  height: inherit;
   border-bottom-left-radius: 12px;
 }
 
@@ -18,5 +15,6 @@
 </style>
 
 <script lang="ts" setup>
+import './Task.css'
 import InputNumber from 'primevue/inputnumber'
 </script>
