@@ -4,12 +4,12 @@ import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
 import welcomeHandler from "./api/welcome/welcomeHandler";
-import groupCollectionHandler from "./api/group-collection/groupCollectionHandler";
+import groupSetHandler from "./api/group-set/groupSetHandler";
 import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
 import ClientToServerEvents from "./types/ClientToServerEvents";
 import ServerToClientEvents from "./types/ServerToClientEvents";
-import GroupCollectionService from "./api/group-collection/GroupCollectionService";
+import GroupSetService from "./api/group-set/GroupSetService";
 import TaskService from "./api/task/TaskService";
 import GroupProgressService from "./api/group-progress/GroupProgressService";
 import ExcerciseService from "./api/exercicse/ExerciseService";
@@ -32,8 +32,8 @@ const io: IoServer = new Server<
 
 // initialize all services
 const taskService = new TaskService();
-const groupCollectionService = new GroupCollectionService(taskService);
-const groupService = new GroupService(groupCollectionService);
+const groupSetService = new GroupSetService(taskService);
+const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
 const excerciseService = new ExcerciseService(trackableTaskService);
@@ -46,7 +46,7 @@ taskService.uploadTaskSet([
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
   welcomeHandler(io, socket);
-  groupCollectionHandler(io, socket, groupCollectionService);
+  groupSetHandler(io, socket, groupSetService);
 };
 
 // serve the handler functions when connected

@@ -1,4 +1,4 @@
-import Exercise from "../../interfaces/Exercise";
+import Exercise from "../../abstract-classes/Exercise";
 
 type CallbackExcercise = (message: {
   isFinished: boolean;

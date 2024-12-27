@@ -1,7 +1,7 @@
 import CallbackSuccess from "../../../types/callback-types/CallbackSuccess";
 
-interface GroupCollectionServiceListeners {
+interface GroupSetServiceListeners {
   addGroup: (name: string, callback: CallbackSuccess) => void;
 }
 
-export default GroupCollectionServiceListeners;
+export default GroupSetServiceListeners;

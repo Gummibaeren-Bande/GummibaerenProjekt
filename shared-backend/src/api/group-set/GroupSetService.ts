@@ -1,20 +1,20 @@
 import Group from "../../entities/Group";
-import GroupCollection from "../../entities/GroupCollection";
+import GroupSet from "../../entities/GroupSet";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TaskService from "../task/TaskService";
-import GroupCollectionServiceEmits from "./interfaces/GroupCollectionServiceEmits";
-import GroupCollectionServiceListeners from "./interfaces/GroupCollectionServiceListeners";
+import GroupSetServiceEmits from "./interfaces/GroupSetServiceEmits";
+import GroupSetServiceListeners from "./interfaces/GroupSetServiceListeners";
 
-class GroupCollectionService
-  implements GroupCollectionServiceEmits, GroupCollectionServiceListeners
+class GroupSetService
+  implements GroupSetServiceEmits, GroupSetServiceListeners
 {
-  private readonly groupCollection: GroupCollection;
+  private readonly groupSet: GroupSet;
   private readonly taskService: TaskService;
 
   constructor(taskService: TaskService) {
     this.taskService = taskService;
-    this.groupCollection = new GroupCollection();
-    console.log("Group Collection service was successfully started");
+    this.groupSet = new GroupSet();
+    console.log("Group Set service was successfully started");
   }
 
   // TODO: register method in handler, do the emit, i still have to thing about, how the emit is carried out...
@@ -22,22 +22,22 @@ class GroupCollectionService
   // * maybe its better to emit more granular
   // * the emit should only go to the teachers-frontend!
   /**
-   * return the current groupCollection after a change in the data
+   * return the current groupSet after a change in the data
    *
-   * @returns the new groupCollection to emit
+   * @returns the new groupSet to emit
    */
-  public emitChangedGroupCollection(): GroupCollection {
-    return this.groupCollection;
+  public emitChangedGroupSet(): GroupSet {
+    return this.groupSet;
   }
 
-  public getGroupCollection(): GroupCollection {
-    return this.groupCollection;
+  public getGroupSet(): GroupSet {
+    return this.groupSet;
   }
 
   addGroup(name: string, callback: CallbackSuccess): void {
-    const successful = this.groupCollection.addNewGroup(
+    const successful = this.groupSet.addNewGroup(
       name,
-      this.taskService.getTaskSet(),
+      this.taskService.getTaskSet()
     );
 
     if (!successful) {
@@ -54,4 +54,4 @@ class GroupCollectionService
   }
 }
 
-export default GroupCollectionService;
+export default GroupSetService;
