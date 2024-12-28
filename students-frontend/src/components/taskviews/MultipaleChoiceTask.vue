@@ -3,14 +3,14 @@
     <TaskQuestion question="Welche der folgenden Geschmaksrichtungen gibt es bei Gummibärchen?" />
     <TaskMultipleChoice />
   </div>
-  <TaskNumericAnswerbar v-on:tester="tester" />
+  <TaskDefaultAnswerbar v-on:tester="tester" />
 </template>
 
 <script lang="ts" setup>
 import '../taskcomponents/Task.css'
 import TaskQuestion from '../taskcomponents/TaskQuestion.vue'
 import TaskMultipleChoice from '../taskcomponents/TaskMultipleChoiceSction.vue'
-import TaskNumericAnswerbar from '../taskcomponents/TaskNumericAnswerbar.vue'
+import TaskDefaultAnswerbar from '../taskcomponents/TaskDefaultAnswerbar.vue'
 </script>
 
 <script lang="ts">

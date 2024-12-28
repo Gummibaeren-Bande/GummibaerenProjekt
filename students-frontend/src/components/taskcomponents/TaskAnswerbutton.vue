@@ -1,5 +1,5 @@
 <template>
-  <div id="AnswerButton" class="taskAnswerbar mainComponentColor">
+  <div id="AnswerButton" class="taskAnswerbar mainComponentColor borderRadiusBottomRight">
     <Button label="Abschicken" fluid v-on:click="submitAnswer" />
   </div>
 </template>
@@ -7,7 +7,6 @@
 <style scoped>
 #AnswerButton {
   margin-left: 2px;
-  border-bottom-right-radius: 12px;
 }
 
 #AnswerButton button {

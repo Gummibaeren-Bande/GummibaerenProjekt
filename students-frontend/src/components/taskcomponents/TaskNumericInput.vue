@@ -1,13 +1,10 @@
 <template>
-  <div id="solution" class="taskAnswerbar mainComponentColor">
+  <div class="taskAnswerbar mainComponentColor borderRadiusBottomLeft">
     <InputNumber id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" />
   </div>
 </template>
 
 <style scoped>
-#solution {
-  border-bottom-left-radius: 12px;
-}
 
 #answer {
   margin: 5px;

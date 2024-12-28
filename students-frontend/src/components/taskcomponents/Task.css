@@ -56,3 +56,27 @@
   display: flex;
   height: inherit;
 }
+
+.answerBar {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: inherit;
+  margin-top: 2px;
+  border-bottom-left-radius: 12px;
+}
+
+.borderRadiusBottomLeft {
+  border-bottom-left-radius: 12px;
+}
+
+.borderRadiusBottomRight {
+  border-bottom-right-radius: 12px;
+}
+
+.borderRadiusTopLeft {
+  border-top-left-radius: 12px;
+}
+
+.borderRadiusTopRight {
+  border-top-right-radius: 12px;
+}

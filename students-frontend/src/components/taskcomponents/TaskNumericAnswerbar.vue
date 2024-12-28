@@ -1,21 +1,12 @@
 <template>
-  <div id="AnswerBar">
+  <div class="answerBar">
     <TaskNumericInput />
     <TaskAnswerbutton v-on:tester="$emit('tester')" />
   </div>
 </template>
 
-<style scoped>
-#AnswerBar {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  width: inherit;
-  margin-top: 2px;
-  border-bottom-left-radius: 12px;
-}
-</style>
-
 <script lang="ts" setup>
+import './Task.css'
 import TaskAnswerbutton from './TaskAnswerbutton.vue'
 import TaskNumericInput from './TaskNumericInput.vue'
 </script>
