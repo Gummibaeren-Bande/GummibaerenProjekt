@@ -80,3 +80,9 @@
 .borderRadiusTopRight {
   border-top-right-radius: 12px;
 }
+
+.taskDescriptionScrollpanel {
+  width: auto;
+  min-height: 0px;
+  height: 100%;
+}

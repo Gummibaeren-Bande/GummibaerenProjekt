@@ -1,16 +1,17 @@
 <template>
-  <div class="taskBody mainComponentColor">
-    <TaskQuestion question="Welche der folgenden Geschmaksrichtungen gibt es bei Gummibärchen?" />
-    <TaskMultipleChoice />
-  </div>
+  <TaskHeader />
+  <TaskBody question="Wie viele Gummibärchen bekommt jeder?">
+    <TaskMultipleChoiceSction />
+  </TaskBody>
   <TaskDefaultAnswerbar v-on:tester="tester" />
 </template>
 
 <script lang="ts" setup>
 import '../taskcomponents/Task.css'
-import TaskQuestion from '../taskcomponents/TaskQuestion.vue'
-import TaskMultipleChoice from '../taskcomponents/TaskMultipleChoiceSction.vue'
-import TaskDefaultAnswerbar from '../taskcomponents/TaskDefaultAnswerbar.vue'
+import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
+import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
+import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
+import TaskMultipleChoiceSction from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSction.vue'
 </script>
 
 <script lang="ts">

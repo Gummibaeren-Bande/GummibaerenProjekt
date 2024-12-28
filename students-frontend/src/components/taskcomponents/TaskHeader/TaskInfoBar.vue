@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import './Task.css'
+import '../Task.css'
 </script>
 
 <style scoped>

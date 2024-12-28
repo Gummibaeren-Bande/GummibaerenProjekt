@@ -4,13 +4,12 @@
 
 <style scoped>
 div {
-  padding: 0px;
-  padding-bottom: 5px;
+  padding: 5px;
 }
 </style>
 
 <script lang="ts" setup>
-import './Task.css'
+import '../Task.css'
 
 defineProps({
   question: String,

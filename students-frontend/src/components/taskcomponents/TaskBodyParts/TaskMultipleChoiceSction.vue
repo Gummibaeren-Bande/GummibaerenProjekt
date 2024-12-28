@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts" setup>
-import './Task.css'
+import '../Task.css'
 import { ref } from 'vue'
 import Checkbox from 'primevue/checkbox'
 
