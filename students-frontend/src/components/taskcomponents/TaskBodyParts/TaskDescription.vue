@@ -2,25 +2,29 @@
   <div id="TaksContainer" class="textNormall textColor">
     <ScrollPanel class="taskDescriptionScrollpanel">
       <p>
-        {{ props.description }}
+        {{ description }}
       </p>
     </ScrollPanel>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import '../Task.css'
 import ScrollPanel from 'primevue/scrollpanel'
+import { defineComponent } from 'vue'
 
-let props = defineProps({
-  description: {
-    type: String,
-    required: true
-  }
+export default defineComponent({
+  components: {
+    ScrollPanel,
+  },
+  props: {
+    description: {
+      type: String,
+      requiered: true,
+    },
+  },
 })
-
 </script>
-
 
 <style scope>
 #TaksContainer {

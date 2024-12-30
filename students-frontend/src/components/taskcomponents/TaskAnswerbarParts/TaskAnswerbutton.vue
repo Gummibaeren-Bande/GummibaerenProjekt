@@ -4,6 +4,24 @@
   </div>
 </template>
 
+<script lang="ts">
+import '../Task.css'
+import Button from 'primevue/button'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  components: {
+    Button,
+  }, 
+  emits: ['submitAnswer'],
+  methods: {
+    submitAnswer() {
+      this.$emit('submitAnswer')
+    },
+  },
+})
+</script>
+
 <style scoped>
 #AnswerButton {
   margin-left: 2px;
@@ -14,20 +32,3 @@
   color: black;
 }
 </style>
-
-<script lang="ts" setup>
-import '../Task.css'
-import Button from 'primevue/button'
-</script>
-
-<script lang="ts">
-export default {
-  emits: ['tester'],
-  methods: {
-    submitAnswer() {
-      console.log('Antwort abgeschickt')
-      this.$emit('tester')
-    },
-  },
-}
-</script>

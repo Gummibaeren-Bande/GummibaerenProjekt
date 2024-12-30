@@ -1,9 +1,19 @@
 <template>
   <div class="mainComponent mainComponentColor borderRadiusTopRight borderRadiusTopLeft">
-    <h1 class="textTitle textColor">Gummibärchen Verteilung</h1>
+    <h1 class="textTitle textColor">{{ title }}</h1>
   </div>
 </template>
 
-<script lang="ts" setup>
+<script lang="ts">
 import '../Task.css'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+  },
+})
 </script>

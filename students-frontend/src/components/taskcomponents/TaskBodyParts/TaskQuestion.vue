@@ -2,16 +2,22 @@
   <div class="textNormall textColor textBold">{{ question }}</div>
 </template>
 
+<script lang="ts">
+import '../Task.css'
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  props: {
+    question: {
+      type: String,
+      required: true,
+    },
+  },
+})
+</script>
+
 <style scoped>
 div {
   padding: 5px;
 }
 </style>
-
-<script lang="ts" setup>
-import '../Task.css'
-
-defineProps({
-  question: String,
-})
-</script>
