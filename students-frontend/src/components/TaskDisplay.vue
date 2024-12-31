@@ -1,4 +1,5 @@
 <template>
+  <RightWrongOverlay :is-right="isCorrect" :visible="isRigthWrongOverlayVisible" v-on:weiter="weiter" />
   <div class="mainComponent mainDivSize">
     <NumericTask 
       v-if="currentTask.taskType===TaskType.NUMERIC" 
@@ -14,6 +15,7 @@
 </template>
 
 <script lang="ts" setup>
+import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import './taskcomponents/Task.css'
 import MultipaleChoiceTask from './taskviews/MultipaleChoiceTask.vue'
 import NumericTask from './taskviews/NumericTask.vue'
@@ -41,6 +43,8 @@ export default defineComponent({
     return {
       taskCatalog: [] as Task[],
       currentTask: task1 as Task,
+      isCorrect: false as boolean,
+      isRigthWrongOverlayVisible: false as boolean,
       group: {
         groupname: 'Teddybären',
         finishedTasks: 1,
@@ -53,12 +57,20 @@ export default defineComponent({
   methods: {
     submitAnswer(givenAnswer: string[]) {
       console.log('Gegeben Antwor ist: ' + givenAnswer[0])
-      if (this.currentTask.isCorrectd(givenAnswer[0])) {
-        this.nextTask()
-        this.group.increaseFinishedTasks()
+      this.isCorrect = this.currentTask.isCorrectd(givenAnswer[0])
+      if (this.isCorrect) {
         console.log('Richtige Antwort')
       } else {
         console.log('Flachse Antwort')
+      }
+      this.isRigthWrongOverlayVisible = true
+    },
+    weiter() {
+      this.isRigthWrongOverlayVisible = false
+      if (this.isCorrect) {
+        this.group.increaseFinishedTasks()
+        this.nextTask()
+        this.isCorrect = false
       }
     },
     nextTask() {
