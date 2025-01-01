@@ -3,28 +3,24 @@
     class="RigthWrongOverlay borderRadiusTopLeft borderRadiusTopRight borderRadiusBottomRight borderRadiusBottomLeft" 
     :class="{ RigthColor: isRight, WrongColor: !isRight }">
         <template #container="{ closeCallback }">
-            <div class="textColor textNormall textBold textMargin">
-                {{ isRight ? 'Richtig' : 'Falsch' }}
-            </div>
-            <div class="textColor textNormall textMargin">
-                {{ isRight ? "Drücke auf weiter wenn du zur nächsten Aufgabe möchtest.": "Leider falsche. Versuche es doch nochmal." }}
-            </div>
-            <div class="RigthWrongOverlayButton textColor">
-                <Button id="tester" @click="weiter()" label="Weiter" />
+            <div class="marginOverlay">
+                <div class="textColor textNormall textBold textMargin">
+                    {{ isRight ? 'Richtig' : 'Falsch' }}
+                </div>
+                <div class="textColor textNormall textMargin">
+                    {{ isRight ? "Drücke auf weiter wenn du zur nächsten Aufgabe möchtest.": "Leider falsche. Versuche es doch nochmal." }}
+                </div>
+                <div class="RigthWrongOverlayButton textColor">
+                    <Button @click="weiter()" label="Weiter" id="textColor" />
+                </div>
             </div>
         </template>
     </Dialog>
 </template>
 
-<style scoped>
-#tester {
-    color: black;
-}
-</style>
-
 <script lang="ts">
-import Button from 'primevue/button';
 import './Task.css'
+import Button from 'primevue/button';
 import Dialog from 'primevue/dialog'
 import { defineComponent } from 'vue'
 
@@ -51,3 +47,9 @@ export default defineComponent ({
     }
 })
 </script>
+
+<style scoped>
+#textColor {
+    color: black;
+}
+</style>

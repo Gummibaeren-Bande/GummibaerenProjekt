@@ -1,6 +1,6 @@
 <template>
   <div id="AnswerButton" class="taskAnswerbar mainComponentColor borderRadiusBottomRight">
-    <Button label="Abschicken" fluid v-on:click="submitAnswer" />
+    <Button label="Abschicken" fluid v-on:click="submitAnswer" :disabled="disabled" />
   </div>
 </template>
 
@@ -14,6 +14,12 @@ export default defineComponent({
     Button,
   }, 
   emits: ['submitAnswer'],
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
+  },
   methods: {
     submitAnswer() {
       this.$emit('submitAnswer')

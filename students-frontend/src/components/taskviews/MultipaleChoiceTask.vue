@@ -1,9 +1,9 @@
 <template>
   <TaskHeader :title="task.title" :group="group" />
   <TaskBody :question="task.question" :description="task.description">
-    <TaskMultipleChoiceSction ref="tester" :options="task.answerOptions" />
+    <TaskMultipleChoiceSction ref="choices" :options="task.answerOptions" :disbale-selectabel="disableToAnswer"/>
   </TaskBody>
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" />
+  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer"/>
 </template>
 
 <script lang="ts">
@@ -40,12 +40,16 @@ export default defineComponent({
     group: {
       type: Object as PropType<GroupInfo>,
       required: true
-    }
+    },
+    disableToAnswer: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     submitAnswer() {
-      const tester = this.$refs.tester as InstanceType<typeof TaskMultipleChoiceSction>
-      this.$emit('submitAnswer', tester.getSelectedOptions())
+      const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSction>
+      this.$emit('submitAnswer', choices.getSelectedOptions())
     },
   },
 })

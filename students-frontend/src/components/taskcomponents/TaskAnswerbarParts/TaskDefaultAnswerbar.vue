@@ -3,7 +3,7 @@
     <div class="mainComponentColor borderRadiusBottomLeft">
       <slot></slot>
     </div>
-    <TaskAnswerbutton v-on:submit-answer="$emit('submitAnswer')" />
+    <TaskAnswerbutton v-on:submit-answer="$emit('submitAnswer')" :disabled="disabled" />
   </div>
 </template>
 
@@ -15,6 +15,12 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   components: {
     TaskAnswerbutton,
+  },
+  props: {
+    disabled: {
+      type: Boolean,
+      default: false,
+    },
   },
   emits: ['submitAnswer'],
 })

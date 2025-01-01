@@ -1,9 +1,9 @@
 <template>
   <TaskHeader :title="task.title" :group="group"/>
   <TaskBody :question="task.question" :description="task.description" />
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer">
+  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer" >
     <div class="taskAnswerbar">
-      <InputNumber v-model="value" id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" />
+      <InputNumber v-model="value" id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" :disabled="disableToAnswer"/>
     </div>
   </TaskDefaultAnswerbar>
 </template>
@@ -40,6 +40,10 @@ export default defineComponent({
     group: {
       type: Object as PropType<GroupInfo>,
       required: true,
+    },
+    disableToAnswer: {
+      type: Boolean,
+      default: false,
     },
   },
   data() {

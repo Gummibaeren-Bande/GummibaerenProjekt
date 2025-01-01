@@ -5,12 +5,14 @@
       v-if="currentTask.taskType===TaskType.NUMERIC" 
       v-on:submit-answer="submitAnswer"
       :task="currentTask"
-      :group="group" />
+      :group="group"
+      :disable-to-answer="disableToAnswer" />
     <MultipaleChoiceTask 
       v-if="currentTask.taskType===TaskType.MULTIPLE_CHOICE" 
       v-on:submit-answer="submitAnswer"
       :task="task3" 
-      :group="group" />
+      :group="group"
+      :disable-to-answer="disableToAnswer" />
   </div>
 </template>
 
@@ -45,6 +47,7 @@ export default defineComponent({
       currentTask: task1 as Task,
       isCorrect: false as boolean,
       isRigthWrongOverlayVisible: false as boolean,
+      disableToAnswer: false as boolean,
       group: {
         groupname: 'Teddybären',
         finishedTasks: 1,
@@ -58,6 +61,7 @@ export default defineComponent({
     submitAnswer(givenAnswer: string[]) {
       console.log('Gegeben Antwor ist: ' + givenAnswer[0])
       this.isCorrect = this.currentTask.isCorrectd(givenAnswer[0])
+      this.disableToAnswer = true
       if (this.isCorrect) {
         console.log('Richtige Antwort')
       } else {
@@ -67,6 +71,7 @@ export default defineComponent({
     },
     weiter() {
       this.isRigthWrongOverlayVisible = false
+      this.disableToAnswer = false
       if (this.isCorrect) {
         this.group.increaseFinishedTasks()
         this.nextTask()
@@ -84,6 +89,28 @@ export default defineComponent({
     },
   },
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 const task1 = {
   title: 'Gummibärchen Verteilung',
