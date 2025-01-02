@@ -1,5 +1,7 @@
 import Task from "./Task";
-
+/**
+ * This class represents the set of tasks in the database.
+ */
 class TaskSet {
   private tasks: Task[];
 

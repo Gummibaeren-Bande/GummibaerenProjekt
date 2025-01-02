@@ -1,6 +1,8 @@
 import TaskSet from "./TaskSet";
 import TrackableTask from "./TrackableTask";
-
+/**
+ * This class is used to track the progress of a group on their tasks.
+ */
 class GroupProgress {
   private readonly progress: TrackableTask[];
   private startedAt: Date | null;
@@ -53,12 +55,17 @@ class GroupProgress {
     return this.finishedWork;
   }
 
+  /**
+   * This method is used to finish the group progress.
+   * It throws an error if there are still unfinished tasks left.
+   */
   public finishWork() {
     if (this.hasNextTask()) {
       throw new Error(
         "the group progress can't be finished, there are still unfinished tasks left."
       );
     }
+    this.progress[this.indexOfCurrentTask].complete();
     this.finishedWork = true;
     this.stopTimer();
   }
@@ -74,14 +81,23 @@ class GroupProgress {
       (new Date().getTime() - started.getTime()) / 1000;
   }
 
+  /**
+   * This method checks if there are more tasks left to work on.
+   * @returns true if there are more tasks left to work on, false otherwise
+   */
   public hasNextTask(): boolean {
     return this.indexOfCurrentTask < this.progress.length - 1;
   }
 
+  /**
+   * This method is used to go to the next task.
+   * @returns the next task to work on
+   */
   public goToNextTask(): TrackableTask {
     if (!this.hasNextTask()) {
       throw new Error("No more tasks left to work on");
     }
+    this.progress[this.indexOfCurrentTask].complete();
     this.indexOfCurrentTask++;
     return this.getCurrentTask();
   }

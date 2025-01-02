@@ -1,6 +1,9 @@
 import GroupProgress from "./GroupProgress";
 import TaskSet from "./TaskSet";
 
+/**
+ * This class represents a group in the database.
+ */
 class Group {
   private readonly name: string;
   private readonly groupProgress: GroupProgress;

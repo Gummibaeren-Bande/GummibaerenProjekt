@@ -2,7 +2,9 @@ import Exercise from "../abstract-classes/Exercise";
 import Answer from "../types/Answer";
 import { v4 as uuidv4 } from "uuid";
 
-// This class is an implementation of the Exercise abstract class for multiple choice exercises.
+/**
+ * This class is an implementation of the Exercise abstract class for multiple choice exercises.
+ */
 class MultipleChoiceExercise extends Exercise {
   readonly type: "multiple-choice";
   private readonly options: string[];

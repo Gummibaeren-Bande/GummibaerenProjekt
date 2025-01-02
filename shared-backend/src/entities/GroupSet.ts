@@ -1,7 +1,10 @@
 import Group from "./Group";
 import TaskSet from "./TaskSet";
 
-class GroupCollection {
+/**
+ * This class represents the set of groups in the database.
+ */
+class GroupSet {
   private readonly groupList: Group[];
 
   constructor() {
@@ -32,4 +35,4 @@ class GroupCollection {
   }
 }
 
-export default GroupCollection;
+export default GroupSet;

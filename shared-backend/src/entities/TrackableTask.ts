@@ -1,7 +1,9 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
 import Exercise from "../abstract-classes/Exercise";
 import Task from "./Task";
-
+/**
+ * This class is used to add trackable properties to a task.
+ */
 class TrackableTask {
   private readonly task: Task;
   private chosenExercise: Exercise;
@@ -63,7 +65,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task was not started yet and can't therefore not be finished",
+        "The task was not started yet and can't therefore not be finished"
       );
     }
     this.finishedAfterSeconds =

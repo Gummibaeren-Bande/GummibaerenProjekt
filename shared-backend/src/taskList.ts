@@ -2,6 +2,9 @@ import Task from "./entities/Task";
 import NumericalExercise from "./entities/NumericalExercise";
 import MultipleChoiceExercise from "./entities/MultipleChoiceExercise";
 
+/**
+ * This is a list of dummy tasks that will be used for testing.
+ */
 let taskList = [
   new Task("Task 1", [
     new NumericalExercise("Exercise 1a", "Description 1a", "Question 1a", 1),
@@ -10,7 +13,7 @@ let taskList = [
       "Description 1b",
       "Question 1b",
       ["Answer 1", "Answer 2", "Answer 3"],
-      [0, 1],
+      [0, 1]
     ),
   ]),
   new Task("Task 2", [
@@ -23,7 +26,7 @@ let taskList = [
       "Description 3b",
       "Question 3b",
       ["Answer 1", "Answer 2", "Answer 3"],
-      [0, 2],
+      [0]
     ),
   ]),
 ];

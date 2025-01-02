@@ -1,6 +1,9 @@
 import Exercise from "../abstract-classes/Exercise";
 import { v4 as uuidv4 } from "uuid";
 
+/**
+ * This class represents a task that contains a list of exercises.
+ */
 class Task {
   private readonly id: string;
   private readonly name: string;
