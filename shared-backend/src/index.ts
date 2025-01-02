@@ -15,6 +15,7 @@ import GroupProgressService from "./api/group-progress/GroupProgressService";
 import ExcerciseService from "./api/exercicse/ExerciseService";
 import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
 import GroupService from "./api/group/GroupService";
+import taskList from "./taskList";
 
 // scaffold new server
 const app = express();
@@ -39,9 +40,8 @@ const trackableTaskService = new TrackableTaskService(groupProgressService);
 const excerciseService = new ExcerciseService(trackableTaskService);
 
 // upload dummy task set
-taskService.uploadTaskSet([
-  /*TODO: create hardcoded task list to upload*/
-]);
+taskService.uploadTaskSet(taskList);
+console.log("task set uploaded");
 
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
