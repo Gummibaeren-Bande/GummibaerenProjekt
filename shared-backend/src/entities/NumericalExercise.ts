@@ -11,7 +11,7 @@ class NumericalExercise extends Exercise {
     title: string,
     description: string,
     question: string,
-    correctAnswer: number
+    correctAnswer: number,
   ) {
     super();
     this.id = uuidv4();
@@ -23,6 +23,9 @@ class NumericalExercise extends Exercise {
   }
 
   public checkAnswer(answer: Answer): boolean {
+    if (typeof answer !== "number") {
+      throw new Error("The answer must be a number");
+    }
     return answer === this.correctAnswer;
   }
 

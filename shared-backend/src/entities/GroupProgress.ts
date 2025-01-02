@@ -22,6 +22,36 @@ class GroupProgress {
   public getStartedAt(): Date | null {
     return this.startedAt;
   }
+  public getCurrentTask(): TrackableTask {
+    return this.progress[this.indexOfCurrentTask];
+  }
+
+  public getNumberOfFinishedTasks(): number {
+    let counter = 0;
+    for (const task of this.progress) {
+      if (task.state === "Completed") {
+        counter++;
+      }
+    }
+    return counter;
+  }
+
+  public getTaskById(id: string): TrackableTask {
+    for (const task of this.progress) {
+      if (task.getTask().getId() === id) {
+        return task;
+      }
+    }
+    throw new Error("No task with the given id found");
+  }
+
+  public getFinishedAfterSeconds(): number | null {
+    return this.finishedAfterSeconds;
+  }
+
+  public getFinishedWork(): boolean {
+    return this.finishedWork;
+  }
 
   public finishWork() {
     if (this.hasNextTask()) {
@@ -45,24 +75,15 @@ class GroupProgress {
   }
 
   public hasNextTask(): boolean {
-    throw new Error("Not Implemented Yet!");
+    return this.indexOfCurrentTask < this.progress.length - 1;
   }
 
   public goToNextTask(): TrackableTask {
-    // if there are no more tasks left to work on, dont call finishWork(), throw an error instead
-    throw new Error("Not Implemented Yet!");
-  }
-
-  public getCurrentTask(): TrackableTask {
-    return this.progress[this.indexOfCurrentTask];
-  }
-
-  public getNumberOfFinishedTasks(): number {
-    throw new Error("Not Implemented Yet!");
-  }
-
-  public getTaskById(id: string): TrackableTask {
-    throw new Error("Not Implemented Yet!");
+    if (!this.hasNextTask()) {
+      throw new Error("No more tasks left to work on");
+    }
+    this.indexOfCurrentTask++;
+    return this.getCurrentTask();
   }
 }
 

@@ -24,7 +24,11 @@ class GroupCollection {
   }
 
   public getGroupByName(name: string): Group {
-    throw new Error("Not Implemented yet!");
+    const group = this.groupList.find((el) => name === el.getName());
+    if (!group) {
+      throw new Error("No group with the given name found");
+    }
+    return group;
   }
 }
 

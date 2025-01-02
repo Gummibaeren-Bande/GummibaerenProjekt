@@ -63,7 +63,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task was not started yet and can't therefore not be finished"
+        "The task was not started yet and can't therefore not be finished",
       );
     }
     this.finishedAfterSeconds =
@@ -85,6 +85,14 @@ class TrackableTask {
 
   public getChosenExercise(): Exercise {
     return this.chosenExercise;
+  }
+
+  public getTask(): Task {
+    return this.task;
+  }
+
+  public getFinishedAfterSeconds(): number | null {
+    return this.finishedAfterSeconds;
   }
 }
 
