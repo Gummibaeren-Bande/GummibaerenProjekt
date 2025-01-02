@@ -32,6 +32,11 @@ class ExcerciseService {
       .getChosenExercise();
     if (currentExercise.id !== excerciseId) {
       // TODO: callback failure: given id is not equal to the id of the current execrice of the group
+      callback({
+        success: false,
+        message:
+          "The given id is not equal to the id of the current excercise of the group",
+      });
       return;
     }
     const correct = currentExercise.answer(answer);
@@ -45,7 +50,17 @@ class ExcerciseService {
     groupName: string,
     callback: CallbackExcercise
   ) {
-    throw new Error("Not Implemented Yet");
+    const currentExcercise = this.trackableTaskService
+      .getCurrentTaskByGroupName(groupName)
+      .getChosenExercise();
+    if (currentExcercise) {
+      callback({
+        isFinished: false,
+        nextExcercise: currentExcercise,
+      });
+    } else {
+      throw new Error("No current excercise found for the given group");
+    }
   }
 
   // TODO: register as Listener, handle callback, register method in handler
@@ -66,6 +81,9 @@ class ExcerciseService {
       const nextExcercise = this.trackableTaskService
         .getNextTaskOfGroup(groupName)
         .getChosenExercise();
+      callback({ isFinished: false, nextExcercise });
+    } else {
+      throw new Error("No next excercise found for the given group");
     }
   }
 }

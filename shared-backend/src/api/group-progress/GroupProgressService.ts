@@ -31,10 +31,15 @@ class GroupProgressService {
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
       // TODO: callback failure because of unfinished tasks
+      callback({
+        success: false,
+        message: "Es gibt noch unerledigte Aufgaben",
+      });
       return;
     }
     this.getGroupProgressByGroupName(groupName).finishWork();
     // TODO: callback success
+    callback({ success: true, message: "Alle Aufgaben wurden erledigt" });
   }
 
   // TODO: register as Listener, handle callback, register method in handler
@@ -47,6 +52,7 @@ class GroupProgressService {
   public getNumberOfFinishedTasks(groupName: string, callback: CallbackNumber) {
     const numberOfFinishedTasks =
       this.getGroupProgressByGroupName(groupName).getNumberOfFinishedTasks();
+    callback({ number: numberOfFinishedTasks });
   }
 }
 
