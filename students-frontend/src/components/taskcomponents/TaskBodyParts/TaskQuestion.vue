@@ -1,5 +1,5 @@
 <template>
-  <div class="textNormall textColor textBold">{{ question }}</div>
+  <div class="textNormall textColor textBold divPadding5">{{ question }}</div>
 </template>
 
 <script lang="ts">
@@ -15,9 +15,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-div {
-  padding: 5px;
-}
-</style>

@@ -8,7 +8,7 @@
                     {{ isRight ? 'Richtig' : 'Falsch' }}
                 </div>
                 <div class="textColor textNormall textMargin">
-                    {{ isRight ? "Drücke auf weiter wenn du zur nächsten Aufgabe möchtest.": "Leider falsche. Versuche es doch nochmal." }}
+                    {{ isRight ? rightText : wrongText }}
                 </div>
                 <div class="RigthWrongOverlayButton textColor">
                     <Button @click="weiter()" label="Weiter" id="textColor" />
@@ -38,6 +38,14 @@ export default defineComponent ({
         visible: {
             type: Boolean,
             required: true
+        },
+        rightText: {
+            type: String,
+            default: "Drücke auf weiter wenn du zur nächsten Aufgabe möchtest"
+        },
+        wrongText: {
+            type: String,
+            default: "Leider falsch. Versuche es doch nochmal."
         }
     },
     methods: {

@@ -2,9 +2,7 @@
   <TaskHeader :title="task.title" :group="group"/>
   <TaskBody :question="task.question" :description="task.description" />
   <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer" >
-    <div class="taskAnswerbar">
-      <InputNumber v-model="value" id="answer" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" :disabled="disableToAnswer"/>
-    </div>
+    <InputNumber v-model="value" class="margin5" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" :disabled="disableToAnswer"/>
   </TaskDefaultAnswerbar>
 </template>
 
@@ -61,9 +59,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-#answer {
-  margin: 5px;
-}
-</style>

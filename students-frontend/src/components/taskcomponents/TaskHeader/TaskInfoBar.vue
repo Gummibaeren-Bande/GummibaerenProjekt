@@ -1,7 +1,7 @@
 <template>
   <div class="InfoBar mainComponent mainComponentColor">
     <div class="textSmaller textColor InfoBarGroupname">Gruppenname: {{ group.groupname }}</div>
-    <div class="textSmaller textColor InfoBarCounter">Fertige Aufgaben: {{ group.finishedTasks }}</div>
+    <div class="textSmaller textColor InfoBarTaskCounter">Fertige Aufgaben: {{ group.finishedTasks }}</div>
   </div>
 </template>
 

@@ -12,9 +12,9 @@ import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefau
 import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
 import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
 import TaskMultipleChoiceSction, { type Option } from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSction.vue'
+import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
-import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
 
 
 export interface Task {

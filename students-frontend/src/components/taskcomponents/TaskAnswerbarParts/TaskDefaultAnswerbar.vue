@@ -1,7 +1,9 @@
 <template>
   <div class="answerBar">
     <div class="mainComponentColor borderRadiusBottomLeft">
-      <slot></slot>
+      <div class="taskAnswerbar">
+        <slot></slot>
+    </div>
     </div>
     <TaskAnswerbutton v-on:submit-answer="$emit('submitAnswer')" :disabled="disabled" />
   </div>

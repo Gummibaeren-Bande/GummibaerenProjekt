@@ -1,6 +1,6 @@
 <template>
   <div class="ChoiceContainer">
-    <div v-for="option in options" :key="option.value" class="p-field-checkbox">
+    <div v-for="option in options" :key="option.value" class="divCheckbox">
       <Checkbox v-model="selectedOptions" :inputId="option.value" :value="option.value" :disabled="disbaleSelectabel"/>
       <label :for="option.value" class="textNormall textColor textLeft">{{ option.label }}</label>
     </div>
@@ -9,9 +9,9 @@
 
 <script lang="ts">
 import '../Task.css'
-import { defineComponent } from 'vue'
-import type { Prop, PropType } from 'vue'
 import Checkbox from 'primevue/checkbox'
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 export interface Option {
   label: string

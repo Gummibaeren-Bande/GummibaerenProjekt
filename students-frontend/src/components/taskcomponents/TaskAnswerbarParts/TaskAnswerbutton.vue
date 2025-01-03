@@ -1,6 +1,6 @@
 <template>
-  <div id="AnswerButton" class="taskAnswerbar mainComponentColor borderRadiusBottomRight">
-    <Button label="Abschicken" fluid v-on:click="submitAnswer" :disabled="disabled" />
+  <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
+    <Button class="margin5" label="Abschicken" fluid v-on:click="submitAnswer" :disabled="disabled" />
   </div>
 </template>
 
@@ -29,12 +29,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-#AnswerButton {
-  margin-left: 2px;
-}
-
-#AnswerButton button {
-  margin: 5px;
+button {
   color: black;
 }
 </style>
