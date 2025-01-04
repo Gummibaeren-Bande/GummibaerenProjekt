@@ -21,6 +21,13 @@ class GroupProgressService implements GroupProgressServiceListener {
     return this.getGroupProgressByGroupName(groupName).hasNextTask();
   }
 
+  /**
+   * advances the given group to the next task
+   * and throws an error if there is no next task
+   *
+   * @param groupName the name of the group to get the next task for
+   * @returns the next task of the group
+   */
   public goToNextTask(groupName: string): TrackableTask {
     if (!this.hasNextTask(groupName)) {
       throw new Error("there is no next task for this group!");
@@ -28,6 +35,12 @@ class GroupProgressService implements GroupProgressServiceListener {
     return this.getGroupProgressByGroupName(groupName).goToNextTask();
   }
 
+  /**
+   * finish the work of the given group
+   *
+   * @param groupName the name of the group that finishes their work
+   * @param callback the callback to send back wether this action was successful or not
+   */
   // TODO: register method in handler
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
