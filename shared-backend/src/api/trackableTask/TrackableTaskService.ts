@@ -1,7 +1,8 @@
 import TrackableTask from "../../entities/TrackableTask";
 import GroupProgressService from "../group-progress/GroupProgressService";
+import TrackableTaskServiceListener from "./interfaces/TrackableTaskServiceListener";
 
-class TrackableTaskService {
+class TrackableTaskService implements TrackableTaskServiceListener {
   private readonly groupProgressService: GroupProgressService;
 
   constructor(groupProgressService: GroupProgressService) {

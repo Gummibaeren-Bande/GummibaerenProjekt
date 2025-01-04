@@ -1,7 +1,8 @@
 import Task from "../../entities/Task";
 import TaskSet from "../../entities/TaskSet";
+import TaskServiceListener from "./interfaces/TaskServiceListener";
 
-class TaskService {
+class TaskService implements TaskServiceListener {
   private readonly taskSet: TaskSet;
 
   constructor() {

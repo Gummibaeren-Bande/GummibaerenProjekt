@@ -3,8 +3,9 @@ import TrackableTask from "../../entities/TrackableTask";
 import CallbackNumber from "../../types/callback-types/CallbackNumber";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import GroupService from "../group/GroupService";
+import GroupProgressServiceListener from "./interfaces/GroupProgressServiceListener";
 
-class GroupProgressService {
+class GroupProgressService implements GroupProgressServiceListener {
   private readonly groupService: GroupService;
 
   constructor(groupService: GroupService) {
@@ -27,10 +28,9 @@ class GroupProgressService {
     return this.getGroupProgressByGroupName(groupName).goToNextTask();
   }
 
-  // TODO: register as Listener, handle callback, register method in handler
+  // TODO: register method in handler
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
-      // TODO: callback failure because of unfinished tasks
       callback({
         success: false,
         message: "Es gibt noch unerledigte Aufgaben",
@@ -38,11 +38,10 @@ class GroupProgressService {
       return;
     }
     this.getGroupProgressByGroupName(groupName).finishWork();
-    // TODO: callback success
     callback({ success: true, message: "Alle Aufgaben wurden erledigt" });
   }
 
-  // TODO: register as Listener, handle callback, register method in handler
+  // TODO: register method in handler
   /**
    * get the number of task already finished by the given group
    *
