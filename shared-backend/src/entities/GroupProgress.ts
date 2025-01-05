@@ -1,3 +1,4 @@
+import TrackableTaskState from "../enums/TrackableTaskState";
 import TaskSet from "./TaskSet";
 import TrackableTask from "./TrackableTask";
 /**
@@ -7,7 +8,6 @@ class GroupProgress {
   private readonly progress: TrackableTask[];
   private startedAt: Date | null;
   private finishedAfterSeconds: number | null;
-  private finishedWork: boolean;
   private indexOfCurrentTask = 0;
 
   constructor(taskSet: TaskSet) {
@@ -18,7 +18,6 @@ class GroupProgress {
     this.indexOfCurrentTask = 0;
     this.startedAt = new Date();
     this.finishedAfterSeconds = null;
-    this.finishedWork = false;
   }
 
   public getStartedAt(): Date | null {
@@ -31,7 +30,7 @@ class GroupProgress {
   public getNumberOfFinishedTasks(): number {
     let counter = 0;
     for (const task of this.progress) {
-      if (task.state === "Completed") {
+      if (task.state == TrackableTaskState.Completed) {
         counter++;
       }
     }
@@ -52,7 +51,10 @@ class GroupProgress {
   }
 
   public getFinishedWork(): boolean {
-    return this.finishedWork;
+    if (this.finishedAfterSeconds === null) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -62,11 +64,10 @@ class GroupProgress {
   public finishWork() {
     if (this.hasNextTask()) {
       throw new Error(
-        "the group progress can't be finished, there are still unfinished tasks left."
+        "The group progress can't be finished, there are still unfinished tasks left."
       );
     }
     this.progress[this.indexOfCurrentTask].complete();
-    this.finishedWork = true;
     this.stopTimer();
   }
 
