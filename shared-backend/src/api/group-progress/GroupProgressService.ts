@@ -41,7 +41,6 @@ class GroupProgressService implements GroupProgressServiceListener {
    * @param groupName the name of the group that finishes their work
    * @param callback the callback to send back wether this action was successful or not
    */
-  // TODO: register method in handler
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
       callback({
@@ -54,7 +53,6 @@ class GroupProgressService implements GroupProgressServiceListener {
     callback({ success: true, message: "Alle Aufgaben wurden erledigt" });
   }
 
-  // TODO: register method in handler
   /**
    * get the number of task already finished by the given group
    *

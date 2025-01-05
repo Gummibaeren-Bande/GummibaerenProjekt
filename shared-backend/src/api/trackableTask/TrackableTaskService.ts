@@ -26,7 +26,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     currentTask.complete();
   }
 
-  // TODO: register method in listener an put into handler
   /**
    * mark the task with the given id for the given group as skipped.
    *
@@ -40,7 +39,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       .setSkipped(true);
   }
 
-  // TODO: register method in listener an put into handler
   /**
    * revert the skiped marking of the task with the given id for the given group.
    *
@@ -54,7 +52,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       .setSkipped(false);
   }
 
-  // TODO: register method in listener an put into handler
   /**
    * choose an alternative Excercise for the task with the given id for the given group name
    *

@@ -12,7 +12,6 @@ class ExcerciseService implements ExerciseServiceListener {
     console.log("Excercise service was successfully started");
   }
 
-  // TODO: register method in handler
   /**
    * try to answer the current excercise of the given group with the given answer
    * if, the answer is correct, the corresponding TrackableTask is marked as completed.
@@ -45,7 +44,6 @@ class ExcerciseService implements ExerciseServiceListener {
     }
   }
 
-  // TODO: register method in handler
   public getCurrentExcerciceOfGroup(
     groupName: string,
     callback: CallbackExcercise
@@ -63,7 +61,6 @@ class ExcerciseService implements ExerciseServiceListener {
     }
   }
 
-  // TODO: register method in handler
   /**
    * tries to deliver the next Excercise in the callback. If the given group is finished and therefore does
    * not have a next task the callback specifies that in its message and the delivered Excercise is null
