@@ -33,6 +33,9 @@ class TrackableTask {
   }
 
   public startTask(): void {
+    if (this.startedAt) {
+      throw new Error("The task is already started");
+    }
     this.startedAt = new Date();
   }
 
@@ -49,11 +52,17 @@ class TrackableTask {
   }
 
   public setSkipped(skipState: boolean): void {
-    this.skipped = skipState;
-    if (this.skipped) {
-      this.stopTimer();
-    } else {
-      this.restartTimer();
+    switch (this.state) {
+      case TrackableTaskState.NotStarted:
+        this.skipped = skipState;
+        break;
+      case TrackableTaskState.InProgress:
+        throw new Error("The task is in progress and can't be skipped");
+      case TrackableTaskState.Completed:
+        throw new Error("The task is already completed and can't be skipped");
+      case TrackableTaskState.Skipped:
+        this.skipped = skipState;
+        break;
     }
   }
 
@@ -65,16 +74,11 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task was not started yet and can't therefore not be finished"
+        "The task has not been started yet and therefore can't be finished"
       );
     }
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
-  }
-
-  private restartTimer() {
-    this.finishedAfterSeconds = null;
-    this.startedAt = new Date();
   }
 
   public incrementTries(): void {
@@ -82,7 +86,18 @@ class TrackableTask {
   }
 
   public setAlternativeExercise(index: number): void {
-    this.chosenExercise = this.task.getExcercises()[index];
+    switch (this.state) {
+      case TrackableTaskState.NotStarted:
+        this.chosenExercise = this.task.getExcercises()[index];
+        break;
+      case TrackableTaskState.InProgress:
+        throw new Error("The task is in progress and can't be changed");
+      case TrackableTaskState.Completed:
+        throw new Error("The task is already completed and can't be changed");
+      case TrackableTaskState.Skipped:
+        this.chosenExercise = this.task.getExcercises()[index];
+        break;
+    }
   }
 
   public getChosenExercise(): Exercise {
