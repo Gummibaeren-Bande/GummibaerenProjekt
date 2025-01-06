@@ -2,10 +2,8 @@
 
 <template>
   <div class="background-form">
-    <div>
+    <div class="content-div">
       <TaskSetTitle></TaskSetTitle>
-    </div>
-    <div>
       <GroupProgress></GroupProgress>
     </div>
   </div>
@@ -23,5 +21,15 @@ import TaskSetTitle from '@/components/TaskSetTitle.vue'
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 10px;
+}
+
+.content-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 </style>

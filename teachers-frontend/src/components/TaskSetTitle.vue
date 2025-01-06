@@ -1,12 +1,12 @@
 <!-- Displays the title of the data set. -->
 <template>
-  <div id="TaskSetTitle">
+  <div class="TaskSetTitle">
     <h1>Projekt der Gummibärenbande</h1>
   </div>
 </template>
 
 <style scoped>
-#TastSetTitle {
+.TastSetTitle {
   background: #ffffff66;
   color: black;
   display: flex;
@@ -16,7 +16,7 @@
   border-top-right-radius: 12px;
   border-top-left-radius: 12px;
 }
-#TaskSetTitle h1 {
+.TaskSetTitle h1 {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 0%;
