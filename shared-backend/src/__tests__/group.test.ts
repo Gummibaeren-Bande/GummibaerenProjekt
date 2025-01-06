@@ -8,29 +8,31 @@ import TrackableTask from "../entities/TrackableTask";
 const taskSet = new TaskSet();
 taskSet.uploadTaskSet(taskList);
 const groupSet = new GroupSet();
+const GROUP_NAME = "group1";
+const NON_EXISTENT_GROUP_NAME = "group2";
 
 describe("GroupSet", () => {
   it("should add a new group with the given name and task set", () => {
-    expect(groupSet.addNewGroup("group1", taskSet)).toBe(true);
+    expect(groupSet.addNewGroup(GROUP_NAME, taskSet)).toBe(true);
   });
   it("should not add a new group with the same name", () => {
-    expect(groupSet.addNewGroup("group1", taskSet)).toBe(false);
+    expect(groupSet.addNewGroup(GROUP_NAME, taskSet)).toBe(false);
   });
   it("should get a group by name", () => {
-    expect(groupSet.getGroupByName("group1")).toBeInstanceOf(Group);
+    expect(groupSet.getGroupByName(GROUP_NAME)).toBeInstanceOf(Group);
   });
   it("should throw an error if the group does not exist", () => {
-    expect(() => groupSet.getGroupByName("group2")).toThrow(
+    expect(() => groupSet.getGroupByName(NON_EXISTENT_GROUP_NAME)).toThrow(
       "No group with the given name found"
     );
   });
 });
 
-const group = new Group("group1", taskSet);
+const group = new Group(GROUP_NAME, taskSet);
 
 describe("Group", () => {
   it("should create a new group with the given name and task set", () => {
-    expect(group.getName()).toEqual("group1");
+    expect(group.getName()).toEqual(GROUP_NAME);
     expect(group.getGroupProgress()).toBeInstanceOf(GroupProgress);
   });
 });
