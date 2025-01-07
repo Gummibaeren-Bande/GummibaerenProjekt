@@ -1,8 +1,8 @@
-import GroupServiceEmits from "../handlers/group-handler/interfaces/GroupServiceEmits";
+import GroupSetServiceEmits from "../api/group-set/interfaces/GroupSetServiceEmits";
 
 /**
  * all interfaces specifying server to client events (Emit-Interfaces) must be registered here
  */
-type ServerToClientEvents = GroupServiceEmits; // & TestServiceEmits
+type ServerToClientEvents = GroupSetServiceEmits;
 
 export default ServerToClientEvents;

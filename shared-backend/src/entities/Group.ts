@@ -1,23 +1,24 @@
+import GroupProgress from "./GroupProgress";
+import TaskSet from "./TaskSet";
+
+/**
+ * This class represents a group in the database.
+ */
 class Group {
   private readonly name: string;
-  // TODO: add the real type of the class list
-  private readonly taskList: any;
+  private readonly groupProgress: GroupProgress;
 
-  constructor(name: string) {
+  constructor(name: string, taskSet: TaskSet) {
     this.name = name;
-    // TODO: initialize the task list
-    this.taskList = null;
+    this.groupProgress = new GroupProgress(taskSet);
   }
 
   public getName() {
     return this.name;
   }
 
-  /**
-   * get the next task for this group
-   */
-  public nextTask(): any {
-    throw new Error("Not implemented yet!");
+  public getGroupProgress(): GroupProgress {
+    return this.groupProgress;
   }
 }
 

@@ -1,8 +1,6 @@
 import IoServer from "../../types/IoServer";
 import IoSocket from "../../types/IoSocket";
-import GroupService from "./GroupService";
-
-const service = new GroupService();
+import GroupSetService from "./GroupSetService";
 
 /**
  * handles creation and rejoining of groups
@@ -10,8 +8,12 @@ const service = new GroupService();
  * @param io the static server
  * @param socket the dynamic socket dependet on the current connection
  */
-function groupHandler(io: IoServer, socket: IoSocket) {
+function groupSetHandler(
+  io: IoServer,
+  socket: IoSocket,
+  service: GroupSetService,
+) {
   socket.on("addGroup", (name, callback) => service.addGroup(name, callback));
 }
 
-export default groupHandler;
+export default groupSetHandler;

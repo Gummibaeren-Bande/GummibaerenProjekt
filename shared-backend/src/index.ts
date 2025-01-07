@@ -2,14 +2,24 @@
 
 import express from "express";
 import { createServer } from "http";
-import { Server, Socket } from "socket.io";
-import welcomeHandler from "./handlers/welcome-handler/welcomeHandler";
-import groupHandler from "./handlers/group-handler/groupHandler";
+import { Server } from "socket.io";
+import welcomeHandler from "./api/welcome/welcomeHandler";
+import groupSetHandler from "./api/group-set/groupSetHandler";
 import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
 import ClientToServerEvents from "./types/ClientToServerEvents";
 import ServerToClientEvents from "./types/ServerToClientEvents";
-import GroupService from "./handlers/group-handler/GroupService";
+import GroupSetService from "./api/group-set/GroupSetService";
+import TaskService from "./api/task/TaskService";
+import GroupProgressService from "./api/group-progress/GroupProgressService";
+import ExcerciseService from "./api/exercicse/ExerciseService";
+import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
+import GroupService from "./api/group/GroupService";
+import taskList from "./taskList";
+import groupProgressHandler from "./api/group-progress/groupProgressHandler";
+import trackableTaskHandler from "./api/trackableTask/trackableTaskHandler";
+import taskHandler from "./api/task/taskHandler";
+import exerciseHandler from "./api/exercicse/exerciseHandler";
 
 // scaffold new server
 const app = express();
@@ -25,10 +35,26 @@ const io: IoServer = new Server<
   },
 });
 
+// initialize all services
+const taskService = new TaskService();
+const groupSetService = new GroupSetService(taskService);
+const groupService = new GroupService(groupSetService);
+const groupProgressService = new GroupProgressService(groupService);
+const trackableTaskService = new TrackableTaskService(groupProgressService);
+const excerciseService = new ExcerciseService(trackableTaskService);
+
+// upload dummy task set
+taskService.uploadTaskSet(taskList);
+console.log("task set uploaded");
+
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
   welcomeHandler(io, socket);
-  groupHandler(io, socket);
+  taskHandler(io, socket, taskService);
+  groupSetHandler(io, socket, groupSetService);
+  groupProgressHandler(io, socket, groupProgressService);
+  trackableTaskHandler(io, socket, trackableTaskService);
+  exerciseHandler(io, socket, excerciseService);
 };
 
 // serve the handler functions when connected
