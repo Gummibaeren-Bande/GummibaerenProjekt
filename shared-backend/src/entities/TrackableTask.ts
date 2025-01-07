@@ -1,6 +1,7 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
 import Exercise from "../abstract-classes/Exercise";
 import Task from "./Task";
+
 /**
  * This class is used to add trackable properties to a task.
  */
@@ -32,11 +33,12 @@ class TrackableTask {
     return TrackableTaskState.NotStarted;
   }
 
-  public startTask(): void {
+  public async startTask(): Promise<void> {
     if (this.startedAt) {
       throw new Error("The task is already started");
     }
     this.startedAt = new Date();
+    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
   }
 
   public getStartedAt(): Date | null {
@@ -66,11 +68,12 @@ class TrackableTask {
     }
   }
 
-  public complete(): void {
-    this.stopTimer();
+  public async complete(): Promise<void> {
+    await this.stopTimer();
+    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
   }
 
-  private stopTimer() {
+  private async stopTimer(): Promise<void> {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
@@ -79,6 +82,7 @@ class TrackableTask {
     }
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
+    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
   }
 
   public incrementTries(): void {
