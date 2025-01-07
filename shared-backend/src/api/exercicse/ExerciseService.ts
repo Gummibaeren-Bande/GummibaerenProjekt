@@ -1,5 +1,6 @@
 import Answer from "../../types/Answer";
-import CallbackExcercise from "../../types/callback-types/CallbackExcercise";
+import CallbackCurrentExcercise from "../../types/callback-types/CallbackCurrentExcercise";
+import CallbackNextExcercise from "../../types/callback-types/CallbackNextExcercise";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
 import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
@@ -52,7 +53,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getCurrentExcerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise,
+    callback: CallbackCurrentExcercise,
   ) {
     const currentExcercise = this.trackableTaskService
       .getCurrentTaskByGroupName(groupName)
@@ -60,7 +61,7 @@ class ExcerciseService implements ExerciseServiceListener {
     if (currentExcercise) {
       callback({
         isFinished: false,
-        nextExcercise: currentExcercise,
+        currentExcercise: currentExcercise,
       });
     } else {
       throw new Error("No current excercise found for the given group");
@@ -76,7 +77,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getNextExerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise,
+    callback: CallbackNextExcercise,
   ) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
