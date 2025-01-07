@@ -88,8 +88,8 @@ describe("TrackableTask", () => {
     expect(trackableTask.state).toEqual("NotStarted");
   });
 
-  it("should throw an error when trying to complete a task that hasn't started", async () => {
-    await expect(trackableTask.complete()).rejects.toThrow(
+  it("should throw an error when trying to complete a task that hasn't started", () => {
+    expect(trackableTask.complete()).rejects.toThrow(
       "The task has not been started yet and therefore can't be finished"
     );
   });
@@ -107,13 +107,13 @@ describe("TrackableTask", () => {
     expect(trackableTask.getTask()).toEqual(task1);
   });
 
-  it("should start the task", async () => {
-    await trackableTask.startTask();
+  it("should start the task", () => {
+    trackableTask.startTask();
     expect(trackableTask.state).toEqual("InProgress");
   });
 
-  it("should return the start time", async () => {
-    await trackableTask.startTask();
+  it("should return the start time", () => {
+    trackableTask.startTask();
     expect(trackableTask.getStartedAt()).toBeInstanceOf(Date);
   });
 
@@ -130,49 +130,44 @@ describe("TrackableTask", () => {
     expect(trackableTask.getSkipped()).toEqual(false);
   });
 
-  it("should throw an error when trying to skip a task in progress", async () => {
-    await trackableTask.startTask();
+  it("should throw an error when trying to skip a task in progress", () => {
+    trackableTask.startTask();
     expect(() => trackableTask.setSkipped(true)).toThrow(
       "The task is in progress and can't be skipped"
     );
   });
 
-  it("should throw an error when trying to change the exercise in progress", async () => {
-    await trackableTask.startTask();
+  it("should throw an error when trying to change the exercise in progress", () => {
+    trackableTask.startTask();
     expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
       "The task is in progress and can't be changed"
     );
   });
 
-  it("should complete the task", async () => {
-    await trackableTask.startTask();
-    await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
+  it("should complete the task", () => {
+    trackableTask.startTask();
+    trackableTask.complete();
     expect(trackableTask.state).toEqual(TrackableTaskState.Completed);
   });
 
-  it("should return a valid completion time", async () => {
-    await trackableTask.startTask();
-    await new Promise((resolve) => setTimeout(resolve, 1000)); // Ensure delay
-    await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
+  it("should return a valid completion time", () => {
+    trackableTask.startTask();
+    trackableTask.complete();
     expect(trackableTask.getFinishedAfterSeconds()).not.toBeNull();
     expect(trackableTask.getFinishedAfterSeconds()).toBeGreaterThan(0);
   });
 
-  it("should throw an error when trying to skip a completed task", async () => {
-    await trackableTask.startTask();
-    await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
+  it("should throw an error when trying to skip a completed task", () => {
+    trackableTask.startTask();
+    trackableTask.complete();
     expect(() => trackableTask.setSkipped(true)).toThrow(
       "The task is already completed and can't be skipped"
     );
   });
 
-  it("should throw an error when trying to change the exercise after completion", async () => {
-    await trackableTask.startTask();
-    await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
+  it("should throw an error when trying to change the exercise after completion", () => {
+    trackableTask.startTask();
+    trackableTask.complete();
     expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
       "The task is already completed and can't be changed"
     );

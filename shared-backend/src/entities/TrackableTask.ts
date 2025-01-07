@@ -11,7 +11,7 @@ class TrackableTask {
   private startedAt: Date | null;
   private finishedAfterSeconds: number | null;
   private tries: number;
-  private skipped: boolean;
+  private _state: TrackableTaskState;
 
   constructor(task: Task) {
     this.task = task;
@@ -19,26 +19,23 @@ class TrackableTask {
     this.startedAt = null;
     this.finishedAfterSeconds = null;
     this.tries = 0;
-    this.skipped = false;
+    this._state = TrackableTaskState.NotStarted;
   }
 
   get state(): TrackableTaskState {
-    if (this.skipped) {
-      return TrackableTaskState.Skipped;
-    } else if (this.finishedAfterSeconds) {
-      return TrackableTaskState.Completed;
-    } else if (this.startedAt) {
-      return TrackableTaskState.InProgress;
-    }
-    return TrackableTaskState.NotStarted;
+    return this._state;
   }
 
-  public async startTask(): Promise<void> {
+  private setState(newState: TrackableTaskState): void {
+    this._state = newState;
+  }
+
+  public startTask(): void {
     if (this.startedAt) {
       throw new Error("The task is already started");
     }
     this.startedAt = new Date();
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
+    this.setState(TrackableTaskState.InProgress);
   }
 
   public getStartedAt(): Date | null {
@@ -50,39 +47,45 @@ class TrackableTask {
   }
 
   public getSkipped(): boolean {
-    return this.skipped;
+    if (this.state === TrackableTaskState.Skipped) {
+      return true;
+    }
+    return false;
   }
 
   public setSkipped(skipState: boolean): void {
     switch (this.state) {
       case TrackableTaskState.NotStarted:
-        this.skipped = skipState;
+        if (skipState) {
+          this.setState(TrackableTaskState.Skipped);
+        }
         break;
       case TrackableTaskState.InProgress:
         throw new Error("The task is in progress and can't be skipped");
       case TrackableTaskState.Completed:
         throw new Error("The task is already completed and can't be skipped");
       case TrackableTaskState.Skipped:
-        this.skipped = skipState;
+        if (!skipState) {
+          this.setState(TrackableTaskState.NotStarted);
+        }
         break;
     }
   }
 
-  public async complete(): Promise<void> {
-    await this.stopTimer();
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
+  public complete(): void {
+    this.stopTimer();
+    this.setState(TrackableTaskState.Completed);
   }
 
-  private async stopTimer(): Promise<void> {
+  private stopTimer(): void {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task has not been started yet and therefore can't be finished",
+        "The task has not been started yet and therefore can't be finished"
       );
     }
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
   }
 
   public incrementTries(): void {
