@@ -6,27 +6,28 @@ import MultipleChoiceExercise from "./entities/MultipleChoiceExercise";
  * This is a list of dummy tasks that will be used for testing.
  */
 let taskList = [
-  new Task("Task 1", [
-    new NumericalExercise("Exercise 1a", "Description 1a", "Question 1a", 1),
-    new MultipleChoiceExercise(
-      "Exercise 1b",
-      "Description 1b",
-      "Question 1b",
-      ["Answer 1", "Answer 2", "Answer 3"],
-      [0, 1]
+  new Task("Binärzahlumrechnung", [
+    new NumericalExercise(
+      "Binärzahl in Dezimalzahl umrechnen",
+      "Wandle die folgende Binärzahl in eine Dezimalzahl um.",
+      "01010010",
+      82
     ),
   ]),
-  new Task("Task 2", [
-    new NumericalExercise("Exercise 2", "Description 2", "Question 2", 2),
-  ]),
-  new Task("Task 3", [
-    new NumericalExercise("Exercise 3a", "Description 3a", "Question 3a", 3),
+  new Task("Dezimalzahlumrechnung", [
     new MultipleChoiceExercise(
-      "Exercise 3b",
-      "Description 3b",
-      "Question 3b",
-      ["Answer 1", "Answer 2", "Answer 3"],
+      "Dezimalzahl in Binärzahl umrechnen",
+      "Wandle die folgende Dezimalzahl in eine Binärzahl um.",
+      "42",
+      ["101010", "101011", "101100"],
       [0]
+    ),
+    new MultipleChoiceExercise(
+      "Dezimalzahl in Binärzahl umrechnen",
+      "Welche Bits müssen gesetzt werden, um die folgende Dezimalzahl zu erhalten?",
+      "42",
+      ["Bit 6", "Bit 5", "Bit 4", "Bit 3", "Bit 2", "Bit 1"],
+      [0, 2, 4]
     ),
   ]),
 ];
