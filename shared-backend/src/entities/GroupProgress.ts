@@ -67,7 +67,6 @@ class GroupProgress {
         "The group progress can't be finished, there are still unfinished tasks left."
       );
     }
-    this.progress[this.indexOfCurrentTask].complete();
     this.stopTimer();
   }
 
@@ -98,8 +97,14 @@ class GroupProgress {
     if (!this.hasNextTask()) {
       throw new Error("No more tasks left to work on");
     }
-    this.progress[this.indexOfCurrentTask].complete();
+    if (
+      this.progress[this.indexOfCurrentTask].state !==
+      TrackableTaskState.Completed
+    ) {
+      throw new Error("The current task is not completed yet");
+    }
     this.indexOfCurrentTask++;
+    this.progress[this.indexOfCurrentTask].startTask();
     return this.getCurrentTask();
   }
 }
