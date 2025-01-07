@@ -4,7 +4,7 @@ interface GroupProgressServiceListener {
   finishWork: (groupName: string, callback: CallbackSuccess) => void;
   getNumberOfFinishedTasks: (
     groupName: string,
-    callback: CallbackNumber
+    callback: CallbackNumber,
   ) => void;
 }
 

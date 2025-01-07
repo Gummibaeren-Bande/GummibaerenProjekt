@@ -4,7 +4,7 @@ interface TrackableTaskServiceListener {
   chooseAlternativForTask: (
     taskId: string,
     groupName: string,
-    indexOfAlternative: number
+    indexOfAlternative: number,
   ) => void;
 }
 

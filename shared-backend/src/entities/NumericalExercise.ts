@@ -13,7 +13,7 @@ class NumericalExercise extends Exercise {
     title: string,
     description: string,
     question: string,
-    correctAnswer: number
+    correctAnswer: number,
   ) {
     super();
     this.id = uuidv4();

@@ -15,7 +15,7 @@ class MultipleChoiceExercise extends Exercise {
     description: string,
     question: string,
     options: string[],
-    correctOptionIndexes: number[]
+    correctOptionIndexes: number[],
   ) {
     super();
     this.id = uuidv4();

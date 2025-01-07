@@ -37,7 +37,7 @@ class GroupSetService
   addGroup(name: string, callback: CallbackSuccess): void {
     const successful = this.groupSet.addNewGroup(
       name,
-      this.taskService.getTaskSet()
+      this.taskService.getTaskSet(),
     );
 
     if (!successful) {

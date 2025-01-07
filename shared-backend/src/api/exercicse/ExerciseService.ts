@@ -25,7 +25,7 @@ class ExcerciseService implements ExerciseServiceListener {
     groupName: string,
     excerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) {
     const currentExercise = this.trackableTaskService
       .getCurrentTaskByGroupName(groupName)
@@ -46,7 +46,7 @@ class ExcerciseService implements ExerciseServiceListener {
 
   public getCurrentExcerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise
+    callback: CallbackExcercise,
   ) {
     const currentExcercise = this.trackableTaskService
       .getCurrentTaskByGroupName(groupName)
@@ -70,7 +70,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getNextExerciceOfGroup(
     groupName: string,
-    callback: CallbackExcercise
+    callback: CallbackExcercise,
   ) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);

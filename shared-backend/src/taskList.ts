@@ -11,7 +11,7 @@ let taskList = [
       "Binärzahl in Dezimalzahl umrechnen",
       "Wandle die folgende Binärzahl in eine Dezimalzahl um.",
       "01010010",
-      82
+      82,
     ),
   ]),
   new Task("Dezimalzahlumrechnung", [
@@ -20,14 +20,14 @@ let taskList = [
       "Wandle die folgende Dezimalzahl in eine Binärzahl um.",
       "42",
       ["101010", "101011", "101100"],
-      [0]
+      [0],
     ),
     new MultipleChoiceExercise(
       "Dezimalzahl in Binärzahl umrechnen",
       "Welche Bits müssen gesetzt werden, um die folgende Dezimalzahl zu erhalten?",
       "42",
       ["Bit 6", "Bit 5", "Bit 4", "Bit 3", "Bit 2", "Bit 1"],
-      [0, 2, 4]
+      [0, 2, 4],
     ),
   ]),
 ];

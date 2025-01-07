@@ -77,7 +77,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task has not been started yet and therefore can't be finished"
+        "The task has not been started yet and therefore can't be finished",
       );
     }
     this.finishedAfterSeconds =

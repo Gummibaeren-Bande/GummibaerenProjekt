@@ -64,7 +64,7 @@ class GroupProgress {
   public finishWork() {
     if (this.hasNextTask()) {
       throw new Error(
-        "The group progress can't be finished, there are still unfinished tasks left."
+        "The group progress can't be finished, there are still unfinished tasks left.",
       );
     }
     this.stopTimer();
@@ -74,7 +74,7 @@ class GroupProgress {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The group was not started yet and can't therefore not be finished"
+        "The group was not started yet and can't therefore not be finished",
       );
     }
     this.finishedAfterSeconds =

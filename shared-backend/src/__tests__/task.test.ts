@@ -163,7 +163,7 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to skip a completed task", async () => {
     await trackableTask.startTask();
     await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
     expect(() => trackableTask.setSkipped(true)).toThrow(
       "The task is already completed and can't be skipped"
     );
@@ -172,7 +172,7 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to change the exercise after completion", async () => {
     await trackableTask.startTask();
     await trackableTask.complete();
-    await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
     expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
       "The task is already completed and can't be changed"
     );

@@ -7,15 +7,15 @@ interface ExerciseServiceListener {
     groupName: string,
     excerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) => void;
   getCurrentExcerciceOfGroup: (
     groupName: string,
-    callback: CallbackExcercise
+    callback: CallbackExcercise,
   ) => void;
   getNextExerciceOfGroup: (
     groupName: string,
-    callback: CallbackExcercise
+    callback: CallbackExcercise,
   ) => void;
 }
 

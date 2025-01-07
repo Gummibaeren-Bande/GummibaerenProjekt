@@ -77,6 +77,7 @@ describe("GroupProgress", () => {
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(0);
     await groupProgress.getCurrentTask().startTask();
     await groupProgress.getCurrentTask().complete();
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
     expect(groupProgress.getCurrentTask().state).toBe(
       TrackableTaskState.Completed
     );
@@ -105,13 +106,14 @@ describe("GroupProgress", () => {
       groupProgress.goToNextTask();
       await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
     }
-    groupProgress.getCurrentTask().complete();
+    await groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(
       "No more tasks left to work on"
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(taskList.length);
     expect(groupProgress.getFinishedAfterSeconds()).not.toBeNull();
     expect(groupProgress.getFinishedAfterSeconds()).toBeGreaterThan(0);
