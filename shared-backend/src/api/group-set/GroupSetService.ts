@@ -17,19 +17,6 @@ class GroupSetService
     console.log("Group Set service was successfully started");
   }
 
-  // TODO: register method in handler, do the emit, i still have to thing about, how the emit is carried out...
-  // notes for the emit:
-  // * maybe its better to emit more granular
-  // * the emit should only go to the teachers-frontend!
-  /**
-   * return the current groupSet after a change in the data
-   *
-   * @returns the new groupSet to emit
-   */
-  public emitChangedGroupSet(): GroupSet {
-    return this.groupSet;
-  }
-
   public getGroupSet(): GroupSet {
     return this.groupSet;
   }

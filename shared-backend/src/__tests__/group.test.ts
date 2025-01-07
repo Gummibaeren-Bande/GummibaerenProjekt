@@ -35,7 +35,7 @@ describe("GroupSet", () => {
 
   it("should throw an error if the group does not exist", () => {
     expect(() => groupSet.getGroupByName(NON_EXISTENT_GROUP_NAME)).toThrow(
-      "No group with the given name found"
+      "No group with the given name found",
     );
   });
 });
@@ -78,7 +78,7 @@ describe("GroupProgress", () => {
     groupProgress.getCurrentTask().startTask();
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.getCurrentTask().state).toBe(
-      TrackableTaskState.Completed
+      TrackableTaskState.Completed,
     );
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(1);
   });
@@ -97,7 +97,7 @@ describe("GroupProgress", () => {
 
   it("should finish the work", () => {
     expect(() => groupProgress.finishWork()).toThrow(
-      "The group progress can't be finished, there are still unfinished tasks left."
+      "The group progress can't be finished, there are still unfinished tasks left.",
     );
     groupProgress.getCurrentTask().startTask();
     while (groupProgress.hasNextTask()) {
@@ -107,7 +107,7 @@ describe("GroupProgress", () => {
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(
-      "No more tasks left to work on"
+      "No more tasks left to work on",
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);
