@@ -1,18 +1,20 @@
 <template>
   <div class="InfoBar mainComponent mainComponentColor">
     <div class="textSmaller textColor InfoBarGroupname">Gruppenname: {{ group.groupname }}</div>
-    <div class="textSmaller textColor InfoBarTaskCounter">Fertige Aufgaben: {{ group.finishedTasks }}</div>
+    <div class="textSmaller textColor InfoBarTaskCounter">
+      Fertige Aufgaben: {{ group.finishedTasks }}
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import '../Task.css'
-import { defineComponent } from 'vue';
-import type { PropType } from 'vue';
+import { defineComponent } from 'vue'
+import type { PropType } from 'vue'
 
 export interface GroupInfo {
-  groupname: string;
-  finishedTasks: number;
+  groupname: string
+  finishedTasks: number
 }
 
 export default defineComponent({
@@ -20,9 +22,8 @@ export default defineComponent({
   props: {
     group: {
       type: Object as PropType<GroupInfo>,
-      required: true
-    }
-  }
+      required: true,
+    },
+  },
 })
-
 </script>

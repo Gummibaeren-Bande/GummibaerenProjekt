@@ -131,7 +131,6 @@
   align-items: center;
 }
 
-
 .ChoiceContainer {
   display: flex;
   flex-direction: column;
@@ -165,7 +164,7 @@
   width: 100%;
 }
 
-.marginOverlay{
+.marginOverlay {
   margin: 5vw;
 }
 

@@ -1,8 +1,16 @@
 <template>
-  <TaskHeader :title="task.title" :group="group"/>
+  <TaskHeader :title="task.title" :group="group" />
   <TaskBody :question="task.question" :description="task.description" />
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer" >
-    <InputNumber v-model="value" class="margin5" input-id="integeronly" placeholder="Antwort" fluid locale="de-DE" :disabled="disableToAnswer"/>
+  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer">
+    <InputNumber
+      v-model="value"
+      class="margin5"
+      input-id="integeronly"
+      placeholder="Antwort"
+      fluid
+      locale="de-DE"
+      :disabled="disableToAnswer"
+    />
   </TaskDefaultAnswerbar>
 </template>
 

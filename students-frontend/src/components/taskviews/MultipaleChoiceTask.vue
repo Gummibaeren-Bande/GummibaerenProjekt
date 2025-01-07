@@ -1,9 +1,13 @@
 <template>
   <TaskHeader :title="task.title" :group="group" />
   <TaskBody :question="task.question" :description="task.description">
-    <TaskMultipleChoiceSction ref="choices" :options="task.answerOptions" :disbale-selectabel="disableToAnswer"/>
+    <TaskMultipleChoiceSction
+      ref="choices"
+      :options="task.answerOptions"
+      :disbale-selectabel="disableToAnswer"
+    />
   </TaskBody>
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer"/>
+  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer" />
 </template>
 
 <script lang="ts">
@@ -11,11 +15,12 @@ import '../taskcomponents/Task.css'
 import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
 import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
 import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
-import TaskMultipleChoiceSction, { type Option } from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSction.vue'
+import TaskMultipleChoiceSction, {
+  type Option,
+} from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSction.vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
-
 
 export interface Task {
   title: string
@@ -39,7 +44,7 @@ export default defineComponent({
     },
     group: {
       type: Object as PropType<GroupInfo>,
-      required: true
+      required: true,
     },
     disableToAnswer: {
       type: Boolean,

@@ -31,5 +31,4 @@ describe('TaskDisplay.vue', () => {
     const wrapper = mount(TaskDisplay, { global: globalConfig })
     expect(wrapper.findComponent(TaskInfoBar).exists()).toBe(true)
   })
-
 })

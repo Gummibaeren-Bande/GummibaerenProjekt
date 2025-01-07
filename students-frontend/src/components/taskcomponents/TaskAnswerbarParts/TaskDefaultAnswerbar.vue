@@ -3,7 +3,7 @@
     <div class="mainComponentColor borderRadiusBottomLeft">
       <div class="taskAnswerbar">
         <slot></slot>
-    </div>
+      </div>
     </div>
     <TaskAnswerbutton v-on:submit-answer="$emit('submitAnswer')" :disabled="disabled" />
   </div>

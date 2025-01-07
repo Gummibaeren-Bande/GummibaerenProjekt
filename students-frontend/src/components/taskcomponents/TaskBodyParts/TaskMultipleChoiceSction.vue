@@ -1,7 +1,12 @@
 <template>
   <div class="ChoiceContainer">
     <div v-for="option in options" :key="option.value" class="divCheckbox">
-      <Checkbox v-model="selectedOptions" :inputId="option.value" :value="option.value" :disabled="disbaleSelectabel"/>
+      <Checkbox
+        v-model="selectedOptions"
+        :inputId="option.value"
+        :value="option.value"
+        :disabled="disbaleSelectabel"
+      />
       <label :for="option.value" class="textNormall textColor textLeft">{{ option.label }}</label>
     </div>
   </div>

@@ -1,18 +1,24 @@
 <template>
-  <RightWrongOverlay :is-right="isCorrect" :visible="isRigthWrongOverlayVisible" v-on:weiter="weiter" />
+  <RightWrongOverlay
+    :is-right="isCorrect"
+    :visible="isRigthWrongOverlayVisible"
+    v-on:weiter="weiter"
+  />
   <div class="mainComponent mainDivSize">
-    <NumericTask 
-      v-if="currentTask.taskType===TaskType.NUMERIC" 
+    <NumericTask
+      v-if="currentTask.taskType === TaskType.NUMERIC"
       v-on:submit-answer="submitAnswer"
       :task="currentTask"
       :group="group"
-      :disable-to-answer="disableToAnswer" />
-    <MultipaleChoiceTask 
-      v-if="currentTask.taskType===TaskType.MULTIPLE_CHOICE" 
+      :disable-to-answer="disableToAnswer"
+    />
+    <MultipaleChoiceTask
+      v-if="currentTask.taskType === TaskType.MULTIPLE_CHOICE"
       v-on:submit-answer="submitAnswer"
-      :task="task3" 
+      :task="task3"
       :group="group"
-      :disable-to-answer="disableToAnswer" />
+      :disable-to-answer="disableToAnswer"
+    />
   </div>
 </template>
 
@@ -25,10 +31,9 @@ import { defineComponent } from 'vue'
 </script>
 
 <script lang="ts">
-
 enum TaskType {
   NUMERIC,
-  MULTIPLE_CHOICE
+  MULTIPLE_CHOICE,
 }
 
 interface Task {
@@ -53,8 +58,8 @@ export default defineComponent({
         finishedTasks: 1,
         increaseFinishedTasks() {
           this.finishedTasks++
-        }
-      }
+        },
+      },
     }
   },
   methods: {
@@ -90,28 +95,6 @@ export default defineComponent({
   },
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const task1 = {
   title: 'Gummibärchen Verteilung',
   description:
@@ -121,7 +104,7 @@ const task1 = {
   taskType: TaskType.NUMERIC,
   isCorrectd(givenAnswer: string): boolean {
     return givenAnswer === this.lsg.toString()
-  }
+  },
 }
 
 const task2 = {
@@ -133,7 +116,7 @@ const task2 = {
   taskType: TaskType.NUMERIC,
   isCorrectd(givenAnswer: string): boolean {
     return givenAnswer === this.lsg.toString()
-  }
+  },
 }
 
 const task3 = {
@@ -144,12 +127,15 @@ const task3 = {
     { label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas', value: 'option1' },
     { label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja', value: 'option2' },
     { label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere', value: 'option3' },
-    { label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit', value: 'option4'}
+    {
+      label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit',
+      value: 'option4',
+    },
   ],
   lsg: 'option1',
   taskType: TaskType.MULTIPLE_CHOICE,
   isCorrectd(givenAnswer: string): boolean {
     return givenAnswer === this.lsg
-  }
+  },
 }
 </script>

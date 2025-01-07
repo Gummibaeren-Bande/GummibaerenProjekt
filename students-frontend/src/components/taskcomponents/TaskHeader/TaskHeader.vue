@@ -1,7 +1,7 @@
 <template>
   <slot>
     <TaskTitle :title="title" />
-    <TaskInfoBar :group="group"/>
+    <TaskInfoBar :group="group" />
   </slot>
 </template>
 
