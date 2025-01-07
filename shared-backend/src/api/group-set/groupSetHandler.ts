@@ -14,7 +14,6 @@ function groupSetHandler(
   service: GroupSetService,
 ) {
   socket.on("addGroup", (name, callback) => service.addGroup(name, callback));
-  socket.emit("getGroupSet");
 }
 
 export default groupSetHandler;
