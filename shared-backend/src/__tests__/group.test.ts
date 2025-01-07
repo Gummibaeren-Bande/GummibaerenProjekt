@@ -73,11 +73,10 @@ describe("GroupProgress", () => {
     expect(groupProgress.getCurrentTask()).toBeInstanceOf(TrackableTask);
   });
 
-  it("should get the number of finished tasks", async () => {
+  it("should get the number of finished tasks", () => {
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(0);
-    await groupProgress.getCurrentTask().startTask();
-    await groupProgress.getCurrentTask().complete();
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
+    groupProgress.getCurrentTask().startTask();
+    groupProgress.getCurrentTask().complete();
     expect(groupProgress.getCurrentTask().state).toBe(
       TrackableTaskState.Completed
     );
@@ -96,24 +95,22 @@ describe("GroupProgress", () => {
     expect(groupProgress.hasNextTask()).toBe(true);
   });
 
-  it("should finish the work", async () => {
+  it("should finish the work", () => {
     expect(() => groupProgress.finishWork()).toThrow(
       "The group progress can't be finished, there are still unfinished tasks left."
     );
-    await groupProgress.getCurrentTask().startTask();
+    groupProgress.getCurrentTask().startTask();
     while (groupProgress.hasNextTask()) {
-      await groupProgress.getCurrentTask().complete();
+      groupProgress.getCurrentTask().complete();
       groupProgress.goToNextTask();
-      await new Promise((resolve) => setTimeout(resolve, 0)); // Ensure state change
     }
-    await groupProgress.getCurrentTask().complete();
+    groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(
       "No more tasks left to work on"
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Ensure state change
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(taskList.length);
     expect(groupProgress.getFinishedAfterSeconds()).not.toBeNull();
     expect(groupProgress.getFinishedAfterSeconds()).toBeGreaterThan(0);

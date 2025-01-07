@@ -89,7 +89,7 @@ describe("TrackableTask", () => {
   });
 
   it("should throw an error when trying to complete a task that hasn't started", () => {
-    expect(trackableTask.complete()).rejects.toThrow(
+    expect(() => trackableTask.complete()).toThrow(
       "The task has not been started yet and therefore can't be finished"
     );
   });
@@ -150,8 +150,9 @@ describe("TrackableTask", () => {
     expect(trackableTask.state).toEqual(TrackableTaskState.Completed);
   });
 
-  it("should return a valid completion time", () => {
+  it("should return a valid completion time", async () => {
     trackableTask.startTask();
+    await new Promise((resolve) => setTimeout(resolve, 2000));
     trackableTask.complete();
     expect(trackableTask.getFinishedAfterSeconds()).not.toBeNull();
     expect(trackableTask.getFinishedAfterSeconds()).toBeGreaterThan(0);
