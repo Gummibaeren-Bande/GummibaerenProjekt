@@ -47,7 +47,7 @@ class ExcerciseService implements ExerciseServiceListener {
 
   /**
    * delivers the current Excercise in the callback. Throws an error if the group has no current excercise.
-   * 
+   *
    * @param groupName the group that wants its current Excercise
    * @param callback the callback that delivers the current Excercise
    */
