@@ -11,9 +11,10 @@ import GroupSetService from "./GroupSetService";
 function groupSetHandler(
   io: IoServer,
   socket: IoSocket,
-  service: GroupSetService,
+  service: GroupSetService
 ) {
   socket.on("addGroup", (name, callback) => service.addGroup(name, callback));
+  socket.emit("getGroupSet");
 }
 
 export default groupSetHandler;

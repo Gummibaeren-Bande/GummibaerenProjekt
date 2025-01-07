@@ -3,6 +3,6 @@ import GroupSetServiceEmits from "../api/group-set/interfaces/GroupSetServiceEmi
 /**
  * all interfaces specifying server to client events (Emit-Interfaces) must be registered here
  */
-type ServerToClientEvents = GroupSetServiceEmits; // & TestServiceEmits
+type ServerToClientEvents = GroupSetServiceEmits;
 
 export default ServerToClientEvents;
