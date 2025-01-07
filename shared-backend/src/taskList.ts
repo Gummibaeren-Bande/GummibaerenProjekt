@@ -5,7 +5,7 @@ import MultipleChoiceExercise from "./entities/MultipleChoiceExercise";
 /**
  * This is a list of dummy tasks that will be used for testing.
  */
-let taskList = [
+const taskList = [
   new Task("Binärzahlumrechnung", [
     new NumericalExercise(
       "Binärzahl in Dezimalzahl umrechnen",

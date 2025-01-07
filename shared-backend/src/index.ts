@@ -16,6 +16,10 @@ import ExcerciseService from "./api/exercicse/ExerciseService";
 import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
 import GroupService from "./api/group/GroupService";
 import taskList from "./taskList";
+import groupProgressHandler from "./api/group-progress/groupProgressHandler";
+import trackableTaskHandler from "./api/trackableTask/trackableTaskHandler";
+import taskHandler from "./api/task/taskHandler";
+import exerciseHandler from "./api/exercicse/exerciseHandler";
 
 // scaffold new server
 const app = express();
@@ -46,7 +50,11 @@ console.log("task set uploaded");
 const onConnection = (socket: IoSocket) => {
   // add all handler functions here
   welcomeHandler(io, socket);
+  taskHandler(io, socket, taskService);
   groupSetHandler(io, socket, groupSetService);
+  groupProgressHandler(io, socket, groupProgressService);
+  trackableTaskHandler(io, socket, trackableTaskService);
+  exerciseHandler(io, socket, excerciseService);
 };
 
 // serve the handler functions when connected
