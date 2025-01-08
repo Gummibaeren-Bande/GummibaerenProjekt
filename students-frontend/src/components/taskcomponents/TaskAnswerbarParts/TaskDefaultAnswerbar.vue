@@ -5,7 +5,7 @@
         <slot></slot>
       </div>
     </div>
-    <TaskAnswerbutton v-on:submit-answer="$emit('submitAnswer')" :disabled="disabled" />
+    <TaskAnswerbutton v-on:submit-answer="submitAnswer()" :disabled="disabled" />
   </div>
 </template>
 
@@ -25,5 +25,10 @@ export default defineComponent({
     },
   },
   emits: ['submitAnswer'],
+  methods: {
+    submitAnswer() {
+      this.$emit('submitAnswer')
+    }
+  }
 })
 </script>

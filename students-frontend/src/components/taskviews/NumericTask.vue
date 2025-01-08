@@ -1,7 +1,7 @@
 <template>
   <TaskHeader :title="task.title" :group="group" />
   <TaskBody :question="task.question" :description="task.description" />
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer" :disabled="disableToAnswer">
+  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
       class="margin5"
@@ -58,6 +58,7 @@ export default defineComponent({
     }
   },
   methods: {
+    // Submits answere to praent if a Number was wirten into the Input Field.
     submitAnswer() {
       if (typeof this.value === 'number') {
         this.$emit('submitAnswer', [this.value.toString()])

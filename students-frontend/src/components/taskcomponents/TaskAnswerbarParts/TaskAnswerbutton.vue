@@ -4,7 +4,7 @@
       class="margin5"
       label="Abschicken"
       fluid
-      v-on:click="submitAnswer"
+      @click="submitAnswer"
       :disabled="disabled"
     />
   </div>
