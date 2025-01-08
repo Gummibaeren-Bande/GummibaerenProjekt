@@ -7,12 +7,12 @@ Stand vom 07.01.25:
 
 ## Definition of Done
 - [ ] Diese Checkliste wird pro Increment von zwei Personen durchlaufen. Mir selbst und einer weiteren Person, die ich gezielt angesprochen habe.
-- [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings. [vor allem ohne type errors, Im Backend gibt es noch keinen build befehl, ansonsten npm run build]
-- [ ] Der Code besteht alle Testfälle. [im backend gibt es noch keine teststrategie, ansonsten npm run test:unit]
+- [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings. [vor allem ohne type errors, im Backend gibt es noch keinen build befehl, ansonsten npm run build]
+- [ ] Der Code besteht alle Testfälle. [im Backend mit npm run test, ansonsten npm run test:unit]
 - [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter).
 - [ ] Jede neue Methode hat einen Kommentar, was sie tut. In diesem Kommentar steht auch etwas zum eventuellen return-wert (Ausnahmen: getter/setter).
 - [ ] Das System kann auf dem Handy, iPad und im Browser genutzt werden, alles ist sichtbar. [muss nur überprüft werden, wenn es Änderungen an der UI gab]
-- [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten. [dafür muss npm run format überall, wo Dinge geändert wurden, ausgeführt werden. Die in frage kommenden locations sind dabei "shared-backend", "students-frontend" und "teachers-frontend"]
+- [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten. [dafür muss npm run format überall, wo Dinge geändert wurden, ausgeführt werden. Die in frage kommenden Locations sind dabei "shared-backend", "students-frontend" und "teachers-frontend"]
 
 
 ## Definition of Fun
