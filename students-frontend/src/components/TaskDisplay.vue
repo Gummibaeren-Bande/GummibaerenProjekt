@@ -7,14 +7,14 @@
   <div class="mainComponent mainDivSize">
     <NumericTask
       v-if="currentTask.taskType === TaskType.NUMERIC"
-      v-on:submit-answer="submitAnswer"
+      @submit-answer="submitAnswer"
       :task="currentTask"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
     <MultipaleChoiceTask
       v-if="currentTask.taskType === TaskType.MULTIPLE_CHOICE"
-      v-on:submit-answer="submitAnswer"
+      @submit-answer="submitAnswer"
       :task="task3"
       :group="group"
       :disable-to-answer="disableToAnswer"
@@ -33,12 +33,12 @@ import { defineComponent } from 'vue'
 
 <script lang="ts">
 
-enum TaskType {
+export enum TaskType {
   NUMERIC,
   MULTIPLE_CHOICE,
 }
 
-interface Task {
+export interface Task {
   title: string
   description: string
   question: string
