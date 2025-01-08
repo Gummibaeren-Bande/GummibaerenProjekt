@@ -5,9 +5,9 @@
         v-model="selectedOptions"
         :inputId="option.value"
         :value="option.value"
-        :disabled="disbaleSelectabel"
+        :disabled="disabled"
       />
-      <label :for="option.value" class="textNormall textColor textLeft">{{ option.label }}</label>
+      <label :for="option.value" class="textNormal textColor textLeft">{{ option.label }}</label>
     </div>
   </div>
 </template>
@@ -32,7 +32,7 @@ export default defineComponent({
       type: Array as PropType<Option[]>,
       required: true,
     },
-    disbaleSelectabel: {
+    disabled: {
       type: Boolean,
       default: false,
     },

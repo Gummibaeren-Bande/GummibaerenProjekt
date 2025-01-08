@@ -1,5 +1,5 @@
 <template>
-  <div id="TaksContainer" class="textNormall textColor">
+  <div id="TaksContainer" class="textNormal textColor">
     <ScrollPanel class="taskDescriptionScrollpanel">
       <p>
         {{ description }}

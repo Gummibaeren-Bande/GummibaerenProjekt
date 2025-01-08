@@ -7,10 +7,10 @@
   >
     <template #container="{ closeCallback }">
       <div class="marginOverlay">
-        <div class="textColor textNormall textBold textMargin">
+        <div class="textColor textNormal textBold textMargin">
           {{ isRight ? 'Richtig' : 'Falsch' }}
         </div>
-        <div class="textColor textNormall textMargin">
+        <div class="textColor textNormal textMargin">
           {{ isRight ? rightText : wrongText }}
         </div>
         <div class="RigthWrongOverlayButton textColor">

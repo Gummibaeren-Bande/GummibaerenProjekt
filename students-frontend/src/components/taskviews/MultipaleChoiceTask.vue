@@ -4,7 +4,7 @@
     <TaskMultipleChoiceSection
       ref="choices"
       :options="task.answerOptions"
-      :disbale-selectabel="disableToAnswer"
+      :disabled="disableToAnswer"
     />
   </TaskBody>
   <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer()" :disabled="disableToAnswer" />
@@ -52,9 +52,9 @@ export default defineComponent({
     },
   },
   methods: {
-    /* Submits the Answere withe the selceted Choices.
+    /* Submits the answer with the selceted choices.
      *  $refs used to get the refernce set in the TaskMultiplechoicesSection with "ref".
-     *  If nothing is selceted the Answer will still be sent.
+     *  If nothing is selected the answer will still be sent.
      */
     submitAnswer() {
       const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>

@@ -1,6 +1,6 @@
 <template>
   <div class="InfoBar mainComponent mainComponentColor">
-    <div class="textSmaller textColor InfoBarGroupname">Gruppenname: {{ group.groupname }}</div>
+    <div class="textSmaller textColor InfoBarGroupname">Gruppenname: {{ group.groupName }}</div>
     <div class="textSmaller textColor InfoBarTaskCounter">
       Fertige Aufgaben: {{ group.finishedTasks }}
     </div>
@@ -13,7 +13,7 @@ import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 
 export interface GroupInfo {
-  groupname: string
+  groupName: string
   finishedTasks: number
 }
 

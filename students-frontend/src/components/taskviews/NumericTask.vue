@@ -58,7 +58,7 @@ export default defineComponent({
     }
   },
   methods: {
-    // Submits answere to praent if a Number was wirten into the Input Field.
+    // Submits answer to parent if a number was written into the input field.
     submitAnswer() {
       if (typeof this.value === 'number') {
         this.$emit('submitAnswer', [this.value.toString()])

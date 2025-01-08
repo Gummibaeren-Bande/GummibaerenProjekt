@@ -1,5 +1,5 @@
 <template>
-  <div class="textNormall textColor textBold divPadding5">{{ question }}</div>
+  <div class="textNormal textColor textBold divPadding5">{{ question }}</div>
 </template>
 
 <script lang="ts">
