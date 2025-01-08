@@ -7,13 +7,17 @@
 
 <script setup lang="ts">
 import StudentsView from './views/StudentsView.vue'
-import Toast from 'primevue/toast'
 </script>
 
-<script lang="ts">
-export default {
-  components: {
-    Toast,
-  },
+<style>
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  padding: 0px;
+  margin: 0px;
 }
-</script>
+</style>
