@@ -22,7 +22,6 @@
   </div>
 </template>
 
-
 <script lang="ts" setup>
 import './taskcomponents/Task.css'
 import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
@@ -32,7 +31,6 @@ import { defineComponent } from 'vue'
 </script>
 
 <script lang="ts">
-
 export enum TaskType {
   NUMERIC,
   MULTIPLE_CHOICE,
@@ -98,11 +96,15 @@ export default defineComponent({
       task3: {
         title: 'Gummibärchen Verteilung',
         description: '',
-        question: 'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
+        question:
+          'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
         answerOptions: [
           { label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas', value: 'option1' },
           { label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja', value: 'option2' },
-          { label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere', value: 'option3' },
+          {
+            label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere',
+            value: 'option3',
+          },
           {
             label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit',
             value: 'option4',
@@ -113,7 +115,7 @@ export default defineComponent({
         isCorrectd(givenAnswer: string): boolean {
           return givenAnswer === this.lsg
         },
-      }
+      },
     }
   },
   methods: {
@@ -154,5 +156,4 @@ export default defineComponent({
     },
   },
 })
-
 </script>

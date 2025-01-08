@@ -1,12 +1,6 @@
 <template>
   <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
-    <Button
-      class="margin5"
-      label="Abschicken"
-      fluid
-      @click="submitAnswer"
-      :disabled="disabled"
-    />
+    <Button class="margin5" label="Abschicken" fluid @click="submitAnswer" :disabled="disabled" />
   </div>
 </template>
 

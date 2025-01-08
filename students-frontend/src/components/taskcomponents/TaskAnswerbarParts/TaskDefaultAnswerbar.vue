@@ -28,7 +28,7 @@ export default defineComponent({
   methods: {
     submitAnswer() {
       this.$emit('submitAnswer')
-    }
-  }
+    },
+  },
 })
 </script>

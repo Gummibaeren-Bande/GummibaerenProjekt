@@ -53,9 +53,9 @@ export default defineComponent({
   },
   methods: {
     /* Submits the Answere withe the selceted Choices.
-    *  $refs used to get the refernce set in the TaskMultiplechoicesSection with "ref".
-    *  If nothing is selceted the Answer will still be sent.
-    */
+     *  $refs used to get the refernce set in the TaskMultiplechoicesSection with "ref".
+     *  If nothing is selceted the Answer will still be sent.
+     */
     submitAnswer() {
       const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
       this.$emit('submitAnswer', choices.getSelectedOptions())

@@ -70,57 +70,82 @@ describe('TaskDisplay.vue', () => {
   })
 
   it('renders MultipaleChoiceTask component', () => {
-    const wrapper = mount(TaskDisplay, { 
+    const wrapper = mount(TaskDisplay, {
       global: globalConfig,
       data() {
         return {
           currentTask: {
             title: 'Gummibärchen Verteilung',
             description: '',
-            question: 'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
+            question:
+              'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
             answerOptions: [
-              { label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas', value: 'option1' },
-              { label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja', value: 'option2' },
-              { label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere', value: 'option3' },
-              { label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit', value: 'option4' },
+              {
+                label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas',
+                value: 'option1',
+              },
+              {
+                label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja',
+                value: 'option2',
+              },
+              {
+                label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere',
+                value: 'option3',
+              },
+              {
+                label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit',
+                value: 'option4',
+              },
             ],
             lsg: 'option1',
             taskType: TaskType.MULTIPLE_CHOICE,
             isCorrectd(givenAnswer: string): boolean {
-              return givenAnswer === this.lsg;
-            }
-          }
-        };
-      }
-    });
-    expect(wrapper.findComponent(MultipaleChoiceTask).exists()).toBe(true);
-  });
-
-  it('renders TaskMultipleChoiceSection component', () => {
-    const wrapper = mount(TaskDisplay, { 
-      global: globalConfig,
-      data() {
-        return {
-          currentTask: {
-            title: 'Gummibärchen Verteilung',
-            description: '',
-            question: 'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
-            answerOptions: [
-              { label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas', value: 'option1' },
-              { label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja', value: 'option2' },
-              { label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere', value: 'option3' },
-              { label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit', value: 'option4' },
-            ],
-            lsg: 'option1',
-            taskType: TaskType.MULTIPLE_CHOICE,
-            isCorrectd(givenAnswer: string): boolean {
-              return givenAnswer === this.lsg;
-            }
-          }
-        };
-      }
-    });
-    expect(wrapper.findComponent(TaskMultipleChoiceSection).exists()).toBe(true)
+              return givenAnswer === this.lsg
+            },
+          },
+        }
+      },
+    })
+    expect(wrapper.findComponent(MultipaleChoiceTask).exists()).toBe(true)
   })
 
+  it('renders TaskMultipleChoiceSection component', () => {
+    const wrapper = mount(TaskDisplay, {
+      global: globalConfig,
+      data() {
+        return {
+          currentTask: {
+            title: 'Gummibärchen Verteilung',
+            description: '',
+            question:
+              'Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?',
+            answerOptions: [
+              {
+                label: 'A) Erdbeere, Zitrone, Himbeere, Orange, Apfel und Ananas',
+                value: 'option1',
+              },
+              {
+                label: 'B) Banane, Kirsche, Mango, Pfirsich, Limette und Maracuja',
+                value: 'option2',
+              },
+              {
+                label: 'C) Vanille, Schokolade, Zimt, Kokos, Pfefferminze und Brombeere',
+                value: 'option3',
+              },
+              {
+                label: 'D) Wassermelone, Kiwi, Heidelbeere, Passionsfrucht, Pflaume und Grapefruit',
+                value: 'option4',
+              },
+            ],
+            lsg: 'option1',
+            taskType: TaskType.MULTIPLE_CHOICE,
+            isCorrectd(givenAnswer: string): boolean {
+              return givenAnswer === this.lsg
+            },
+          },
+        }
+      },
+    })
+    expect(wrapper.findComponent(TaskMultipleChoiceSection).exists()).toBe(true)
+  })
 })
