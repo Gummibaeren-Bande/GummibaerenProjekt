@@ -1,5 +1,8 @@
 <template>
-  <StudentsView />
+  <div>
+    <Toast />
+    <StudentsView />
+  </div>
 </template>
 
 <script setup lang="ts">

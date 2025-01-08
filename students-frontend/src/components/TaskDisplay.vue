@@ -46,6 +46,9 @@ export interface Task {
 }
 
 export default defineComponent({
+  props: {
+    groupName: String,
+  },
   data() {
     return {
       currentTask: {
