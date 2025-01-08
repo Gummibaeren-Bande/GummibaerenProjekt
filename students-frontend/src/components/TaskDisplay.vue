@@ -47,7 +47,10 @@ export interface Task {
 
 export default defineComponent({
   props: {
-    groupName: String,
+    groupName: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
@@ -66,7 +69,7 @@ export default defineComponent({
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
       group: {
-        groupname: 'Teddybären',
+        groupName: 'Teddybären',
         finishedTasks: 1,
         increaseFinishedTasks() {
           this.finishedTasks++
