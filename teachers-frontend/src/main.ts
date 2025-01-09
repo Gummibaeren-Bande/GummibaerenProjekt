@@ -14,11 +14,6 @@ const myPreset = definePreset(Aura, {
     popover: {
       background: 'rgb(64, 64, 64)',
     },
-    button: {
-      secondary: {
-        background: 'pink',
-      },
-    },
   },
 })
 
