@@ -4,19 +4,19 @@
  Also displays a timer for each task. -->
 
 <template>
-  <div class="table-div">
+  <ScrollPanel class="table-div">
     <table class="exercise-display">
       <thead class="table-header">
         <tr>
-          <th>Gruppenname</th>
-          <th v-for="task in tasks" :key="task.name">
+          <th class="sticky-column">Gruppenname</th>
+          <th v-for="task in tasks" :key="task.name" class="task-header">
             {{ task.displayName }}
           </th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="group in groups" :key="group.groupName">
-          <td>
+          <td class="sticky-column">
             <span :class="{ endTimer: isFinished(group.finishedAfterSeconds) }">
               {{ group.groupName }}
             </span>
@@ -24,7 +24,7 @@
               {{ displayEndTime(group.finishedAfterSeconds) }}
             </div>
           </td>
-          <td v-for="task in tasks" :key="task.name">
+          <td v-for="task in tasks" :key="task.name" class="task-cell">
             <ExerciseDisplay
               :task="group.tasks.find((t) => t.name === task.name)"
               :numberOfAlternatives="task.numberOfAlternatives"
@@ -34,12 +34,13 @@
         </tr>
       </tbody>
     </table>
-  </div>
+  </ScrollPanel>
 </template>
 
 <script lang="ts" setup>
 import { ref } from 'vue'
 import ExerciseDisplay from './ExerciseDisplay.vue'
+import ScrollPanel from 'primevue/scrollpanel'
 
 /* Dummy Werte */
 const tasks = ref([
@@ -58,6 +59,17 @@ const tasks = ref([
     numberOfAlternatives: 4,
   },
   { name: 'task7', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task8', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task9', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task10', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task11', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task12', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task13', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task14', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task15', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task16', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task17', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task18', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
 ])
 
 /* Dummy Werte */
@@ -91,20 +103,55 @@ const isFinished = (seconds: number): boolean => {
 
 <style scoped>
 .table-div {
-  overflow-x: auto;
   font-size: 20px;
   color: #ffffff66;
-  padding: 10px;
+  max-width: 1280px;
+}
+
+@media (min-width: 1600px) {
+  .table-div {
+    width: 90%;
+    max-width: 1800px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .table-div {
+    width: 90%;
+    max-width: 100%;
+  }
 }
 
 .exercise-display {
   text-align: center;
   width: 100%;
-  padding: 10px;
+  padding: 0; /* Remove padding */
+  border-collapse: collapse; /* Remove borders */
+}
+
+.exercise-display th,
+.exercise-display td {
+  border: none; /* Remove borders */
+  padding: 0; /* Remove padding */
+  padding-right: 10px; /* Add padding to the right */
 }
 
 .endTimer {
   font-weight: bold;
   color: rgb(140, 182, 60);
+}
+
+.sticky-column {
+  position: sticky;
+  left: 0;
+  background-color: rgb(0, 150, 130);
+  z-index: 1;
+}
+
+.task-header,
+.task-cell {
+  max-width: 150px; /* Set your desired max width here */
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 </style>
