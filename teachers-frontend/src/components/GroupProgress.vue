@@ -4,36 +4,38 @@
  Also displays a timer for each task. -->
 
 <template>
-  <ScrollPanel class="table-div">
-    <table class="exercise-display">
-      <thead class="table-header">
-        <tr>
-          <th class="sticky-column">Gruppenname</th>
-          <th v-for="task in tasks" :key="task.name" class="task-header">
-            {{ task.displayName }}
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="group in groups" :key="group.groupName">
-          <td class="sticky-column">
-            <span :class="{ endTimer: isFinished(group.finishedAfterSeconds) }">
-              {{ group.groupName }}
-            </span>
-            <div :class="{ endTimer: isFinished(group.finishedAfterSeconds) }">
-              {{ displayEndTime(group.finishedAfterSeconds) }}
-            </div>
-          </td>
-          <td v-for="task in tasks" :key="task.name" class="task-cell">
-            <ExerciseDisplay
-              :task="group.tasks.find((t) => t.name === task.name)"
-              :numberOfAlternatives="task.numberOfAlternatives"
-            >
-            </ExerciseDisplay>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <ScrollPanel class="outer-div">
+    <div class="inner-div">
+      <table class="exercise-display">
+        <thead class="table-header">
+          <tr>
+            <th class="sticky-column sticky-header top-left-cell">Gruppenname</th>
+            <th v-for="task in tasks" :key="task.name" class="task-header sticky-header">
+              {{ task.displayName }}
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="group in groups" :key="group.groupName">
+            <td class="sticky-column">
+              <span :class="{ endTimer: isFinished(group.finishedAfterSeconds) }">
+                {{ group.groupName }}
+              </span>
+              <div :class="{ endTimer: isFinished(group.finishedAfterSeconds) }">
+                {{ displayEndTime(group.finishedAfterSeconds) }}
+              </div>
+            </td>
+            <td v-for="task in tasks" :key="task.name" class="task-cell">
+              <ExerciseDisplay
+                :task="group.tasks.find((t) => t.name === task.name)"
+                :numberOfAlternatives="task.numberOfAlternatives"
+              >
+              </ExerciseDisplay>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </ScrollPanel>
 </template>
 
@@ -102,23 +104,38 @@ const isFinished = (seconds: number): boolean => {
 </script>
 
 <style scoped>
-.table-div {
+.outer-div {
   font-size: 20px;
   color: #ffffff66;
-  max-width: 1280px;
+  max-width: 1190px;
+  min-height: 650px;
+  overflow: auto; /* Enable both vertical and horizontal scrolling */
 }
 
-@media (min-width: 1600px) {
-  .table-div {
+.inner-div {
+  max-height: 650px;
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+@media (min-width: 1600px) and (max-width: 2120px) {
+  .outer-div {
     width: 90%;
-    max-width: 1800px;
+    max-width: 1820px;
+  }
+  .inner-div {
+    max-height: 800px;
   }
 }
 
-@media (max-width: 1000px) {
-  .table-div {
+@media (orientation: portrait) {
+  .outer-div {
     width: 90%;
     max-width: 100%;
+    height: 100%;
+    max-height: 100%;
+  }
+  .inner-div {
+    max-height: 58rem;
   }
 }
 
@@ -145,7 +162,18 @@ const isFinished = (seconds: number): boolean => {
   position: sticky;
   left: 0;
   background-color: rgb(0, 150, 130);
+  z-index: 2;
+}
+
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: rgb(0, 150, 130);
   z-index: 1;
+}
+
+.top-left-cell {
+  z-index: 3; /* Ensure it overlays both the sticky row and column */
 }
 
 .task-header,
