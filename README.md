@@ -7,12 +7,19 @@ Stand vom 07.01.25:
 
 ## Definition of Done
 - [ ] Diese Checkliste wird pro Increment von zwei Personen durchlaufen. Mir selbst und einer weiteren Person, die ich gezielt angesprochen habe.
-- [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings. [vor allem ohne type errors, im Backend gibt es noch keinen build befehl, ansonsten npm run build]
 - [ ] Der Code besteht alle Testfälle. [im Backend mit npm run test, ansonsten npm run test:unit]
-- [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter).
+- [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter, dummy-methoden, emits an parent-components im frontend).
 - [ ] Jede neue Methode hat einen Kommentar, was sie tut. In diesem Kommentar steht auch etwas zum eventuellen return-wert (Ausnahmen: getter/setter).
-- [ ] Das System kann auf dem Handy, iPad und im Browser genutzt werden, alles ist sichtbar. [muss nur überprüft werden, wenn es Änderungen an der UI gab]
+- [ ] dummy-methoden sind als solche kommentiert
 - [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten. [dafür muss npm run format überall, wo Dinge geändert wurden, ausgeführt werden. Die in frage kommenden Locations sind dabei "shared-backend", "students-frontend" und "teachers-frontend"]
+
+### Zusätzlich für beide frontends
+- [ ] Im Vue-Template gibt es so wenig typescript code wie möglich
+- [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings. [vor allem ohne type errors, npm run build]
+- [ ] Button emits werden mit @Click deklariert
+
+### Zusätzlich für das students-frontend
+- [ ] Das System kann auf dem Handy, iPad und im Browser genutzt werden, alles ist sichtbar. Es werden dabei die Geräte verwendet, die einem zu Verfügung stehen [muss nur überprüft werden, wenn es Änderungen an der UI gab]
 
 
 ## Definition of Fun
@@ -23,16 +30,9 @@ Stand vom 07.01.25:
 * Wir kommunizieren stets offen und ehrlich miteinander. Wir haben stets ein offenes Ohr für die projektbezogenen Probleme der anderen.
 * Dienstags wird sich um 11:30 in der Mensa getroffen.
 
+## Epic:
 
-## Epic
-In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen Franz, Niki und Luca Schaltkreise wiederholen. Dafür stellt sie den Schüler:innen die AKS-Website mit den Aufgaben zur Verfügung. Die Schüler:innen gehen auf die Website und geben sich ihren eigenen Namen als Gruppenname. Die Lehrkraft sieht auf ihrer Ansicht die Gruppen, die sich einen Namen gegeben haben.
-Die ersten drei Aufgaben haben eine numerische Lösungseingabe, da hier die zu fließende Stromstärke berechnet werden muss. Die Schüler:innen geben ihr Ergebnis ein und schicken die Antwort ab. Die nächsten drei Aufgaben sind Multiplechoice Aufgaben. Hier kreuzen die Schüler:innen die ihrer Meinung nach richtigen Antworten an und schicken diese ab. Sie bekommen eine direkte Rückmeldung über ein Popup, ob ihre Antwort richtig oder falsch ist. Niki schaut sich ihr richtiges Ergebnis immer noch mal an und klickt das Popup zuerst weg, bevor sie auf "Weiter" klickt. 
-Die ersten drei Aufgaben sind Niki sehr leicht gefallen. Die Lehrkraft sieht dies daran, dass Nikis Timer bei den Aufgaben besonders niedrig sind und aktiviert deshalb eine der schwierigeren Alternativen für die nächste Aufgabe. 
-Die Lehrkraft kann ebenso die Anzahl der Fehlversuche sehen. So fällt ihr auf, dass Franz bereits 10-mal die Aufgabe 2 falsch beantwortet hat. Sie deaktiviert deshalb die dritte Aufgabe für ihn. 
-Währenddessen ist der Akku von Lucas Gerät leer. Er holt sich ein neues iPad und verbindet sich wieder mit der Website. Dazu gibt er seinen Gruppennamen ein und bekommt wieder den aktuellen Stand seiner Aufgaben angezeigt. 
-Am Ende der Stunden vergleichen Franz, Niki und Luca wie viele Fragen sie richtig beantwortet haben. Dabei hat Franz 4, Niki 5 und Luca 6 Fragen richtig beantwortet.
-
-## Epic 2:
+Stand vom 07.01.25:
 
 In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen Franz, Niki und Luca das Binärsystem wiederholen. Dafür stellt sie den Schüler:innen die AKS-Website mit den Aufgaben zur Verfügung. Im eingestellten Aufgabenset befinden sich zwei Aufgaben. Die zweite hat eine schwierigere Alternative. Die Schüler:innen gehen auf die Website und geben sich ihren eigenen Namen als Gruppenname. Die Lehrkraft sieht auf ihrer Ansicht die Gruppen, die sich einen Namen gegeben haben.
     Nachdem sich die Schüler:innen ihren Namen eingegeben haben, bekommen sie die erste Aufgabe angezeigt. Es ist einen Aufgabe mit numerischer Lösungseingabe, da hier eine binäre Zahl in eine Dezimalzahl umgewandelt werden muss. Den Schüler:innen wird außerdem angezeigt, dass sie bisher 0 Aufgaben korrekt gelöst haben.
@@ -56,7 +56,13 @@ In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen F
 
 ## wichtige Entscheidungen
 * Die Ansicht für Lehrkräfte wird nur für den Browser optimiert.
-* Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt.
+* Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt. [was ist damit gemeint?]
+* Im Backend gibt es einen zentralen Emit an das teachers-frontend, der bei jeder Änderung neu ausgelöst wird
+* Für eine abschließenden Test der frontends haben wir uns folgende Geräte ausgesucht:
+    * Fabi: Android - Chromium Ecosia Browser
+    * Felix: IPad - Safari Browser 
+    * Jonathan: MacBook - Safari Browser, Windows 11 4K - Chrome Browser
+    * Jonas: Windows 11 - Firefox Browser
 
 
 ## Burn Up chart
