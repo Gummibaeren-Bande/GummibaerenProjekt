@@ -6,7 +6,7 @@ import TrackableTask from "./TrackableTask";
  */
 class GroupProgress {
   private readonly progress: TrackableTask[];
-  private startedAt: Date | null;
+  private startedAt: Date;
   private finishedAfterSeconds: number | null;
   private indexOfCurrentTask = 0;
 
@@ -20,7 +20,7 @@ class GroupProgress {
     this.finishedAfterSeconds = null;
   }
 
-  public getStartedAt(): Date | null {
+  public getStartedAt(): Date {
     return this.startedAt;
   }
   public getCurrentTask(): TrackableTask {
@@ -43,7 +43,7 @@ class GroupProgress {
         return task;
       }
     }
-    throw new Error("No task with the given id found");
+    throw new Error("No task with the given ID found");
   }
 
   public getFinishedAfterSeconds(): number | null {
@@ -64,7 +64,7 @@ class GroupProgress {
   public finishWork() {
     if (this.hasNextTask()) {
       throw new Error(
-        "The group progress can't be finished, there are still unfinished tasks left.",
+        "The group progress can't be finished, there are still unfinished tasks left."
       );
     }
     this.stopTimer();
@@ -72,11 +72,6 @@ class GroupProgress {
 
   private stopTimer() {
     const started = this.getStartedAt();
-    if (!started) {
-      throw new Error(
-        "The group was not started yet and can't therefore not be finished",
-      );
-    }
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
   }
@@ -101,7 +96,7 @@ class GroupProgress {
       this.progress[this.indexOfCurrentTask].state !==
       TrackableTaskState.Completed
     ) {
-      throw new Error("The current task is not completed yet");
+      throw new Error("The current task has not been completed yet");
     }
     this.indexOfCurrentTask++;
     this.progress[this.indexOfCurrentTask].startTask();
