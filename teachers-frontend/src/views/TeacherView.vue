@@ -1,4 +1,4 @@
-<!-- Adds a title to the grou progress table -->
+<!-- Adds a title to the group progress table -->
 
 <template>
   <div class="background-form">
