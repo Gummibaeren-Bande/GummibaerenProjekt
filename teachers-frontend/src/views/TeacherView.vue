@@ -4,13 +4,13 @@
   <div class="background-form">
     <div class="content-div">
       <TaskSetTitle></TaskSetTitle>
-      <GroupProgress></GroupProgress>
+      <GroupProgressDisplay></GroupProgressDisplay>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import GroupProgress from '@/components/GroupProgress.vue'
+import GroupProgressDisplay from '@/components/GroupProgressDisplay.vue';
 import TaskSetTitle from '@/components/TaskSetTitle.vue'
 </script>
 
@@ -19,17 +19,16 @@ import TaskSetTitle from '@/components/TaskSetTitle.vue'
   background-color: rgb(0, 150, 130);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 10px;
+  padding: 3%;
 }
 
 .content-div {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
-  padding: 10px;
 }
 </style>

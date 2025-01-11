@@ -145,7 +145,6 @@ const toggleTimerDisplay = () => {
   text-align: center;
   top: 0px;
   right: 0px;
-  box-shadow: 0 0 7px black;
 }
 
 .exerciseDisplayButton {

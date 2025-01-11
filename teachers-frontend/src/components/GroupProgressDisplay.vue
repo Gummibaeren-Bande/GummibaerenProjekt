@@ -60,18 +60,18 @@ const tasks = ref([
     displayName: 'fürchterlich furchtsame Füchse fliegend fressen',
     numberOfAlternatives: 4,
   },
-  { name: 'task7', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task8', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task9', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task10', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task11', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task12', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task13', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task14', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task15', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task16', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task17', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
-  { name: 'task18', displayName: 'Bärchen backen', numberOfAlternatives: 0 },
+  { name: 'task7', displayName: 'Bärchen backen', numberOfAlternatives: 5 },
+  { name: 'task8', displayName: 'Wombats wälzen', numberOfAlternatives: 8 },
+  { name: 'task9', displayName: 'Pinguine picken', numberOfAlternatives: 5 },
+  { name: 'task10', displayName: 'Hummeln hummeln', numberOfAlternatives: 40 },
+  { name: 'task11', displayName: 'Otter ordnen', numberOfAlternatives: 5 },
+  { name: 'task12', displayName: 'Schmetterlinge schütteln', numberOfAlternatives: 0 },
+  { name: 'task13', displayName: 'Faultiere füttern', numberOfAlternatives: 0 },
+  { name: 'task14', displayName: 'Zebras zeichnen', numberOfAlternatives: 2 },
+  { name: 'task15', displayName: 'Affen angeln', numberOfAlternatives: 1 },
+  { name: 'task16', displayName: 'Füchse fangen', numberOfAlternatives: 1 },
+  { name: 'task17', displayName: 'Kängurus kochen', numberOfAlternatives: 3 },
+  { name: 'task18', displayName: 'Mäuse mümmeln', numberOfAlternatives: 0 },
 ])
 
 /* Dummy Werte */
@@ -105,21 +105,25 @@ const isFinished = (seconds: number): boolean => {
 
 <style scoped>
 .outer-div {
+  background: #80C3B6; 
   font-size: 20px;
-  color: #ffffff66;
+  color: black;
   max-width: 1190px;
   min-height: 650px;
-  overflow: auto; /* Enable both vertical and horizontal scrolling */
+  overflow: auto;
+  border-bottom-left-radius: 45px;
+  padding: 1%;
 }
 
 .inner-div {
   max-height: 650px;
-  overflow-y: auto; /* Enable vertical scrolling */
+  overflow-y: auto;
+  width: 100%;
 }
 
 @media (min-width: 1600px) and (max-width: 2120px) {
   .outer-div {
-    width: 90%;
+    width: 100%;
     max-width: 1820px;
   }
   .inner-div {
@@ -129,7 +133,7 @@ const isFinished = (seconds: number): boolean => {
 
 @media (orientation: portrait) {
   .outer-div {
-    width: 90%;
+    width: 100%;
     max-width: 100%;
     height: 100%;
     max-height: 100%;
@@ -142,15 +146,13 @@ const isFinished = (seconds: number): boolean => {
 .exercise-display {
   text-align: center;
   width: 100%;
-  padding: 0; /* Remove padding */
-  border-collapse: collapse; /* Remove borders */
+  padding: 0;
 }
 
 .exercise-display th,
 .exercise-display td {
-  border: none; /* Remove borders */
-  padding: 0; /* Remove padding */
-  padding-right: 10px; /* Add padding to the right */
+  padding: 0; 
+  padding-right: 10px; 
 }
 
 .endTimer {
@@ -161,24 +163,24 @@ const isFinished = (seconds: number): boolean => {
 .sticky-column {
   position: sticky;
   left: 0;
-  background-color: rgb(0, 150, 130);
+  background: #80C3B6;
   z-index: 2;
 }
 
 .sticky-header {
   position: sticky;
   top: 0;
-  background-color: rgb(0, 150, 130);
+  background: #80C3B6;
   z-index: 1;
 }
 
 .top-left-cell {
-  z-index: 3; /* Ensure it overlays both the sticky row and column */
+  z-index: 3; 
 }
 
 .task-header,
 .task-cell {
-  max-width: 150px; /* Set your desired max width here */
+  max-width: 150px; 
   overflow-wrap: break-word;
   white-space: normal;
 }
