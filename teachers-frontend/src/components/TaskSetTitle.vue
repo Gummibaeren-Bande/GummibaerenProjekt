@@ -18,8 +18,6 @@
 }
 
 .TaskSetTitle h1 {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  padding: 0%;
+  padding: 1%;
 }
 </style>

@@ -152,7 +152,7 @@ const isFinished = (seconds: number): boolean => {
 .exercise-display th,
 .exercise-display td {
   padding: 0; 
-  padding-right: 10px; 
+  padding-right: 10px;
 }
 
 .endTimer {
