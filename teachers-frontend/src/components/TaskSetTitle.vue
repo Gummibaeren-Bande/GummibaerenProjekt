@@ -7,7 +7,7 @@
 
 <style scoped>
 .TaskSetTitle {
-  background: #80C3B6;
+  background: #80c3b6;
   color: black;
   display: flex;
   justify-content: center;

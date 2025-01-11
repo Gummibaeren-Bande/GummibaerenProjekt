@@ -105,7 +105,7 @@ const isFinished = (seconds: number): boolean => {
 
 <style scoped>
 .outer-div {
-  background: #80C3B6; 
+  background: #80c3b6;
   font-size: 20px;
   color: black;
   max-width: 1190px;
@@ -151,7 +151,7 @@ const isFinished = (seconds: number): boolean => {
 
 .exercise-display th,
 .exercise-display td {
-  padding: 0; 
+  padding: 0;
   padding-right: 10px;
 }
 
@@ -163,24 +163,24 @@ const isFinished = (seconds: number): boolean => {
 .sticky-column {
   position: sticky;
   left: 0;
-  background: #80C3B6;
+  background: #80c3b6;
   z-index: 2;
 }
 
 .sticky-header {
   position: sticky;
   top: 0;
-  background: #80C3B6;
+  background: #80c3b6;
   z-index: 1;
 }
 
 .top-left-cell {
-  z-index: 3; 
+  z-index: 3;
 }
 
 .task-header,
 .task-cell {
-  max-width: 150px; 
+  max-width: 150px;
   overflow-wrap: break-word;
   white-space: normal;
 }

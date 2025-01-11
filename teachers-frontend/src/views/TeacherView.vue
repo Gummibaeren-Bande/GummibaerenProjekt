@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import GroupProgressDisplay from '@/components/GroupProgressDisplay.vue';
+import GroupProgressDisplay from '@/components/GroupProgressDisplay.vue'
 import TaskSetTitle from '@/components/TaskSetTitle.vue'
 </script>
 
@@ -25,7 +25,7 @@ import TaskSetTitle from '@/components/TaskSetTitle.vue'
   width: 100%;
   height: 100%;
   box-sizing: border-box;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 .content-div {
