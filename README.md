@@ -10,7 +10,7 @@ Stand vom 07.01.25:
 - [ ] Der Code besteht alle Testfälle. [im Backend mit npm run test, ansonsten npm run test:unit]
 - [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter, dummy-methoden, emits an parent-components im frontend).
 - [ ] Jede neue Methode hat einen Kommentar, was sie tut. In diesem Kommentar steht auch etwas zum eventuellen return-wert (Ausnahmen: getter/setter).
-- [ ] dummy-methoden sind als solche kommentiert
+- [ ] Dummy-Methoden sind als solche kommentiert.
 - [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten. [dafür muss npm run format überall, wo Dinge geändert wurden, ausgeführt werden. Die in frage kommenden Locations sind dabei "shared-backend", "students-frontend" und "teachers-frontend"]
 
 ### Zusätzlich für beide frontends
