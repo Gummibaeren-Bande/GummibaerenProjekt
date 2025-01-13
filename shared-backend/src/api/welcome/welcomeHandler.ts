@@ -10,10 +10,10 @@ const service = new WelcomeService();
  * @param io the static server
  * @param socket the dynamic socket dependet on the current connection
  */
-function welcomeHandler(io: IoServer, socket: IoSocket) {
-  service.socketConnectionOpened(socket);
+function welcomeHandler(io: IoServer, socket: IoSocket, isTeacher: boolean) {
+  service.socketConnectionOpened(socket, isTeacher);
 
-  socket.on("disconnect", (reason) => service.socketConnectionClosed(reason));
+  socket.on("disconnect", (reason) => service.socketConnectionClosed(socket, reason, isTeacher));
 }
 
 export default welcomeHandler;

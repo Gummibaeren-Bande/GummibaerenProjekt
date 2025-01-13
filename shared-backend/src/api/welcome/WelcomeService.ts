@@ -8,15 +8,17 @@ class WelcomeService {
   /**
    * handles client connections to the socket
    */
-  socketConnectionOpened(socket: IoSocket) {
-    console.log(`client connected to socket ${socket.id}`);
+  socketConnectionOpened(socket: IoSocket, isTeacher: boolean) {
+    const entity: string = isTeacher? "teacher" : "student"
+    console.log(`${entity} connected to socket ${socket.id}`);
   }
 
   /**
    * handles client disconnections to the socket
    */
-  socketConnectionClosed(reason: DisconnectReason) {
-    console.log(`client disconnected due to ${reason}`);
+  socketConnectionClosed(socket: IoSocket, reason: DisconnectReason, isTeacher: boolean) {
+    const entity: string = isTeacher? "teacher" : "student"
+    console.log(`${entity} socket ${socket.id} was terminated due to ${reason}`);
   }
 }
 

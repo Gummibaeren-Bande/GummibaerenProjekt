@@ -47,9 +47,14 @@ const excerciseService = new ExcerciseService(trackableTaskService);
 taskService.uploadTaskSet(taskList);
 console.log("task set uploaded");
 
-const onConnection = (socket: IoSocket) => {
-  // add all handler functions here
-  welcomeHandler(io, socket);
+// define namespaces
+const studentsServer = io.of("/students");
+const teachersServer = io.of("/teachers");
+
+// define students server
+const onStudentConnection = (socket: IoSocket) => {
+  // add all handler functions for students here
+  welcomeHandler(io, socket, false);
   taskHandler(io, socket, taskService);
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
@@ -57,8 +62,22 @@ const onConnection = (socket: IoSocket) => {
   exerciseHandler(io, socket, excerciseService);
 };
 
-// serve the handler functions when connected
-io.on("connection", onConnection);
+// serve the handler functions for students when connected
+studentsServer.on("connection", onStudentConnection);
+
+// define teachers server
+const onTeachersConnection = (socket: IoSocket) => {
+  // add all handler functions for students here
+  welcomeHandler(io, socket, true);
+  taskHandler(io, socket, taskService);
+  groupSetHandler(io, socket, groupSetService);
+  groupProgressHandler(io, socket, groupProgressService);
+  trackableTaskHandler(io, socket, trackableTaskService);
+  exerciseHandler(io, socket, excerciseService);
+};
+
+// serve the handler functions for teachers when connected
+teachersServer.on("connection", onTeachersConnection);
 
 // server port is 3000
 httpServer.listen(3000);

@@ -41,7 +41,7 @@ const TEAM_NAME_CONFIG = {
 }
 
 // socket for backend communication
-const socket = io('http://localhost:3000')
+const socket = io('http://localhost:3000/students')
 
 socket.on('connect', () => {
   console.log(`connected to socket id ${socket.id}`)
