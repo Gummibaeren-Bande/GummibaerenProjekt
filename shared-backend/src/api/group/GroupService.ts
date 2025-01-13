@@ -1,4 +1,5 @@
 import Group from "../../entities/Group";
+import IoSocket from "../../types/IoSocket";
 import GroupSetService from "../group-set/GroupSetService";
 
 class GroupService {
@@ -9,8 +10,20 @@ class GroupService {
     console.log("Group service was successfully started");
   }
 
-  public getGroupByName(name: string): Group {
+  public getGroupByName(name: string): Group | undefined {
     return this.groupSetService.getGroupSet().getGroupByName(name);
+  }
+
+  /**
+   * finds the group with the given socket attached. after the group is found, the attached socket is deassigned.
+   *
+   * @param socket the given socket
+   */
+  public deassignSocketFromGroup(socket: IoSocket): void {
+    const group = this.groupSetService.getGroupSet().tryGroupBySocket(socket);
+    if (group) {
+      group.deassignSocket();
+    }
   }
 }
 

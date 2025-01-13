@@ -1,30 +1,23 @@
 <template>
-  <Dialog v-model:visible="visible" :closable="false" :modal="true" class="custom-dialog">
+  <Dialog :visible="true" :closable="false" :modal="true" class="custom-dialog">
     <div class="header-container">
-      <h2 class="dialog-header">Wähle einen Teamnamen</h2>
-      <Button @click="openReconnect()" class="p-button-rounded p-button-text help-icon">?</Button>
+      <h2 class="dialog-header">Mit Teamname einloggen</h2>
+      <Button @click="close()" class="p-button-rounded p-button-text help-icon">X</Button>
     </div>
     <div class="content-container">
       <InputText class="teamname-input" v-model="groupName" placeholder="Teamname eingeben" />
     </div>
     <div class="footer-container">
-      <Button class="start-button" @click="handleSignOn()">Starten</Button>
+      <Button @click="handleSignIn()" class="start-button">Starten</Button>
     </div>
   </Dialog>
-  <ReconnectPopup
-    v-if="reconnectGroupVisible"
-    :socket="socket"
-    @close="reconnectPopupOnClose()"
-    @joined-group="validGroupSelected"
-  ></ReconnectPopup>
 </template>
 
 <script setup lang="ts">
-import ReconnectPopup from './ReconnectPopup.vue'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
-import { io, Socket } from 'socket.io-client'
+import { Socket } from 'socket.io-client'
 </script>
 
 <script lang="ts">
@@ -33,13 +26,6 @@ const TEAM_NAME_CONFIG = {
   MAX_LENGTH: 20,
   VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
 }
-
-// socket for backend communication
-const socket = io('http://localhost:3000/students')
-
-socket.on('connect', () => {
-  console.log(`connected to socket id ${socket.id}`)
-})
 
 export default {
   props: {
@@ -50,47 +36,29 @@ export default {
   },
   data() {
     return {
-      visible: true,
       groupName: '',
-      reconnectGroupVisible: false,
     }
   },
   methods: {
+    close(): void {
+      this.$emit('close')
+    },
     /**
-     * Handles the sign-on process by validating the group name and authenticating the group.
+     * Handles the sign-in process by validating the group name and authenticating the group.
      * @param {Function} closeCallback - Function to close the dialog.
      */
-    async handleSignOn(): Promise<void> {
-      if (this.testGroupName(this.groupName) && (await this.authentificateGroup(this.groupName))) {
-        this.validGroupSelected(this.groupName)
+    async handleSignIn(): Promise<void> {
+      if (this.testGroupName(this.groupName) && (await this.reconnectToGroup(this.groupName))) {
+        this.pushGroupNameToURL()
+        this.$emit('joined-group', this.groupName) // Emit the group name
+        this.close()
       } else {
         this.groupName = ''
       }
     },
 
-    /**
-     * signals to the mother component that a valid group was selected
-     *
-     * @param groupName the selected group
-     */
-    validGroupSelected(groupName: string) {
-      this.pushGroupNameToURL(groupName)
-      this.$emit('group-selected', groupName) // Emit the group name
-      this.visible = false
-    },
-
-    /**
-     * opens the reconnection popup
-     */
     async openReconnect(): Promise<void> {
-      this.reconnectGroupVisible = true
-    },
-
-    /**
-     * hides the reconnection popup
-     */
-    reconnectPopupOnClose(): void {
-      this.reconnectGroupVisible = false
+      console.log('trying to reconnect')
     },
 
     /**
@@ -98,17 +66,21 @@ export default {
      * @param {string} name - The name of the group to authenticate.
      * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
-    async authentificateGroup(name: string): Promise<boolean> {
+    async reconnectToGroup(name: string): Promise<boolean> {
       return new Promise((resolve) => {
-        socket.emit('addGroup', name, (response: { success: boolean; message: string }) => {
-          if (response.success) {
-            this.diplayGroupCreationSuccess(response.message)
-            resolve(true)
-          } else {
-            this.diplayGroupCreationError(response.message)
-            resolve(false)
-          }
-        })
+        this.socket.emit(
+          'reconnectToGroup',
+          name,
+          (response: { success: boolean; message: string }) => {
+            if (response.success) {
+              this.diplayGroupCreationSuccess(response.message)
+              resolve(true)
+            } else {
+              this.diplayGroupCreationError(response.message)
+              resolve(false)
+            }
+          },
+        )
       })
     },
 
@@ -144,11 +116,11 @@ export default {
     /**
      * pushes the groupName to the URL as a parameter without reloading the page
      */
-    pushGroupNameToURL(groupName: string) {
+    pushGroupNameToURL() {
       // Get the current URL
       const currentUrl = new URL(window.location.href)
       // Set the "group" query parameter
-      currentUrl.searchParams.set('group', groupName)
+      currentUrl.searchParams.set('group', this.groupName)
       // Update the browser's URL without reloading the page
       window.history.pushState({}, '', currentUrl)
     },
@@ -228,3 +200,62 @@ export default {
   },
 }
 </script>
+
+<style>
+.custom-dialog {
+  position: relative;
+  display: flex;
+  width: 50%;
+  min-width: 250px;
+  flex-direction: column;
+  padding: 1%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  right: 20px;
+}
+
+.dialog-header {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.help-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px; /* Adjust spacing below the header */
+}
+
+.teamname-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.footer-container {
+  flex-grow: 1; /* Allow the footer to expand */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertically center the button */
+}
+
+.start-button {
+  margin-top: 50px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+</style>

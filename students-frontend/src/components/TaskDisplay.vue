@@ -28,6 +28,7 @@ import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import MultipaleChoiceTask from './taskviews/MultipaleChoiceTask.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
+import { Socket } from 'socket.io-client'
 </script>
 
 <script lang="ts">
@@ -49,6 +50,10 @@ export default defineComponent({
   props: {
     groupName: {
       type: String,
+      required: true,
+    },
+    socket: {
+      type: Socket,
       required: true,
     },
   },

@@ -37,13 +37,13 @@ class GroupProgress {
     return counter;
   }
 
-  public getTaskById(id: string): TrackableTask {
+  public getTaskById(id: string): TrackableTask | undefined {
     for (const task of this.progress) {
       if (task.getTask().getId() === id) {
         return task;
       }
     }
-    throw new Error("No task with the given ID found");
+    return undefined;
   }
 
   public getFinishedAfterSeconds(): number | null {
@@ -64,7 +64,7 @@ class GroupProgress {
   public finishWork() {
     if (this.hasNextTask()) {
       throw new Error(
-        "The group progress can't be finished, there are still unfinished tasks left."
+        "The group progress can't be finished, there are still unfinished tasks left.",
       );
     }
     this.stopTimer();
