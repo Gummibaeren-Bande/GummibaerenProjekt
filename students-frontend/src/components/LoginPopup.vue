@@ -40,6 +40,7 @@ const TEAM_NAME_CONFIG = {
   VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
 }
 
+
 // socket for backend communication
 const socket = io('http://localhost:3000/students')
 

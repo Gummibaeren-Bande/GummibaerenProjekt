@@ -1,6 +1,6 @@
 <template>
   <div>
-    <TaskDisplay :group-name="groupName" v-if="groupIsSpecified"> </TaskDisplay>
+    <TaskDisplay :group-name="groupName" v-if="groupIsSpecified" />
     <LoginPopup v-else @group-selected="onGroupSelected" />
   </div>
 </template>
@@ -9,6 +9,12 @@
 import LoginPopup from '../components/LoginPopup.vue'
 import TaskDisplay from '../components/TaskDisplay.vue'
 </script>
+
+<style>
+body {
+  background-color: #009682;
+}
+</style>
 
 <script lang="ts">
 export default {

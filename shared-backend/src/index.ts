@@ -20,6 +20,7 @@ import groupProgressHandler from "./api/group-progress/groupProgressHandler";
 import trackableTaskHandler from "./api/trackableTask/trackableTaskHandler";
 import taskHandler from "./api/task/taskHandler";
 import exerciseHandler from "./api/exercicse/exerciseHandler";
+import readline from "readline";
 
 // scaffold new server
 const app = express();
@@ -82,3 +83,17 @@ teachersServer.on("connection", onTeachersConnection);
 // server port is 3000
 httpServer.listen(3000);
 console.log("server running at http://localhost:3000");
+console.log("type 'quit' or 'q' to stop the server");
+// open a scanner to listen to the console
+const scanner = readline.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+
+// close the server when the scanner reads quit
+scanner.on("line", (line: string) => {
+  if (line === "quit" || line === "q") {
+    httpServer.close();
+    process.exit();
+  }
+});

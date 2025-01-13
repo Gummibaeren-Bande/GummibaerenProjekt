@@ -35,7 +35,7 @@ describe("GroupSet", () => {
 
   it("should throw an error if the group does not exist", () => {
     expect(() => groupSet.getGroupByName(NON_EXISTENT_GROUP_NAME)).toThrow(
-      "No group with the given name found",
+      "No group with the given name found"
     );
   });
 });
@@ -69,6 +69,24 @@ describe("GroupProgress", () => {
     expect(groupProgress.getStartedAt()).toBeInstanceOf(Date);
   });
 
+  it("should throw an error if trying to goto the next task before completing it", () => {
+    expect(() => groupProgress.goToNextTask()).toThrow(
+      "The current task has not been completed yet"
+    );
+  });
+
+  it("should find a task by Id", () => {
+    expect(groupProgress.getTaskById(taskList[0].getId())).toBe(
+      groupProgress.getCurrentTask()
+    );
+  });
+
+  it("should throw an error if the task does not exist", () => {
+    expect(() => groupProgress.getTaskById("nonExistentId")).toThrow(
+      "No task with the given ID found"
+    );
+  });
+
   it("should get the current task", () => {
     expect(groupProgress.getCurrentTask()).toBeInstanceOf(TrackableTask);
   });
@@ -78,7 +96,7 @@ describe("GroupProgress", () => {
     groupProgress.getCurrentTask().startTask();
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.getCurrentTask().state).toBe(
-      TrackableTaskState.Completed,
+      TrackableTaskState.Completed
     );
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(1);
   });
@@ -97,7 +115,7 @@ describe("GroupProgress", () => {
 
   it("should finish the work", () => {
     expect(() => groupProgress.finishWork()).toThrow(
-      "The group progress can't be finished, there are still unfinished tasks left.",
+      "The group progress can't be finished, there are still unfinished tasks left."
     );
     groupProgress.getCurrentTask().startTask();
     while (groupProgress.hasNextTask()) {
@@ -107,7 +125,7 @@ describe("GroupProgress", () => {
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(
-      "No more tasks left to work on",
+      "No more tasks left to work on"
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);

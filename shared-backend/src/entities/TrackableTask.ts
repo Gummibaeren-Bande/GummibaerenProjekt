@@ -32,7 +32,7 @@ class TrackableTask {
 
   public startTask(): void {
     if (this.startedAt) {
-      throw new Error("The task is already started");
+      throw new Error("The task has already been started");
     }
     this.startedAt = new Date();
     this.setState(TrackableTaskState.InProgress);
@@ -81,7 +81,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task has not been started yet and therefore can't be finished",
+        "The task has not been started yet and therefore can't be finished"
       );
     }
     this.finishedAfterSeconds =
