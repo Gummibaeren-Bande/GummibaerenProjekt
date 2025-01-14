@@ -6,9 +6,9 @@
   />
   <div class="mainComponent mainDivSize">
     <NumericTask
-      v-if="currentTask.type === 'numerical'"
+      v-if="currentExercise.type === 'numerical'"
       @submit-answer="submitAnswer"
-      :task="currentTask"
+      :task="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
@@ -60,7 +60,7 @@ export default defineComponent({
   },
   data() {
     return {
-      currentTask: {} as Exercise,
+      currentExercise: {} as Exercise,
       isCorrect: false as boolean,
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
@@ -77,7 +77,8 @@ export default defineComponent({
     // Submits the Answer
     // TODO: This is a temp function and has to be updatet later on.
     submitAnswer(givenAnswer: string[]) {
-      console.log('Gegeben Antwor ist: ' + givenAnswer[0])
+      console.log('Gegeben Antwor ist: ' + givenAnswer[0]);
+      this.socket.emit('answerCurrentExcercise', this.groupName, this.currentExercise, )
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
@@ -95,7 +96,7 @@ export default defineComponent({
         isFinished: boolean;
         currentExcercise: Exercise;
       }) => {
-        this.currentTask = message.currentExcercise;
+        this.currentExercise = message.currentExcercise;
       })
     }
   },
