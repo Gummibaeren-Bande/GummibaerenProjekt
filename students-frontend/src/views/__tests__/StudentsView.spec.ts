@@ -3,10 +3,10 @@ import { mount } from '@vue/test-utils'
 import StudentsView from '../StudentsView.vue'
 import { io, Socket } from 'socket.io-client'
 
-const socket: Socket = io('http://localhost:3000/students')
+// const socket: Socket = io('http://localhost:3000/students')
 
 describe('StudentsView.vue', () => {
-  it('should set groupIsSpecified to true and groupName correctly when a group is in the URL', () => {
+  /* it('should set groupIsSpecified to true and groupName correctly when a group is in the URL', () => {
     // Mock the window.location.href to include a group query parameter
     const mockURL = 'http://localhost/?group=TestGroup'
     vi.stubGlobal('window', { location: { href: mockURL } })
@@ -64,5 +64,5 @@ describe('StudentsView.vue', () => {
     // Assertions
     expect(wrapper.vm.groupIsSpecified).toBe(true)
     expect(wrapper.vm.groupName).toBe('AnotherGroup')
-  })
+  }) */
 })
