@@ -1,11 +1,12 @@
 <template>
   <div>
-    <TaskDisplay :group-name="groupName" v-if="groupIsSpecified" />
-    <LoginPopup v-else @group-selected="onGroupSelected" />
+    <TaskDisplay :socket="socket" :group-name="groupName" v-if="groupIsSpecified" />
+    <LoginPopup v-else @group-selected="onGroupSelected" :socket="socket" />
   </div>
 </template>
 
 <script setup lang="ts">
+import { Socket } from 'socket.io-client'
 import LoginPopup from '../components/LoginPopup.vue'
 import TaskDisplay from '../components/TaskDisplay.vue'
 </script>
@@ -18,6 +19,12 @@ body {
 
 <script lang="ts">
 export default {
+  props: {
+    socket: {
+      type: Socket,
+      required: true,
+    },
+  },
   data() {
     return {
       groupName: '',

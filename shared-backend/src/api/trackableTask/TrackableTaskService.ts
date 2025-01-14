@@ -10,10 +10,12 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     console.log("Trackable Task service was successfully started");
   }
 
-  public getCurrentTaskByGroupName(groupName: string): TrackableTask {
+  public getCurrentTaskByGroupName(
+    groupName: string,
+  ): TrackableTask | undefined {
     return this.groupProgressService
       .getGroupProgressByGroupName(groupName)
-      .getCurrentTask();
+      ?.getCurrentTask();
   }
 
   /**
@@ -23,6 +25,9 @@ class TrackableTaskService implements TrackableTaskServiceListener {
    */
   public handleTaskCompleted(groupName: string) {
     const currentTask = this.getCurrentTaskByGroupName(groupName);
+    if (!currentTask) {
+      throw new Error("current Task not found for the given group name");
+    }
     currentTask.complete();
   }
 
@@ -33,10 +38,16 @@ class TrackableTaskService implements TrackableTaskServiceListener {
    * @param groupName the name of the group to skip the task for
    */
   public skipTask(taskId: string, groupName: string) {
-    this.groupProgressService
-      .getGroupProgressByGroupName(groupName)
-      .getTaskById(taskId)
-      .setSkipped(true);
+    const groupProgress =
+      this.groupProgressService.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    const task = groupProgress.getTaskById(taskId);
+    if (!task) {
+      throw new Error("task with the given id could not be found!");
+    }
+    task.setSkipped(true);
   }
 
   /**
@@ -46,10 +57,16 @@ class TrackableTaskService implements TrackableTaskServiceListener {
    * @param groupName the name of the group to unskip the task for
    */
   public revertTaskSkip(taskId: string, groupName: string) {
-    this.groupProgressService
-      .getGroupProgressByGroupName(groupName)
-      .getTaskById(taskId)
-      .setSkipped(false);
+    const groupProgress =
+      this.groupProgressService.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    const task = groupProgress.getTaskById(taskId);
+    if (!task) {
+      throw new Error("task with the given id could not be found!");
+    }
+    task.setSkipped(false);
   }
 
   /**
@@ -64,13 +81,19 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     groupName: string,
     indexOfAlternative: number,
   ) {
-    this.groupProgressService
-      .getGroupProgressByGroupName(groupName)
-      .getTaskById(taskId)
-      .setAlternativeExercise(indexOfAlternative);
+    const groupProgress =
+      this.groupProgressService.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    const task = groupProgress.getTaskById(taskId);
+    if (!task) {
+      throw new Error("task with the given id could not be found!");
+    }
+    task.setAlternativeExercise(indexOfAlternative);
   }
 
-  public getHasNextTaskByGroupName(groupName: string): boolean {
+  public getHasNextTaskByGroupName(groupName: string): boolean | undefined {
     return this.groupProgressService.hasNextTask(groupName);
   }
 

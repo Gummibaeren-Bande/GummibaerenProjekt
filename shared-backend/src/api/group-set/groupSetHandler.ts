@@ -13,7 +13,12 @@ function groupSetHandler(
   socket: IoSocket,
   service: GroupSetService,
 ) {
-  socket.on("addGroup", (name, callback) => service.addGroup(name, callback));
+  socket.on("addGroup", (name, callback) =>
+    service.addGroup(name, callback, socket),
+  );
+  socket.on("reconnectToGroup", (name, callback) =>
+    service.reconnectToGroup(name, callback, socket),
+  );
 }
 
 export default groupSetHandler;

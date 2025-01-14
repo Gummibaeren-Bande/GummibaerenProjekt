@@ -1,12 +1,22 @@
 <template>
   <div>
     <Toast />
-    <StudentsView />
+    <StudentsView :socket="socket" />
   </div>
 </template>
 
 <script setup lang="ts">
 import StudentsView from './views/StudentsView.vue'
+import { io, Socket } from 'socket.io-client'
+</script>
+
+<script lang="ts">
+// socket for backend communication
+const socket: Socket = io('http://localhost:3000/students')
+
+socket.on('connect', () => {
+  console.log(`connected to socket id ${socket.id}`)
+})
 </script>
 
 <style>

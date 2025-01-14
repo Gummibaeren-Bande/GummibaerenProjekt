@@ -28,9 +28,12 @@ class ExcerciseService implements ExerciseServiceListener {
     answer: Answer,
     callback: CallbackSuccess,
   ) {
-    const currentExercise = this.trackableTaskService
-      .getCurrentTaskByGroupName(groupName)
-      .getChosenExercise();
+    const currentTask =
+      this.trackableTaskService.getCurrentTaskByGroupName(groupName);
+    if (!currentTask) {
+      throw new Error("current task not found for the given group!");
+    }
+    const currentExercise = currentTask.getChosenExercise();
     if (currentExercise.id !== excerciseId) {
       callback({
         success: false,
@@ -55,9 +58,13 @@ class ExcerciseService implements ExerciseServiceListener {
     groupName: string,
     callback: CallbackCurrentExcercise,
   ) {
-    const currentExcercise = this.trackableTaskService
-      .getCurrentTaskByGroupName(groupName)
-      .getChosenExercise();
+    const currentTask =
+      this.trackableTaskService.getCurrentTaskByGroupName(groupName);
+
+    if (!currentTask) {
+      throw new Error("current task of given group not found!");
+    }
+    const currentExcercise = currentTask.getChosenExercise();
     if (currentExcercise) {
       callback({
         isFinished: false,

@@ -13,12 +13,20 @@ class GroupProgressService implements GroupProgressServiceListener {
     console.log("Group progress service was successfully started");
   }
 
-  public getGroupProgressByGroupName(groupName: string): GroupProgress {
-    return this.groupService.getGroupByName(groupName).getGroupProgress();
+  public getGroupProgressByGroupName(
+    groupName: string,
+  ): GroupProgress | undefined {
+    return this.groupService.getGroupByName(groupName)?.getGroupProgress();
   }
 
-  public hasNextTask(groupName: string): boolean {
-    return this.getGroupProgressByGroupName(groupName).hasNextTask();
+  /**
+   * tests if the group has a next task
+   *
+   * @param groupName the anme of the given group
+   * @returns ture if the group has a next task
+   */
+  public hasNextTask(groupName: string): boolean | undefined {
+    return this.getGroupProgressByGroupName(groupName)?.hasNextTask();
   }
 
   /**
@@ -32,7 +40,11 @@ class GroupProgressService implements GroupProgressServiceListener {
     if (!this.hasNextTask(groupName)) {
       throw new Error("there is no next task for this group!");
     }
-    return this.getGroupProgressByGroupName(groupName).goToNextTask();
+    const groupProgress = this.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    return groupProgress.goToNextTask();
   }
 
   /**
@@ -49,7 +61,11 @@ class GroupProgressService implements GroupProgressServiceListener {
       });
       return;
     }
-    this.getGroupProgressByGroupName(groupName).finishWork();
+    const groupProgress = this.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    groupProgress.finishWork();
     callback({ success: true, message: "Alle Aufgaben wurden erledigt" });
   }
 
@@ -60,8 +76,11 @@ class GroupProgressService implements GroupProgressServiceListener {
    * @param callback the callback to send back the number of finished tasks
    */
   public getNumberOfFinishedTasks(groupName: string, callback: CallbackNumber) {
-    const numberOfFinishedTasks =
-      this.getGroupProgressByGroupName(groupName).getNumberOfFinishedTasks();
+    const groupProgress = this.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    const numberOfFinishedTasks = groupProgress.getNumberOfFinishedTasks();
     callback({ number: numberOfFinishedTasks });
   }
 }

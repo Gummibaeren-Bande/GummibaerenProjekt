@@ -21,6 +21,7 @@ import trackableTaskHandler from "./api/trackableTask/trackableTaskHandler";
 import taskHandler from "./api/task/taskHandler";
 import exerciseHandler from "./api/exercicse/exerciseHandler";
 import readline from "readline";
+import WelcomeService from "./api/welcome/WelcomeService";
 
 // scaffold new server
 const app = express();
@@ -43,6 +44,7 @@ const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
 const excerciseService = new ExcerciseService(trackableTaskService);
+const welcomeService = new WelcomeService(groupService);
 
 // upload dummy task set
 taskService.uploadTaskSet(taskList);
@@ -55,7 +57,7 @@ const teachersServer = io.of("/teachers");
 // define students server
 const onStudentConnection = (socket: IoSocket) => {
   // add all handler functions for students here
-  welcomeHandler(io, socket, false);
+  welcomeHandler(io, socket, welcomeService, false);
   taskHandler(io, socket, taskService);
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
@@ -69,7 +71,7 @@ studentsServer.on("connection", onStudentConnection);
 // define teachers server
 const onTeachersConnection = (socket: IoSocket) => {
   // add all handler functions for students here
-  welcomeHandler(io, socket, true);
+  welcomeHandler(io, socket, welcomeService, true);
   taskHandler(io, socket, taskService);
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
