@@ -2,6 +2,7 @@ import GroupSet from "../../entities/GroupSet";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import IoSocket from "../../types/IoSocket";
 import TaskService from "../task/TaskService";
+import TeacherEmitsService from "../teacher-emits/TeacherEmitsService";
 import GroupSetServiceEmits from "./interfaces/GroupSetServiceEmits";
 import GroupSetServiceListeners from "./interfaces/GroupSetServiceListeners";
 
@@ -10,9 +11,11 @@ class GroupSetService
 {
   private readonly groupSet: GroupSet;
   private readonly taskService: TaskService;
+  private readonly teachersEmitsService: TeacherEmitsService;
 
-  constructor(taskService: TaskService) {
+  constructor(taskService: TaskService, teachersEmitsService: TeacherEmitsService) {
     this.taskService = taskService;
+    this.teachersEmitsService = teachersEmitsService;
     this.groupSet = new GroupSet();
     console.log("Group Set service was successfully started");
   }
@@ -20,6 +23,11 @@ class GroupSetService
   public getGroupSet(): GroupSet {
     return this.groupSet;
   }
+
+  public emitChangedGroupSet(): void {
+    return this.teachersEmitsService.emitChangedGroupSetToAllSockets(this.groupSet);
+  }
+  
 
   addGroup(name: string, callback: CallbackSuccess, socket?: IoSocket): void {
     if (!socket) {

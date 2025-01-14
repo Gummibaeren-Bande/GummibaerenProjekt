@@ -1,18 +1,18 @@
 import { DisconnectReason } from "socket.io";
 import IoSocket from "../../types/IoSocket";
 import GroupService from "../group/GroupService";
-import TeacherSocketsManager from "../../entities/TeacherSocketsManager";
+import TeacherEmitsService from "../teacher-emits/TeacherEmitsService";
 
 /**
  * this service handles socket connections and disconnection
  */
 class WelcomeService {
   private readonly groupService: GroupService;
-  private readonly teacherSocketsManager: TeacherSocketsManager;
+  private readonly teacherEmitsService: TeacherEmitsService;
 
-  constructor(groupService: GroupService) {
+  constructor(groupService: GroupService, teacherEmitsService: TeacherEmitsService) {
     this.groupService = groupService;
-    this.teacherSocketsManager = new TeacherSocketsManager();
+    this.teacherEmitsService = teacherEmitsService;
     console.log("Welcome service was successfully started");
   }
 
@@ -24,7 +24,7 @@ class WelcomeService {
     console.log(`${entity} connected to socket ${socket.id}`);
 
     if (isTeacher) {
-      this.teacherSocketsManager.addSocket(socket);
+      this.teacherEmitsService.addSocket(socket);
     }
   }
 
@@ -42,7 +42,7 @@ class WelcomeService {
     );
 
     if (isTeacher) {
-      this.teacherSocketsManager.removeSocket(socket);
+      this.teacherEmitsService.removeSocket(socket);
     } else {
       this.groupService.deassignSocketFromGroup(socket);
     }

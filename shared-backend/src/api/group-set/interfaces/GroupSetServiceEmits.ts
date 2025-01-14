@@ -1,7 +1,7 @@
 import GroupSet from "../../../entities/GroupSet";
 
 interface GroupSetServiceEmits {
-  getGroupSet: () => GroupSet;
+  getGroupSet: (groupSet: GroupSet) => void;
 }
 
 export default GroupSetServiceEmits;
