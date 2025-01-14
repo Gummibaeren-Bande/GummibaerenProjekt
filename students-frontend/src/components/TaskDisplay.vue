@@ -6,7 +6,7 @@
   />
   <div class="mainComponent mainDivSize">
     <NumericTask
-      v-if="currentTask.getType() === 'numerical'"
+      v-if="currentTask.type === 'numerical'"
       @submit-answer="submitAnswer"
       :task="currentTask"
       :group="group"
@@ -25,7 +25,6 @@
 <script lang="ts" setup>
 import './taskcomponents/Task.css'
 import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
-import MultipaleChoiceTask from './taskviews/MultipaleChoiceTask.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import { Socket } from 'socket.io-client'
@@ -92,17 +91,15 @@ export default defineComponent({
     },
 
     loadCurrentExcercise() {
-      console.log("Loading current Excercise")
       this.socket.emit('getCurrentExcerciceOfGroup', this.groupName, (message: {
         isFinished: boolean;
         currentExcercise: Exercise;
       }) => {
         this.currentTask = message.currentExcercise;
-        console.log("Loading current Excercise")
       })
     }
   },
-  mounted() {
+  beforeMount() {
     this.loadCurrentExcercise()
   },
 })
