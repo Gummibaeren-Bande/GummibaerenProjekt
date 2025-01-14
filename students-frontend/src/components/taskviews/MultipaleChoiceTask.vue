@@ -1,3 +1,4 @@
+<!--rechtschreibfehler im name-->
 <template>
   <TaskHeader :title="task.title" :group="group" />
   <TaskBody :question="task.question" :description="task.description">
