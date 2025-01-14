@@ -9,6 +9,10 @@ import IoSocket from "../types/IoSocket";
 
 const GROUP_NAME = "group1";
 const NON_EXISTENT_GROUP_NAME = "group2";
+const TEST_ID = "abcd12345";
+const TEST_ID_2 = "efgh67890";
+const SOCKET_1 = { id: TEST_ID } as unknown as IoSocket;
+const SOCKET_2 = { id: TEST_ID_2 } as unknown as IoSocket;
 
 describe("GroupSet", () => {
   let taskSet: TaskSet;
@@ -40,6 +44,61 @@ describe("GroupSet", () => {
 
   it("should not return a group if group does not exist", () => {
     expect(groupSet.getGroupByName(NON_EXISTENT_GROUP_NAME)).toBeUndefined();
+  });
+
+  it("should get the socket id of the assigned socket", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const id = groupSet.getGroupByName(GROUP_NAME)?.getAssignedSocketId();
+    expect(id).toBe(TEST_ID);
+  });
+
+  it("should return null as socket id after the socket is deassigned", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    group?.deassignSocket();
+    expect(group?.getAssignedSocketId()).toBeNull();
+  });
+
+  it("hasAssignedSocket should return false if socket was deassigned", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    group?.deassignSocket();
+    expect(group?.hasAssignedSocket()).toBeFalsy();
+  });
+
+  it("hasAssignedSocket should return true if socket is assigned", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    expect(group?.hasAssignedSocket()).toBeTruthy();
+  });
+
+  it("setAssignedSocket should throw an error if there is already a socket assigned", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    expect(() => group?.setAssignedSocket(SOCKET_2)).toThrow(
+      `Socket for group ${group?.getName()} is already assigned!`,
+    );
+  });
+
+  it("hasAssignedSocket should assigned a new socket if old socket was deassigned", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    group?.deassignSocket();
+    group?.setAssignedSocket(SOCKET_2);
+    expect(group?.getAssignedSocketId()).toBe(TEST_ID_2);
+  });
+
+  it("tryGroupBySocket should return the group with the assigned socket", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const group = groupSet.getGroupByName(GROUP_NAME);
+    const groupBySocket = groupSet.tryGroupBySocket(SOCKET_1);
+    expect(group).toBe(groupBySocket);
+  });
+
+  it("tryGroupBySocket should return undefined if a group with the given socket does not exist", () => {
+    groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
+    const groupBySocket = groupSet.tryGroupBySocket(SOCKET_2);
+    expect(groupBySocket).toBeUndefined();
   });
 });
 
