@@ -1,6 +1,6 @@
 <template>
   <TaskHeader :title="task.title" :group="group" />
-  <TaskBody :question="task.question" :description="task.description" />
+  <TaskBody :question="task.getQuestion()" :description="task.getDescription()" />
   <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
@@ -23,14 +23,10 @@ import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
+import Exercise from '../../../../shared-backend/src/abstract-classes/Exercise'
 
-interface Task {
-  title: string
-  description: string
-  question: string
-}
 
-export default defineComponent({
+export default {
   components: {
     TaskDefaultAnswerbar,
     TaskHeader,
@@ -40,7 +36,7 @@ export default defineComponent({
   emits: ['submitAnswer'],
   props: {
     task: {
-      type: Object as PropType<Task>,
+      type: Exercise,
       required: true,
     },
     group: {
@@ -60,11 +56,11 @@ export default defineComponent({
   methods: {
     // Submits answer to parent if a number was written into the input field.
     submitAnswer() {
-      if (typeof this.value === 'number') {
-        this.$emit('submitAnswer', [this.value.toString()])
-      }
+      //if (typeof this.value === 'number') {
+      //  this.$emit('submitAnswer', [this.value.toString()])
+      //}
       console.log('Bitte gebe zuerst eine Antwort ein.')
     },
   },
-})
+}
 </script>
