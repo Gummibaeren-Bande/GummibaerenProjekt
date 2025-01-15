@@ -33,6 +33,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   /**
+   * TODO: is tbhe method needed?
    * get the index of the chosen alternative excercise for the task with the given id for the given group.
    *
    * @param taskId the id of the task to get the alternative index for
