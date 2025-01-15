@@ -1,4 +1,4 @@
-import ExerciseDTO from "../../dto/ExerciseDTO";
+import ExerciseDTO from "../../dtos/ExerciseDTO";
 
 // Definition of the callback type that is used to handle a current exercise
 type CallbackCurrentExcercise = (message: {

@@ -1,8 +1,8 @@
-import GroupSetServiceEmits from "../api/group-set/interfaces/GroupSetServiceEmits";
+import TeacherEmitServiceEmits from "../api/teacher-emits/interfaces/TeacherEmitServiceEmits";
 
 /**
  * all interfaces specifying server to client events (Emit-Interfaces) must be registered here
  */
-type ServerToClientEvents = GroupSetServiceEmits;
+type ServerToClientEvents = TeacherEmitServiceEmits;
 
 export default ServerToClientEvents;

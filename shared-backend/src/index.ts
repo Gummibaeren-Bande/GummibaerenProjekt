@@ -22,6 +22,7 @@ import taskHandler from "./api/task/taskHandler";
 import exerciseHandler from "./api/exercicse/exerciseHandler";
 import readline from "readline";
 import WelcomeService from "./api/welcome/WelcomeService";
+import TeacherEmitsService from "./api/teacher-emits/TeacherEmitsService";
 
 // scaffold new server
 const app = express();
@@ -39,12 +40,13 @@ const io: IoServer = new Server<
 
 // initialize all services
 const taskService = new TaskService();
-const groupSetService = new GroupSetService(taskService);
+const teacherEmitsService = new TeacherEmitsService();
+const groupSetService = new GroupSetService(taskService, teacherEmitsService);
 const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
 const excerciseService = new ExcerciseService(trackableTaskService);
-const welcomeService = new WelcomeService(groupService);
+const welcomeService = new WelcomeService(groupService, teacherEmitsService);
 
 // upload dummy task set
 taskService.uploadTaskSet(taskList);
