@@ -33,30 +33,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   /**
-   * TODO: is tbhe method needed?
-   * get the index of the chosen alternative excercise for the task with the given id for the given group.
-   *
-   * @param taskId the id of the task to get the alternative index for
-   * @param groupName the name of the group to get the alternative index for
-   */
-  public getAlternativeIndexbyTaskId(
-    taskId: string,
-    groupName: string,
-    callback: CallbackNumber,
-  ) {
-    const groupProgress =
-      this.groupProgressService.getGroupProgressByGroupName(groupName);
-    if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
-    }
-    const task = groupProgress.getTaskById(taskId);
-    if (!task) {
-      throw new Error("task with the given id could not be found!");
-    }
-    callback({ number: task.getChosenExerciseIndex() });
-  }
-
-  /**
    * mark the task with the given id for the given group as skipped.
    *
    * @param taskId the id of the task to skip
