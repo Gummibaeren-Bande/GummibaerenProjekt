@@ -7,7 +7,7 @@ import Task from "./Task";
  */
 class TrackableTask {
   private readonly task: Task;
-  private chosenExercise: Exercise;
+  private chosenIndex: number;
   private startedAt: Date | null;
   private finishedAfterSeconds: number | null;
   private tries: number;
@@ -15,19 +15,26 @@ class TrackableTask {
 
   constructor(task: Task) {
     this.task = task;
-    this.chosenExercise = task.getExcercises()[0];
+    this.chosenIndex = 0;
     this.startedAt = null;
     this.finishedAfterSeconds = null;
     this.tries = 0;
     this._state = TrackableTaskState.NotStarted;
   }
 
+  get chosenExercise(): Exercise {
+    return this.task.getExcercises()[this.chosenIndex];
+  }
   get state(): TrackableTaskState {
     return this._state;
   }
 
   private setState(newState: TrackableTaskState): void {
     this._state = newState;
+  }
+
+  public getChosenIndex(): number {
+    return this.chosenIndex;
   }
 
   public startTask(): void {
@@ -81,7 +88,7 @@ class TrackableTask {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task has not been started yet and therefore can't be finished",
+        "The task has not been started yet and therefore can't be finished"
       );
     }
     this.finishedAfterSeconds =
@@ -94,15 +101,12 @@ class TrackableTask {
 
   public setAlternativeExercise(index: number): void {
     switch (this.state) {
-      case TrackableTaskState.NotStarted:
-        this.chosenExercise = this.task.getExcercises()[index];
-        break;
       case TrackableTaskState.InProgress:
         throw new Error("The task is in progress and can't be changed");
       case TrackableTaskState.Completed:
         throw new Error("The task is already completed and can't be changed");
-      case TrackableTaskState.Skipped:
-        this.chosenExercise = this.task.getExcercises()[index];
+      default:
+        this.chosenIndex = index;
         break;
     }
   }
