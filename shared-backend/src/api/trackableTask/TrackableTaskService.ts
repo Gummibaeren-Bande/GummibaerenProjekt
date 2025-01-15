@@ -1,4 +1,5 @@
 import TrackableTask from "../../entities/TrackableTask";
+import CallbackNumber from "../../types/callback-types/CallbackNumber";
 import GroupProgressService from "../group-progress/GroupProgressService";
 import TrackableTaskServiceListener from "./interfaces/TrackableTaskServiceListener";
 
@@ -11,7 +12,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   public getCurrentTaskByGroupName(
-    groupName: string,
+    groupName: string
   ): TrackableTask | undefined {
     return this.groupProgressService
       .getGroupProgressByGroupName(groupName)
@@ -29,6 +30,30 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       throw new Error("current Task not found for the given group name");
     }
     currentTask.complete();
+  }
+
+  /**
+   * TODO: is tbhe method needed?
+   * get the index of the chosen alternative excercise for the task with the given id for the given group.
+   *
+   * @param taskId the id of the task to get the alternative index for
+   * @param groupName the name of the group to get the alternative index for
+   */
+  public getAlternativeIndexbyTaskId(
+    taskId: string,
+    groupName: string,
+    callback: CallbackNumber
+  ) {
+    const groupProgress =
+      this.groupProgressService.getGroupProgressByGroupName(groupName);
+    if (!groupProgress) {
+      throw new Error("Group progress not found for this group!");
+    }
+    const task = groupProgress.getTaskById(taskId);
+    if (!task) {
+      throw new Error("task with the given id could not be found!");
+    }
+    callback({ number: task.getChosenIndex() });
   }
 
   /**
@@ -79,7 +104,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,
-    indexOfAlternative: number,
+    indexOfAlternative: number
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);

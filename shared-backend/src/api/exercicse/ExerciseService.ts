@@ -1,3 +1,4 @@
+import ExerciseDTO from "../../dto/ExerciseDTO";
 import Answer from "../../types/Answer";
 import CallbackCurrentExcercise from "../../types/callback-types/CallbackCurrentExcercise";
 import CallbackNextExcercise from "../../types/callback-types/CallbackNextExcercise";
@@ -26,7 +27,7 @@ class ExcerciseService implements ExerciseServiceListener {
     groupName: string,
     excerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess,
+    callback: CallbackSuccess
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
@@ -56,7 +57,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getCurrentExcerciceOfGroup(
     groupName: string,
-    callback: CallbackCurrentExcercise,
+    callback: CallbackCurrentExcercise
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
@@ -64,7 +65,7 @@ class ExcerciseService implements ExerciseServiceListener {
     if (!currentTask) {
       throw new Error("current task of given group not found!");
     }
-    const currentExcercise = currentTask.getChosenExercise();
+    const currentExcercise = new ExerciseDTO(currentTask.getChosenExercise());
     if (currentExcercise) {
       callback({
         isFinished: false,
@@ -84,14 +85,16 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getNextExerciceOfGroup(
     groupName: string,
-    callback: CallbackNextExcercise,
+    callback: CallbackNextExcercise
   ) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
     if (hasNextTask) {
-      const nextExcercise = this.trackableTaskService
-        .getNextTaskOfGroup(groupName)
-        .getChosenExercise();
+      const nextExcercise = new ExerciseDTO(
+        this.trackableTaskService
+          .getNextTaskOfGroup(groupName)
+          .getChosenExercise()
+      );
       callback({ isFinished: false, nextExcercise });
     } else {
       throw new Error("No next excercise found for the given group");
