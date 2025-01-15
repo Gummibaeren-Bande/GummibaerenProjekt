@@ -1,10 +1,10 @@
-import ExerciseDTO from "../../dto/ExerciseDTO";
+import ExerciseDTO from "../../dtos/ExerciseDTO";
 import Answer from "../../types/Answer";
 import CallbackCurrentExcercise from "../../types/callback-types/CallbackCurrentExcercise";
 import CallbackNextExcercise from "../../types/callback-types/CallbackNextExcercise";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
-import ExerciseServiceListener from "./abstract/ExerciseServiceListener";
+import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
 
 class ExcerciseService implements ExerciseServiceListener {
   private readonly trackableTaskService: TrackableTaskService;
