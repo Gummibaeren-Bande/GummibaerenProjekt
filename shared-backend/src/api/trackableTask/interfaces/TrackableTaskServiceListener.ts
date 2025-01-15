@@ -8,11 +8,6 @@ interface TrackableTaskServiceListener {
     groupName: string,
     indexOfAlternative: number,
   ) => void;
-  getAlternativeIndexbyTaskId: (
-    taskId: string,
-    groupName: string,
-    callback: CallbackNumber,
-  ) => void;
 }
 
 export default TrackableTaskServiceListener;
