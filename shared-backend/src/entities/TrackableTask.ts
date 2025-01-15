@@ -33,10 +33,6 @@ class TrackableTask extends ObservableEntity {
     this.state = newState;
   }
 
-  public getChosenIndex(): number {
-    return this.chosenExerciseIndex;
-  }
-
   public startTask(): void {
     if (this.startedAt) {
       throw new Error("The task has already been started");
@@ -88,7 +84,7 @@ class TrackableTask extends ObservableEntity {
     const started = this.getStartedAt();
     if (!started) {
       throw new Error(
-        "The task has not been started yet and therefore can't be finished"
+        "The task has not been started yet and therefore can't be finished",
       );
     }
     this.finishedAfterSeconds =

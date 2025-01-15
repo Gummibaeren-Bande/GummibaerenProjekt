@@ -31,7 +31,7 @@ class TeacherEmitsService {
 
   /**
    * remove a socket from the socket list if present
-   * @param socket 
+   * @param socket
    */
   public removeSocket(socket: IoSocket) {
     this.teacherSocketsManager.removeSocket(socket);

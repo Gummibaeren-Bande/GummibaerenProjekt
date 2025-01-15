@@ -12,7 +12,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   public getCurrentTaskByGroupName(
-    groupName: string
+    groupName: string,
   ): TrackableTask | undefined {
     return this.groupProgressService
       .getGroupProgressByGroupName(groupName)
@@ -42,7 +42,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public getAlternativeIndexbyTaskId(
     taskId: string,
     groupName: string,
-    callback: CallbackNumber
+    callback: CallbackNumber,
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
@@ -53,7 +53,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     if (!task) {
       throw new Error("task with the given id could not be found!");
     }
-    callback({ number: task.getChosenIndex() });
+    callback({ number: task.getChosenExerciseIndex() });
   }
 
   /**
@@ -104,7 +104,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,
-    indexOfAlternative: number
+    indexOfAlternative: number,
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
