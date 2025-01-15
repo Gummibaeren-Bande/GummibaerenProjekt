@@ -1,8 +1,9 @@
-import Exercise from "../../abstract-classes/Exercise";
+import ExerciseDTO from "../../dto/ExerciseDTO";
+
 // Definition of the callback type that is used to handle a next exercise
 type CallbackNextExcercise = (message: {
   isFinished: boolean;
-  nextExcercise: Exercise;
+  nextExcercise: ExerciseDTO;
 }) => void;
 
 export default CallbackNextExcercise;
