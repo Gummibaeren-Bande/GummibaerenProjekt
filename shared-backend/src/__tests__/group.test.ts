@@ -6,6 +6,9 @@ import taskList from "../taskList";
 import TrackableTask from "../entities/TrackableTask";
 import TrackableTaskState from "../enums/TrackableTaskState";
 import IoSocket from "../types/IoSocket";
+import GroupSetService from "../api/group-set/GroupSetService";
+import TaskService from "../api/task/TaskService"
+import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
 
 const GROUP_NAME = "group1";
 const NON_EXISTENT_GROUP_NAME = "group2";
@@ -13,11 +16,18 @@ const NON_EXISTENT_GROUP_NAME = "group2";
 describe("GroupSet", () => {
   let taskSet: TaskSet;
   let groupSet: GroupSet;
+  let taskService: TaskService;
+  let teacherEmitsService: TeacherEmitsService;
+  let groupSetService: GroupSetService;
+
 
   beforeEach(() => {
     taskSet = new TaskSet();
     taskSet.uploadTaskSet(taskList);
-    groupSet = new GroupSet();
+    taskService = new TaskService();
+    teacherEmitsService = new TeacherEmitsService();
+    groupSetService = new GroupSetService(taskService, teacherEmitsService);
+    groupSet = new GroupSet(groupSetService);
   });
 
   it("should add a new group with the given name and task set", () => {
@@ -45,12 +55,23 @@ describe("GroupSet", () => {
 
 describe("Group", () => {
   let group: Group;
+  let groupSet: GroupSet;
+  let taskService: TaskService;
+  let teacherEmitsService: TeacherEmitsService;
+  let groupSetService: GroupSetService;
+
 
   beforeEach(() => {
+    taskService = new TaskService();
+    teacherEmitsService = new TeacherEmitsService();
+    groupSetService = new GroupSetService(taskService, teacherEmitsService);
+    groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
     taskSet.uploadTaskSet(taskList);
-    group = new Group(GROUP_NAME, null as unknown as IoSocket, taskSet);
+    group = new Group(GROUP_NAME, null as unknown as IoSocket, taskSet, groupSetService);
+
   });
+
 
   it("should create a new group with the given name and task set", () => {
     expect(group.getName()).toEqual(GROUP_NAME);
@@ -60,11 +81,19 @@ describe("Group", () => {
 
 describe("GroupProgress", () => {
   let groupProgress: GroupProgress;
+  let groupSet: GroupSet;
+  let taskService: TaskService;
+  let teacherEmitsService: TeacherEmitsService;
+  let groupSetService: GroupSetService;
 
   beforeEach(() => {
+    taskService = new TaskService();
+    teacherEmitsService = new TeacherEmitsService();
+    groupSetService = new GroupSetService(taskService, teacherEmitsService);
+    groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
     taskSet.uploadTaskSet(taskList);
-    const group = new Group(GROUP_NAME, null as unknown as IoSocket, taskSet);
+    const group = new Group(GROUP_NAME, null as unknown as IoSocket, taskSet, groupSetService);
     groupProgress = group.getGroupProgress();
   });
 
@@ -96,7 +125,7 @@ describe("GroupProgress", () => {
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(0);
     groupProgress.getCurrentTask().startTask();
     groupProgress.getCurrentTask().complete();
-    expect(groupProgress.getCurrentTask().state).toBe(
+    expect(groupProgress.getCurrentTask().getState()).toBe(
       TrackableTaskState.Completed,
     );
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(1);

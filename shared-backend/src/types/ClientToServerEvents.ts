@@ -1,4 +1,4 @@
-import ExerciseServiceListener from "../api/exercicse/interfaces/ExerciseServiceListener";
+import ExerciseServiceListener from "../api/exercicse/abstract/ExerciseServiceListener";
 import GroupProgressServiceListener from "../api/group-progress/interfaces/GroupProgressServiceListener";
 import GroupSetServiceListeners from "../api/group-set/interfaces/GroupSetServiceListeners";
 import TaskServiceListener from "../api/task/interfaces/TaskServiceListener";

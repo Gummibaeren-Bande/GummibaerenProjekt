@@ -1,5 +1,6 @@
 import IoSocket from "../types/IoSocket";
 import GroupSet from "./GroupSet";
+import GroupSetDTO from "../dtos/GroupSetDTO";
 
 /**
  * This class manages all existing teacher sockets.
@@ -30,7 +31,9 @@ class TeacherSocketsManager {
   }
 
   public emitChangedGroupSetToAllSockets(groupSet: GroupSet) {
-    this.sockets.forEach(el => el.emit("getGroupSet", groupSet));
+    this.sockets.forEach((el) =>
+      el.emit("stateChanged", new GroupSetDTO(groupSet)),
+    );
   }
 }
 

@@ -3,7 +3,7 @@ import CallbackCurrentExcercise from "../../types/callback-types/CallbackCurrent
 import CallbackNextExcercise from "../../types/callback-types/CallbackNextExcercise";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
-import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
+import ExerciseServiceListener from "./abstract/ExerciseServiceListener";
 
 class ExcerciseService implements ExerciseServiceListener {
   private readonly trackableTaskService: TrackableTaskService;

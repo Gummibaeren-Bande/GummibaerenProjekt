@@ -48,7 +48,6 @@ const trackableTaskService = new TrackableTaskService(groupProgressService);
 const excerciseService = new ExcerciseService(trackableTaskService);
 const welcomeService = new WelcomeService(groupService, teacherEmitsService);
 
-
 // upload dummy task set
 taskService.uploadTaskSet(taskList);
 console.log("task set uploaded");

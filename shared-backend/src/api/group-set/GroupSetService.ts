@@ -3,20 +3,23 @@ import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import IoSocket from "../../types/IoSocket";
 import TaskService from "../task/TaskService";
 import TeacherEmitsService from "../teacher-emits/TeacherEmitsService";
-import GroupSetServiceEmits from "./interfaces/GroupSetServiceEmits";
 import GroupSetServiceListeners from "./interfaces/GroupSetServiceListeners";
+import CallbackGroupSet from "../../types/callback-types/CallbackGroupSet";
+import EntityObserver from "./interfaces/EntityObserver";
+import GroupSetDTO from "../../dtos/GroupSetDTO";
 
-class GroupSetService
-  implements GroupSetServiceEmits, GroupSetServiceListeners
-{
+class GroupSetService implements GroupSetServiceListeners, EntityObserver {
   private readonly groupSet: GroupSet;
   private readonly taskService: TaskService;
   private readonly teachersEmitsService: TeacherEmitsService;
 
-  constructor(taskService: TaskService, teachersEmitsService: TeacherEmitsService) {
+  constructor(
+    taskService: TaskService,
+    teachersEmitsService: TeacherEmitsService,
+  ) {
     this.taskService = taskService;
     this.teachersEmitsService = teachersEmitsService;
-    this.groupSet = new GroupSet();
+    this.groupSet = new GroupSet(this);
     console.log("Group Set service was successfully started");
   }
 
@@ -24,10 +27,9 @@ class GroupSetService
     return this.groupSet;
   }
 
-  public emitChangedGroupSet(): void {
-    return this.teachersEmitsService.emitChangedGroupSetToAllSockets(this.groupSet);
+  public update(): void {
+    this.teachersEmitsService.emitChangedGroupSetToAllSockets(this.groupSet);
   }
-  
 
   addGroup(name: string, callback: CallbackSuccess, socket?: IoSocket): void {
     if (!socket) {
@@ -81,6 +83,10 @@ class GroupSetService
       success: true,
       message: `Erfolgreich als existierendes Teams "${name}" eingeloggt.`,
     });
+  }
+
+  getCurrentState(callback: CallbackGroupSet) {
+    callback({ state: new GroupSetDTO(this.getGroupSet()) });
   }
 }
 

@@ -1,19 +1,22 @@
+import EntityObserver from "../api/group-set/interfaces/EntityObserver";
 import TrackableTaskState from "../enums/TrackableTaskState";
+import ObservableEntity from "./abstract/ObservableEntity";
 import TaskSet from "./TaskSet";
 import TrackableTask from "./TrackableTask";
 /**
  * This class is used to track the progress of a group on their tasks.
  */
-class GroupProgress {
+class GroupProgress extends ObservableEntity {
   private readonly progress: TrackableTask[];
   private startedAt: Date;
   private finishedAfterSeconds: number | null;
   private indexOfCurrentTask = 0;
 
-  constructor(taskSet: TaskSet) {
+  constructor(taskSet: TaskSet, subscriber: EntityObserver) {
+    super(subscriber);
     this.progress = [];
     for (const task of taskSet.getTasks()) {
-      this.progress.push(new TrackableTask(task));
+      this.progress.push(new TrackableTask(task, subscriber));
     }
     this.indexOfCurrentTask = 0;
     this.startedAt = new Date();
@@ -30,7 +33,7 @@ class GroupProgress {
   public getNumberOfFinishedTasks(): number {
     let counter = 0;
     for (const task of this.progress) {
-      if (task.state == TrackableTaskState.Completed) {
+      if (task.getState() == TrackableTaskState.Completed) {
         counter++;
       }
     }
@@ -68,12 +71,17 @@ class GroupProgress {
       );
     }
     this.stopTimer();
+    this.notifySubscriber();
   }
 
+  /**
+   * stops the timer of the group
+   */
   private stopTimer() {
     const started = this.getStartedAt();
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
+    this.notifySubscriber();
   }
 
   /**
@@ -93,14 +101,19 @@ class GroupProgress {
       throw new Error("No more tasks left to work on");
     }
     if (
-      this.progress[this.indexOfCurrentTask].state !==
+      this.progress[this.indexOfCurrentTask].getState() !==
       TrackableTaskState.Completed
     ) {
       throw new Error("The current task has not been completed yet");
     }
     this.indexOfCurrentTask++;
     this.progress[this.indexOfCurrentTask].startTask();
+    this.notifySubscriber();
     return this.getCurrentTask();
+  }
+
+  public getProgress(): TrackableTask[] {
+    return this.progress;
   }
 }
 

@@ -10,7 +10,10 @@ class WelcomeService {
   private readonly groupService: GroupService;
   private readonly teacherEmitsService: TeacherEmitsService;
 
-  constructor(groupService: GroupService, teacherEmitsService: TeacherEmitsService) {
+  constructor(
+    groupService: GroupService,
+    teacherEmitsService: TeacherEmitsService,
+  ) {
     this.groupService = groupService;
     this.teacherEmitsService = teacherEmitsService;
     console.log("Welcome service was successfully started");
