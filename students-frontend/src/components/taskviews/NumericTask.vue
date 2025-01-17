@@ -23,13 +23,10 @@ import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
 import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
 import { defineComponent, type PropType } from 'vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
-import Exercise from '../../../../shared-backend/src/abstract-classes/Exercise'
-
+import type ExerciseDTO from '../../../../shared-backend/src/dtos/ExerciseDTO'
 </script>
 
-
 <script lang="ts">
-
 export default defineComponent({
   components: {
     TaskDefaultAnswerbar,
@@ -39,7 +36,7 @@ export default defineComponent({
   },
   props: {
     task: {
-      type: Object as PropType<Exercise>,
+      type: Object as PropType<ExerciseDTO>,
       required: true,
     },
     group: {

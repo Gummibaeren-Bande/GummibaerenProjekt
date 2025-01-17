@@ -12,7 +12,7 @@
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
-    <!--<MultipaleChoiceTask
+    <!--<MultipleChoiceTask
       v-if="currentTask.getType() === 'multiple-choice'"
       @submit-answer="submitAnswer"
       :task="currentTask"
@@ -28,8 +28,10 @@ import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import { Socket } from 'socket.io-client'
-import Exercise from '../../../shared-backend/src/abstract-classes/Exercise'
-import CallbackDTO from '../../../shared-backend/src/dtos/CallbackDTO'
+import CallbackSuccessDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackSuccessDTO'
+import type CallbackExerciseDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackExerciseDTO'
+import type ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
+import type CallbackNumberDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackNumberDTO'
 </script>
 
 <script lang="ts">
@@ -60,7 +62,7 @@ export default defineComponent({
   },
   data() {
     return {
-      currentExercise: {} as Exercise,
+      currentExercise: {} as ExerciseDTO,
       isCorrect: false as boolean,
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
@@ -75,12 +77,18 @@ export default defineComponent({
     // TODO: This is a temp function and has to be updatet later on.
     async submitAnswer(givenAnswer: string[]) {
       console.log('Gegebene Antwort ist: ' + givenAnswer[0])
-      await this.socket.emit('answerCurrentExcercise', this.groupName, this.currentExercise.id, Number(givenAnswer[0]), (response: CallbackDTO) => {
-        console.log(response.message)
-        this.isCorrect = response.success
-        this.disableToAnswer = true
-        this.isRigthWrongOverlayVisible = true
-      }) 
+      await this.socket.emit(
+        'answerCurrentExcercise',
+        this.groupName,
+        this.currentExercise.id,
+        Number(givenAnswer[0]),
+        (response: CallbackSuccessDTO) => {
+          console.log(response.message)
+          this.isCorrect = response.success
+          this.disableToAnswer = true
+          this.isRigthWrongOverlayVisible = true
+        },
+      )
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
@@ -90,26 +98,35 @@ export default defineComponent({
     },
     //Loads next Task.
     // TODO: This is a temp function and has to be updatet later on.
-    nextTask() {
-
-    },
+    nextTask() {},
 
     loadCurrentExcercise() {
-      this.socket.emit('getCurrentExcerciceOfGroup', this.groupName, (message: {
-        isFinished: boolean;
-        currentExcercise: Exercise;
-      }) => {
-        this.currentExercise = message.currentExcercise;
-      })
+      this.socket.emit(
+        'getCurrentExcerciceOfGroup',
+        this.groupName,
+        (response: CallbackExerciseDTO) => {
+          if (response.success) {
+            this.currentExercise = response.exercise
+          } else {
+            console.log(response.message)
+          }
+        },
+      )
     },
 
     loadNumberOfFinishedTasks() {
-      this.socket.emit('getNumberOfFinishedTasks', this.group.groupName, (message: {
-        number: number 
-      }) => {
-        this.group.finishedTasks = message.number;
-      })
-    }
+      this.socket.emit(
+        'getNumberOfFinishedTasks',
+        this.group.groupName,
+        (response: CallbackNumberDTO) => {
+          if (response.success) {
+            this.group.finishedTasks = response.number
+          } else {
+            console.log(response.message)
+          }
+        },
+      )
+    },
   },
   beforeMount() {
     this.loadCurrentExcercise()

@@ -1,3 +1,5 @@
+import CallbackNumberDTO from "../../dtos/CallbackDTOs/CallbackNumberDTO";
+import CallbackSuccessDTO from "../../dtos/CallbackDTOs/CallbackSuccessDTO";
 import GroupProgress from "../../entities/GroupProgress";
 import TrackableTask from "../../entities/TrackableTask";
 import CallbackNumber from "../../types/callback-types/CallbackNumber";
@@ -55,18 +57,18 @@ class GroupProgressService implements GroupProgressServiceListener {
    */
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
-      callback({
-        success: false,
-        message: "Es gibt noch unerledigte Aufgaben",
-      });
+      callback(
+        new CallbackSuccessDTO(false, "Es gibt noch Aufgaben zu erledigen"),
+      );
       return;
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
+      callback(new CallbackSuccessDTO(false, "Group progress not found"));
+      return;
     }
     groupProgress.finishWork();
-    callback({ success: true, message: "Alle Aufgaben wurden erledigt" });
+    callback(new CallbackSuccessDTO(true, "Alle Aufgaben wurden erledigt"));
   }
 
   /**
@@ -78,10 +80,11 @@ class GroupProgressService implements GroupProgressServiceListener {
   public getNumberOfFinishedTasks(groupName: string, callback: CallbackNumber) {
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
+      callback(new CallbackNumberDTO(false, "Group progress not found", -1));
+      return;
     }
     const numberOfFinishedTasks = groupProgress.getNumberOfFinishedTasks();
-    callback({ number: numberOfFinishedTasks });
+    callback(new CallbackNumberDTO(true, "", numberOfFinishedTasks));
   }
 }
 

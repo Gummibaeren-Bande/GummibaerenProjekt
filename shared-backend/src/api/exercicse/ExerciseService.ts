@@ -1,7 +1,8 @@
+import CallbackExerciseDTO from "../../dtos/CallbackDTOs/CallbackExerciseDTO";
+import CallbackSuccessDTO from "../../dtos/CallbackDTOs/CallbackSuccessDTO";
 import ExerciseDTO from "../../dtos/ExerciseDTO";
 import Answer from "../../types/Answer";
-import CallbackCurrentExcercise from "../../types/callback-types/CallbackCurrentExcercise";
-import CallbackNextExcercise from "../../types/callback-types/CallbackNextExcercise";
+import CallbackExercise from "../../types/callback-types/CallbackExercise";
 import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
 import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
@@ -36,19 +37,20 @@ class ExcerciseService implements ExerciseServiceListener {
     }
     const currentExercise = currentTask.getChosenExercise();
     if (currentExercise.id !== excerciseId) {
-      callback({
-        success: false,
-        message:
+      callback(
+        new CallbackSuccessDTO(
+          false,
           "Die gegebene ID stimmt nicht mit der ID der aktuellen Aufgabe überein",
-      });
+        ),
+      );
       return;
     }
     const correct = currentExercise.answer(answer);
     if (correct) {
       this.trackableTaskService.handleTaskCompleted(groupName);
-      callback({ success: true, message: "Die Antwort war korrekt" });
+      callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
     }
-    callback({ success: false, message: "Die Antwort war falsch" });
+    callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
   }
 
   /**
@@ -59,7 +61,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public getCurrentExcerciceOfGroup(
     groupName: string,
-    callback: CallbackCurrentExcercise,
+    callback: CallbackExercise,
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
@@ -69,10 +71,7 @@ class ExcerciseService implements ExerciseServiceListener {
     }
     const currentExcercise = new ExerciseDTO(currentTask.getChosenExercise());
     if (currentExcercise) {
-      callback({
-        isFinished: false,
-        currentExcercise: currentExcercise,
-      });
+      callback(new CallbackExerciseDTO(true, "", false, currentExcercise));
     } else {
       throw new Error("No current excercise found for the given group");
     }
@@ -85,10 +84,7 @@ class ExcerciseService implements ExerciseServiceListener {
    * @param groupName the group that wants its next Excercise
    * @param callback the callback that may deliver the next Excercise
    */
-  public getNextExerciceOfGroup(
-    groupName: string,
-    callback: CallbackNextExcercise,
-  ) {
+  public getNextExerciceOfGroup(groupName: string, callback: CallbackExercise) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
     if (hasNextTask) {
@@ -97,7 +93,7 @@ class ExcerciseService implements ExerciseServiceListener {
           .getNextTaskOfGroup(groupName)
           .getChosenExercise(),
       );
-      callback({ isFinished: false, nextExcercise });
+      callback(new CallbackExerciseDTO(true, "", false, nextExcercise));
     } else {
       throw new Error("No next excercise found for the given group");
     }

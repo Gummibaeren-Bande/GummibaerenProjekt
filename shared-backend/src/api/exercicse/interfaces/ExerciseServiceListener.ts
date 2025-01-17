@@ -1,6 +1,5 @@
 import Answer from "../../../types/Answer";
-import CallbackCurrentExcercise from "../../../types/callback-types/CallbackCurrentExcercise";
-import CallbackNextExcercise from "../../../types/callback-types/CallbackNextExcercise";
+import CallbackExercise from "../../../types/callback-types/CallbackExercise";
 import CallbackSuccess from "../../../types/callback-types/CallbackSuccess";
 
 interface ExerciseServiceListener {
@@ -12,11 +11,11 @@ interface ExerciseServiceListener {
   ) => void;
   getCurrentExcerciceOfGroup: (
     groupName: string,
-    callback: CallbackCurrentExcercise,
+    callback: CallbackExercise,
   ) => void;
   getNextExerciceOfGroup: (
     groupName: string,
-    callback: CallbackNextExcercise,
+    callback: CallbackExercise,
   ) => void;
 }
 
