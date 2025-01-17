@@ -1,4 +1,5 @@
 import TrackableTask from "../../entities/TrackableTask";
+import CallbackNumber from "../../types/callback-types/CallbackNumber";
 import GroupProgressService from "../group-progress/GroupProgressService";
 import TrackableTaskServiceListener from "./interfaces/TrackableTaskServiceListener";
 

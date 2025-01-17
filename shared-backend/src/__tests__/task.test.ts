@@ -4,6 +4,10 @@ import TaskSet from "../entities/TaskSet";
 import NumericalExercise from "../entities/NumericalExercise";
 import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
 import TrackableTaskState from "../enums/TrackableTaskState";
+import TaskService from "../api/task/TaskService";
+import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
+import GroupSetService from "../api/group-set/GroupSetService";
+import GroupSet from "../entities/GroupSet";
 
 const exercise1a = new NumericalExercise(
   "Exercise 1a",
@@ -42,6 +46,10 @@ const task1 = new Task("Task 1", [exercise1a, exercise1b]);
 const task2 = new Task("Task 2", [exercise2]);
 const task3 = new Task("Task 3", [exercise3a, exercise3b]);
 
+const taskService = new TaskService();
+const teacherEmitsService = new TeacherEmitsService();
+const groupSetService = new GroupSetService(taskService, teacherEmitsService);
+
 describe("Task", () => {
   it("should return the correct name", () => {
     expect(task1.getName()).toEqual("Task 1");
@@ -75,29 +83,29 @@ describe("TrackableTask", () => {
   let trackableTask: TrackableTask;
 
   beforeEach(() => {
-    trackableTask = new TrackableTask(task1);
+    trackableTask = new TrackableTask(task1, groupSetService);
   });
 
   it("should return the correct state", () => {
-    expect(trackableTask.state).toEqual("NotStarted");
+    expect(trackableTask.getState()).toEqual("NotStarted");
   });
 
   it("should skip the task", () => {
     trackableTask.setSkipped(true);
-    expect(trackableTask.state).toEqual("Skipped");
+    expect(trackableTask.getState()).toEqual("Skipped");
     expect(trackableTask.getSkipped()).toEqual(true);
   });
 
   it("should ignore trying to skip a task that is already skipped", () => {
     trackableTask.setSkipped(true);
-    expect(trackableTask.state).toEqual("Skipped");
+    expect(trackableTask.getState()).toEqual("Skipped");
   });
 
   it("should unskip the task", () => {
     trackableTask.setSkipped(true);
-    expect(trackableTask.state).toEqual("Skipped");
+    expect(trackableTask.getState()).toEqual("Skipped");
     trackableTask.setSkipped(false);
-    expect(trackableTask.state).toEqual("NotStarted");
+    expect(trackableTask.getState()).toEqual("NotStarted");
   });
 
   it("should throw an error when trying to complete a task that hasn't started", () => {
@@ -108,6 +116,12 @@ describe("TrackableTask", () => {
 
   it("should return the correct exercise", () => {
     expect(trackableTask.getChosenExercise()).toEqual(exercise1a);
+  });
+
+  it("should return the correct exercise index", () => {
+    expect(trackableTask.getChosenExerciseIndex()).toEqual(0);
+    trackableTask.setAlternativeExercise(1);
+    expect(trackableTask.getChosenExerciseIndex()).toEqual(1);
   });
 
   it("should set an alternative exercise", () => {
@@ -124,7 +138,7 @@ describe("TrackableTask", () => {
 
   it("should start the task", () => {
     trackableTask.startTask();
-    expect(trackableTask.state).toEqual("InProgress");
+    expect(trackableTask.getState()).toEqual("InProgress");
   });
 
   it("should throw an error when trying to start a task that has already started", () => {
@@ -169,7 +183,7 @@ describe("TrackableTask", () => {
   it("should complete the task", () => {
     trackableTask.startTask();
     trackableTask.complete();
-    expect(trackableTask.state).toEqual(TrackableTaskState.Completed);
+    expect(trackableTask.getState()).toEqual(TrackableTaskState.Completed);
   });
 
   it("should return a valid completion time", async () => {

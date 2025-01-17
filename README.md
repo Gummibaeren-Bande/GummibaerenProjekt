@@ -14,12 +14,14 @@ Stand vom 07.01.25:
 - [ ] Ich habe mich an unsere Checkstyle Guidelines gehalten. [dafür muss npm run format überall, wo Dinge geändert wurden, ausgeführt werden. Die in frage kommenden Locations sind dabei "shared-backend", "students-frontend" und "teachers-frontend"]
 
 ### Zusätzlich für beide frontends
-- [ ] Im Vue-Template gibt es so wenig typescript code wie möglich
+- [ ] Im Vue-Template (html teil) gibt es an typescript code nur methodenaufrufe.
 - [ ] Das Projekt buildet mit meinem Increment ohne Errors und Warnings. [vor allem ohne type errors, npm run build]
-- [ ] Button emits werden mit @Click deklariert
+- [ ] Button emits werden mit @click deklariert
+- [ ] Das System kann auf dem iPad im Hoch- und Querformat und im Desktop Browser genutzt werden, alles ist sichtbar. Es werden dabei die Geräte verwendet, die einem zu Verfügung stehen [muss nur überprüft werden, wenn es Änderungen an der UI gab]
 
 ### Zusätzlich für das students-frontend
-- [ ] Das System kann auf dem Handy, iPad und im Browser genutzt werden, alles ist sichtbar. Es werden dabei die Geräte verwendet, die einem zu Verfügung stehen [muss nur überprüft werden, wenn es Änderungen an der UI gab]
+- [ ] Das System kann zusätzlich auf dem Handy im Hochformat genutzt werden, alles ist sichtbar. Es werden dabei die Geräte verwendet, die einem zu Verfügung stehen [muss nur überprüft werden, wenn es Änderungen an der UI gab]
+
 
 
 ## Definition of Fun
@@ -55,7 +57,7 @@ In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen F
 
 
 ## wichtige Entscheidungen
-* Die Ansicht für Lehrkräfte wird nur für den Browser optimiert.
+* Die Ansicht für Lehrkräfte wird nur für den Desktop-Browser und das IPad im Hoch- und Querformat optimiert.
 * Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt. [was ist damit gemeint?]
 * Im Backend gibt es einen zentralen Emit an das teachers-frontend, der bei jeder Änderung neu ausgelöst wird
 * Für eine abschließenden Test der frontends haben wir uns folgende Geräte ausgesucht:

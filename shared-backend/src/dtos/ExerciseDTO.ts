@@ -1,0 +1,25 @@
+import Exercise from "../abstract-classes/Exercise";
+import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
+
+// a dto to transfer an exercise
+class ExerciseDTO {
+  public readonly id: string;
+  public readonly title: string;
+  public readonly description: string;
+  public readonly question: string;
+  public readonly type: "multiple-choice" | "numerical";
+  public readonly options: string[] | undefined;
+
+  constructor(exercise: Exercise) {
+    this.id = exercise.getId();
+    this.title = exercise.getTitle();
+    this.description = exercise.getDescription();
+    this.question = exercise.getQuestion();
+    this.type = exercise.getType();
+    if (this.type === "multiple-choice") {
+      this.options = (exercise as MultipleChoiceExercise).getOptions();
+    }
+  }
+}
+
+export default ExerciseDTO;

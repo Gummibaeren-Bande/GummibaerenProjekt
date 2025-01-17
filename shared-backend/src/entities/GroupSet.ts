@@ -1,14 +1,17 @@
+import EntityObserver from "../api/group-set/interfaces/EntityObserver";
 import IoSocket from "../types/IoSocket";
 import Group from "./Group";
 import TaskSet from "./TaskSet";
+import ObservableEntity from "./abstract/ObservableEntity";
 
 /**
  * This class represents the set of groups in the database.
  */
-class GroupSet {
+class GroupSet extends ObservableEntity {
   private readonly groupList: Group[];
 
-  constructor() {
+  constructor(subscriber: EntityObserver) {
+    super(subscriber);
     this.groupList = [];
   }
 
@@ -28,7 +31,8 @@ class GroupSet {
       // group with the same name already exists
       return false;
     }
-    this.groupList.push(new Group(name, socket, taskSet));
+    this.groupList.push(new Group(name, socket, taskSet, this.subscriber));
+    this.notifySubscriber();
     return true;
   }
 
@@ -48,6 +52,10 @@ class GroupSet {
       (el) => socket.id === el.getAssignedSocketId(),
     );
     return group;
+  }
+
+  public getGroupList() {
+    return this.groupList;
   }
 }
 

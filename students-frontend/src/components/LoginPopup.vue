@@ -31,7 +31,7 @@ import { io, Socket } from 'socket.io-client'
 const TEAM_NAME_CONFIG = {
   MIN_LENGTH: 3,
   MAX_LENGTH: 20,
-  VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
+  VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜß0-9\s]+$/,
 }
 
 // socket for backend communication
@@ -127,7 +127,7 @@ export default {
         )
         return false
       } else if (this.startsWithSpace(name)) {
-        this.diplayGroupCreationError('Der Teamname muss mit einem Buchstaben beginnen!')
+        this.diplayGroupCreationError('Der Teamname darf nicht mit einem Leerzeichen beginnen!')
         return false
       } else if (this.endsWithSpace(name)) {
         this.diplayGroupCreationError('Der Teamname darf nicht mit einem Leerzeichen enden!')

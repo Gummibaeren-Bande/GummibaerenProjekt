@@ -1,33 +1,36 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
 import Exercise from "../abstract-classes/Exercise";
 import Task from "./Task";
+import EntityObserver from "../api/group-set/interfaces/EntityObserver";
+import ObservableEntity from "./abstract/ObservableEntity";
 
 /**
  * This class is used to add trackable properties to a task.
  */
-class TrackableTask {
+class TrackableTask extends ObservableEntity {
   private readonly task: Task;
-  private chosenExercise: Exercise;
+  private chosenExerciseIndex: number;
   private startedAt: Date | null;
   private finishedAfterSeconds: number | null;
   private tries: number;
-  private _state: TrackableTaskState;
+  private state: TrackableTaskState;
 
-  constructor(task: Task) {
+  constructor(task: Task, subscriber: EntityObserver) {
+    super(subscriber);
     this.task = task;
-    this.chosenExercise = task.getExcercises()[0];
+    this.chosenExerciseIndex = 0;
     this.startedAt = null;
     this.finishedAfterSeconds = null;
     this.tries = 0;
-    this._state = TrackableTaskState.NotStarted;
+    this.state = TrackableTaskState.NotStarted;
   }
 
-  get state(): TrackableTaskState {
-    return this._state;
+  public getState(): TrackableTaskState {
+    return this.state;
   }
 
   private setState(newState: TrackableTaskState): void {
-    this._state = newState;
+    this.state = newState;
   }
 
   public startTask(): void {
@@ -94,21 +97,22 @@ class TrackableTask {
 
   public setAlternativeExercise(index: number): void {
     switch (this.state) {
-      case TrackableTaskState.NotStarted:
-        this.chosenExercise = this.task.getExcercises()[index];
-        break;
       case TrackableTaskState.InProgress:
         throw new Error("The task is in progress and can't be changed");
       case TrackableTaskState.Completed:
         throw new Error("The task is already completed and can't be changed");
-      case TrackableTaskState.Skipped:
-        this.chosenExercise = this.task.getExcercises()[index];
+      default:
+        this.chosenExerciseIndex = index;
         break;
     }
   }
 
   public getChosenExercise(): Exercise {
-    return this.chosenExercise;
+    return this.task.getExcercises()[this.chosenExerciseIndex];
+  }
+
+  public getChosenExerciseIndex(): number {
+    return this.chosenExerciseIndex;
   }
 
   public getTask(): Task {
