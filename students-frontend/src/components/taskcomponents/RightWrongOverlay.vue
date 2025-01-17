@@ -14,7 +14,7 @@
           {{ isRight ? rightText : wrongText }}
         </div>
         <div class="RigthWrongOverlayButton textColor">
-          <Button @click="weiter()" label="Weiter" id="textColor" />
+          <Button @click='continueWithQuestion()' label="Weiter" id="textColor" />
         </div>
       </div>
     </template>
@@ -32,7 +32,7 @@ export default defineComponent({
     Dialog,
     Button,
   },
-  emits: ['weiter'],
+  emits: ['continueWithQuestion'],
   props: {
     isRight: {
       type: Boolean,
@@ -52,8 +52,8 @@ export default defineComponent({
     },
   },
   methods: {
-    weiter() {
-      this.$emit('weiter')
+    continueWithQuestion() {
+      this.$emit('continueWithQuestion')
     },
   },
 })

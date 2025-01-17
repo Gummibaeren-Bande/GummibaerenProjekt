@@ -2,13 +2,13 @@
   <RightWrongOverlay
     :is-right="isCorrect"
     :visible="isRigthWrongOverlayVisible"
-    v-on:weiter="weiter"
+    @continueWithQuestion="continueWithQuestion()"
   />
   <div class="mainComponent mainDivSize">
     <NumericTask
-      v-if="currentExcercise.type === 'numerical'"
+      v-if="currentExercise.type === 'numerical'"
       @submit-answer="submitAnswer"
-      :task="currentExcercise"
+      :task="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
@@ -59,7 +59,7 @@ export default defineComponent({
   },
   data() {
     return {
-      currentExcercise: {} as Exercise,
+      currentExercise: {} as Exercise,
       isCorrect: false as boolean,
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
@@ -74,7 +74,7 @@ export default defineComponent({
     // TODO: This is a temp function and has to be updatet later on.
     submitAnswer(givenAnswer: string[]) {
       console.log('Gegeben Antwor ist: ' + givenAnswer[0])
-      this.socket.emit('answerCurrentExcercise', this.groupName, 'beta', Number(givenAnswer[0]), (message: {
+      this.socket.emit('answerCurrentExcercise', this.groupName, 'beta', Number(givenAnswer[0]), (message: { //TODO: Change 'beta' to currentExercise.id (Causes Crash)
         isCorrect: boolean;
         message: string;
       }) => {
@@ -86,7 +86,7 @@ export default defineComponent({
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
-    weiter() {
+    continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
     },
@@ -101,7 +101,7 @@ export default defineComponent({
         isFinished: boolean;
         currentExcercise: Exercise;
       }) => {
-        this.currentExcercise = message.currentExcercise;
+        this.currentExercise = message.currentExcercise;
       })
     },
 
