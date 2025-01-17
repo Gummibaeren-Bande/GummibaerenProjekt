@@ -74,7 +74,7 @@ export default defineComponent({
     // TODO: This is a temp function and has to be updatet later on.
     submitAnswer(givenAnswer: string[]) {
       console.log('Gegeben Antwor ist: ' + givenAnswer[0])
-      this.socket.emit('answerCurrentExcercise', this.groupName, 'beta', Number(givenAnswer[0]), (message: { //TODO: Change 'beta' to currentExercise.id (Causes Crash)
+      this.socket.emit('answerCurrentExcercise', this.groupName, this.currentExercise.id, Number(givenAnswer[0]), (message: { //TODO: Change 'beta' to currentExercise.id (Causes Crash)
         isCorrect: boolean;
         message: string;
       }) => {
