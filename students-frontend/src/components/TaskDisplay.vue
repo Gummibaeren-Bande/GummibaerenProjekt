@@ -28,9 +28,7 @@ import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import { Socket } from 'socket.io-client'
-
 import Exercise from '../../../shared-backend/src/abstract-classes/Exercise'
-import type CallbackNumber from '../../../shared-backend/src/types/callback-types/CallbackNumber'
 </script>
 
 <script lang="ts">
@@ -85,7 +83,6 @@ export default defineComponent({
         this.disableToAnswer = true
         this.isRigthWrongOverlayVisible = true
       })  
-
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
