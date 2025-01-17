@@ -6,9 +6,9 @@
   />
   <div class="mainComponent mainDivSize">
     <NumericTask
-      v-if="currentTask.type === 'numerical'"
+      v-if="currentExcercise.type === 'numerical'"
       @submit-answer="submitAnswer"
-      :task="currentTask"
+      :task="currentExcercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
@@ -30,6 +30,7 @@ import { defineComponent } from 'vue'
 import { Socket } from 'socket.io-client'
 
 import Exercise from '../../../shared-backend/src/abstract-classes/Exercise'
+import type CallbackNumber from '../../../shared-backend/src/types/callback-types/CallbackNumber'
 </script>
 
 <script lang="ts">
@@ -60,16 +61,13 @@ export default defineComponent({
   },
   data() {
     return {
-      currentTask: {} as Exercise,
+      currentExcercise: {} as Exercise,
       isCorrect: false as boolean,
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
       group: {
         groupName: 'Teddybären',
         finishedTasks: 1,
-        increaseFinishedTasks() {
-          this.finishedTasks++
-        },
       },
     }
   },
@@ -78,12 +76,23 @@ export default defineComponent({
     // TODO: This is a temp function and has to be updatet later on.
     submitAnswer(givenAnswer: string[]) {
       console.log('Gegeben Antwor ist: ' + givenAnswer[0])
+      this.socket.emit('answerCurrentExcercise', this.groupName, 'beta', Number(givenAnswer[0]), (message: {
+        isCorrect: boolean;
+        message: string;
+      }) => {
+        console.log(message.message)
+        this.isCorrect = message.isCorrect
+        this.disableToAnswer = true
+        this.isRigthWrongOverlayVisible = true
+      })  
+
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
     weiter() {
-
-      },
+      this.isRigthWrongOverlayVisible = false
+      this.disableToAnswer = false
+    },
     //Loads next Task.
     // TODO: This is a temp function and has to be updatet later on.
     nextTask() {
@@ -95,12 +104,22 @@ export default defineComponent({
         isFinished: boolean;
         currentExcercise: Exercise;
       }) => {
-        this.currentTask = message.currentExcercise;
+        this.currentExcercise = message.currentExcercise;
+      })
+    },
+
+    loadNumberOfFinishedTasks() {
+      this.socket.emit('getNumberOfFinishedTasks', this.group.groupName, (message: {
+        number: number 
+      }) => {
+        this.group.finishedTasks = message.number;
       })
     }
   },
   beforeMount() {
     this.loadCurrentExcercise()
+    this.group.groupName = this.groupName
+    this.loadNumberOfFinishedTasks()
   },
 })
 </script>
