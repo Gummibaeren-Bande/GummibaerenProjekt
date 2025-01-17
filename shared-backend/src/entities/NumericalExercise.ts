@@ -29,7 +29,7 @@ class NumericalExercise extends Exercise {
    * @param answer takes in an answer and checks if it is correct
    * @returns true if the answer is correct, false otherwise
    */
-  public checkAnswer(answer: Answer): boolean {
+  public answer(answer: Answer): boolean {
     if (typeof answer !== "number") {
       throw new Error("The answer must be a number");
     }

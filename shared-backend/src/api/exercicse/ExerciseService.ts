@@ -46,7 +46,9 @@ class ExcerciseService implements ExerciseServiceListener {
     const correct = currentExercise.answer(answer);
     if (correct) {
       this.trackableTaskService.handleTaskCompleted(groupName);
+      callback({ success: true, message: "Die Antwort war korrekt" });
     }
+    callback({ success: false, message: "Die Antwort war falsch" });
   }
 
   /**

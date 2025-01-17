@@ -21,6 +21,7 @@ class GroupProgress extends ObservableEntity {
     this.indexOfCurrentTask = 0;
     this.startedAt = new Date();
     this.finishedAfterSeconds = null;
+    this.progress[this.indexOfCurrentTask].startTask();
   }
 
   public getStartedAt(): Date {

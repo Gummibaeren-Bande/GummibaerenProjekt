@@ -1,6 +1,6 @@
 <template>
   <RightWrongOverlay
-    :is-right="isCorrect"
+    :is-Right="isCorrect"
     :visible="isRigthWrongOverlayVisible"
     @continueWithQuestion="continueWithQuestion()"
   />
@@ -29,6 +29,7 @@ import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import { Socket } from 'socket.io-client'
 import Exercise from '../../../shared-backend/src/abstract-classes/Exercise'
+import CallbackDTO from '../../../shared-backend/src/dtos/CallbackDTO'
 </script>
 
 <script lang="ts">
@@ -72,17 +73,14 @@ export default defineComponent({
   methods: {
     // Submits the Answer
     // TODO: This is a temp function and has to be updatet later on.
-    submitAnswer(givenAnswer: string[]) {
-      console.log('Gegeben Antwor ist: ' + givenAnswer[0])
-      this.socket.emit('answerCurrentExcercise', this.groupName, this.currentExercise.id, Number(givenAnswer[0]), (message: { //TODO: Change 'beta' to currentExercise.id (Causes Crash)
-        isCorrect: boolean;
-        message: string;
-      }) => {
-        console.log(message.message)
-        this.isCorrect = message.isCorrect
+    async submitAnswer(givenAnswer: string[]) {
+      console.log('Gegebene Antwort ist: ' + givenAnswer[0])
+      await this.socket.emit('answerCurrentExcercise', this.groupName, this.currentExercise.id, Number(givenAnswer[0]), (response: CallbackDTO) => {
+        console.log(response.message)
+        this.isCorrect = response.success
         this.disableToAnswer = true
         this.isRigthWrongOverlayVisible = true
-      })  
+      }) 
     },
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.

@@ -27,7 +27,7 @@ class MultipleChoiceExercise extends Exercise {
     this.correctOptionIndexes = correctOptionIndexes;
   }
 
-  public checkAnswer(answer: Answer): boolean {
+  public answer(answer: Answer): boolean {
     if (!Array.isArray(answer)) {
       throw new Error("Answer must be an array of indexes");
     }
