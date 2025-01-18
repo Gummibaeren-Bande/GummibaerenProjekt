@@ -8,17 +8,17 @@
     <NumericTask
       v-if="currentExercise.type === 'numerical'"
       @submit-answer="submitAnswer"
-      :task="currentExercise"
+      :exercise="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
-    <!--<MultipleChoiceTask
-      v-if="currentTask.getType() === 'multiple-choice'"
+    <MultipleChoiceTask
+      v-if="currentExercise.type === 'multiple-choice'"
       @submit-answer="submitAnswer"
-      :task="currentTask"
+      :exercise="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
-    />-->
+    />
   </div>
 </template>
 
@@ -29,22 +29,10 @@ import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import type ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
+import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 </script>
 
 <script lang="ts">
-export enum TaskType {
-  NUMERIC,
-  MULTIPLE_CHOICE,
-}
-
-export interface Task {
-  title: string
-  description: string
-  question: string
-  lsg: number | string
-  taskType: TaskType
-  isCorrectd(givenAnswer: string): boolean
-}
 
 export default defineComponent({
   props: {
@@ -75,11 +63,11 @@ export default defineComponent({
      * to the result.
      * @param givenAnswer answer to check.
      */
-    async submitAnswer(givenAnswer: string[]) {
+    async submitAnswer(givenAnswer: Number[] | Number) {
       const response = await this.serverConnection.answerCurrentExcercise(
         this.groupName,
         this.currentExercise.id,
-        Number(givenAnswer[0]))
+        givenAnswer)
       this.isCorrect = response.success
       this.disableToAnswer = true
       this.isRigthWrongOverlayVisible = true
@@ -90,8 +78,9 @@ export default defineComponent({
     continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
+      console.log("tester")
       if (this.isCorrect) {
-        //this.loadNextExercise()
+        this.loadNextExercise()
       }
     },
     //Loads next Task.

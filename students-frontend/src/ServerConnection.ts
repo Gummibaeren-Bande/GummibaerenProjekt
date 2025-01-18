@@ -59,7 +59,7 @@ class ServerConnection {
     async answerCurrentExcercise(
         groupName: String,
         exerciseId: String,
-        answer: Number)
+        answer: Number | Number[])
         :Promise<CallbackSuccessDTO> {
             return new Promise((resolve) => {
                 console.log("Sende Antwort: " + answer)

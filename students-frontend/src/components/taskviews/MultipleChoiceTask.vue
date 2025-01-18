@@ -1,14 +1,14 @@
 <!--rechtschreibfehler im name-->
 <template>
-  <TaskHeader :title="task.title" :group="group" />
-  <TaskBody :question="task.question" :description="task.description">
+  <TaskHeader :title="exercise.title" :group="group" />
+  <TaskBody :question="exercise.question" :description="exercise.description">
     <TaskMultipleChoiceSection
       ref="choices"
-      :options="task.answerOptions"
+      :options="options"
       :disabled="disableToAnswer"
     />
   </TaskBody>
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer()" :disabled="disableToAnswer" />
+  <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer" />
 </template>
 
 <script lang="ts">
@@ -20,15 +20,9 @@ import TaskMultipleChoiceSection, {
   type Option,
 } from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSection.vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
-import { defineComponent } from 'vue'
+import { defineComponent, onBeforeUpdate } from 'vue'
 import type { PropType } from 'vue'
-
-export interface Task {
-  title: string
-  description: string
-  question: string
-  answerOptions: Option[]
-}
+import type ExerciseDTO from '../../../../shared-backend/src/dtos/ExerciseDTO'
 
 export default defineComponent({
   components: {
@@ -38,9 +32,14 @@ export default defineComponent({
     TaskBody,
   },
   emits: ['submitAnswer'],
+  data() {
+    return {
+      options: [] as Option[]
+    }
+  },
   props: {
-    task: {
-      type: Object as PropType<Task>,
+    exercise: {
+      type: Object as PropType<ExerciseDTO>,
       required: true,
     },
     group: {
@@ -59,8 +58,28 @@ export default defineComponent({
      */
     submitAnswer() {
       const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
-      this.$emit('submitAnswer', choices.getSelectedOptions())
+      let answer = new Array()
+      const answerStrings = choices.getSelectedOptions()
+      for(let i = 0; i < answerStrings.length; i++){
+        answer.push(Number(answerStrings[i]))
+      }
+        this.$emit('submitAnswer', answer)
     },
+
+    updateOptions() {
+      if (Array.isArray(this.exercise.options)) {
+        this.options = new Array(this.exercise.options.length)
+        for (var i = 0; i < this.exercise.options.length; i++) {
+          this.options[i] = { label: this.exercise.options[i], value: String(i)}
+        }
+      }
+    },
+
   },
+
+  beforeMount() {
+    this.updateOptions()
+  },
+
 })
 </script>

@@ -5,7 +5,7 @@
       <Button @click="close()" class="p-button-rounded p-button-text help-icon">X</Button>
     </div>
     <div class="content-container">
-      <InputText class="teamname-input" v-model="groupName" placeholder="Teamname eingeben" />
+      <InputText class="teamname-input" @keydown.enter="handleSignIn()" v-model="groupName" placeholder="Teamname eingeben" />
     </div>
     <div class="footer-container">
       <Button @click="handleSignIn()" class="start-button">Starten</Button>

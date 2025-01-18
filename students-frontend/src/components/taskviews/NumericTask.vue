@@ -1,6 +1,6 @@
 <template>
-  <TaskHeader :title="task.title" :group="group" />
-  <TaskBody :question="task.question" :description="task.description" />
+  <TaskHeader :title="exercise.title" :group="group" />
+  <TaskBody :question="exercise.question" :description="exercise.description" />
   <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
@@ -35,7 +35,7 @@ export default defineComponent({
     InputNumber,
   },
   props: {
-    task: {
+    exercise: {
       type: Object as PropType<ExerciseDTO>,
       required: true,
     },
@@ -58,7 +58,7 @@ export default defineComponent({
     // Submits answer to parent if a number was written into the input field.
     submitAnswer() {
       if (typeof this.value === 'number') {
-        this.$emit('submitAnswer', [this.value.toString()])
+        this.$emit('submitAnswer', this.value)
       } else {
         console.log('Bitte gebe zuerst eine Antwort ein.')
       }

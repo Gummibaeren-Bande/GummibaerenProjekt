@@ -5,10 +5,10 @@
       <Button @click="openReconnect()" class="p-button-rounded p-button-text help-icon">?</Button>
     </div>
     <div class="content-container">
-      <InputText class="teamname-input" v-model="groupName" placeholder="Teamname eingeben" />
+      <InputText class="teamname-input" @keydown.enter="handleSignOn()" v-model="groupName" placeholder="Teamname eingeben" />
     </div>
     <div class="footer-container">
-      <Button class="start-button" @click="handleSignOn()">Starten</Button>
+      <Button class="start-button" @click="handleSignOn()" >Starten</Button>
     </div>
   </Dialog>
   <ReconnectPopup
