@@ -27,7 +27,7 @@ import './taskcomponents/Task.css'
 import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
-import type ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
+import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 </script>
@@ -78,13 +78,14 @@ export default defineComponent({
     continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
-      console.log("tester")
       if (this.isCorrect) {
         this.loadNextExercise()
       }
     },
-    //Loads next Task.
-    // TODO: This is a temp function and has to be updatet later on.
+    
+    /**
+     * Request the next Exercise from the server and sets it as the new curren Exercise.
+     */
     async loadNextExercise() {
       const response = await this.serverConnection.getNextExerciceOfGroup(this.group.groupName)
       if (response.success) {

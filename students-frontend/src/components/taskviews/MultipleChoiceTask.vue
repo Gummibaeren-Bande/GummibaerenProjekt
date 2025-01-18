@@ -66,6 +66,10 @@ export default defineComponent({
         this.$emit('submitAnswer', answer)
     },
 
+    /**
+     * Updates and Displays the Options to answer the MultipleChoice Question
+     * Cant direcktly Pass the OptionsTrough. So thy need to be updatet here. (lifesycle hooks beforeUpdate and beforeMount)
+     */
     updateOptions() {
       if (Array.isArray(this.exercise.options)) {
         this.options = new Array(this.exercise.options.length)
@@ -77,8 +81,20 @@ export default defineComponent({
 
   },
 
+  /**
+   * Is Called when proporties Change befor the Display is rerenderd.
+   */
+  beforeUpdate() {
+    this.updateOptions() // updates the answer options when a new Exercise is loaded.
+    const choices = (this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>)
+      choices.resetSelectedOptions() //clears the MutlipleChoice slesction Input when new Exercise is loaded.
+  },
+
+  /**
+   * makes sure to load the Answer Options befor the first render (displayed to User).
+   */
   beforeMount() {
-    this.updateOptions()
+    this.updateOptions() 
   },
 
 })
