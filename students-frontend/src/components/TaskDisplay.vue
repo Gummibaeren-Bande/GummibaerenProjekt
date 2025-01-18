@@ -27,11 +27,8 @@ import './taskcomponents/Task.css'
 import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
-import { Socket } from 'socket.io-client'
-import CallbackSuccessDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackSuccessDTO'
-import type CallbackExerciseDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackExerciseDTO'
 import type ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
-import type CallbackNumberDTO from '../../../shared-backend/src/dtos/CallbackDTOs/CallbackNumberDTO'
+import ServerConnection from '@/ServerConnection'
 </script>
 
 <script lang="ts">
@@ -55,8 +52,8 @@ export default defineComponent({
       type: String,
       required: true,
     },
-    socket: {
-      type: Socket,
+    serverConnection: {
+      type: ServerConnection,
       required: true,
     },
   },
@@ -73,64 +70,68 @@ export default defineComponent({
     }
   },
   methods: {
-    // Submits the Answer
-    // TODO: This is a temp function and has to be updatet later on.
+    /**
+     * Sends the given Answer to the server a updates the Interface according
+     * to the result.
+     * @param givenAnswer answer to check.
+     */
     async submitAnswer(givenAnswer: string[]) {
-      console.log('Gegebene Antwort ist: ' + givenAnswer[0])
-      await this.socket.emit(
-        'answerCurrentExcercise',
+      const response = await this.serverConnection.answerCurrentExcercise(
         this.groupName,
         this.currentExercise.id,
-        Number(givenAnswer[0]),
-        (response: CallbackSuccessDTO) => {
-          console.log(response.message)
-          this.isCorrect = response.success
-          this.disableToAnswer = true
-          this.isRigthWrongOverlayVisible = true
-        },
-      )
+        Number(givenAnswer[0]))
+      this.isCorrect = response.success
+      this.disableToAnswer = true
+      this.isRigthWrongOverlayVisible = true
     },
+
     //Handels the "weiter" button from the RightWrongOverlay.
     // TODO: This is a temp function and has to be updatet later on.
     continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
+      if (this.isCorrect) {
+        //this.loadNextExercise()
+      }
     },
     //Loads next Task.
     // TODO: This is a temp function and has to be updatet later on.
-    nextTask() {},
-
-    loadCurrentExcercise() {
-      this.socket.emit(
-        'getCurrentExcerciceOfGroup',
-        this.groupName,
-        (response: CallbackExerciseDTO) => {
-          if (response.success) {
-            this.currentExercise = response.exercise
-          } else {
-            console.log(response.message)
-          }
-        },
-      )
+    async loadNextExercise() {
+      const response = await this.serverConnection.getNextExerciceOfGroup(this.group.groupName)
+      if (response.success) {
+        this.currentExercise = response.exercise
+      }
     },
 
-    loadNumberOfFinishedTasks() {
-      this.socket.emit(
-        'getNumberOfFinishedTasks',
-        this.group.groupName,
-        (response: CallbackNumberDTO) => {
-          if (response.success) {
-            this.group.finishedTasks = response.number
-          } else {
-            console.log(response.message)
-          }
-        },
-      )
+    /**
+     * Loads the Current Exercise frome Server.
+     */
+    async loadCurrentExcercise() {
+      const response = await this.serverConnection.getCurrentExcerciceOfGroup(this.group.groupName)
+      if (response.success) {
+        this.currentExercise = response.exercise
+      } else {
+        console.log(response.message)
+      }
+    },
+
+    /**
+     * Loads the number of Finished Exercises from the Server.
+     */
+    async loadNumberOfFinishedTasks() {
+      const response = await this.serverConnection.getNumberOfFinishedTasks(this.group.groupName)
+      if (response.success) {
+        this.group.finishedTasks = response.number
+      }
     },
   },
+
+  /**
+   * Loads and setups this Component whe it is first rendert.
+   */
   beforeMount() {
-    this.loadCurrentExcercise()
     this.group.groupName = this.groupName
+    this.loadCurrentExcercise()
     this.loadNumberOfFinishedTasks()
   },
 })

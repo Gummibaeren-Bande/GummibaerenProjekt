@@ -17,7 +17,7 @@
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
-import { Socket } from 'socket.io-client'
+import ServerConnection from '@/ServerConnection'
 </script>
 
 <script lang="ts">
@@ -29,8 +29,8 @@ const TEAM_NAME_CONFIG = {
 
 export default {
   props: {
-    socket: {
-      type: Socket,
+    serverConnection: {
+      type: ServerConnection,
       required: true,
     },
   },
@@ -67,11 +67,8 @@ export default {
      * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
     async reconnectToGroup(name: string): Promise<boolean> {
-      return new Promise((resolve) => {
-        this.socket.emit(
-          'reconnectToGroup',
-          name,
-          (response: { success: boolean; message: string }) => {
+        const response = await this.serverConnection.reconnectToGroup(name)
+        return new Promise((resolve) => {
             if (response.success) {
               this.diplayGroupCreationSuccess(response.message)
               resolve(true)
@@ -81,7 +78,6 @@ export default {
             }
           },
         )
-      })
     },
 
     /**
