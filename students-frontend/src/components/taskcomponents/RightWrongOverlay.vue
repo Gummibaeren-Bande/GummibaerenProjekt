@@ -14,7 +14,7 @@
           {{ isRight ? rightText : wrongText }}
         </div>
         <div class="RigthWrongOverlayButton textColor">
-          <Button @click='continueWithQuestion()' label="Weiter" id="textColor" />
+          <Button @click="continueWithQuestion()" label="Weiter" id="textColor" />
         </div>
       </div>
     </template>

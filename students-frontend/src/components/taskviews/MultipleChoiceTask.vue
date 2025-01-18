@@ -2,11 +2,7 @@
 <template>
   <TaskHeader :title="exercise.title" :group="group" />
   <TaskBody :question="exercise.question" :description="exercise.description">
-    <TaskMultipleChoiceSection
-      ref="choices"
-      :options="options"
-      :disabled="disableToAnswer"
-    />
+    <TaskMultipleChoiceSection ref="choices" :options="options" :disabled="disableToAnswer" />
   </TaskBody>
   <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer" />
 </template>
@@ -34,7 +30,7 @@ export default defineComponent({
   emits: ['submitAnswer'],
   data() {
     return {
-      options: [] as Option[]
+      options: [] as Option[],
     }
   },
   props: {
@@ -60,10 +56,10 @@ export default defineComponent({
       const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
       let answer = new Array()
       const answerStrings = choices.getSelectedOptions()
-      for(let i = 0; i < answerStrings.length; i++){
+      for (let i = 0; i < answerStrings.length; i++) {
         answer.push(Number(answerStrings[i]))
       }
-        this.$emit('submitAnswer', answer)
+      this.$emit('submitAnswer', answer)
     },
 
     /**
@@ -74,11 +70,10 @@ export default defineComponent({
       if (Array.isArray(this.exercise.options)) {
         this.options = new Array(this.exercise.options.length)
         for (var i = 0; i < this.exercise.options.length; i++) {
-          this.options[i] = { label: this.exercise.options[i], value: String(i)}
+          this.options[i] = { label: this.exercise.options[i], value: String(i) }
         }
       }
     },
-
   },
 
   /**
@@ -86,16 +81,15 @@ export default defineComponent({
    */
   beforeUpdate() {
     this.updateOptions() // updates the answer options when a new Exercise is loaded.
-    const choices = (this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>)
-      choices.resetSelectedOptions() //clears the MutlipleChoice slesction Input when new Exercise is loaded.
+    const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
+    choices.resetSelectedOptions() //clears the MutlipleChoice slesction Input when new Exercise is loaded.
   },
 
   /**
    * makes sure to load the Answer Options befor the first render (displayed to User).
    */
   beforeMount() {
-    this.updateOptions() 
+    this.updateOptions()
   },
-
 })
 </script>

@@ -33,7 +33,6 @@ import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 </script>
 
 <script lang="ts">
-
 export default defineComponent({
   props: {
     groupName: {
@@ -67,7 +66,8 @@ export default defineComponent({
       const response = await this.serverConnection.answerCurrentExcercise(
         this.groupName,
         this.currentExercise.id,
-        givenAnswer)
+        givenAnswer,
+      )
       this.isCorrect = response.success
       this.disableToAnswer = true
       this.isRigthWrongOverlayVisible = true
@@ -82,7 +82,7 @@ export default defineComponent({
         this.loadNextExercise()
       }
     },
-    
+
     /**
      * Request the next Exercise from the server and sets it as the new curren Exercise.
      */

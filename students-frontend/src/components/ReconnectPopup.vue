@@ -5,7 +5,12 @@
       <Button @click="close()" class="p-button-rounded p-button-text help-icon">X</Button>
     </div>
     <div class="content-container">
-      <InputText class="teamname-input" @keydown.enter="handleSignIn()" v-model="groupName" placeholder="Teamname eingeben" />
+      <InputText
+        class="teamname-input"
+        @keydown.enter="handleSignIn()"
+        v-model="groupName"
+        placeholder="Teamname eingeben"
+      />
     </div>
     <div class="footer-container">
       <Button @click="handleSignIn()" class="start-button">Starten</Button>
@@ -67,17 +72,16 @@ export default {
      * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
     async reconnectToGroup(name: string): Promise<boolean> {
-        const response = await this.serverConnection.reconnectToGroup(name)
-        return new Promise((resolve) => {
-            if (response.success) {
-              this.diplayGroupCreationSuccess(response.message)
-              resolve(true)
-            } else {
-              this.diplayGroupCreationError(response.message)
-              resolve(false)
-            }
-          },
-        )
+      const response = await this.serverConnection.reconnectToGroup(name)
+      return new Promise((resolve) => {
+        if (response.success) {
+          this.diplayGroupCreationSuccess(response.message)
+          resolve(true)
+        } else {
+          this.diplayGroupCreationError(response.message)
+          resolve(false)
+        }
+      })
     },
 
     /**

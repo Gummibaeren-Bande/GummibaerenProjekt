@@ -1,6 +1,10 @@
 <template>
   <div>
-    <TaskDisplay :server-connection="serverConnection" :group-name="groupName" v-if="groupIsSpecified" />
+    <TaskDisplay
+      :server-connection="serverConnection"
+      :group-name="groupName"
+      v-if="groupIsSpecified"
+    />
     <LoginPopup v-else @group-selected="onGroupSelected" :server-connection="serverConnection" />
   </div>
 </template>
@@ -8,7 +12,7 @@
 <script setup lang="ts">
 import LoginPopup from '../components/LoginPopup.vue'
 import TaskDisplay from '../components/TaskDisplay.vue'
-import ServerConnection from '@/ServerConnection';
+import ServerConnection from '@/ServerConnection'
 </script>
 
 <style>

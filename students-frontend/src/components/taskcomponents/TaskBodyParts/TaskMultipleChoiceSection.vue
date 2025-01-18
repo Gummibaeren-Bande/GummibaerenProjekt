@@ -49,8 +49,7 @@ export default defineComponent({
 
     resetSelectedOptions() {
       this.selectedOptions = []
-    }
+    },
   },
-
 })
 </script>
