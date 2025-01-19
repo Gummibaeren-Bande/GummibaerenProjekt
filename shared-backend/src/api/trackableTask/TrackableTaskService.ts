@@ -1,5 +1,6 @@
+import CallbackSuccessDTO from "../../dtos/CallbackDTOs/CallbackSuccessDTO";
 import TrackableTask from "../../entities/TrackableTask";
-import CallbackNumber from "../../types/callback-types/CallbackNumber";
+import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import GroupProgressService from "../group-progress/GroupProgressService";
 import TrackableTaskServiceListener from "./interfaces/TrackableTaskServiceListener";
 
@@ -12,7 +13,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   public getCurrentTaskByGroupName(
-    groupName: string,
+    groupName: string
   ): TrackableTask | undefined {
     return this.groupProgressService
       .getGroupProgressByGroupName(groupName)
@@ -38,17 +39,42 @@ class TrackableTaskService implements TrackableTaskServiceListener {
    * @param taskId the id of the task to skip
    * @param groupName the name of the group to skip the task for
    */
-  public skipTask(taskId: string, groupName: string) {
+  public skipTask(
+    taskId: string,
+    groupName: string,
+    callback: CallbackSuccess
+  ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "Group progress not found for this group!"
+        )
+      );
+      return;
     }
     const task = groupProgress.getTaskById(taskId);
     if (!task) {
-      throw new Error("task with the given id could not be found!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "task with the given id could not be found!"
+        )
+      );
+      return;
     }
-    task.setSkipped(true);
+    try {
+      task.setSkipped(true);
+      callback(new CallbackSuccessDTO(true, "Task was successfully skipped"));
+    } catch (error) {
+      if (error instanceof Error) {
+        callback(new CallbackSuccessDTO(false, error.message));
+      } else {
+        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+      }
+    }
   }
 
   /**
@@ -57,17 +83,42 @@ class TrackableTaskService implements TrackableTaskServiceListener {
    * @param taskId the id of the task to unskip
    * @param groupName the name of the group to unskip the task for
    */
-  public revertTaskSkip(taskId: string, groupName: string) {
+  public revertTaskSkip(
+    taskId: string,
+    groupName: string,
+    callback: CallbackSuccess
+  ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "Group progress not found for this group!"
+        )
+      );
+      return;
     }
     const task = groupProgress.getTaskById(taskId);
     if (!task) {
-      throw new Error("task with the given id could not be found!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "task with the given id could not be found!"
+        )
+      );
+      return;
     }
-    task.setSkipped(false);
+    try {
+      task.setSkipped(false);
+      callback(new CallbackSuccessDTO(true, "Task was successfully unskipped"));
+    } catch (error) {
+      if (error instanceof Error) {
+        callback(new CallbackSuccessDTO(false, error.message));
+      } else {
+        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+      }
+    }
   }
 
   /**
@@ -81,17 +132,44 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     taskId: string,
     groupName: string,
     indexOfAlternative: number,
+    callback: CallbackSuccess
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      throw new Error("Group progress not found for this group!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "Group progress not found for this group!"
+        )
+      );
+      return;
     }
     const task = groupProgress.getTaskById(taskId);
     if (!task) {
-      throw new Error("task with the given id could not be found!");
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "task with the given id could not be found!"
+        )
+      );
+      return;
     }
-    task.setAlternativeExercise(indexOfAlternative);
+    try {
+      task.setAlternativeExercise(indexOfAlternative);
+      callback(
+        new CallbackSuccessDTO(
+          true,
+          "Alternative exercise was successfully chosen"
+        )
+      );
+    } catch (error) {
+      if (error instanceof Error) {
+        callback(new CallbackSuccessDTO(false, error.message));
+      } else {
+        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+      }
+    }
   }
 
   public getHasNextTaskByGroupName(groupName: string): boolean | undefined {

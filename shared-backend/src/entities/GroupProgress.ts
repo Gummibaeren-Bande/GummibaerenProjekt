@@ -63,14 +63,8 @@ class GroupProgress extends ObservableEntity {
 
   /**
    * This method is used to finish the group progress.
-   * It throws an error if there are still unfinished tasks left.
    */
   public finishWork() {
-    if (this.hasNextTask()) {
-      throw new Error(
-        "The group progress can't be finished, there are still unfinished tasks left.",
-      );
-    }
     this.stopTimer();
     this.notifySubscriber();
   }

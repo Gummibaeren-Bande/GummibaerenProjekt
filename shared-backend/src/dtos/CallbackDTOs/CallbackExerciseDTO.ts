@@ -3,12 +3,12 @@ import CallbackSuccessDTO from "./CallbackSuccessDTO";
 
 class CallbackExerciseDTO extends CallbackSuccessDTO {
   readonly isFinished: boolean;
-  readonly exercise: ExerciseDTO;
+  readonly exercise: ExerciseDTO | null;
   constructor(
     success: boolean,
     message: string,
     isFinished: boolean,
-    exercise: ExerciseDTO,
+    exercise: ExerciseDTO | null
   ) {
     super(success, message);
     this.isFinished = isFinished;
