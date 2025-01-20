@@ -11,24 +11,24 @@ describe("MultipleChoiceExercise", () => {
       "Sample Description",
       "Sample Question",
       ["Option 1", "Option 2", "Option 3"],
-      [0, 2],
+      [0, 2]
     );
   });
 
   it("should return true for correct answers", () => {
     const answer: Answer = [0, 2];
-    expect(exercise.checkAnswer(answer)).toBe(true);
+    expect(exercise.answer(answer)).toBe(true);
   });
 
   it("should return false for incorrect answers", () => {
     const answer: Answer = [1, 2];
-    expect(exercise.checkAnswer(answer)).toBe(false);
+    expect(exercise.answer(answer)).toBe(false);
   });
 
   it("should throw an error for non-array answers", () => {
     const answer: Answer = 1;
-    expect(() => exercise.checkAnswer(answer)).toThrow(
-      "Answer must be an array of indexes",
+    expect(() => exercise.answer(answer)).toThrow(
+      "Answer must be an array of indexes"
     );
   });
 
@@ -49,24 +49,24 @@ describe("NumericalExercise", () => {
       "Sample Title",
       "Sample Description",
       "Sample Question",
-      42,
+      42
     );
   });
 
   it("should return true for the correct answer", () => {
     const answer: Answer = 42;
-    expect(exercise.checkAnswer(answer)).toBe(true);
+    expect(exercise.answer(answer)).toBe(true);
   });
 
   it("should return false for an incorrect answer", () => {
     const answer: Answer = 43;
-    expect(exercise.checkAnswer(answer)).toBe(false);
+    expect(exercise.answer(answer)).toBe(false);
   });
 
   it("should throw an error for non-number answers", () => {
     const answer: Answer = [42];
-    expect(() => exercise.checkAnswer(answer)).toThrow(
-      "The answer must be a number",
+    expect(() => exercise.answer(answer)).toThrow(
+      "The answer must be a number"
     );
   });
 });
