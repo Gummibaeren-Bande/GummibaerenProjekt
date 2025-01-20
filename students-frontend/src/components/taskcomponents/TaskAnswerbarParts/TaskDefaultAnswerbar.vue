@@ -5,7 +5,7 @@
         <slot></slot>
       </div>
     </div>
-    <TaskAnswerbutton v-on:submit-answer="submitAnswer()" :disabled="disabled" />
+    <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" />
   </div>
 </template>
 

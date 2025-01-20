@@ -73,8 +73,11 @@ export default defineComponent({
       this.isRigthWrongOverlayVisible = true
     },
 
-    //Handels the "weiter" button from the RightWrongOverlay.
-    // TODO: This is a temp function and has to be updatet later on.
+    /**
+     * This method is called to continue with the Question. It will close the
+     * RightWrongOverlay and enable to answer the Question again. If the last
+     * give answer was right it will load the Next exercise first.
+     */
     continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
