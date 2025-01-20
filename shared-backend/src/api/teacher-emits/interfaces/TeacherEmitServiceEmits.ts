@@ -1,7 +1,7 @@
 import GroupSetDTO from "../../../dtos/GroupSetDTO";
 
 interface TeacherEmitServiceEmits {
-  stateChanged: () => GroupSetDTO;
+  stateChanged: (groupSet: GroupSetDTO) => GroupSetDTO;
 }
 
 export default TeacherEmitServiceEmits;
