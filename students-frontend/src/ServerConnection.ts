@@ -14,6 +14,9 @@ class ServerConnection {
     this.connect()
   }
 
+  /**
+   * Creats Connection to the Server.
+   */
   private connect() {
     this.socket.on('connect', () => {
       console.log(`connected to socket id ${this.socket.id}`)
