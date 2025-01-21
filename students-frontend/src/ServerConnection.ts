@@ -127,9 +127,6 @@ class ServerConnection {
       })
     })
   }
-
-  // We shall over come bekanntes christliches
-  // Kinder lieder (Detlef Jöker)
 }
 
 export default ServerConnection

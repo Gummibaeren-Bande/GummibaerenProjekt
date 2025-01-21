@@ -52,8 +52,8 @@ export default defineComponent({
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
       group: {
-        groupName: 'Teddybären',
-        finishedTasks: 1,
+        groupName: '',
+        finishedTasks: 0,
       },
     }
   },
@@ -63,7 +63,7 @@ export default defineComponent({
      * to the result.
      * @param givenAnswer answer to check.
      */
-    async submitAnswer(givenAnswer: Number[] | Number) {
+    async submitAnswer(givenAnswer: Answer) {
       const response = await this.serverConnection.answerCurrentExcercise(
         this.groupName,
         this.currentExercise.id,
