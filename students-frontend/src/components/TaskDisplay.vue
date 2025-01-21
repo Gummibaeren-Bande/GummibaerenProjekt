@@ -63,7 +63,7 @@ export default defineComponent({
      * to the result.
      * @param givenAnswer answer to check.
      */
-    async submitAnswer(givenAnswer: Number[] | Number) {
+    async submitAnswer(givenAnswer: Answer) {
       const response = await this.serverConnection.answerCurrentExercise(
         this.groupName,
         this.currentExercise.id,
@@ -93,7 +93,7 @@ export default defineComponent({
      */
     async loadNextExercise() {
       const response = await this.serverConnection.getNextExerciceOfGroup(this.group.groupName)
-      if (response.success) {
+      if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       }
     },
@@ -103,7 +103,7 @@ export default defineComponent({
      */
     async loadCurrentExercise() {
       const response = await this.serverConnection.getCurrentExerciseOfGroup(this.group.groupName)
-      if (response.success) {
+      if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       } else {
         console.log(response.message)
