@@ -1,6 +1,6 @@
-import MultipleChoiceExercise from "../src/entities/MultipleChoiceExercise";
-import NumericalExercise from "../src/entities/NumericalExercise";
-import Answer from "../src/types/Answer";
+import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
+import NumericalExercise from "../entities/NumericalExercise";
+import Answer from "../types/Answer";
 
 describe("MultipleChoiceExercise", () => {
   let exercise: MultipleChoiceExercise;

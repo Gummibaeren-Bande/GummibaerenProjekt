@@ -28,7 +28,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public handleTaskCompleted(groupName: string) {
     const currentTask = this.getCurrentTaskByGroupName(groupName);
     if (!currentTask) {
-      throw new Error("current Task not found for the given group name");
+      //This Error is never reached
+      throw new Error("Current Task not found for the given group name");
     }
     currentTask.complete();
   }
@@ -60,7 +61,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "task with the given id could not be found!"
+          "Task with the given id could not be found!"
         )
       );
       return;
@@ -72,6 +73,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
+        //This Error is never reached
         callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
       }
     }
@@ -104,25 +106,26 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "task with the given id could not be found!"
+          "Task with the given id could not be found!"
         )
       );
       return;
     }
     try {
       task.setSkipped(false);
-      callback(new CallbackSuccessDTO(true, "Task was successfully unskipped"));
+      callback(new CallbackSuccessDTO(true, "Task skip successfully reverted"));
     } catch (error) {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
+        //This Error is never reached
         callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
       }
     }
   }
 
   /**
-   * choose an alternative Excercise for the task with the given id for the given group name
+   * choose an alternative Exercise for the task with the given id for the given group name
    *
    * @param taskId the id of the task to choose the alternative exercise for
    * @param groupName the name of the group which gets the alternative exercise
@@ -167,6 +170,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
+        //This Error is never reached
         callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
       }
     }
@@ -178,6 +182,13 @@ class TrackableTaskService implements TrackableTaskServiceListener {
 
   public getNextTaskOfGroup(groupName: string) {
     return this.groupProgressService.goToNextTask(groupName);
+  }
+
+  public incrementAttempts(groupName: string) {
+    this.groupProgressService
+      .getGroupProgressByGroupName(groupName)
+      ?.getCurrentTask()
+      .incrementTries();
   }
 }
 

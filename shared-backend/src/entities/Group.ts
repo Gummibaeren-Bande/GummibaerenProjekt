@@ -16,7 +16,7 @@ class Group extends ObservableEntity {
     name: string,
     socket: IoSocket,
     taskSet: TaskSet,
-    subscriber: EntityObserver,
+    subscriber: EntityObserver
   ) {
     super(subscriber);
     this.name = name;
@@ -53,6 +53,7 @@ class Group extends ObservableEntity {
 
   public setAssignedSocket(socket: IoSocket) {
     if (this.assignedSocket) {
+      //This Error is never reached
       throw new Error(`Socket for group ${this.name} is already assigned!`);
     }
     this.assignedSocket = socket;

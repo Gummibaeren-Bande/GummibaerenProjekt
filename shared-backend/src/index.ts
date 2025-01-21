@@ -12,7 +12,7 @@ import ServerToClientEvents from "./types/ServerToClientEvents";
 import GroupSetService from "./api/group-set/GroupSetService";
 import TaskService from "./api/task/TaskService";
 import GroupProgressService from "./api/group-progress/GroupProgressService";
-import ExcerciseService from "./api/exercicse/ExerciseService";
+import ExerciseService from "./api/exercicse/ExerciseService";
 import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
 import GroupService from "./api/group/GroupService";
 import taskList from "./taskList";
@@ -45,7 +45,7 @@ const groupSetService = new GroupSetService(taskService, teacherEmitsService);
 const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
-const exerciseService = new ExcerciseService(trackableTaskService);
+const exerciseService = new ExerciseService(trackableTaskService);
 const welcomeService = new WelcomeService(groupService, teacherEmitsService);
 
 // upload dummy task set

@@ -1,13 +1,13 @@
-import Task from "../src/entities/Task";
-import TrackableTask from "../src/entities/TrackableTask";
-import TaskSet from "../src/entities/TaskSet";
-import NumericalExercise from "../src/entities/NumericalExercise";
-import MultipleChoiceExercise from "../src/entities/MultipleChoiceExercise";
-import TrackableTaskState from "../src/enums/TrackableTaskState";
-import TaskService from "../src/api/task/TaskService";
-import TeacherEmitsService from "../src/api/teacher-emits/TeacherEmitsService";
-import GroupSetService from "../src/api/group-set/GroupSetService";
-import GroupSet from "../src/entities/GroupSet";
+import Task from "../entities/Task";
+import TrackableTask from "../entities/TrackableTask";
+import TaskSet from "../entities/TaskSet";
+import NumericalExercise from "../entities/NumericalExercise";
+import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
+import TrackableTaskState from "../enums/TrackableTaskState";
+import TaskService from "../api/task/TaskService";
+import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
+import GroupSetService from "../api/group-set/GroupSetService";
+import GroupSet from "../entities/GroupSet";
 
 const exercise1a = new NumericalExercise(
   "Exercise 1a",
@@ -56,7 +56,7 @@ describe("Task", () => {
   });
 
   it("should return the correct exercises", () => {
-    expect(task2.getExcercises()).toEqual([exercise2]);
+    expect(task2.getExercises()).toEqual([exercise2]);
   });
 
   it("should return a valid ID", () => {

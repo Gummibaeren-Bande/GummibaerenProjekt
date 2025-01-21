@@ -10,7 +10,7 @@ class TaskDTO {
   constructor(task: Task) {
     this.id = task.getId();
     this.name = task.getName();
-    this.exercises = task.getExcercises().map((ex) => new ExerciseDTO(ex));
+    this.exercises = task.getExercises().map((ex) => new ExerciseDTO(ex));
   }
 }
 

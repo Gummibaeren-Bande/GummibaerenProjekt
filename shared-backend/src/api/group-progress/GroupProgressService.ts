@@ -40,10 +40,12 @@ class GroupProgressService implements GroupProgressServiceListener {
    */
   public goToNextTask(groupName: string): TrackableTask {
     if (!this.hasNextTask(groupName)) {
+      //This Error is never reached
       throw new Error("there is no next task for this group!");
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
+      //This Error is never reached
       throw new Error("Group progress not found for this group!");
     }
     return groupProgress.goToNextTask();

@@ -23,7 +23,7 @@ class Task {
     return this.name;
   }
 
-  public getExcercises(): Exercise[] {
+  public getExercises(): Exercise[] {
     return this.exercises;
   }
 }

@@ -7,12 +7,12 @@ import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
 import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
 
-class ExcerciseService implements ExerciseServiceListener {
+class ExerciseService implements ExerciseServiceListener {
   private readonly trackableTaskService: TrackableTaskService;
 
   constructor(trackableTaskService: TrackableTaskService) {
     this.trackableTaskService = trackableTaskService;
-    console.log("Excercise service was successfully started");
+    console.log("Exercise service was successfully started");
   }
 
   /**
@@ -24,7 +24,7 @@ class ExcerciseService implements ExerciseServiceListener {
    * @param answer the answer given by the group
    * @param callback a callback that will provide information if the answer was correct
    */
-  public answerCurrentExcercise(
+  public answerCurrentExercise(
     groupName: string,
     exerciseId: string,
     answer: Answer,
@@ -55,7 +55,9 @@ class ExcerciseService implements ExerciseServiceListener {
         callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
       }
       callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
+      this.trackableTaskService.incrementAttempts(groupName);
     } catch (error) {
+      //This catch is never entered because the errors are never reached
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
@@ -70,12 +72,12 @@ class ExcerciseService implements ExerciseServiceListener {
   }
 
   /**
-   * delivers the current Excercise in the callback. Throws an error if the group has no current exercise.
+   * delivers the current Exercise in the callback. Throws an error if the group has no current exercise.
    *
-   * @param groupName the group that wants its current Excercise
-   * @param callback the callback that delivers the current Excercise
+   * @param groupName the group that wants its current Exercise
+   * @param callback the callback that delivers the current Exercise
    */
-  public getCurrentExcerciceOfGroup(
+  public getCurrentExerciseOfGroup(
     groupName: string,
     callback: CallbackExercise
   ) {
@@ -92,39 +94,28 @@ class ExcerciseService implements ExerciseServiceListener {
       );
       return;
     }
-    const currentExcercise = new ExerciseDTO(currentTask.getChosenExercise());
-    if (currentExcercise) {
-      callback(new CallbackExerciseDTO(true, "", false, currentExcercise));
-    } else {
-      callback(
-        new CallbackExerciseDTO(
-          false,
-          "Keine aktuelle Aufgabe gefunden",
-          false,
-          null
-        )
-      );
-    }
+    const currentExercise = new ExerciseDTO(currentTask.getChosenExercise());
+    callback(new CallbackExerciseDTO(true, "", false, currentExercise));
   }
 
   /**
-   * tries to deliver the next Excercise in the callback. If the given group is finished and therefore does
-   * not have a next task the callback specifies that in its message and the delivered Excercise is null
+   * tries to deliver the next Exercise in the callback. If the given group is finished and therefore does
+   * not have a next task the callback specifies that in its message and the delivered Exercise is null
    *
-   * @param groupName the group that wants its next Excercise
-   * @param callback the callback that may deliver the next Excercise
+   * @param groupName the group that wants its next Exercise
+   * @param callback the callback that may deliver the next Exercise
    */
   public getNextExerciceOfGroup(groupName: string, callback: CallbackExercise) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
     if (hasNextTask) {
       try {
-        const nextExcercise = new ExerciseDTO(
+        const nextExercise = new ExerciseDTO(
           this.trackableTaskService
             .getNextTaskOfGroup(groupName)
             .getChosenExercise()
         );
-        callback(new CallbackExerciseDTO(true, "", false, nextExcercise));
+        callback(new CallbackExerciseDTO(true, "", false, nextExercise));
       } catch (error) {
         if (error instanceof Error) {
           callback(new CallbackExerciseDTO(false, error.message, false, null));
@@ -140,16 +131,29 @@ class ExcerciseService implements ExerciseServiceListener {
         }
       }
     } else {
-      callback(
-        new CallbackExerciseDTO(
-          false,
-          "Keine nächste Aufgabe gefunden",
-          false,
-          null
-        )
-      );
+      if (hasNextTask === undefined) {
+        callback(
+          new CallbackExerciseDTO(
+            false,
+            "Die Gruppe wurde nicht gefunden",
+            false,
+            null
+          )
+        );
+        return;
+      } else {
+        callback(
+          new CallbackExerciseDTO(
+            false,
+            "Die Gruppe hat keine weiteren Aufgaben",
+            true,
+            null
+          )
+        );
+        return;
+      }
     }
   }
 }
 
-export default ExcerciseService;
+export default ExerciseService;
