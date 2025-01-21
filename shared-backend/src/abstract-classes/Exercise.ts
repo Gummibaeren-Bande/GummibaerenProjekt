@@ -10,7 +10,7 @@ export default abstract class Exercise {
   abstract type: "multiple-choice" | "numerical";
 
   /**
-   * try to answer the excercise with the given answer
+   * try to answer the exercise with the given answer
    *
    * @param answer the answer provided by the group
    * @returns true if the answer is correct, false otherwise

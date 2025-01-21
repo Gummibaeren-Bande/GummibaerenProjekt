@@ -1,5 +1,5 @@
-import TeacherSocketsManager from "../entities/TeacherSocketsManager";
-import IoSocket from "../types/IoSocket";
+import TeacherSocketsManager from "../src/entities/TeacherSocketsManager";
+import IoSocket from "../src/types/IoSocket";
 
 describe("TeacherSocketsManager", () => {
   let teacherSocketsManager: TeacherSocketsManager;

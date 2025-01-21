@@ -45,7 +45,7 @@ const groupSetService = new GroupSetService(taskService, teacherEmitsService);
 const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
-const excerciseService = new ExcerciseService(trackableTaskService);
+const exerciseService = new ExcerciseService(trackableTaskService);
 const welcomeService = new WelcomeService(groupService, teacherEmitsService);
 
 // upload dummy task set
@@ -64,7 +64,7 @@ const onStudentConnection = (socket: IoSocket) => {
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
   trackableTaskHandler(io, socket, trackableTaskService);
-  exerciseHandler(io, socket, excerciseService);
+  exerciseHandler(io, socket, exerciseService);
 };
 
 // serve the handler functions for students when connected
@@ -78,7 +78,7 @@ const onTeachersConnection = (socket: IoSocket) => {
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
   trackableTaskHandler(io, socket, trackableTaskService);
-  exerciseHandler(io, socket, excerciseService);
+  exerciseHandler(io, socket, exerciseService);
 };
 
 // serve the handler functions for teachers when connected

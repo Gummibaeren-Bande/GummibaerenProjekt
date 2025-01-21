@@ -1,45 +1,45 @@
-import Task from "../entities/Task";
-import TrackableTask from "../entities/TrackableTask";
-import TaskSet from "../entities/TaskSet";
-import NumericalExercise from "../entities/NumericalExercise";
-import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
-import TrackableTaskState from "../enums/TrackableTaskState";
-import TaskService from "../api/task/TaskService";
-import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
-import GroupSetService from "../api/group-set/GroupSetService";
-import GroupSet from "../entities/GroupSet";
+import Task from "../src/entities/Task";
+import TrackableTask from "../src/entities/TrackableTask";
+import TaskSet from "../src/entities/TaskSet";
+import NumericalExercise from "../src/entities/NumericalExercise";
+import MultipleChoiceExercise from "../src/entities/MultipleChoiceExercise";
+import TrackableTaskState from "../src/enums/TrackableTaskState";
+import TaskService from "../src/api/task/TaskService";
+import TeacherEmitsService from "../src/api/teacher-emits/TeacherEmitsService";
+import GroupSetService from "../src/api/group-set/GroupSetService";
+import GroupSet from "../src/entities/GroupSet";
 
 const exercise1a = new NumericalExercise(
   "Exercise 1a",
   "Description 1a",
   "Question 1a",
-  1,
+  1
 );
 const exercise1b = new MultipleChoiceExercise(
   "Exercise 1b",
   "Description 1b",
   "Question 1b",
   ["Answer 1", "Answer 2", "Answer 3"],
-  [0, 1],
+  [0, 1]
 );
 const exercise2 = new NumericalExercise(
   "Exercise 2",
   "Description 2",
   "Question 2",
-  2,
+  2
 );
 const exercise3a = new NumericalExercise(
   "Exercise 3a",
   "Description 3a",
   "Question 3a",
-  3,
+  3
 );
 const exercise3b = new MultipleChoiceExercise(
   "Exercise 3b",
   "Description 3b",
   "Question 3b",
   ["Answer 1", "Answer 2", "Answer 3"],
-  [0],
+  [0]
 );
 
 const task1 = new Task("Task 1", [exercise1a, exercise1b]);
@@ -110,7 +110,7 @@ describe("TrackableTask", () => {
 
   it("should throw an error when trying to complete a task that hasn't started", () => {
     expect(() => trackableTask.complete()).toThrow(
-      "The task has not been started yet and therefore can't be finished",
+      "The task has not been started yet and therefore can't be finished"
     );
   });
 
@@ -144,7 +144,7 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to start a task that has already started", () => {
     trackableTask.startTask();
     expect(() => trackableTask.startTask()).toThrow(
-      "The task has already been started",
+      "The task has already been started"
     );
   });
 
@@ -169,14 +169,14 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to skip a task in progress", () => {
     trackableTask.startTask();
     expect(() => trackableTask.setSkipped(true)).toThrow(
-      "The task is in progress and can't be skipped",
+      "The task is in progress and can't be skipped"
     );
   });
 
   it("should throw an error when trying to change the exercise in progress", () => {
     trackableTask.startTask();
     expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
-      "The task is in progress and can't be changed",
+      "The task is in progress and can't be changed"
     );
   });
 
@@ -198,7 +198,7 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     trackableTask.complete();
     expect(() => trackableTask.setSkipped(true)).toThrow(
-      "The task is already completed and can't be skipped",
+      "The task is already completed and can't be skipped"
     );
   });
 
@@ -206,7 +206,7 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     trackableTask.complete();
     expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
-      "The task is already completed and can't be changed",
+      "The task is already completed and can't be changed"
     );
   });
 });

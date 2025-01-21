@@ -16,7 +16,7 @@ class GroupProgressService implements GroupProgressServiceListener {
   }
 
   public getGroupProgressByGroupName(
-    groupName: string,
+    groupName: string
   ): GroupProgress | undefined {
     return this.groupService.getGroupByName(groupName)?.getGroupProgress();
   }
@@ -58,13 +58,13 @@ class GroupProgressService implements GroupProgressServiceListener {
   public finishWork(groupName: string, callback: CallbackSuccess) {
     if (this.hasNextTask(groupName)) {
       callback(
-        new CallbackSuccessDTO(false, "Es gibt noch Aufgaben zu erledigen"),
+        new CallbackSuccessDTO(false, "Es gibt noch Aufgaben zu erledigen")
       );
       return;
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      callback(new CallbackSuccessDTO(false, "Group progress not found"));
+      callback(new CallbackSuccessDTO(false, "Group progress nicht gefunden"));
       return;
     }
     groupProgress.finishWork();
@@ -80,7 +80,9 @@ class GroupProgressService implements GroupProgressServiceListener {
   public getNumberOfFinishedTasks(groupName: string, callback: CallbackNumber) {
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      callback(new CallbackNumberDTO(false, "Group progress not found", -1));
+      callback(
+        new CallbackNumberDTO(false, "Group progress nicht gefunden", -1)
+      );
       return;
     }
     const numberOfFinishedTasks = groupProgress.getNumberOfFinishedTasks();

@@ -94,10 +94,6 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
       )
     );
   }
-
-  getCurrentState(callback: CallbackGroupSet) {
-    callback(new CallbackGroupSetDTO(true, "", new GroupSetDTO(this.groupSet)));
-  }
 }
 
 export default GroupSetService;

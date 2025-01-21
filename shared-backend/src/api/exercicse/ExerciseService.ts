@@ -16,7 +16,7 @@ class ExcerciseService implements ExerciseServiceListener {
   }
 
   /**
-   * try to answer the current excercise of the given group with the given answer
+   * try to answer the current exercise of the given group with the given answer
    * if, the answer is correct, the corresponding TrackableTask is marked as completed.
    * Getting the next question is a seperate action.
    *
@@ -26,7 +26,7 @@ class ExcerciseService implements ExerciseServiceListener {
    */
   public answerCurrentExcercise(
     groupName: string,
-    excerciseId: string,
+    exerciseId: string,
     answer: Answer,
     callback: CallbackSuccess
   ) {
@@ -39,7 +39,7 @@ class ExcerciseService implements ExerciseServiceListener {
       return;
     }
     const currentExercise = currentTask.getChosenExercise();
-    if (currentExercise.id !== excerciseId) {
+    if (currentExercise.id !== exerciseId) {
       callback(
         new CallbackSuccessDTO(
           false,
@@ -70,7 +70,7 @@ class ExcerciseService implements ExerciseServiceListener {
   }
 
   /**
-   * delivers the current Excercise in the callback. Throws an error if the group has no current excercise.
+   * delivers the current Excercise in the callback. Throws an error if the group has no current exercise.
    *
    * @param groupName the group that wants its current Excercise
    * @param callback the callback that delivers the current Excercise

@@ -5,17 +5,17 @@ import CallbackSuccess from "../../../types/callback-types/CallbackSuccess";
 interface ExerciseServiceListener {
   answerCurrentExcercise: (
     groupName: string,
-    excerciseId: string,
+    exerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess,
+    callback: CallbackSuccess
   ) => void;
   getCurrentExcerciceOfGroup: (
     groupName: string,
-    callback: CallbackExercise,
+    callback: CallbackExercise
   ) => void;
   getNextExerciceOfGroup: (
     groupName: string,
-    callback: CallbackExercise,
+    callback: CallbackExercise
   ) => void;
 }
 

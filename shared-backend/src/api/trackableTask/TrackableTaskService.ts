@@ -124,9 +124,9 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   /**
    * choose an alternative Excercise for the task with the given id for the given group name
    *
-   * @param taskId the id of the task to choose the alternative excercise for
-   * @param groupName the name of the group which gets the alternative excercise
-   * @param indexOfAlternative the index of the alternative excercise
+   * @param taskId the id of the task to choose the alternative exercise for
+   * @param groupName the name of the group which gets the alternative exercise
+   * @param indexOfAlternative the index of the alternative exercise
    */
   public chooseAlternativForTask(
     taskId: string,
