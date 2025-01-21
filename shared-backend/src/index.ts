@@ -23,6 +23,8 @@ import exerciseHandler from "./api/exercicse/exerciseHandler";
 import readline from "readline";
 import WelcomeService from "./api/welcome/WelcomeService";
 import TeacherEmitsService from "./api/teacher-emits/TeacherEmitsService";
+import fs from "fs";
+import os from "os";
 
 // scaffold new server
 const app = express();
@@ -39,13 +41,11 @@ const io: IoServer = new Server<
 });
 
 // save server ip to env file
-import fs from "fs";
-import os from "os";
 const ip = getIpAdress();
 console.log(`server ip: ${ip}`);
 fs.writeFileSync(
   "../students-frontend/server.env",
-  `VITE_SERVER_URL=http://${ip}:3000/students\n`,
+  `VITE_SERVER_URL=http://${ip}:3000/students\n`
 );
 
 // get the ip adress of the server
