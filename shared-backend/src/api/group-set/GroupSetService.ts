@@ -17,7 +17,7 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
 
   constructor(
     taskService: TaskService,
-    teachersEmitsService: TeacherEmitsService
+    teachersEmitsService: TeacherEmitsService,
   ) {
     this.taskService = taskService;
     this.teachersEmitsService = teachersEmitsService;
@@ -41,30 +41,30 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     const successful = this.groupSet.addNewGroup(
       name,
       socket,
-      this.taskService.getTaskSet()
+      this.taskService.getTaskSet(),
     );
 
     if (!successful) {
       callback(
         new CallbackSuccessDTO(
           false,
-          `Eine Gruppe mit dem Namen "${name}" existiert bereits. Bitte wählt einen anderen Namen`
-        )
+          `Eine Gruppe mit dem Namen "${name}" existiert bereits. Bitte wählt einen anderen Namen`,
+        ),
       );
       return;
     }
     callback(
       new CallbackSuccessDTO(
         true,
-        `Die Gruppe "${name}" wurde erfolgreich erstellt`
-      )
+        `Die Gruppe "${name}" wurde erfolgreich erstellt`,
+      ),
     );
   }
 
   reconnectToGroup(
     name: string,
     callback: CallbackSuccess,
-    socket?: IoSocket
+    socket?: IoSocket,
   ): void {
     if (!socket) {
       callback(new CallbackSuccessDTO(false, "Socket could not be inferred!"));
@@ -73,7 +73,7 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     const group = this.getGroupSet().getGroupByName(name);
     if (!group) {
       callback(
-        new CallbackSuccessDTO(false, `Die Gruppe "${name}" existiert nicht.`)
+        new CallbackSuccessDTO(false, `Die Gruppe "${name}" existiert nicht.`),
       );
       return;
     }
@@ -81,8 +81,8 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
       callback(
         new CallbackSuccessDTO(
           false,
-          `Die Gruppe "${name}" ist bereits auf einem Gerät eingeloggt. Bitte schließe zunächst das Browserfenster auf diesem Gerät.`
-        )
+          `Die Gruppe "${name}" ist bereits auf einem Gerät eingeloggt. Bitte schließe zunächst das Browserfenster auf diesem Gerät.`,
+        ),
       );
       return;
     }
@@ -90,8 +90,8 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     callback(
       new CallbackSuccessDTO(
         true,
-        `Erfolgreich als existierendes Teams "${name}" eingeloggt.`
-      )
+        `Erfolgreich als existierendes Teams "${name}" eingeloggt.`,
+      ),
     );
   }
 }

@@ -12,7 +12,7 @@ class WelcomeService {
 
   constructor(
     groupService: GroupService,
-    teacherEmitsService: TeacherEmitsService
+    teacherEmitsService: TeacherEmitsService,
   ) {
     this.groupService = groupService;
     this.teacherEmitsService = teacherEmitsService;
@@ -36,11 +36,11 @@ class WelcomeService {
   socketConnectionClosed(
     socket: IoSocket,
     reason: DisconnectReason,
-    isTeacher: boolean
+    isTeacher: boolean,
   ) {
     const entity: string = isTeacher ? "teacher" : "student";
     console.log(
-      `${entity} socket ${socket.id} was terminated due to ${reason}`
+      `${entity} socket ${socket.id} was terminated due to ${reason}`,
     );
 
     if (isTeacher) {

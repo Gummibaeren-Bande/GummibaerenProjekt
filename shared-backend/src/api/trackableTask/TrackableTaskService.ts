@@ -13,7 +13,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   public getCurrentTaskByGroupName(
-    groupName: string
+    groupName: string,
   ): TrackableTask | undefined {
     return this.groupProgressService
       .getGroupProgressByGroupName(groupName)
@@ -43,7 +43,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public skipTask(
     taskId: string,
     groupName: string,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
@@ -51,8 +51,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!"
-        )
+          "Group progress not found for this group!",
+        ),
       );
       return;
     }
@@ -61,8 +61,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Task with the given id could not be found!"
-        )
+          "Task with the given id could not be found!",
+        ),
       );
       return;
     }
@@ -88,7 +88,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public revertTaskSkip(
     taskId: string,
     groupName: string,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
@@ -96,8 +96,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!"
-        )
+          "Group progress not found for this group!",
+        ),
       );
       return;
     }
@@ -106,8 +106,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Task with the given id could not be found!"
-        )
+          "Task with the given id could not be found!",
+        ),
       );
       return;
     }
@@ -135,7 +135,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     taskId: string,
     groupName: string,
     indexOfAlternative: number,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) {
     const groupProgress =
       this.groupProgressService.getGroupProgressByGroupName(groupName);
@@ -143,8 +143,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!"
-        )
+          "Group progress not found for this group!",
+        ),
       );
       return;
     }
@@ -153,8 +153,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "task with the given id could not be found!"
-        )
+          "task with the given id could not be found!",
+        ),
       );
       return;
     }
@@ -163,8 +163,8 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           true,
-          "Alternative exercise was successfully chosen"
-        )
+          "Alternative exercise was successfully chosen",
+        ),
       );
     } catch (error) {
       if (error instanceof Error) {

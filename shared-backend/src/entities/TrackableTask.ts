@@ -87,7 +87,7 @@ class TrackableTask extends ObservableEntity {
     if (!started) {
       //This Error is never reached
       throw new Error(
-        "The task has not been started yet and therefore can't be finished"
+        "The task has not been started yet and therefore can't be finished",
       );
     }
     this.finishedAfterSeconds =

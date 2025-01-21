@@ -8,7 +8,7 @@ class CallbackExerciseDTO extends CallbackSuccessDTO {
     success: boolean,
     message: string,
     isFinished: boolean,
-    exercise: ExerciseDTO | null
+    exercise: ExerciseDTO | null,
   ) {
     super(success, message);
     this.isFinished = isFinished;

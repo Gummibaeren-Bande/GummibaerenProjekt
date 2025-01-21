@@ -11,7 +11,7 @@ describe("MultipleChoiceExercise", () => {
       "Sample Description",
       "Sample Question",
       ["Option 1", "Option 2", "Option 3"],
-      [0, 2]
+      [0, 2],
     );
   });
 
@@ -28,7 +28,7 @@ describe("MultipleChoiceExercise", () => {
   it("should throw an error for non-array answers", () => {
     const answer: Answer = 1;
     expect(() => exercise.answer(answer)).toThrow(
-      "Answer must be an array of indexes"
+      "Answer must be an array of indexes",
     );
   });
 
@@ -49,7 +49,7 @@ describe("NumericalExercise", () => {
       "Sample Title",
       "Sample Description",
       "Sample Question",
-      42
+      42,
     );
   });
 
@@ -66,7 +66,7 @@ describe("NumericalExercise", () => {
   it("should throw an error for non-number answers", () => {
     const answer: Answer = [42];
     expect(() => exercise.answer(answer)).toThrow(
-      "The answer must be a number"
+      "The answer must be a number",
     );
   });
 });
