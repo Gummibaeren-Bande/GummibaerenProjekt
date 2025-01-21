@@ -1,7 +1,7 @@
 // entry point of the shared-backend
 
 import express from "express";
-import { createServer } from "http";
+import { createServer, get } from "http";
 import { Server } from "socket.io";
 import welcomeHandler from "./api/welcome/welcomeHandler";
 import groupSetHandler from "./api/group-set/groupSetHandler";
@@ -34,9 +34,33 @@ const io: IoServer = new Server<
   SocketData
 >(httpServer, {
   cors: {
-    origin: ["http://localhost:8080", "http://localhost:8081"], // specify who can access this backend
+    origin: "*", // specify who can access this backend
   },
 });
+
+// save server ip to env file
+import fs from "fs";
+import os from "os";
+const ip = getIpAdress();
+console.log(`server ip: ${ip}`);
+fs.writeFileSync(
+  "../students-frontend/server.env",
+  `VITE_SERVER_URL=http://${ip}:3000/students\n`,
+);
+
+// get the ip adress of the server
+function getIpAdress(): string {
+  const ifaces = os.networkInterfaces();
+  let ip = "";
+  for (const dev in ifaces) {
+    ifaces[dev]?.forEach((details) => {
+      if (details.family === "IPv4" && !details.internal) {
+        ip = details.address;
+      }
+    });
+  }
+  return ip;
+}
 
 // initialize all services
 const taskService = new TaskService();

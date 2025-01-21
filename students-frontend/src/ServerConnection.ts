@@ -11,7 +11,9 @@ class ServerConnection {
    * Creates a new ServerConnection
    */
   constructor() {
-    this.socket = io('http://localhost:3000/students')
+    const serverUrl = import.meta.env.VITE_SERVER_URL || 'http://localhost:3000/students'
+    console.log('Connecting to Server: ' + serverUrl)
+    this.socket = io(serverUrl)
     this.connect()
   }
 
