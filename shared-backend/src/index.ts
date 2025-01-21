@@ -24,7 +24,35 @@ import readline from "readline";
 import WelcomeService from "./api/welcome/WelcomeService";
 import TeacherEmitsService from "./api/teacher-emits/TeacherEmitsService";
 import fs from "fs";
-import os from "os";
+import dgram from "dgram";
+
+// set up ip of active port for testing puropses
+
+let ip = await (async () => { return await getActiveInterfaceIp(); })();
+
+// save server ip to env file
+console.log(`server ip: ${ip}`);
+fs.writeFileSync(
+  "../students-frontend/server.env",
+  `VITE_SERVER_URL=http://${ip}:3000/students\n`
+);
+
+async function getActiveInterfaceIp(): Promise<string> {
+  return new Promise((resolve, reject) => {
+    // Create a dummy socket to determine the active network interface
+    const socket = dgram.createSocket("udp4");
+    socket.connect(80, "8.8.8.8", () => {
+      const address = socket.address();
+      const ip = typeof address === "string" ? address : address.address;
+      socket.close();
+      resolve(ip);
+    });
+    socket.on("error", (err) => {
+      socket.close();
+      reject(err);
+    });
+  });
+}
 
 // scaffold new server
 const app = express();
@@ -36,31 +64,9 @@ const io: IoServer = new Server<
   SocketData
 >(httpServer, {
   cors: {
-    origin: "*", // specify who can access this backend
+    origin: ["http://localhost:8080", "http://localhost:8081", `http://${ip}:8080`, `http://${ip}:8081`], // specify who can access this backend
   },
 });
-
-// save server ip to env file
-const ip = getIpAdress();
-console.log(`server ip: ${ip}`);
-fs.writeFileSync(
-  "../students-frontend/server.env",
-  `VITE_SERVER_URL=http://${ip}:3000/students\n`
-);
-
-// get the ip adress of the server
-function getIpAdress(): string {
-  const ifaces = os.networkInterfaces();
-  let ip = "";
-  for (const dev in ifaces) {
-    ifaces[dev]?.forEach((details) => {
-      if (details.family === "IPv4" && !details.internal) {
-        ip = details.address;
-      }
-    });
-  }
-  return ip;
-}
 
 // initialize all services
 const taskService = new TaskService();
