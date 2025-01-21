@@ -83,6 +83,7 @@ export default defineComponent({
       this.disableToAnswer = false
       if (this.isCorrect) {
         this.loadNextExercise()
+        this.loadNumberOfFinishedTasks()
       }
     },
 
