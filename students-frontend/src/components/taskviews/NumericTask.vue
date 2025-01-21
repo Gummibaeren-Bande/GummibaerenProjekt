@@ -66,10 +66,10 @@ export default defineComponent({
   },
 
   /**
-   * Is Called when proporties Change befor the Display is rerenderd.
+   * Is called when proporties change before the display is rerenderd.
    */
   beforeUpdate() {
-    this.value = undefined //clears the Nummeric Input when new Exercise is loaded.
+    this.value = undefined //clears the numeric input when a new exercise is loaded.
   },
 })
 </script>

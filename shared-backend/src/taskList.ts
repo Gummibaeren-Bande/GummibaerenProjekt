@@ -40,7 +40,7 @@ const taskList = [
   ]),
   new Task("Gummibärchen Geschmack", [
     new MultipleChoiceExercise(
-      "Gummibärchen Verteilung",
+      "Gummibärchen Geschmacksrichtungen",
       "",
       "Welche der folgenden Geschmacksrichtungen gibt es typischerweise bei Gummibärchen?",
       [

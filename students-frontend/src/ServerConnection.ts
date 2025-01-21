@@ -2,12 +2,13 @@ import { io, Socket } from 'socket.io-client'
 import CallbackSuccessDTO from '../../shared-backend/src/dtos/CallbackDTOs/CallbackSuccessDTO'
 import type CallbackExerciseDTO from '../../shared-backend/src/dtos/CallbackDTOs/CallbackExerciseDTO'
 import type CallbackNumberDTO from '../../shared-backend/src/dtos/CallbackDTOs/CallbackNumberDTO'
+import Answer from '../../shared-backend/src/types/Answer'
 
 class ServerConnection {
   socket: Socket
 
   /**
-   * Creats a new serverConnectio to the server.
+   * Creates a new ServerConnection
    */
   constructor() {
     this.socket = io('http://localhost:3000/students')
@@ -15,7 +16,7 @@ class ServerConnection {
   }
 
   /**
-   * Creats Connection to the Server.
+   * Connects to the Server.
    */
   private connect() {
     this.socket.on('connect', () => {
@@ -52,17 +53,17 @@ class ServerConnection {
   }
 
   /**
-   * Sends the given answer to the server and return a CallbackSucces withe the info if the
-   * answer was right or false.
+   * Sends the given answer to the server and returns a CallbackSucces with that reflects wether the
+   * answer was right or wrong.
    * @param groupName name of the group.
    * @param exerciseId Id of the current Exercise.
    * @param answer given answer by the User.
    * @returns a CallbackSucces.
    */
   async answerCurrentExcercise(
-    groupName: String,
-    exerciseId: String,
-    answer: Number | Number[],
+    groupName: string,
+    exerciseId: string,
+    answer: Answer,
   ): Promise<CallbackSuccessDTO> {
     return new Promise((resolve) => {
       console.log('Sende Antwort: ' + answer)
@@ -80,12 +81,12 @@ class ServerConnection {
   }
 
   /**
-   * Request the Current exercise frome the server. Returns the answer from the server
-   * in an CalbackExerciseDTO.
+   * Request the Current exercise from the server. Returns the answer from the server
+   * in a CallbackExerciseDTO.
    * @param groupName the name of the group.
    * @returns the current Exercise.
    */
-  async getCurrentExcerciceOfGroup(groupName: String): Promise<CallbackExerciseDTO> {
+  async getCurrentExcerciceOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
     return new Promise((resolve) => {
       this.socket.emit('getCurrentExcerciceOfGroup', groupName, (response: CallbackExerciseDTO) => {
         resolve(response)
@@ -98,9 +99,11 @@ class ServerConnection {
    * @param groupName the name of the group.
    * @returns a CallbackNumberDTO with the number of solved Questions.
    */
-  async getNumberOfFinishedTasks(groupName: String): Promise<CallbackNumberDTO> {
+  async getNumberOfFinishedTasks(groupName: string): Promise<CallbackNumberDTO> {
     return new Promise((resolve) => {
-      console.log('Anfrage an server zur anzahl gelöster Aufgaben von Gruppe: ' + groupName)
+      console.log(
+        'Anfrage an den Server zur der Anzahl an gelösten Aufgaben von Gruppe: ' + groupName,
+      )
       this.socket.emit('getNumberOfFinishedTasks', groupName, (response: CallbackNumberDTO) => {
         console.log(response.message)
         resolve(response)
@@ -109,11 +112,11 @@ class ServerConnection {
   }
 
   /**
-   * Request the next exercise from the Server.
+   * Requests the next exercise from the Server.
    * @param groupName the name of the group.
-   * @returns the reasult of the Request. (The next Exercise if it was a succes)
+   * @returns the result of the request.
    */
-  async getNextExerciceOfGroup(groupName: String): Promise<CallbackExerciseDTO> {
+  async getNextExerciceOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
     return new Promise((resolve) => {
       console.log('Anfrage nach nächster Aufgabe.')
       this.socket.emit('getNextExerciceOfGroup', groupName, (response: CallbackExerciseDTO) => {
