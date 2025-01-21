@@ -30,6 +30,7 @@ import { defineComponent } from 'vue'
 import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
+import Answer from '../../../shared-backend/src/types/Answer'
 </script>
 
 <script lang="ts">
@@ -66,7 +67,7 @@ export default defineComponent({
       const response = await this.serverConnection.answerCurrentExcercise(
         this.groupName,
         this.currentExercise.id,
-        givenAnswer,
+        givenAnswer as Answer,
       )
       this.isCorrect = response.success
       this.disableToAnswer = true
