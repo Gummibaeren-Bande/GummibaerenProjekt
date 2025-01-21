@@ -12,7 +12,7 @@ import ServerToClientEvents from "./types/ServerToClientEvents";
 import GroupSetService from "./api/group-set/GroupSetService";
 import TaskService from "./api/task/TaskService";
 import GroupProgressService from "./api/group-progress/GroupProgressService";
-import ExcerciseService from "./api/exercicse/ExerciseService";
+import ExerciseService from "./api/exercicse/ExerciseService";
 import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
 import GroupService from "./api/group/GroupService";
 import taskList from "./taskList";
@@ -82,7 +82,7 @@ const groupSetService = new GroupSetService(taskService, teacherEmitsService);
 const groupService = new GroupService(groupSetService);
 const groupProgressService = new GroupProgressService(groupService);
 const trackableTaskService = new TrackableTaskService(groupProgressService);
-const excerciseService = new ExcerciseService(trackableTaskService);
+const exerciseService = new ExerciseService(trackableTaskService);
 const welcomeService = new WelcomeService(groupService, teacherEmitsService);
 
 // upload dummy task set
@@ -101,7 +101,7 @@ const onStudentConnection = (socket: IoSocket) => {
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
   trackableTaskHandler(io, socket, trackableTaskService);
-  exerciseHandler(io, socket, excerciseService);
+  exerciseHandler(io, socket, exerciseService);
 };
 
 // serve the handler functions for students when connected
@@ -115,7 +115,7 @@ const onTeachersConnection = (socket: IoSocket) => {
   groupSetHandler(io, socket, groupSetService);
   groupProgressHandler(io, socket, groupProgressService);
   trackableTaskHandler(io, socket, trackableTaskService);
-  exerciseHandler(io, socket, excerciseService);
+  exerciseHandler(io, socket, exerciseService);
 };
 
 // serve the handler functions for teachers when connected

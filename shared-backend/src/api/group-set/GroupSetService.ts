@@ -35,7 +35,8 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
 
   addGroup(name: string, callback: CallbackSuccess, socket?: IoSocket): void {
     if (!socket) {
-      throw new Error("Socket could not be inferred!");
+      callback(new CallbackSuccessDTO(false, "Socket could not be inferred!"));
+      return;
     }
     const successful = this.groupSet.addNewGroup(
       name,
@@ -66,7 +67,8 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     socket?: IoSocket,
   ): void {
     if (!socket) {
-      throw new Error("Socket could not be inferred!");
+      callback(new CallbackSuccessDTO(false, "Socket could not be inferred!"));
+      return;
     }
     const group = this.getGroupSet().getGroupByName(name);
     if (!group) {
@@ -84,7 +86,6 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
       );
       return;
     }
-
     group.setAssignedSocket(socket);
     callback(
       new CallbackSuccessDTO(
@@ -92,10 +93,6 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
         `Erfolgreich als existierendes Teams "${name}" eingeloggt.`,
       ),
     );
-  }
-
-  getCurrentState(callback: CallbackGroupSet) {
-    callback(new CallbackGroupSetDTO(true, "", new GroupSetDTO(this.groupSet)));
   }
 }
 

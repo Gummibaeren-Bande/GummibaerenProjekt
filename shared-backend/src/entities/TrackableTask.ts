@@ -35,6 +35,7 @@ class TrackableTask extends ObservableEntity {
 
   public startTask(): void {
     if (this.startedAt) {
+      //This Error is never reached
       throw new Error("The task has already been started");
     }
     this.startedAt = new Date();
@@ -50,6 +51,7 @@ class TrackableTask extends ObservableEntity {
   }
 
   public getSkipped(): boolean {
+    //This method is only called in the test file
     if (this.state === TrackableTaskState.Skipped) {
       return true;
     }
@@ -83,6 +85,7 @@ class TrackableTask extends ObservableEntity {
   private stopTimer(): void {
     const started = this.getStartedAt();
     if (!started) {
+      //This Error is never reached
       throw new Error(
         "The task has not been started yet and therefore can't be finished",
       );
@@ -102,13 +105,16 @@ class TrackableTask extends ObservableEntity {
       case TrackableTaskState.Completed:
         throw new Error("The task is already completed and can't be changed");
       default:
+        if (index < 0 || index >= this.task.getExercises().length) {
+          throw new Error("The index is out of bounds");
+        }
         this.chosenExerciseIndex = index;
         break;
     }
   }
 
   public getChosenExercise(): Exercise {
-    return this.task.getExcercises()[this.chosenExerciseIndex];
+    return this.task.getExercises()[this.chosenExerciseIndex];
   }
 
   public getChosenExerciseIndex(): number {

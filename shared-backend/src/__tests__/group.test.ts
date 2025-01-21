@@ -208,7 +208,6 @@ describe("GroupProgress", () => {
 
   it("should get the number of finished tasks", () => {
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(0);
-    groupProgress.getCurrentTask().startTask();
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.getCurrentTask().getState()).toBe(
       TrackableTaskState.Completed,
@@ -228,11 +227,34 @@ describe("GroupProgress", () => {
     expect(groupProgress.hasNextTask()).toBe(true);
   });
 
-  it("should finish the work", () => {
-    expect(() => groupProgress.finishWork()).toThrow(
-      "The group progress can't be finished, there are still unfinished tasks left.",
+  it("should correctly handle has next task when all are skipped tasks", () => {
+    for (const task of taskList) {
+      try {
+        let thisTask = groupProgress.getTaskById(task.getId());
+        if (thisTask) {
+          thisTask.setSkipped(true);
+        }
+      } catch (error) {
+        if (error instanceof Error) {
+          expect(error.message).toBe(
+            "The task is in progress and can't be skipped",
+          );
+        }
+      }
+    }
+    expect(groupProgress.hasNextTask()).toBe(false);
+  });
+
+  it("should correctly advance a task when one is skipped", () => {
+    groupProgress.getTaskById(taskList[1].getId())?.setSkipped(true);
+    groupProgress.getCurrentTask().complete();
+    groupProgress.goToNextTask();
+    expect(groupProgress.getCurrentTask()).toBe(
+      groupProgress.getTaskById(taskList[2].getId()),
     );
-    groupProgress.getCurrentTask().startTask();
+  });
+
+  it("should finish the work", () => {
     while (groupProgress.hasNextTask()) {
       groupProgress.getCurrentTask().complete();
       groupProgress.goToNextTask();

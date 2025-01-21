@@ -56,7 +56,7 @@ describe("Task", () => {
   });
 
   it("should return the correct exercises", () => {
-    expect(task2.getExcercises()).toEqual([exercise2]);
+    expect(task2.getExercises()).toEqual([exercise2]);
   });
 
   it("should return a valid ID", () => {

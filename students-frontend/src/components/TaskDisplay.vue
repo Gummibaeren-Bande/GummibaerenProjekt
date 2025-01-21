@@ -63,8 +63,8 @@ export default defineComponent({
      * to the result.
      * @param givenAnswer answer to check.
      */
-    async submitAnswer(givenAnswer: Answer) {
-      const response = await this.serverConnection.answerCurrentExcercise(
+    async submitAnswer(givenAnswer: Number[] | Number) {
+      const response = await this.serverConnection.answerCurrentExercise(
         this.groupName,
         this.currentExercise.id,
         givenAnswer as Answer,
@@ -101,8 +101,8 @@ export default defineComponent({
     /**
      * Loads the Current Exercise frome Server.
      */
-    async loadCurrentExcercise() {
-      const response = await this.serverConnection.getCurrentExcerciceOfGroup(this.group.groupName)
+    async loadCurrentExercise() {
+      const response = await this.serverConnection.getCurrentExerciseOfGroup(this.group.groupName)
       if (response.success) {
         this.currentExercise = response.exercise
       } else {
@@ -126,7 +126,7 @@ export default defineComponent({
    */
   beforeMount() {
     this.group.groupName = this.groupName
-    this.loadCurrentExcercise()
+    this.loadCurrentExercise()
     this.loadNumberOfFinishedTasks()
   },
 })

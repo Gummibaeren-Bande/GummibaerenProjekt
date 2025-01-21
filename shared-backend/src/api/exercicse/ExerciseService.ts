@@ -7,16 +7,16 @@ import CallbackSuccess from "../../types/callback-types/CallbackSuccess";
 import TrackableTaskService from "../trackableTask/TrackableTaskService";
 import ExerciseServiceListener from "./interfaces/ExerciseServiceListener";
 
-class ExcerciseService implements ExerciseServiceListener {
+class ExerciseService implements ExerciseServiceListener {
   private readonly trackableTaskService: TrackableTaskService;
 
   constructor(trackableTaskService: TrackableTaskService) {
     this.trackableTaskService = trackableTaskService;
-    console.log("Excercise service was successfully started");
+    console.log("Exercise service was successfully started");
   }
 
   /**
-   * try to answer the current excercise of the given group with the given answer
+   * try to answer the current exercise of the given group with the given answer
    * if, the answer is correct, the corresponding TrackableTask is marked as completed.
    * Getting the next question is a seperate action.
    *
@@ -24,19 +24,22 @@ class ExcerciseService implements ExerciseServiceListener {
    * @param answer the answer given by the group
    * @param callback a callback that will provide information if the answer was correct
    */
-  public answerCurrentExcercise(
+  public answerCurrentExercise(
     groupName: string,
-    excerciseId: string,
+    exerciseId: string,
     answer: Answer,
     callback: CallbackSuccess,
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
     if (!currentTask) {
-      throw new Error("current task not found for the given group!");
+      callback(
+        new CallbackSuccessDTO(false, "Keine aktuelle Aufgabe gefunden"),
+      );
+      return;
     }
     const currentExercise = currentTask.getChosenExercise();
-    if (currentExercise.id !== excerciseId) {
+    if (currentExercise.id !== exerciseId) {
       callback(
         new CallbackSuccessDTO(
           false,
@@ -45,59 +48,112 @@ class ExcerciseService implements ExerciseServiceListener {
       );
       return;
     }
-    const correct = currentExercise.answer(answer);
-    if (correct) {
-      this.trackableTaskService.handleTaskCompleted(groupName);
-      callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
+    try {
+      const correct = currentExercise.answer(answer);
+      if (correct) {
+        this.trackableTaskService.handleTaskCompleted(groupName);
+        callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
+      }
+      callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
+      this.trackableTaskService.incrementAttempts(groupName);
+    } catch (error) {
+      //This catch is never entered because the errors are never reached
+      if (error instanceof Error) {
+        callback(new CallbackSuccessDTO(false, error.message));
+      } else {
+        callback(
+          new CallbackSuccessDTO(
+            false,
+            "Ein unbekannter Fehler ist aufgetreten",
+          ),
+        );
+      }
     }
-    callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
   }
 
   /**
-   * delivers the current Excercise in the callback. Throws an error if the group has no current excercise.
+   * delivers the current Exercise in the callback. Throws an error if the group has no current exercise.
    *
-   * @param groupName the group that wants its current Excercise
-   * @param callback the callback that delivers the current Excercise
+   * @param groupName the group that wants its current Exercise
+   * @param callback the callback that delivers the current Exercise
    */
-  public getCurrentExcerciceOfGroup(
+  public getCurrentExerciseOfGroup(
     groupName: string,
     callback: CallbackExercise,
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
-
     if (!currentTask) {
-      throw new Error("current task of given group not found!");
+      callback(
+        new CallbackExerciseDTO(
+          false,
+          "Keine aktuelle Aufgabe gefunden",
+          false,
+          null,
+        ),
+      );
+      return;
     }
-    const currentExcercise = new ExerciseDTO(currentTask.getChosenExercise());
-    if (currentExcercise) {
-      callback(new CallbackExerciseDTO(true, "", false, currentExcercise));
-    } else {
-      throw new Error("No current excercise found for the given group");
-    }
+    const currentExercise = new ExerciseDTO(currentTask.getChosenExercise());
+    callback(new CallbackExerciseDTO(true, "", false, currentExercise));
   }
 
   /**
-   * tries to deliver the next Excercise in the callback. If the given group is finished and therefore does
-   * not have a next task the callback specifies that in its message and the delivered Excercise is null
+   * tries to deliver the next Exercise in the callback. If the given group is finished and therefore does
+   * not have a next task the callback specifies that in its message and the delivered Exercise is null
    *
-   * @param groupName the group that wants its next Excercise
-   * @param callback the callback that may deliver the next Excercise
+   * @param groupName the group that wants its next Exercise
+   * @param callback the callback that may deliver the next Exercise
    */
   public getNextExerciceOfGroup(groupName: string, callback: CallbackExercise) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
     if (hasNextTask) {
-      const nextExcercise = new ExerciseDTO(
-        this.trackableTaskService
-          .getNextTaskOfGroup(groupName)
-          .getChosenExercise(),
-      );
-      callback(new CallbackExerciseDTO(true, "", false, nextExcercise));
+      try {
+        const nextExercise = new ExerciseDTO(
+          this.trackableTaskService
+            .getNextTaskOfGroup(groupName)
+            .getChosenExercise(),
+        );
+        callback(new CallbackExerciseDTO(true, "", false, nextExercise));
+      } catch (error) {
+        if (error instanceof Error) {
+          callback(new CallbackExerciseDTO(false, error.message, false, null));
+        } else {
+          callback(
+            new CallbackExerciseDTO(
+              false,
+              "Ein unbekannter Fehler ist aufgetreten",
+              false,
+              null,
+            ),
+          );
+        }
+      }
     } else {
-      throw new Error("No next excercise found for the given group");
+      if (hasNextTask === undefined) {
+        callback(
+          new CallbackExerciseDTO(
+            false,
+            "Die Gruppe wurde nicht gefunden",
+            false,
+            null,
+          ),
+        );
+        return;
+      } else {
+        callback(
+          new CallbackExerciseDTO(
+            false,
+            "Die Gruppe hat keine weiteren Aufgaben",
+            true,
+            null,
+          ),
+        );
+        return;
+      }
     }
   }
 }
 
-export default ExcerciseService;
+export default ExerciseService;

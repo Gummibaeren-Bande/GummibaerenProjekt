@@ -14,12 +14,12 @@ function exerciseHandler(
   service: ExerciseService,
 ) {
   socket.on(
-    "answerCurrentExcercise",
-    (groupName, excerciseId, answer, callback) =>
-      service.answerCurrentExcercise(groupName, excerciseId, answer, callback),
+    "answerCurrentExercise",
+    (groupName, exerciseId, answer, callback) =>
+      service.answerCurrentExercise(groupName, exerciseId, answer, callback),
   );
-  socket.on("getCurrentExcerciceOfGroup", (groupName, callback) =>
-    service.getCurrentExcerciceOfGroup(groupName, callback),
+  socket.on("getCurrentExerciseOfGroup", (groupName, callback) =>
+    service.getCurrentExerciseOfGroup(groupName, callback),
   );
   socket.on("getNextExerciceOfGroup", (groupName, callback) =>
     service.getNextExerciceOfGroup(groupName, callback),

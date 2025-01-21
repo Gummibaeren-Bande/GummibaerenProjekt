@@ -70,7 +70,7 @@ class ServerConnection {
     return new Promise((resolve) => {
       console.log('Sende Antwort: ' + answer)
       this.socket.emit(
-        'answerCurrentExcercise',
+        'answerCurrentExercise',
         groupName,
         exerciseId,
         answer,
@@ -88,9 +88,9 @@ class ServerConnection {
    * @param groupName the name of the group.
    * @returns the current Exercise.
    */
-  async getCurrentExcerciceOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
+  async getCurrentExerciseOfGroup(groupName: String): Promise<CallbackExerciseDTO> {
     return new Promise((resolve) => {
-      this.socket.emit('getCurrentExcerciceOfGroup', groupName, (response: CallbackExerciseDTO) => {
+      this.socket.emit('getCurrentExerciseOfGroup', groupName, (response: CallbackExerciseDTO) => {
         resolve(response)
       })
     })

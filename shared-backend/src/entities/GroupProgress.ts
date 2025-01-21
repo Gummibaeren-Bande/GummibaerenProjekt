@@ -63,14 +63,8 @@ class GroupProgress extends ObservableEntity {
 
   /**
    * This method is used to finish the group progress.
-   * It throws an error if there are still unfinished tasks left.
    */
   public finishWork() {
-    if (this.hasNextTask()) {
-      throw new Error(
-        "The group progress can't be finished, there are still unfinished tasks left.",
-      );
-    }
     this.stopTimer();
     this.notifySubscriber();
   }
@@ -90,7 +84,19 @@ class GroupProgress extends ObservableEntity {
    * @returns true if there are more tasks left to work on, false otherwise
    */
   public hasNextTask(): boolean {
-    return this.indexOfCurrentTask < this.progress.length - 1;
+    let counter = 0;
+    if (this.indexOfCurrentTask === this.progress.length - 1) {
+      return false;
+    }
+    for (let i = this.indexOfCurrentTask + 1; i < this.progress.length; i++) {
+      if (this.progress[i].getState() === TrackableTaskState.Skipped) {
+        counter++;
+      }
+    }
+    if (counter === this.progress.length - this.indexOfCurrentTask - 1) {
+      return false;
+    }
+    return true;
   }
 
   /**
@@ -103,11 +109,19 @@ class GroupProgress extends ObservableEntity {
     }
     if (
       this.progress[this.indexOfCurrentTask].getState() !==
-      TrackableTaskState.Completed
+        TrackableTaskState.Completed &&
+      this.progress[this.indexOfCurrentTask].getState() !==
+        TrackableTaskState.Skipped
     ) {
       throw new Error("The current task has not been completed yet");
     }
     this.indexOfCurrentTask++;
+    if (
+      this.progress[this.indexOfCurrentTask].getState() ===
+      TrackableTaskState.Skipped
+    ) {
+      return this.goToNextTask();
+    }
     this.progress[this.indexOfCurrentTask].startTask();
     this.notifySubscriber();
     return this.getCurrentTask();

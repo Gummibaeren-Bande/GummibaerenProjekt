@@ -25,7 +25,6 @@ class WelcomeService {
   socketConnectionOpened(socket: IoSocket, isTeacher: boolean) {
     const entity: string = isTeacher ? "teacher" : "student";
     console.log(`${entity} connected to socket ${socket.id}`);
-
     if (isTeacher) {
       this.teacherEmitsService.addSocket(socket);
     }
