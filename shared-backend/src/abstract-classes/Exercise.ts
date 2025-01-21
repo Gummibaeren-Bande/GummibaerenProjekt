@@ -15,7 +15,7 @@ export default abstract class Exercise {
    * @param answer the answer provided by the group
    * @returns true if the answer is correct, false otherwise
    */
-  answer!: (answer: Answer) => boolean;
+  public abstract answer(answer: Answer): boolean;
 
   public getId(): string {
     return this.id;

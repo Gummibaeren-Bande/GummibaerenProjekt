@@ -1,7 +1,7 @@
 <template>
-  <TaskHeader :title="task.title" :group="group" />
-  <TaskBody :question="task.question" :description="task.description" />
-  <TaskDefaultAnswerbar v-on:submit-answer="submitAnswer()" :disabled="disableToAnswer">
+  <TaskHeader :title="exercise.title" :group="group" />
+  <TaskBody :question="exercise.question" :description="exercise.description" />
+  <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
       class="margin5"
@@ -10,26 +10,23 @@
       fluid
       locale="de-DE"
       :disabled="disableToAnswer"
+      @keydown.enter="submitAnswer()"
     />
   </TaskDefaultAnswerbar>
 </template>
 
-<script lang="ts">
+<script setup lang="ts">
 import '../taskcomponents/Task.css'
 import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
 import InputNumber from 'primevue/inputnumber'
 import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
 import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
-import { defineComponent } from 'vue'
-import type { PropType } from 'vue'
+import { defineComponent, type PropType } from 'vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
+import type ExerciseDTO from '../../../../shared-backend/src/dtos/ExerciseDTO'
+</script>
 
-interface Task {
-  title: string
-  description: string
-  question: string
-}
-
+<script lang="ts">
 export default defineComponent({
   components: {
     TaskDefaultAnswerbar,
@@ -37,10 +34,9 @@ export default defineComponent({
     TaskBody,
     InputNumber,
   },
-  emits: ['submitAnswer'],
   props: {
-    task: {
-      type: Object as PropType<Task>,
+    exercise: {
+      type: Object as PropType<ExerciseDTO>,
       required: true,
     },
     group: {
@@ -52,6 +48,7 @@ export default defineComponent({
       default: false,
     },
   },
+  emits: ['submitAnswer'],
   data() {
     return {
       value: undefined as number | undefined,
@@ -61,10 +58,18 @@ export default defineComponent({
     // Submits answer to parent if a number was written into the input field.
     submitAnswer() {
       if (typeof this.value === 'number') {
-        this.$emit('submitAnswer', [this.value.toString()])
+        this.$emit('submitAnswer', this.value)
+      } else {
+        console.log('Bitte gebe zuerst eine Antwort ein.')
       }
-      console.log('Bitte gebe zuerst eine Antwort ein.')
     },
+  },
+
+  /**
+   * Is called when proporties change before the display is rerenderd.
+   */
+  beforeUpdate() {
+    this.value = undefined //clears the numeric input when a new exercise is loaded.
   },
 })
 </script>

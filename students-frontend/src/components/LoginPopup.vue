@@ -5,7 +5,12 @@
       <Button @click="openReconnect()" class="p-button-rounded p-button-text help-icon">?</Button>
     </div>
     <div class="content-container">
-      <InputText class="teamname-input" v-model="groupName" placeholder="Teamname eingeben" />
+      <InputText
+        class="teamname-input"
+        @keydown.enter="handleSignOn()"
+        v-model="groupName"
+        placeholder="Teamname eingeben"
+      />
     </div>
     <div class="footer-container">
       <Button class="start-button" @click="handleSignOn()">Starten</Button>
@@ -13,7 +18,7 @@
   </Dialog>
   <ReconnectPopup
     v-if="reconnectGroupVisible"
-    :socket="socket"
+    :server-connection="serverConnection"
     @close="reconnectPopupOnClose()"
     @joined-group="validGroupSelected"
   ></ReconnectPopup>
@@ -24,7 +29,7 @@ import ReconnectPopup from './ReconnectPopup.vue'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
-import { io, Socket } from 'socket.io-client'
+import ServerConnection from '@/ServerConnection'
 </script>
 
 <script lang="ts">
@@ -34,17 +39,10 @@ const TEAM_NAME_CONFIG = {
   VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜß0-9\s]+$/,
 }
 
-// socket for backend communication
-const socket = io('http://localhost:3000/students')
-
-socket.on('connect', () => {
-  console.log(`connected to socket id ${socket.id}`)
-})
-
 export default {
   props: {
-    socket: {
-      type: Socket,
+    serverConnection: {
+      type: ServerConnection,
       required: true,
     },
   },
@@ -99,16 +97,15 @@ export default {
      * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
     async authentificateGroup(name: string): Promise<boolean> {
+      const response = await this.serverConnection.authentificateGroup(name)
       return new Promise((resolve) => {
-        socket.emit('addGroup', name, (response: { success: boolean; message: string }) => {
-          if (response.success) {
-            this.diplayGroupCreationSuccess(response.message)
-            resolve(true)
-          } else {
-            this.diplayGroupCreationError(response.message)
-            resolve(false)
-          }
-        })
+        if (response.success) {
+          this.diplayGroupCreationSuccess(response.message)
+          resolve(true)
+        } else {
+          this.diplayGroupCreationError(response.message)
+          resolve(false)
+        }
       })
     },
 

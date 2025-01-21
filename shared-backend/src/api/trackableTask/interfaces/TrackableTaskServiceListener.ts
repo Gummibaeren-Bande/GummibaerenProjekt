@@ -1,5 +1,3 @@
-import CallbackNumber from "../../../types/callback-types/CallbackNumber";
-
 interface TrackableTaskServiceListener {
   skipTask: (taskId: string, groupName: string) => void;
   revertTaskSkip: (taskId: string, groupName: string) => void;

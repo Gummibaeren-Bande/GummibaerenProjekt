@@ -12,7 +12,7 @@ import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
 import TaskQuestion from '../taskcomponents/TaskBodyParts/TaskQuestion.vue'
 import TaskMultipleChoiceSection from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSection.vue'
 import TaskAnswerbutton from '../taskcomponents/TaskAnswerbarParts/TaskAnswerbutton.vue'
-import MultipaleChoiceTask from '../taskviews/MultipaleChoiceTask.vue'
+import MultipleChoiceTask from '../taskviews/MultipleChoiceTask.vue'
 import NumericTask from '../taskviews/NumericTask.vue'
 
 const globalConfig = {
@@ -69,7 +69,7 @@ describe('TaskDisplay.vue', () => {
     expect(wrapper.findComponent(NumericTask).exists()).toBe(true)
   })
 
-  it('renders MultipaleChoiceTask component', () => {
+  it('renders MultipleChoiceTask component', () => {
     const wrapper = mount(TaskDisplay, {
       global: globalConfig,
       data() {
@@ -106,7 +106,7 @@ describe('TaskDisplay.vue', () => {
         }
       },
     })
-    expect(wrapper.findComponent(MultipaleChoiceTask).exists()).toBe(true)
+    expect(wrapper.findComponent(MultipleChoiceTask).exists()).toBe(true)
   })
 
   it('renders TaskMultipleChoiceSection component', () => {
