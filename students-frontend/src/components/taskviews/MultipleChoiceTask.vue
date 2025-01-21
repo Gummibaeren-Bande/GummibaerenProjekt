@@ -16,7 +16,7 @@ import TaskMultipleChoiceSection, {
   type Option,
 } from '../taskcomponents/TaskBodyParts/TaskMultipleChoiceSection.vue'
 import type { GroupInfo } from '../taskcomponents/TaskHeader/TaskInfoBar.vue'
-import { defineComponent, onBeforeUpdate } from 'vue'
+import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 import type ExerciseDTO from '../../../../shared-backend/src/dtos/ExerciseDTO'
 
@@ -48,13 +48,13 @@ export default defineComponent({
     },
   },
   methods: {
-    /* Submits the answer with the selceted choices.
-     *  $refs used to get the refernce set in the TaskMultiplechoicesSection with "ref".
+    /* Submits the answer with the selected choices.
+     *  $refs used to get the reference set in the TaskMultiplechoicesSection with "ref".
      *  If nothing is selected the answer will still be sent.
      */
     submitAnswer() {
       const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
-      let answer = new Array()
+      const answer = []
       const answerStrings = choices.getSelectedOptions()
       for (let i = 0; i < answerStrings.length; i++) {
         answer.push(Number(answerStrings[i]))
@@ -63,13 +63,13 @@ export default defineComponent({
     },
 
     /**
-     * Updates and Displays the Options to answer the MultipleChoice Question
-     * Cant direcktly Pass the OptionsTrough. So thy need to be updatet here. (lifesycle hooks beforeUpdate and beforeMount)
+     * Updates and displays the oOptions to answer the multiple choice question
+     * Cant directly pass the options through. So they need to be updated here.
      */
     updateOptions() {
       if (Array.isArray(this.exercise.options)) {
         this.options = new Array(this.exercise.options.length)
-        for (var i = 0; i < this.exercise.options.length; i++) {
+        for (let i = 0; i < this.exercise.options.length; i++) {
           this.options[i] = { label: this.exercise.options[i], value: String(i) }
         }
       }
@@ -77,16 +77,16 @@ export default defineComponent({
   },
 
   /**
-   * Is Called when proporties Change befor the Display is rerenderd.
+   * Is called when proporties change before the display is rerenderd.
    */
   beforeUpdate() {
-    this.updateOptions() // updates the answer options when a new Exercise is loaded.
+    this.updateOptions() // updates the answer options when a new exercise is loaded.
     const choices = this.$refs.choices as InstanceType<typeof TaskMultipleChoiceSection>
-    choices.resetSelectedOptions() //clears the MutlipleChoice slesction Input when new Exercise is loaded.
+    choices.resetSelectedOptions() //clears the MutlipleChoice selection input when new exercise is loaded.
   },
 
   /**
-   * makes sure to load the Answer Options befor the first render (displayed to User).
+   * makes sure to load the answer options before the first render.
    */
   beforeMount() {
     this.updateOptions()

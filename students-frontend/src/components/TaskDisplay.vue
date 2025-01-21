@@ -30,6 +30,7 @@ import { defineComponent } from 'vue'
 import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
+import Answer from '../../../shared-backend/src/types/Answer'
 </script>
 
 <script lang="ts">
@@ -51,8 +52,8 @@ export default defineComponent({
       isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
       group: {
-        groupName: 'Teddybären',
-        finishedTasks: 1,
+        groupName: '',
+        finishedTasks: 0,
       },
     }
   },
@@ -66,20 +67,24 @@ export default defineComponent({
       const response = await this.serverConnection.answerCurrentExercise(
         this.groupName,
         this.currentExercise.id,
-        givenAnswer,
+        givenAnswer as Answer,
       )
       this.isCorrect = response.success
       this.disableToAnswer = true
       this.isRigthWrongOverlayVisible = true
     },
 
-    //Handels the "weiter" button from the RightWrongOverlay.
-    // TODO: This is a temp function and has to be updatet later on.
+    /**
+     * This method is called to continue with the Question. It will close the
+     * RightWrongOverlay and enable to answer the Question again. If the last
+     * give answer was right it will load the Next exercise first.
+     */
     continueWithQuestion() {
       this.isRigthWrongOverlayVisible = false
       this.disableToAnswer = false
       if (this.isCorrect) {
         this.loadNextExercise()
+        this.loadNumberOfFinishedTasks()
       }
     },
 
