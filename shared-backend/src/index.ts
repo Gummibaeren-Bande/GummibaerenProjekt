@@ -28,13 +28,15 @@ import dgram from "dgram";
 
 // set up ip of active port for testing puropses
 
-let ip = await (async () => { return await getActiveInterfaceIp(); })();
+let ip = await (async () => {
+  return await getActiveInterfaceIp();
+})();
 
 // save server ip to env file
 console.log(`server ip: ${ip}`);
 fs.writeFileSync(
   "../students-frontend/server.env",
-  `VITE_SERVER_URL=http://${ip}:3000/students\n`
+  `VITE_SERVER_URL=http://${ip}:3000/students\n`,
 );
 
 async function getActiveInterfaceIp(): Promise<string> {
@@ -64,7 +66,12 @@ const io: IoServer = new Server<
   SocketData
 >(httpServer, {
   cors: {
-    origin: ["http://localhost:8080", "http://localhost:8081", `http://${ip}:8080`, `http://${ip}:8081`], // specify who can access this backend
+    origin: [
+      "http://localhost:8080",
+      "http://localhost:8081",
+      `http://${ip}:8080`,
+      `http://${ip}:8081`,
+    ], // specify who can access this backend
   },
 });
 
