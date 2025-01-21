@@ -4,7 +4,7 @@ import datetime
 import csv
 import matplotlib.dates as mdates
 
-max_estimate = 75  #Current total estimate
+max_estimate = 76  #Current total estimate
 
 with open("Burn-Up-Chart/log.csv", "r") as file:
     dates = []      # will hold the Dates of the log.csv
