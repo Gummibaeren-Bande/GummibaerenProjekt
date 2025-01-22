@@ -7,7 +7,7 @@ Stand vom 07.01.25:
 
 ## Definition of Done
 - [ ] Diese Checkliste wird pro Increment von zwei Personen durchlaufen. Mir selbst und einer weiteren Person, die ich gezielt angesprochen habe.
-- [ ] Der Code besteht alle Testfälle. [im Backend mit npm run test, ansonsten npm run test:unit]
+- [ ] Der Code besteht alle Testfälle. [im Backend mit npm run test, frontends sind Außnahme]
 - [ ] Jede Methode mit Rückgabewert hat mindestens einen von mir selbst erstellten Testfall (Ausnahmen: getter/setter, dummy-methoden, frontends).
 - [ ] Jede neue Methode hat einen Kommentar, was sie tut. In diesem Kommentar steht auch etwas zum eventuellen return-wert (Ausnahmen: getter/setter).
 - [ ] Dummy-Methoden sind als solche kommentiert.
