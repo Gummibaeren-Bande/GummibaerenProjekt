@@ -7,13 +7,13 @@
     <div class="content-container">
       <InputText
         class="teamname-input"
-        @keydown.enter="handleSignIn()"
+        @keydown.enter="reconnectToGroup(groupName)"
         v-model="groupName"
         placeholder="Teamname eingeben"
       />
     </div>
     <div class="footer-container">
-      <Button @click="handleSignIn()" class="start-button">Starten</Button>
+      <Button @click="reconnectToGroup(groupName)" class="start-button">Starten</Button>
     </div>
   </Dialog>
 </template>
@@ -26,12 +26,6 @@ import ServerConnection from '@/ServerConnection'
 </script>
 
 <script lang="ts">
-const TEAM_NAME_CONFIG = {
-  MIN_LENGTH: 3,
-  MAX_LENGTH: 20,
-  VALID_CHARACTER_REGEX: /^[A-Za-zäöüÄÖÜ0-9\s]+$/,
-}
-
 export default {
   props: {
     serverConnection: {
@@ -48,19 +42,6 @@ export default {
     close(): void {
       this.$emit('close')
     },
-    /**
-     * Handles the sign-in process by validating the group name and authenticating the group.
-     * @param {Function} closeCallback - Function to close the dialog.
-     */
-    async handleSignIn(): Promise<void> {
-      if (this.testGroupName(this.groupName) && (await this.reconnectToGroup(this.groupName))) {
-        this.pushGroupNameToURL()
-        this.$emit('joined-group', this.groupName) // Emit the group name
-        this.close()
-      } else {
-        this.groupName = ''
-      }
-    },
 
     async openReconnect(): Promise<void> {
       console.log('trying to reconnect')
@@ -76,41 +57,16 @@ export default {
       return new Promise((resolve) => {
         if (response.success) {
           this.diplayGroupCreationSuccess(response.message)
+          this.pushGroupNameToURL()
+          this.$emit('joined-group', this.groupName) // Emit the group name
+          this.close()
           resolve(true)
         } else {
           this.diplayGroupCreationError(response.message)
+          this.groupName = ''
           resolve(false)
         }
       })
-    },
-
-    /**
-     * Validates the provided group name based on several rules.
-     * @param {string} name - The group name to validate.
-     * @returns {boolean} - Returns `true` if the name is valid, otherwise `false`.
-     */
-    testGroupName(name: string): boolean {
-      if (this.isEmpty(name)) {
-        this.diplayGroupCreationError('Bitte gebe einen Teamnamen ein!')
-        return false
-      } else if (this.isNotRequiredLength(name)) {
-        this.diplayGroupCreationError(
-          `Der Teamname muss zwischen ${TEAM_NAME_CONFIG.MIN_LENGTH} und ${TEAM_NAME_CONFIG.MAX_LENGTH} Zeichen lang sein!`,
-        )
-        return false
-      } else if (this.startsWithSpace(name)) {
-        this.diplayGroupCreationError('Der Teamname muss mit einem Buchstaben beginnen!')
-        return false
-      } else if (this.endsWithSpace(name)) {
-        this.diplayGroupCreationError('Der Teamname darf nicht mit einem Leerzeichen enden!')
-        return false
-      } else if (this.hasIllegalCharacters(name)) {
-        this.diplayGroupCreationError(
-          'Der Teamname darf nur aus Buchstaben, Leerzeichen und Zahlen bestehen!',
-        )
-        return false
-      }
-      return true
     },
 
     /**
@@ -149,53 +105,6 @@ export default {
         detail: message,
         life: 4000,
       })
-    },
-
-    /**
-     * Checks if the provided text is empty.
-     * @param {string} text - The text to check.
-     * @returns {boolean} - Returns `true` if the text is empty, otherwise `false`.
-     */
-    isEmpty(text: string): boolean {
-      return text.length === 0
-    },
-
-    /**
-     * Checks if the provided text is not within the required length range.
-     * @param {string} text - The text to check.
-     * @returns {boolean} - Returns `true` if the text is too short or too long, otherwise `false`.
-     */
-    isNotRequiredLength(text: string): boolean {
-      const length = text.length
-      return length < TEAM_NAME_CONFIG.MIN_LENGTH || length > TEAM_NAME_CONFIG.MAX_LENGTH
-    },
-
-    /**
-     * Checks if the provided text starts with a space.
-     * @param {string} text - The text to check.
-     * @returns {boolean} - Returns `true` if the text starts with a space, otherwise `false`.
-     */
-    startsWithSpace(text: string): boolean {
-      return text.startsWith(' ')
-    },
-
-    /**
-     * Checks if the provided text ends with a space.
-     * @param {string} text - The text to check.
-     * @returns {boolean} - Returns `true` if the text ends with a space, otherwise `false`.
-     */
-    endsWithSpace(text: string): boolean {
-      return text.endsWith(' ')
-    },
-
-    /**
-     * Checks if the provided text contains illegal characters.
-     * @param {string} text - The text to check.
-     * @returns {boolean} - Returns `true` if the text contains illegal characters, otherwise `false`.
-     */
-    hasIllegalCharacters(text: string): boolean {
-      const validCharacterRegex = TEAM_NAME_CONFIG.VALID_CHARACTER_REGEX
-      return !validCharacterRegex.test(text)
     },
   },
 }
