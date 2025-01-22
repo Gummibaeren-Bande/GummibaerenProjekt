@@ -123,6 +123,70 @@ describe("GroupServices", () => {
       ),
     );
   });
+  it("should not add a group with empty string", () => {
+    const empty_string = "";
+    const callback = jest.fn();
+    groupSetService.addGroup(empty_string, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(false, "Der Teamname darf nicht leer sein!"),
+    );
+  });
+  it("should not add a group with a short name", () => {
+    const short_name = "42";
+    const callback = jest.fn();
+    groupSetService.addGroup(short_name, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Der Teamname muss zwischen 3 und 20 Zeichen lang sein!",
+      ),
+    );
+  });
+  it("should not add a group with a long name", () => {
+    const long_name =
+      "Rindfleischetikettierungsüberwachungsaufgabenübertragungsgesetz";
+    const callback = jest.fn();
+    groupSetService.addGroup(long_name, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Der Teamname muss zwischen 3 und 20 Zeichen lang sein!",
+      ),
+    );
+  });
+  it("should not add a group if the name starts with space", () => {
+    const starts_with_space = " Nein";
+    const callback = jest.fn();
+    groupSetService.addGroup(starts_with_space, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Der Teamname darf nicht mit einem Leerzeichen beginnen!",
+      ),
+    );
+  });
+  it("should not add a group if the name ends with space", () => {
+    const ends_with_space = "Illuminati ";
+    const callback = jest.fn();
+    groupSetService.addGroup(ends_with_space, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Der Teamname darf nicht mit einem Leerzeichen enden!",
+      ),
+    );
+  });
+  it("should not add a group if the name has illegal characters", () => {
+    const illegal_characters = "Ke$ha";
+    const callback = jest.fn();
+    groupSetService.addGroup(illegal_characters, callback, SOCKET_1);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Der Teamname darf nur aus Buchstaben, Leerzeichen und Zahlen bestehen!",
+      ),
+    );
+  });
   it("should return a group by name", () => {
     const group = groupService.getGroupByName(groupIdentifier);
     expect(group).toBeDefined();
