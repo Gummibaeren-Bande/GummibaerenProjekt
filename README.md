@@ -60,11 +60,12 @@ In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen F
 * Die Ansicht für Lehrkräfte wird nur für den Desktop-Browser und das IPad im Hoch- und Querformat optimiert.
 * Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt. [was ist damit gemeint?]
 * Im Backend gibt es einen zentralen Emit an das teachers-frontend, der bei jeder Änderung neu ausgelöst wird
-* Für eine abschließenden Test der frontends haben wir uns folgende Geräte ausgesucht:
+* Für eine abschließenden Systemtest der frontends haben wir uns folgende Geräte ausgesucht:
     * Fabi: Android - Chromium Ecosia Browser
     * Felix: IPad - Safari Browser 
     * Jonathan: MacBook - Safari Browser, Windows 11 4K - Chrome Browser
     * Jonas: Windows 11 - Firefox Browser
+* Unit-Tests machen wir ausschließlich im Backend, da alle Programmlogik nach MVC dort implementiert ist. Dabei konzentrieren wir uns auf ein vollständige Testabdeckung der  Entities (Model). Für die Services (Teil des Controllers) testen wir alle Codestellen, die wir mit den implementierten Interfaces erreichen können.
 
 
 ## Burn Up chart
