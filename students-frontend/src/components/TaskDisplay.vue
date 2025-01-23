@@ -109,8 +109,7 @@ export default defineComponent({
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       } else {
-        if (response.isFinished)
-          this.showFinishedWork() //CurrentExercise gibt immer FinishedWork = False zurück.
+        if (response.isFinished) this.showFinishedWork() //CurrentExercise gibt immer FinishedWork = False zurück.
         console.log(response.message)
       }
     },
@@ -129,14 +128,11 @@ export default defineComponent({
      * Loads a new Display to show the user that he has solved all Exercises.
      */
     showFinishedWork() {
-      this.currentExercise = new ExerciseDTO(new NumericalExercise(
-        "Fertig",
-        "",
-        "Du hast alle Aufgaben gelöst. Toll gemacht.",
-        null,
-      ))
+      this.currentExercise = new ExerciseDTO(
+        new NumericalExercise('Fertig', '', 'Du hast alle Aufgaben gelöst. Toll gemacht.', null),
+      )
       this.disableToAnswer = true
-    }
+    },
   },
 
   /**
