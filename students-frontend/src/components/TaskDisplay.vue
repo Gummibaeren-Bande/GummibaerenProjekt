@@ -129,7 +129,7 @@ export default defineComponent({
      */
     showFinishedWork() {
       this.currentExercise = new ExerciseDTO(
-        new NumericalExercise('Fertig', '', 'Du hast alle Aufgaben gelöst. Toll gemacht.', null),
+        new NumericalExercise('Fertig', '', 'Du hast alle Aufgaben gelöst. Toll gemacht.', -1),
       )
       this.disableToAnswer = true
     },
