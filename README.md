@@ -58,7 +58,7 @@ In einer kleinen Lerneinheit möchte die Lehrkraft mit den drei Schüler:innen F
 
 ## wichtige Entscheidungen
 * Die Ansicht für Lehrkräfte wird nur für den Desktop-Browser und das IPad im Hoch- und Querformat optimiert.
-* Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt. [was ist damit gemeint?]
+* Die Systeme bleiben vorerst getrennt und werden erst am Ende eventuell zusammengefügt.
 * Im Backend gibt es einen zentralen Emit an das teachers-frontend, der bei jeder Änderung neu ausgelöst wird
 * Für eine abschließenden Systemtest der frontends haben wir uns folgende Geräte ausgesucht:
     * Fabi: Android - Chromium Ecosia Browser
