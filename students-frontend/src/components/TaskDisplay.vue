@@ -31,6 +31,7 @@ import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 import Answer from '../../../shared-backend/src/types/Answer'
+import NumericalExercise from '../../../shared-backend/src/entities/NumericalExercise'
 </script>
 
 <script lang="ts">
@@ -95,6 +96,8 @@ export default defineComponent({
       const response = await this.serverConnection.getNextExerciceOfGroup(this.group.groupName)
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
+      } else if (response.isFinished) {
+        this.showFinishedWork()
       }
     },
 
@@ -106,6 +109,8 @@ export default defineComponent({
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       } else {
+        if (response.isFinished)
+          this.showFinishedWork() //CurrentExercise gibt immer FinishedWork = False zurück.
         console.log(response.message)
       }
     },
@@ -119,6 +124,19 @@ export default defineComponent({
         this.group.finishedTasks = response.number
       }
     },
+
+    /**
+     * Loads a new Display to show the user that he has solved all Exercises.
+     */
+    showFinishedWork() {
+      this.currentExercise = new ExerciseDTO(new NumericalExercise(
+        "Fertig",
+        "",
+        "Du hast alle Aufgaben gelöst. Toll gemacht.",
+        null,
+      ))
+      this.disableToAnswer = true
+    }
   },
 
   /**
