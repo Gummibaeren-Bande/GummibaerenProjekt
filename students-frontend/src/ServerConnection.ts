@@ -90,6 +90,7 @@ class ServerConnection {
    */
   async getCurrentExerciseOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
     return new Promise((resolve) => {
+      console.log('Lade aktuelle Aufgabe.')
       this.socket.emit('getCurrentExerciseOfGroup', groupName, (response: CallbackExerciseDTO) => {
         resolve(response)
       })
@@ -107,7 +108,7 @@ class ServerConnection {
         'Anfrage an den Server zur der Anzahl an gelösten Aufgaben von Gruppe: ' + groupName,
       )
       this.socket.emit('getNumberOfFinishedTasks', groupName, (response: CallbackNumberDTO) => {
-        console.log(response.message)
+        if (response.message !== '') console.log(response.message)
         resolve(response)
       })
     })
@@ -122,7 +123,7 @@ class ServerConnection {
     return new Promise((resolve) => {
       console.log('Anfrage nach nächster Aufgabe.')
       this.socket.emit('getNextExerciceOfGroup', groupName, (response: CallbackExerciseDTO) => {
-        console.log(response.message)
+        if (response.message !== '') console.log(response.message)
         resolve(response)
       })
     })
