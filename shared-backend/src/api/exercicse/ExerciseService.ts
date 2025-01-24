@@ -28,13 +28,13 @@ class ExerciseService implements ExerciseServiceListener {
     groupName: string,
     exerciseId: string,
     answer: Answer,
-    callback: CallbackSuccess,
+    callback: CallbackSuccess
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
     if (!currentTask) {
       callback(
-        new CallbackSuccessDTO(false, "Keine aktuelle Aufgabe gefunden"),
+        new CallbackSuccessDTO(false, "Keine aktuelle Aufgabe gefunden")
       );
       return;
     }
@@ -43,8 +43,8 @@ class ExerciseService implements ExerciseServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Die gegebene ID stimmt nicht mit der ID der aktuellen Aufgabe überein",
-        ),
+          "Die gegebene ID stimmt nicht mit der ID der aktuellen Aufgabe überein"
+        )
       );
       return;
     }
@@ -64,8 +64,8 @@ class ExerciseService implements ExerciseServiceListener {
         callback(
           new CallbackSuccessDTO(
             false,
-            "Ein unbekannter Fehler ist aufgetreten",
-          ),
+            "Ein unbekannter Fehler ist aufgetreten"
+          )
         );
       }
     }
@@ -79,7 +79,7 @@ class ExerciseService implements ExerciseServiceListener {
    */
   public getCurrentExerciseOfGroup(
     groupName: string,
-    callback: CallbackExercise,
+    callback: CallbackExercise
   ) {
     const currentTask =
       this.trackableTaskService.getCurrentTaskByGroupName(groupName);
@@ -89,8 +89,19 @@ class ExerciseService implements ExerciseServiceListener {
           false,
           "Keine aktuelle Aufgabe gefunden",
           false,
-          null,
-        ),
+          null
+        )
+      );
+      return;
+    }
+    if (currentTask.getFinishedAfterSeconds()) {
+      callback(
+        new CallbackExerciseDTO(
+          false,
+          "Alle aufgaben wurden beendet",
+          true,
+          null
+        )
       );
       return;
     }
@@ -113,7 +124,7 @@ class ExerciseService implements ExerciseServiceListener {
         const nextExercise = new ExerciseDTO(
           this.trackableTaskService
             .getNextTaskOfGroup(groupName)
-            .getChosenExercise(),
+            .getChosenExercise()
         );
         callback(new CallbackExerciseDTO(true, "", false, nextExercise));
       } catch (error) {
@@ -125,8 +136,8 @@ class ExerciseService implements ExerciseServiceListener {
               false,
               "Ein unbekannter Fehler ist aufgetreten",
               false,
-              null,
-            ),
+              null
+            )
           );
         }
       }
@@ -137,8 +148,8 @@ class ExerciseService implements ExerciseServiceListener {
             false,
             "Die Gruppe wurde nicht gefunden",
             false,
-            null,
-          ),
+            null
+          )
         );
         return;
       } else {
@@ -147,8 +158,8 @@ class ExerciseService implements ExerciseServiceListener {
             false,
             "Die Gruppe hat keine weiteren Aufgaben",
             true,
-            null,
-          ),
+            null
+          )
         );
         return;
       }
