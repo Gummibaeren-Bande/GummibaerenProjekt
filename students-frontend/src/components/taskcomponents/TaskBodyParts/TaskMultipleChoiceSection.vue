@@ -7,7 +7,9 @@
         :value="option.value"
         :disabled="disabled"
       />
-      <label :for="option.value" class="textNormal textColor textLeft curserPointer">{{ option.label }}</label>
+      <label :for="option.value" class="textNormal textColor textLeft curserPointer">{{
+        option.label
+      }}</label>
     </div>
   </div>
 </template>

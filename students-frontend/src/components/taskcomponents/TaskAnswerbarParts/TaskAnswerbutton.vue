@@ -1,6 +1,13 @@
 <template>
   <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
-    <Button icon="pi pi-send" class="margin5" label="Abschicken" fluid @click="submitAnswer()" :disabled="disabled" />
+    <Button
+      icon="pi pi-send"
+      class="margin5"
+      label="Abschicken"
+      fluid
+      @click="submitAnswer()"
+      :disabled="disabled"
+    />
   </div>
 </template>
 
@@ -28,4 +35,3 @@ export default defineComponent({
   },
 })
 </script>
-

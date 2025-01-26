@@ -29,7 +29,6 @@ import NumericalExercise from '../../../shared-backend/src/entities/NumericalExe
 </script>
 
 <script lang="ts">
-
 export default defineComponent({
   props: {
     groupName: {
