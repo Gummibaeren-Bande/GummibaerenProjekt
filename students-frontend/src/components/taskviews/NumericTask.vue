@@ -4,10 +4,11 @@
   <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
-      class="margin5"
+      class="margin5 textAlignRight"
       input-id="integeronly"
       placeholder="Antwort"
       fluid
+      showButtons
       locale="de-DE"
       :disabled="disableToAnswer"
       @keydown.enter="submitAnswer()"
