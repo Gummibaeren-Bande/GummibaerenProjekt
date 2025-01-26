@@ -175,3 +175,7 @@
 .textAlignRight {
   align-content: right;
 }
+
+.curserPointer {
+  cursor: pointer;
+}
