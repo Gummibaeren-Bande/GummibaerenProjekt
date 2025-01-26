@@ -43,10 +43,8 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .timer {
   font-size: 26px;
-  font-weight: bold;
-  color: #ffffff66;
 }
 </style>

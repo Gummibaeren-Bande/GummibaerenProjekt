@@ -1,8 +1,6 @@
-<!-- Adds a title to the group progress table -->
-
 <template>
   <div class="background-form">
-    <div class="content-div">
+    <div>
       <TaskSetTitle></TaskSetTitle>
       <GroupProgressDisplay></GroupProgressDisplay>
     </div>
@@ -14,26 +12,12 @@ import GroupProgressDisplay from '@/components/GroupProgressDisplay.vue'
 import TaskSetTitle from '@/components/TaskSetTitle.vue'
 </script>
 
-<style scoped>
+<style>
 .background-form {
-  background-color: rgb(0, 150, 130);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
+  width: 100vw;
   padding: 3%;
-  width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  overflow: hidden;
 }
-
-.content-div {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  box-sizing: border-box;
+body {
+  background-color: rgb(0, 150, 130);
 }
 </style>

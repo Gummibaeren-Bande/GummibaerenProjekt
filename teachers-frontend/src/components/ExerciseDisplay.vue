@@ -59,7 +59,7 @@ const props = defineProps({
 })
 
 /* Initializes the exercise. Base color is gray (rgb(64,64,64)), base attempts are 0, base alternative is A (if the exercise has alternatives), task is not started. Popover is initialized.*/
-const exerciseColor = ref('rgb(64, 64, 64)')
+const exerciseColor = ref('rgb(128, 128, 128)')
 const attempts = ref(0)
 const overlay = ref()
 const exerciseAlternative = ref('A')
@@ -163,13 +163,13 @@ const toggleTimerDisplay = () => {
 
 .headerOverlay {
   font-size: 16px;
-  color: #ffffff66;
+  color: black;
 }
 
 .optionsButton {
   background: none !important;
   border: 2px solid #ffffff66 !important;
-  color: #ffffff66 !important;
+  color: black !important;
   box-shadow: none !important;
   width: 100%;
 }

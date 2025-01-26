@@ -103,44 +103,24 @@ const isFinished = (seconds: number): boolean => {
 }
 </script>
 
-<style scoped>
+<style>
 .outer-div {
-  background: #80c3b6;
+  background: white;
   font-size: 20px;
   color: black;
-  max-width: 1190px;
-  min-height: 650px;
+  width: 100%;
   overflow: auto;
   border-bottom-left-radius: 45px;
   padding: 1%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; 
 }
 
 .inner-div {
-  max-height: 650px;
+  max-height: 75vh;
   overflow-y: auto;
   width: 100%;
-}
-
-@media (min-width: 1600px) and (max-width: 2120px) {
-  .outer-div {
-    width: 100%;
-    max-width: 1820px;
-  }
-  .inner-div {
-    max-height: 800px;
-  }
-}
-
-@media (orientation: portrait) {
-  .outer-div {
-    width: 100%;
-    max-width: 100%;
-    height: 100%;
-    max-height: 100%;
-  }
-  .inner-div {
-    max-height: 58rem;
-  }
 }
 
 .exercise-display {
@@ -163,14 +143,14 @@ const isFinished = (seconds: number): boolean => {
 .sticky-column {
   position: sticky;
   left: 0;
-  background: #80c3b6;
+  background: white;
   z-index: 2;
 }
 
 .sticky-header {
   position: sticky;
   top: 0;
-  background: #80c3b6;
+  background: white;
   z-index: 1;
 }
 

@@ -8,16 +8,15 @@
 import TeacherView from './views/TeacherView.vue'
 </script>
 
-<style scoped>
-.appDisplay {
+<style>
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-  overflow-x: hidden;
 }
 </style>

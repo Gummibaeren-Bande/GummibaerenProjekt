@@ -12,7 +12,7 @@ const app = createApp(App)
 const myPreset = definePreset(Aura, {
   components: {
     popover: {
-      background: 'rgb(64, 64, 64)',
+      background: 'rgb(128, 128, 128)',
     },
   },
 })

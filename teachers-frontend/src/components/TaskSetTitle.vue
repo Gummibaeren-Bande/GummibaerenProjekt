@@ -5,14 +5,14 @@
   </div>
 </template>
 
-<style scoped>
+<style>
 .TaskSetTitle {
-  background: #80c3b6;
+  width: 100%;
+  background: white;
   color: black;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
   border-top-right-radius: 45px;
   margin-bottom: 0.2%;
 }
