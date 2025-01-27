@@ -38,6 +38,10 @@ fs.writeFileSync(
   "../students-frontend/server.env",
   `VITE_SERVER_URL=http://${ip}:3000/students\n`,
 );
+fs.writeFileSync(
+  "../teachers-frontend/server.env",
+  `VITE_SERVER_URL=http://${ip}:3000/teachers\n`,
+);
 
 async function getActiveInterfaceIp(): Promise<string> {
   return new Promise((resolve, reject) => {

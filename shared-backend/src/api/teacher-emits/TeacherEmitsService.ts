@@ -1,6 +1,7 @@
 import IoSocket from "../../types/IoSocket";
 import TeacherSocketsManager from "../../entities/TeacherSocketsManager";
 import GroupSet from "../../entities/GroupSet";
+import TaskSet from "../../entities/TaskSet";
 
 /**
  * this service handles all emits to the teachers-frontends
@@ -17,8 +18,11 @@ class TeacherEmitsService {
    * emit the changed group set to all registered teacher sockets
    * @param groupSet the changed group set to emit
    */
-  public emitChangedGroupSetToAllSockets(groupSet: GroupSet) {
-    this.teacherSocketsManager.emitChangedGroupSetToAllSockets(groupSet);
+  public emitChangedGroupSetToAllSockets(groupSet: GroupSet, taskSet: TaskSet) {
+    this.teacherSocketsManager.emitChangedGroupSetToAllSockets(
+      groupSet,
+      taskSet,
+    );
   }
 
   /**

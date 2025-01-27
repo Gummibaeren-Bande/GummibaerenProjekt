@@ -120,15 +120,21 @@ describe("TrackableTask", () => {
 
   it("should return the correct exercise index", () => {
     expect(trackableTask.getChosenExerciseIndex()).toEqual(0);
-    trackableTask.setAlternativeExercise(1);
+    trackableTask.setAlternativeExerciseById(
+      trackableTask.getTask().getExercises()[1].id,
+    );
     expect(trackableTask.getChosenExerciseIndex()).toEqual(1);
   });
 
   it("should set an alternative exercise", () => {
-    trackableTask.setAlternativeExercise(1);
+    trackableTask.setAlternativeExerciseById(
+      trackableTask.getTask().getExercises()[1].id,
+    );
     expect(trackableTask.getChosenExercise()).toEqual(exercise1b);
     trackableTask.setSkipped(true);
-    trackableTask.setAlternativeExercise(0);
+    trackableTask.setAlternativeExerciseById(
+      trackableTask.getTask().getExercises()[0].id,
+    );
     expect(trackableTask.getChosenExercise()).toEqual(exercise1a);
   });
 
@@ -175,9 +181,11 @@ describe("TrackableTask", () => {
 
   it("should throw an error when trying to change the exercise in progress", () => {
     trackableTask.startTask();
-    expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
-      "The task is in progress and can't be changed",
-    );
+    expect(() =>
+      trackableTask.setAlternativeExerciseById(
+        trackableTask.getTask().getExercises()[0].id,
+      ),
+    ).toThrow("The task is in progress and can't be changed");
   });
 
   it("should complete the task", () => {
@@ -205,8 +213,10 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to change the exercise after completion", () => {
     trackableTask.startTask();
     trackableTask.complete();
-    expect(() => trackableTask.setAlternativeExercise(0)).toThrow(
-      "The task is already completed and can't be changed",
-    );
+    expect(() =>
+      trackableTask.setAlternativeExerciseById(
+        trackableTask.getTask().getExercises()[0].id,
+      ),
+    ).toThrow("The task is already completed and can't be changed");
   });
 });

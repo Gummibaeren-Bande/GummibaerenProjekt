@@ -19,6 +19,9 @@ function groupSetHandler(
   socket.on("reconnectToGroup", (name, callback) =>
     service.reconnectToGroup(name, callback, socket),
   );
+  socket.on("requestCurrentState", (callback) =>
+    service.requestCurrentState(callback),
+  );
 }
 
 export default groupSetHandler;

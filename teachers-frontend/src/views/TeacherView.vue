@@ -2,7 +2,7 @@
   <div class="background-form">
     <div>
       <TaskSetTitle></TaskSetTitle>
-      <GroupProgressDisplay></GroupProgressDisplay>
+      <GroupProgressDisplay :server-connection="serverConnection"></GroupProgressDisplay>
     </div>
   </div>
 </template>
@@ -10,6 +10,18 @@
 <script setup lang="ts">
 import GroupProgressDisplay from '@/components/GroupProgressDisplay.vue'
 import TaskSetTitle from '@/components/TaskSetTitle.vue'
+import ServerConnection from '@/ServerConnection'
+</script>
+
+<script lang="ts">
+export default {
+  props: {
+    serverConnection: {
+      type: ServerConnection,
+      required: true,
+    },
+  },
+}
 </script>
 
 <style>

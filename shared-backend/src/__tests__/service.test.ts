@@ -9,11 +9,11 @@ import WelcomeService from "../api/welcome/WelcomeService";
 import CallbackSuccessDTO from "../dtos/CallbackDTOs/CallbackSuccessDTO";
 import taskList from "../taskList";
 import IoSocket from "../types/IoSocket";
-import GroupSetDTO from "../dtos/GroupSetDTO";
 import GroupSet from "../entities/GroupSet";
 import CallbackNumberDTO from "../dtos/CallbackDTOs/CallbackNumberDTO";
 import CallbackExerciseDTO from "../dtos/CallbackDTOs/CallbackExerciseDTO";
 import ExerciseDTO from "../dtos/ExerciseDTO";
+import TaskSet from "../entities/TaskSet";
 
 const TEST_ID = "abcd12345";
 const TEST_ID_2 = "efgh67890";
@@ -55,7 +55,10 @@ describe("TeacherEmitsService", () => {
     );
     const emitSpy = jest.spyOn(SOCKET_1, "emit");
     teacherEmitsService.addSocket(SOCKET_1);
-    teacherEmitsService.emitChangedGroupSetToAllSockets(groupSet);
+    teacherEmitsService.emitChangedGroupSetToAllSockets(
+      groupSet,
+      new TaskSet(),
+    );
     expect(emitSpy).toHaveBeenCalled();
   });
 });
@@ -77,7 +80,7 @@ describe("GroupServices", () => {
     const callback = jest.fn();
     groupSetService.addGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "Socket could not be inferred!"),
+      new CallbackSuccessDTO(false, "Socket konnte nicht gefunden werden!"),
     );
     groupSetService.addGroup(groupIdentifier, callback, SOCKET_1);
     expect(callback).toHaveBeenCalledWith(
@@ -99,7 +102,7 @@ describe("GroupServices", () => {
     const callback = jest.fn();
     groupSetService.reconnectToGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "Socket could not be inferred!"),
+      new CallbackSuccessDTO(false, "Socket konnte nicht gefunden werden!"),
     );
     groupSetService.reconnectToGroup("groupIdentifier", callback, SOCKET_2);
     expect(callback).toHaveBeenCalledWith(
@@ -234,7 +237,7 @@ describe("TrackableTaskService", () => {
     trackableTaskService.chooseAlternativForTask(
       "taskId",
       "groupName",
-      0,
+      "dummy_id",
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
@@ -244,7 +247,7 @@ describe("TrackableTaskService", () => {
     trackableTaskService.chooseAlternativForTask(
       "taskId",
       groupIdentifier,
-      0,
+      "dummy_id",
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
@@ -260,7 +263,7 @@ describe("TrackableTaskService", () => {
         ?.getProgress()[0] // @ts-ignore
         .task.getId(),
       groupIdentifier,
-      1,
+      "dummy_id",
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
@@ -276,7 +279,11 @@ describe("TrackableTaskService", () => {
         ?.getProgress()[2] // @ts-ignore
         .task.getId(),
       groupIdentifier,
-      1,
+      groupProgressService
+        .getGroupProgressByGroupName(groupIdentifier)
+        ?.getProgress()[2] // @ts-ignore
+        .task.getExercises()[1]
+        .getId(),
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
@@ -292,11 +299,14 @@ describe("TrackableTaskService", () => {
         ?.getProgress()[2] // @ts-ignore
         .task.getId(),
       groupIdentifier,
-      9,
+      "not_a_valid_id",
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "The index is out of bounds"),
+      new CallbackSuccessDTO(
+        false,
+        "the given id of the exercise is not found",
+      ),
     );
   });
   it("should skip a task", () => {

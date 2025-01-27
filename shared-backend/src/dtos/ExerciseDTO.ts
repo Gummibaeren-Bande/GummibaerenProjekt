@@ -3,6 +3,8 @@ import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
 
 // a dto to transfer an exercise
 class ExerciseDTO {
+  // initialized with "A", "B", "C", ...
+  public readonly enumerator: string;
   public readonly id: string;
   public readonly title: string;
   public readonly description: string;
@@ -10,7 +12,8 @@ class ExerciseDTO {
   public readonly type: "multiple-choice" | "numerical";
   public readonly options: string[] | undefined;
 
-  constructor(exercise: Exercise) {
+  constructor(exercise: Exercise, enumerator?: string) {
+    this.enumerator = enumerator ?? "";
     this.id = exercise.getId();
     this.title = exercise.getTitle();
     this.description = exercise.getDescription();

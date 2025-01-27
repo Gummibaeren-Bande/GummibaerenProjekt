@@ -4,12 +4,8 @@ import IoSocket from "../../types/IoSocket";
 import TaskService from "../task/TaskService";
 import TeacherEmitsService from "../teacher-emits/TeacherEmitsService";
 import GroupSetServiceListeners from "./interfaces/GroupSetServiceListeners";
-import CallbackGroupSet from "../../types/callback-types/CallbackGroupSet";
 import EntityObserver from "./interfaces/EntityObserver";
-import GroupSetDTO from "../../dtos/GroupSetDTO";
-import CallbackGroupSetDTO from "../../dtos/CallbackDTOs/CallbackGroupSetDTO";
 import CallbackSuccessDTO from "../../dtos/CallbackDTOs/CallbackSuccessDTO";
-import { validate } from "uuid";
 
 class GroupSetService implements GroupSetServiceListeners, EntityObserver {
   private readonly MIN_LENGTH_NAME = 3;
@@ -34,12 +30,26 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
   }
 
   public update(): void {
-    this.teachersEmitsService.emitChangedGroupSetToAllSockets(this.groupSet);
+    this.teachersEmitsService.emitChangedGroupSetToAllSockets(
+      this.groupSet,
+      this.taskService.getTaskSet(),
+    );
+  }
+
+  requestCurrentState(callback: CallbackSuccess): void {
+    try {
+      this.update();
+    } catch {
+      callback(new CallbackSuccessDTO(false, "Etwas ist schief gelaufen."));
+    }
+    callback(new CallbackSuccessDTO(true, "Anfrage erfolgreich"));
   }
 
   addGroup(name: string, callback: CallbackSuccess, socket?: IoSocket): void {
     if (!socket) {
-      callback(new CallbackSuccessDTO(false, "Socket could not be inferred!"));
+      callback(
+        new CallbackSuccessDTO(false, "Socket konnte nicht gefunden werden!"),
+      );
       return;
     }
     if (!this.validateGroupName(name, callback)) {
@@ -74,7 +84,9 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     socket?: IoSocket,
   ): void {
     if (!socket) {
-      callback(new CallbackSuccessDTO(false, "Socket could not be inferred!"));
+      callback(
+        new CallbackSuccessDTO(false, "Socket konnte nicht gefunden werden!"),
+      );
       return;
     }
     const group = this.getGroupSet().getGroupByName(name);
