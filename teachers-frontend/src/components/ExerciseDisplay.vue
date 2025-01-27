@@ -48,7 +48,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Timer from '@/components/Timer.vue'
-import Popover from 'primevue/overlaypanel'
+import Popover from 'primevue/popover'
 import Button from 'primevue/button'
 
 const props = defineProps({
