@@ -112,27 +112,28 @@ const isFinished = (seconds: number): boolean => {
   overflow: auto;
   border-bottom-left-radius: 45px;
   padding: 1%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; 
+  box-sizing: border-box;
 }
 
 .inner-div {
   max-height: 75vh;
   overflow-y: auto;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .exercise-display {
   text-align: center;
   width: 100%;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .exercise-display th,
 .exercise-display td {
   padding: 0;
   padding-right: 10px;
+  box-sizing: border-box;
 }
 
 .endTimer {

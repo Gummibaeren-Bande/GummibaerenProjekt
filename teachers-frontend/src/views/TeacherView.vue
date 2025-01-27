@@ -15,8 +15,12 @@ import TaskSetTitle from '@/components/TaskSetTitle.vue'
 <style>
 .background-form {
   width: 100vw;
-  padding: 3%;
+  height: 100vh;
+  padding: 2%;
+  box-sizing: border-box;
+  overflow: auto;
 }
+
 body {
   background-color: rgb(0, 150, 130);
 }

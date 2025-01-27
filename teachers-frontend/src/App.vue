@@ -11,7 +11,6 @@ import TeacherView from './views/TeacherView.vue'
 <style>
 #app {
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
   width: 100vw;
