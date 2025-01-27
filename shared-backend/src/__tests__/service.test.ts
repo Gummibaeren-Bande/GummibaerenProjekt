@@ -253,7 +253,7 @@ describe("TrackableTaskService", () => {
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         false,
-        "task with the given id could not be found!",
+        "Task with the given id could not be found!",
       ),
     );
     trackableTaskService.chooseAlternativForTask(
@@ -305,7 +305,7 @@ describe("TrackableTaskService", () => {
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         false,
-        "the given id of the exercise is not found",
+        "The given id of the exercise is not valid",
       ),
     );
   });

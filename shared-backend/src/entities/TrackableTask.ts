@@ -113,7 +113,7 @@ class TrackableTask extends ObservableEntity {
         throw new Error("The task is already completed and can't be changed");
       default:
         if (correspondingIndex === -1) {
-          throw new Error("the given id of the exercise is not found");
+          throw new Error("The given id of the exercise is not valid");
         }
         this.chosenExerciseIndex = correspondingIndex;
         break;

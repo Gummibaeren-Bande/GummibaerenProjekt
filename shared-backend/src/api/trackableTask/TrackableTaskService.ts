@@ -134,7 +134,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "task with the given id could not be found!",
+          "Task with the given id could not be found!",
         ),
       );
       return;
