@@ -1,12 +1,20 @@
 <template>
   <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
-    <Button class="margin5" label="Abschicken" fluid @click="submitAnswer()" :disabled="disabled" />
+    <Button
+      icon="pi pi-send"
+      class="margin5"
+      label="Abschicken"
+      fluid
+      @click="submitAnswer()"
+      :disabled="disabled"
+    />
   </div>
 </template>
 
 <script lang="ts">
 import '../Task.css'
 import Button from 'primevue/button'
+import 'primeicons/primeicons.css'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -27,9 +35,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scoped>
-button {
-  color: black;
-}
-</style>

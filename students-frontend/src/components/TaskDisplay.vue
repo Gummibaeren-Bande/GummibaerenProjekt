@@ -1,9 +1,4 @@
 <template>
-  <RightWrongOverlay
-    :is-Right="isCorrect"
-    :visible="isRigthWrongOverlayVisible"
-    @continueWithQuestion="continueWithQuestion()"
-  />
   <div class="mainComponent mainDivSize">
     <NumericTask
       v-if="currentExercise.type === 'numerical'"
@@ -24,7 +19,6 @@
 
 <script lang="ts" setup>
 import './taskcomponents/Task.css'
-import RightWrongOverlay from './taskcomponents/RightWrongOverlay.vue'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
@@ -49,8 +43,6 @@ export default defineComponent({
   data() {
     return {
       currentExercise: {} as ExerciseDTO,
-      isCorrect: false as boolean,
-      isRigthWrongOverlayVisible: false as boolean,
       disableToAnswer: false as boolean,
       group: {
         groupName: '',
@@ -70,9 +62,7 @@ export default defineComponent({
         this.currentExercise.id,
         givenAnswer as Answer,
       )
-      this.isCorrect = response.success
-      this.disableToAnswer = true
-      this.isRigthWrongOverlayVisible = true
+      this.continueWithQuestion(response.success)
     },
 
     /**
@@ -80,12 +70,23 @@ export default defineComponent({
      * RightWrongOverlay and enable to answer the Question again. If the last
      * give answer was right it will load the Next exercise first.
      */
-    continueWithQuestion() {
-      this.isRigthWrongOverlayVisible = false
-      this.disableToAnswer = false
-      if (this.isCorrect) {
+    continueWithQuestion(wasAnswerCorrect: boolean) {
+      if (wasAnswerCorrect) {
+        this.$toast.removeAllGroups()
+        this.$toast.add({
+          severity: 'success',
+          summary: 'Richtig',
+          detail: 'Deine Antwort war Richtig.',
+          life: 3000,
+        })
         this.loadNextExercise()
         this.loadNumberOfFinishedTasks()
+      } else {
+        this.$toast.add({
+          severity: 'error',
+          summary: 'Falsch',
+          detail: 'Deine Antwort war leider nicht Richtig.',
+        })
       }
     },
 
@@ -139,6 +140,7 @@ export default defineComponent({
    * Loads and setups this Component whe it is first rendert.
    */
   beforeMount() {
+    this.disableToAnswer = false
     this.group.groupName = this.groupName
     this.loadCurrentExercise()
     this.loadNumberOfFinishedTasks()

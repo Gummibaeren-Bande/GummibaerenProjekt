@@ -8,7 +8,7 @@
 }
 
 .mainComponentColor {
-  background-color: #ffffff66;
+  background-color: #ffffffc0;
 }
 
 .mainDivSize {
@@ -170,4 +170,13 @@
 
 .divPadding5 {
   padding: 5px;
+}
+
+.textAlignRight input {
+  text-align: right;
+  padding-right: 43px;
+}
+
+.curserPointer {
+  cursor: pointer;
 }
