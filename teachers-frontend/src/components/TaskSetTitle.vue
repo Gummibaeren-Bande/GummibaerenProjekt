@@ -13,7 +13,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-right-radius: 45px;
+  border-top-right-radius: 12px;
+  border-top-left-radius: 12px;
   margin-bottom: 0.2%;
 }
 

@@ -105,7 +105,8 @@ export default {
   color: black;
   width: 100%;
   overflow: auto;
-  border-bottom-left-radius: 45px;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
   padding: 1%;
   box-sizing: border-box;
 }
@@ -122,6 +123,7 @@ export default {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+  border-collapse: collapse;
 }
 
 .exercise-display th,
@@ -138,26 +140,35 @@ export default {
 
 .sticky-column {
   position: sticky;
-  left: 0;
   background: white;
+  left: 0;
   z-index: 2;
+  border-top: 2px solid #009682;
 }
 
 .sticky-header {
   position: sticky;
-  top: 0;
   background: white;
+  top: 0;
   z-index: 1;
+  border: none;
 }
 
 .top-left-cell {
   z-index: 3;
 }
 
-.task-header,
+.task-header {
+  max-width: 150px;
+  overflow-wrap: break-word;
+  white-space: normal;
+  border-bottom: 2px solid #009682;
+}
+
 .task-cell {
   max-width: 150px;
   overflow-wrap: break-word;
   white-space: normal;
+  border-top: 2px solid #009682;
 }
 </style>
