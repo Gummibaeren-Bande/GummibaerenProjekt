@@ -58,10 +58,10 @@ import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 
 <script lang="ts">
 enum Colors {
-  RED = 'rgb(162, 34, 35)',
-  BLUE = 'rgb(3, 198, 252)',
-  GRAY = 'rgb(128, 128, 128)',
-  GREEN = 'rgb(3, 252, 86)',
+  SKIPPED_COLOR = 'rgb(162, 34, 35)',
+  IN_PROGRESS_COLOR = 'rgb(35, 161, 224)',
+  NOT_STARTED_COLOR = 'rgb(128, 128, 128)',
+  FINISHED_COLOR = 'rgb(140, 182, 60)',
 }
 
 export default {
@@ -136,13 +136,13 @@ export default {
     getColor(): Colors {
       switch (this.trackableTask.state) {
         case TrackableTaskState.NotStarted:
-          return Colors.GRAY
+          return Colors.NOT_STARTED_COLOR
         case TrackableTaskState.InProgress:
-          return Colors.BLUE
+          return Colors.IN_PROGRESS_COLOR
         case TrackableTaskState.Skipped:
-          return Colors.RED
+          return Colors.SKIPPED_COLOR
         case TrackableTaskState.Completed:
-          return Colors.GREEN
+          return Colors.FINISHED_COLOR
       }
     },
     /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
