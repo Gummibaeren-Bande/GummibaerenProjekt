@@ -76,6 +76,13 @@ describe("GroupServices", () => {
   it("should return a groupSet", () => {
     expect(groupSet).toBeDefined();
   });
+  it("should request the current state", () => {
+    const callback = jest.fn();
+    groupSetService.requestCurrentState(callback);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(true, "Anfrage erfolgreich"),
+    );
+  });
   it("should add a group", () => {
     const callback = jest.fn();
     groupSetService.addGroup(groupIdentifier, callback);
@@ -587,6 +594,24 @@ describe("ExerciseService", () => {
         );
       },
     );
+    await exerciseService.getNextExerciceOfGroup(
+      groupIdentifier,
+      (response: CallbackExerciseDTO) => {
+        if (!response.exercise) {
+          return;
+        }
+        const exerciseId = response.exercise.id;
+        exerciseService.answerCurrentExercise(
+          groupIdentifier,
+          exerciseId,
+          [0],
+          callback,
+        );
+        expect(callback).toHaveBeenCalledWith(
+          new CallbackSuccessDTO(true, "Die Antwort war richtig"),
+        );
+      },
+    );
     exerciseService.getNextExerciceOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(
@@ -599,6 +624,16 @@ describe("ExerciseService", () => {
     groupProgressService.finishWork(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(true, "Alle Aufgaben wurden erledigt"),
+    );
+    const callback1 = jest.fn();
+    exerciseService.getCurrentExerciseOfGroup(groupIdentifier, callback1);
+    expect(callback1).toHaveBeenCalledWith(
+      new CallbackExerciseDTO(
+        false,
+        "Alle aufgaben wurden beendet",
+        true,
+        null,
+      ),
     );
   });
 });
