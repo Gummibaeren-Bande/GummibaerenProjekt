@@ -107,9 +107,7 @@ export default {
   overflow: auto;
   border-bottom-left-radius: 45px;
   padding: 1%;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  box-sizing: border-box;
 }
 
 .inner-div {
