@@ -15,6 +15,13 @@ interface GroupSetServiceListeners {
    * @param callback calls back if the operation was successfull or not
    */
   reconnectToGroup: (name: string, callback: CallbackSuccess) => void;
+
+  /**
+   * ask the server to send an emit of the current state to all teacher frontends
+   *
+   * @param callback calls back if the operation was successfull or not
+   */
+  requestCurrentState: (callback: CallbackSuccess) => void;
 }
 
 export default GroupSetServiceListeners;

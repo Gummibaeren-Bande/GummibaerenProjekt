@@ -5,12 +5,19 @@ import ExerciseDTO from "./ExerciseDTO";
 class TaskDTO {
   public readonly id: string;
   public readonly name: string;
+  public readonly numberOfAlternatives: number;
   public readonly exercises: ExerciseDTO[];
 
   constructor(task: Task) {
     this.id = task.getId();
     this.name = task.getName();
-    this.exercises = task.getExercises().map((ex) => new ExerciseDTO(ex));
+    this.numberOfAlternatives = task.getExercises().length - 1;
+    this.exercises = [];
+    for (const [index, exercise] of task.getExercises().entries()) {
+      this.exercises.push(
+        new ExerciseDTO(exercise, String.fromCharCode(65 + index)),
+      );
+    }
   }
 }
 

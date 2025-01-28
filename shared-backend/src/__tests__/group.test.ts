@@ -254,11 +254,12 @@ describe("GroupProgress", () => {
     );
   });
 
-  it("should finish the work", () => {
+  it("should finish the work", async () => {
     while (groupProgress.hasNextTask()) {
       groupProgress.getCurrentTask().complete();
       groupProgress.goToNextTask();
     }
+    await new Promise((r) => setTimeout(r, 2000));
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(

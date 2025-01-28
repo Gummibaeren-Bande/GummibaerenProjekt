@@ -1,10 +1,11 @@
 <template class="appDisplay">
   <div>
-    <TeacherView></TeacherView>
+    <TeacherView :server-connection="new ServerConnection()" />
   </div>
 </template>
 
 <script setup lang="ts">
+import ServerConnection from './ServerConnection'
 import TeacherView from './views/TeacherView.vue'
 </script>
 

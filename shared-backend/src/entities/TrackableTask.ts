@@ -75,11 +75,13 @@ class TrackableTask extends ObservableEntity {
         }
         break;
     }
+    this.notifySubscriber();
   }
 
   public complete(): void {
     this.stopTimer();
     this.setState(TrackableTaskState.Completed);
+    this.notifySubscriber();
   }
 
   private stopTimer(): void {
@@ -96,21 +98,27 @@ class TrackableTask extends ObservableEntity {
 
   public incrementTries(): void {
     this.tries++;
+    this.notifySubscriber();
   }
 
-  public setAlternativeExercise(index: number): void {
+  public setAlternativeExerciseById(id: string): void {
+    const correspondingIndex = this.getTask()
+      .getExercises()
+      .findIndex((e) => e.id === id);
+
     switch (this.state) {
       case TrackableTaskState.InProgress:
         throw new Error("The task is in progress and can't be changed");
       case TrackableTaskState.Completed:
         throw new Error("The task is already completed and can't be changed");
       default:
-        if (index < 0 || index >= this.task.getExercises().length) {
-          throw new Error("The index is out of bounds");
+        if (correspondingIndex === -1) {
+          throw new Error("The given id of the exercise is not valid");
         }
-        this.chosenExerciseIndex = index;
+        this.chosenExerciseIndex = correspondingIndex;
         break;
     }
+    this.notifySubscriber();
   }
 
   public getChosenExercise(): Exercise {

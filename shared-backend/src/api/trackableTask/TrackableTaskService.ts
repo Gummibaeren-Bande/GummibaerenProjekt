@@ -34,12 +34,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     currentTask.complete();
   }
 
-  /**
-   * mark the task with the given id for the given group as skipped.
-   *
-   * @param taskId the id of the task to skip
-   * @param groupName the name of the group to skip the task for
-   */
   public skipTask(
     taskId: string,
     groupName: string,
@@ -79,12 +73,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     }
   }
 
-  /**
-   * revert the skiped marking of the task with the given id for the given group.
-   *
-   * @param taskId the id of the task to unskip
-   * @param groupName the name of the group to unskip the task for
-   */
   public revertTaskSkip(
     taskId: string,
     groupName: string,
@@ -124,17 +112,10 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     }
   }
 
-  /**
-   * choose an alternative Exercise for the task with the given id for the given group name
-   *
-   * @param taskId the id of the task to choose the alternative exercise for
-   * @param groupName the name of the group which gets the alternative exercise
-   * @param indexOfAlternative the index of the alternative exercise
-   */
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,
-    indexOfAlternative: number,
+    exerciseId: string,
     callback: CallbackSuccess,
   ) {
     const groupProgress =
@@ -153,13 +134,13 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "task with the given id could not be found!",
+          "Task with the given id could not be found!",
         ),
       );
       return;
     }
     try {
-      task.setAlternativeExercise(indexOfAlternative);
+      task.setAlternativeExerciseById(exerciseId);
       callback(
         new CallbackSuccessDTO(
           true,
