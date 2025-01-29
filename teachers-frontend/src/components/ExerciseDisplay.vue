@@ -148,12 +148,16 @@ export default {
     /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
     showPopover(event: Event) {
       // Access the overlay ref and show it
-      ;(this.$refs.overlay as InstanceType<typeof Popover>).show(event)
+      if (this.hasOptions())
+      (this.$refs.overlay as InstanceType<typeof Popover>).show(event)
     },
     /* Closes the Popover. */
     hidePopover() {
       // Access the overlay ref and hide it
       ;(this.$refs.overlay as InstanceType<typeof Popover>).hide()
+    },
+    hasOptions(): boolean {
+      return this.isTaskSkippable() || this.hasAlternatives()
     },
     /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {
