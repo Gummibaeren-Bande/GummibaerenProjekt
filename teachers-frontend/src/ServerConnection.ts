@@ -63,6 +63,21 @@ class ServerConnection {
   }
 
   /**
+   * revert the skiped marking of the task with the given id for the given group.
+   *
+   * @param taskId the id of the task to unskip
+   * @param groupName the name of the group to unskip the task for
+   */
+  revertTaskSkip(taskId: string, groupName: string): Promise<CallbackSuccessDTO> {
+    return new Promise((resolve) => {
+      this.socket.emit('revertTaskSkip', taskId, groupName, (response: CallbackSuccessDTO) => {
+        console.log(response.message)
+        resolve(response)
+      })
+    })
+  }
+
+  /**
    * chooses an alternative exercise for the task id and given group name.
    *
    * @param taskId the id of the task to change the exercise for
