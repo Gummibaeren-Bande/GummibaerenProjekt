@@ -33,6 +33,12 @@
           @click="skipTask"
           class="optionsButton"
         />
+        <Button
+          v-if="isTaskSkipRevertable()"
+          label="Aufgabe reaktivieren"
+          @click="revertTaskSkip"
+          class="optionsButton"
+        />
       </div>
       <div v-for="exercise of trackableTask.task.exercises" :key="exercise.id">
         <Button
@@ -104,6 +110,9 @@ export default {
     isTaskSkippable(): boolean {
       return this.trackableTask.state === TrackableTaskState.NotStarted
     },
+    isTaskSkipRevertable(): boolean {
+      return this.trackableTask.state === TrackableTaskState.Skipped
+    },
     isAlternativeChoosable(exercise: ExerciseDTO): boolean {
       const isNotAlreadyChoosen = !this.isChosenExercise(exercise)
       const isNotStartedYet = this.trackableTask.state === TrackableTaskState.NotStarted
@@ -117,6 +126,10 @@ export default {
     /* skippes the exercise by sending a request to the server. Then hides the Popover. */
     skipTask() {
       this.serverConnection.skipTask(this.trackableTask.task.id, this.groupName)
+      this.hidePopover()
+    },
+    revertTaskSkip() {
+      this.serverConnection.revertTaskSkip(this.trackableTask.task.id, this.groupName)
       this.hidePopover()
     },
     /* chooses a new exercise by sending a request to the server. Then hides the Popover. */
@@ -148,8 +161,7 @@ export default {
     /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
     showPopover(event: Event) {
       // Access the overlay ref and show it
-      if (this.hasOptions())
-      (this.$refs.overlay as InstanceType<typeof Popover>).show(event)
+      if (this.hasOptions()) (this.$refs.overlay as InstanceType<typeof Popover>).show(event)
     },
     /* Closes the Popover. */
     hidePopover() {
@@ -157,7 +169,7 @@ export default {
       ;(this.$refs.overlay as InstanceType<typeof Popover>).hide()
     },
     hasOptions(): boolean {
-      return this.isTaskSkippable() || this.hasAlternatives()
+      return this.isTaskSkippable() || this.hasAlternatives() || this.isTaskSkipRevertable()
     },
     /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {
