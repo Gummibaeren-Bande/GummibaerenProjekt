@@ -69,6 +69,10 @@
   margin: 5px;
 }
 
+.answerButtonColor {
+  background-color: #009682 !important;
+}
+
 .answerButtonLeftFreeSpace {
   margin-left: 2px;
 }
