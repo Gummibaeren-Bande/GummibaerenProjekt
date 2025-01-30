@@ -94,7 +94,7 @@ class ExerciseService implements ExerciseServiceListener {
       );
       return;
     }
-    if (currentTask.getFinishedAfterSeconds()) {
+    if (currentTask.getFinishedAfterSeconds() !== null) {
       callback(
         new CallbackExerciseDTO(
           false,
