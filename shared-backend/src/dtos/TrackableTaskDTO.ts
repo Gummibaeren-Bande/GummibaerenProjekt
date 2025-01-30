@@ -26,7 +26,7 @@ class TrackableTaskDTO {
     }
   }
 
-  private checkIfSkipRevertable(): boolean {
+  public checkIfSkipRevertable(): boolean {
     return this.state === TrackableTaskState.Skipped;
   }
 }

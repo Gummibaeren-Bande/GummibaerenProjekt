@@ -11,18 +11,18 @@ import ExerciseService from "./ExerciseService";
 function exerciseHandler(
   io: IoServer,
   socket: IoSocket,
-  service: ExerciseService
+  service: ExerciseService,
 ) {
   socket.on(
     "answerCurrentExercise",
     (groupName, exerciseId, answer, callback) =>
-      service.answerCurrentExercise(groupName, exerciseId, answer, callback)
+      service.answerCurrentExercise(groupName, exerciseId, answer, callback),
   );
   socket.on("getCurrentExerciseOfGroup", (groupName, callback) =>
-    service.getCurrentExerciseOfGroup(groupName, callback)
+    service.getCurrentExerciseOfGroup(groupName, callback),
   );
   socket.on("getNextExerciseOfGroup", (groupName, callback) =>
-    service.getNextExerciseOfGroup(groupName, callback)
+    service.getNextExerciseOfGroup(groupName, callback),
   );
 }
 

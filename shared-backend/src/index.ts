@@ -7,6 +7,7 @@ import welcomeHandler from "./api/welcome/welcomeHandler";
 import groupSetHandler from "./api/group-set/groupSetHandler";
 import IoServer from "./types/IoServer";
 import IoSocket from "./types/IoSocket";
+import { InterServerEvents, SocketData } from "./types/IoInterfaces";
 import ClientToServerEvents from "./types/ClientToServerEvents";
 import ServerToClientEvents from "./types/ServerToClientEvents";
 import GroupSetService from "./api/group-set/GroupSetService";
