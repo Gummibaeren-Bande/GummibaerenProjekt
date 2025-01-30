@@ -114,7 +114,8 @@ export default {
       return this.trackableTask.state === TrackableTaskState.NotStarted
     },
     isTaskSkipRevertable(): boolean {
-      return this.trackableTask.state === TrackableTaskState.Skipped
+      const isNotStartedYet = this.trackableTask.state === TrackableTaskState.NotStarted
+      return this.trackableTask.state === TrackableTaskState.Skipped && isNotStartedYet
     },
     isAlternativeChoosable(exercise: ExerciseDTO): boolean {
       const isNotAlreadyChoosen = !this.isChosenExercise(exercise)
@@ -172,7 +173,11 @@ export default {
       ;(this.$refs.overlay as InstanceType<typeof Popover>).hide()
     },
     hasOptions(): boolean {
-      return this.isTaskSkippable() || this.hasAlternatives() || this.isTaskSkipRevertable()
+      return (
+        this.isTaskSkippable() ||
+        (this.hasAlternatives() && this.isTaskSkippable()) ||
+        this.isTaskSkipRevertable()
+      )
     },
     /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {

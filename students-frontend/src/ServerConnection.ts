@@ -15,6 +15,11 @@ class ServerConnection {
     console.log('Connecting to Server: ' + serverUrl)
     this.socket = io(serverUrl)
     this.connect()
+    const currentURL = new URL(window.location.href)
+    const groupName = currentURL.searchParams.get('group')
+    if (groupName) {
+      this.reconnectToGroup(groupName)
+    }
   }
 
   /**

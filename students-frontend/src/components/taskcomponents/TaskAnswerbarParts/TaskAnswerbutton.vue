@@ -2,7 +2,7 @@
   <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
     <Button
       icon="pi pi-send"
-      class="margin5"
+      class="margin5 answerButton"
       label="Abschicken"
       fluid
       @click="submitAnswer()"
