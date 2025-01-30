@@ -38,6 +38,7 @@
                   )!
                 "
                 :groupName="group.name"
+                :groupProgress="group.groupProgress"
               />
             </td>
           </tr>

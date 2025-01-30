@@ -7,6 +7,7 @@ class GroupProgressDTO {
   public readonly startedAt: Date;
   public readonly finishedAfterSeconds: number | null;
   public readonly finishedWork: boolean;
+  public readonly indexOfCurrentTask: number;
 
   constructor(groupProgress: GroupProgress) {
     this.progress = groupProgress
@@ -15,6 +16,7 @@ class GroupProgressDTO {
     this.startedAt = groupProgress.getStartedAt();
     this.finishedAfterSeconds = groupProgress.getFinishedAfterSeconds();
     this.finishedWork = groupProgress.getFinishedWork();
+    this.indexOfCurrentTask = groupProgress.getIndexOfCurrentTask();
   }
 }
 

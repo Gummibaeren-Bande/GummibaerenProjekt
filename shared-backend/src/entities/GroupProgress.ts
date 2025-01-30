@@ -27,6 +27,10 @@ class GroupProgress extends ObservableEntity {
   public getStartedAt(): Date {
     return this.startedAt;
   }
+
+  public getIndexOfCurrentTask(): number {
+    return this.indexOfCurrentTask;
+  }
   public getCurrentTask(): TrackableTask {
     return this.progress[this.indexOfCurrentTask];
   }
