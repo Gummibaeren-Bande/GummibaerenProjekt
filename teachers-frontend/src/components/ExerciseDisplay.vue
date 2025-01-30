@@ -1,7 +1,7 @@
 <template>
   <div class="exercise">
     <!-- Button that both displays the amount of attempts and functions as the button to display the options Popover. -->
-    <Button @click="showPopover($event)" class="exerciseDisplayButton">
+    <Button @click="showPopover($event)" class="exerciseDisplayButton" :disabled="!hasOptions()">
       <div class="exerciseDisplay" :style="{ backgroundColor: exerciseColor }">
         <span>
           {{ trackableTask.tries }}
@@ -111,8 +111,7 @@ export default {
       return this.trackableTask.state === TrackableTaskState.NotStarted
     },
     isTaskSkipRevertable(): boolean {
-      const isNotStartedYet = this.trackableTask.state === TrackableTaskState.NotStarted
-      return this.trackableTask.state === TrackableTaskState.Skipped && isNotStartedYet
+      return this.trackableTask.state === TrackableTaskState.Skipped
     },
     isAlternativeChoosable(exercise: ExerciseDTO): boolean {
       const isNotAlreadyChoosen = !this.isChosenExercise(exercise)
@@ -235,14 +234,17 @@ export default {
   height: 78px;
   width: 78px;
   border-radius: 50%;
-  border: none !important;
-  background: none !important;
+  --p-button-primary-border-color: none;
+  --p-button-primary-background: none;
   padding: 0;
+  --p-button-primary-hover-background: #808080;
+  --p-button-primary-hover-border-color: none;
+  --p-button-primary-active-background: none;
+  --p-button-primary-active-border-color: none;
 }
 
-.exerciseDisplayButton:hover {
-  background-color: #ffffff66 !important;
-  border-radius: 50% !important;
+.exerciseDisplayButton:disabled {
+  opacity: 1;
 }
 
 .headerOverlay {
@@ -251,15 +253,13 @@ export default {
 }
 
 .optionsButton {
-  background: none !important;
-  border: 2px solid #ffffff66 !important;
-  color: black !important;
-  box-shadow: none !important;
+  --p-button-primary-background: none;
+  --p-button-primary-hover-background: #ffffff66;
+  --p-button-primary-hover-border-color: none;
+  --p-button-primary-active-background: #ffffff66;
+  --p-button-primary-active-border-color: none;
+  border: 2px solid #ffffff66;
   width: 100%;
-}
-
-.optionsButton:hover {
-  background-color: #ffffff66 !important;
 }
 
 .hidden {
