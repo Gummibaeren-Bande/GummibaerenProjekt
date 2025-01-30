@@ -431,7 +431,7 @@ describe("ExerciseService", () => {
   });
   it("should fail to get the next exercise", () => {
     const callback = jest.fn();
-    exerciseService.getNextExerciceOfGroup("groupName", callback);
+    exerciseService.getNextExerciseOfGroup("groupName", callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(
         false,
@@ -441,7 +441,7 @@ describe("ExerciseService", () => {
       ),
     );
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
-    exerciseService.getNextExerciceOfGroup(groupIdentifier, callback);
+    exerciseService.getNextExerciseOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(
         false,
@@ -454,7 +454,7 @@ describe("ExerciseService", () => {
   it("should answer the current exercise", async () => {
     const callback = jest.fn();
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
-    await exerciseService.getCurrentExerciseOfGroup(
+    exerciseService.getCurrentExerciseOfGroup(
       groupIdentifier,
       (response: CallbackExerciseDTO) => {
         if (!response.exercise) {
@@ -505,11 +505,11 @@ describe("ExerciseService", () => {
   });
   it("should finish the set", async () => {
     const callback = jest.fn();
-    exerciseService.getNextExerciceOfGroup(groupIdentifier, callback);
+    exerciseService.getNextExerciseOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(true, "", false, expect.any(ExerciseDTO)),
     );
-    await exerciseService.getCurrentExerciseOfGroup(
+    exerciseService.getCurrentExerciseOfGroup(
       groupIdentifier,
       (response: CallbackExerciseDTO) => {
         if (!response.exercise) {
@@ -527,7 +527,7 @@ describe("ExerciseService", () => {
         );
       },
     );
-    await exerciseService.getNextExerciceOfGroup(
+    exerciseService.getNextExerciseOfGroup(
       groupIdentifier,
       (response: CallbackExerciseDTO) => {
         if (!response.exercise) {
@@ -576,7 +576,7 @@ describe("ExerciseService", () => {
         "The task is already completed and can't be changed",
       ),
     );
-    await exerciseService.getNextExerciceOfGroup(
+    exerciseService.getNextExerciseOfGroup(
       groupIdentifier,
       (response: CallbackExerciseDTO) => {
         if (!response.exercise) {
@@ -594,7 +594,7 @@ describe("ExerciseService", () => {
         );
       },
     );
-    await exerciseService.getNextExerciceOfGroup(
+    exerciseService.getNextExerciseOfGroup(
       groupIdentifier,
       (response: CallbackExerciseDTO) => {
         if (!response.exercise) {
@@ -612,7 +612,7 @@ describe("ExerciseService", () => {
         );
       },
     );
-    exerciseService.getNextExerciceOfGroup(groupIdentifier, callback);
+    exerciseService.getNextExerciseOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(
         false,
@@ -625,9 +625,8 @@ describe("ExerciseService", () => {
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(true, "Alle Aufgaben wurden erledigt"),
     );
-    const callback1 = jest.fn();
-    exerciseService.getCurrentExerciseOfGroup(groupIdentifier, callback1);
-    expect(callback1).toHaveBeenCalledWith(
+    exerciseService.getCurrentExerciseOfGroup(groupIdentifier, callback);
+    expect(callback).toHaveBeenCalledWith(
       new CallbackExerciseDTO(
         false,
         "Alle aufgaben wurden beendet",

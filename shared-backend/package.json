@@ -6,7 +6,7 @@
   "scripts": {
     "start": "tsx src/index.ts",
     "format": "prettier --write src/",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "dgram": "^1.0.1",

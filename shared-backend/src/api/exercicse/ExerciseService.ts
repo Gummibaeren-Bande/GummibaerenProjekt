@@ -94,7 +94,7 @@ class ExerciseService implements ExerciseServiceListener {
       );
       return;
     }
-    if (currentTask.getFinishedAfterSeconds()) {
+    if (currentTask.getFinishedAfterSeconds() !== null) {
       callback(
         new CallbackExerciseDTO(
           false,
@@ -116,7 +116,7 @@ class ExerciseService implements ExerciseServiceListener {
    * @param groupName the group that wants its next Exercise
    * @param callback the callback that may deliver the next Exercise
    */
-  public getNextExerciceOfGroup(groupName: string, callback: CallbackExercise) {
+  public getNextExerciseOfGroup(groupName: string, callback: CallbackExercise) {
     const hasNextTask =
       this.trackableTaskService.getHasNextTaskByGroupName(groupName);
     if (hasNextTask) {

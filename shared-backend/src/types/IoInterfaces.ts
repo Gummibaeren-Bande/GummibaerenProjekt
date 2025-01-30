@@ -8,3 +8,5 @@ interface SocketData {
   name: string;
   age: number;
 }
+
+export { InterServerEvents, SocketData };

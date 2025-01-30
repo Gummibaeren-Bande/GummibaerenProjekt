@@ -13,7 +13,7 @@ interface ExerciseServiceListener {
     groupName: string,
     callback: CallbackExercise,
   ) => void;
-  getNextExerciceOfGroup: (
+  getNextExerciseOfGroup: (
     groupName: string,
     callback: CallbackExercise,
   ) => void;

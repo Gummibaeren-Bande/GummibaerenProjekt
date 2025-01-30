@@ -114,7 +114,7 @@ export default {
       return this.trackableTask.state === TrackableTaskState.NotStarted
     },
     isTaskSkipRevertable(): boolean {
-      return this.trackableTask.state === TrackableTaskState.Skipped
+      return this.trackableTask.isSkipRevertable
     },
     isAlternativeChoosable(exercise: ExerciseDTO): boolean {
       const isNotAlreadyChoosen = !this.isChosenExercise(exercise)

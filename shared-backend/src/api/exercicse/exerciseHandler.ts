@@ -21,8 +21,8 @@ function exerciseHandler(
   socket.on("getCurrentExerciseOfGroup", (groupName, callback) =>
     service.getCurrentExerciseOfGroup(groupName, callback),
   );
-  socket.on("getNextExerciceOfGroup", (groupName, callback) =>
-    service.getNextExerciceOfGroup(groupName, callback),
+  socket.on("getNextExerciseOfGroup", (groupName, callback) =>
+    service.getNextExerciseOfGroup(groupName, callback),
   );
 }
 

@@ -1,6 +1,7 @@
 import { Server } from "socket.io";
 import ClientToServerEvents from "./ClientToServerEvents";
 import ServerToClientEvents from "./ServerToClientEvents";
+import { InterServerEvents, SocketData } from "./IoInterfaces";
 
 /**
  * type declaration of the socketIO server type
