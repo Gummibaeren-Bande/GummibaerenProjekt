@@ -1,8 +1,8 @@
 <template>
   <Dialog :visible="true" :closable="false" :modal="true" class="custom-dialog">
     <div class="header-container">
-      <h2 class="dialog-header">Mit Teamname einloggen</h2>
-      <Button @click="close()" class="p-button-rounded p-button-text help-icon">X</Button>
+      <h2 class="dialog-header">Wiederverbinden:</h2>
+      <Button @click="close()" icon="pi pi-times" rounded variant="text" aria-label="Cancel" />
     </div>
     <div class="content-container">
       <InputText
@@ -13,12 +13,13 @@
       />
     </div>
     <div class="footer-container">
-      <Button @click="reconnectToGroup(groupName)" class="start-button">Starten</Button>
+      <Button @click="reconnectToGroup(groupName)" class="start-button">Weiterarbeiten</Button>
     </div>
   </Dialog>
 </template>
 
 <script setup lang="ts">
+import 'primeicons/primeicons.css'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'
 import InputText from 'primevue/inputtext'
