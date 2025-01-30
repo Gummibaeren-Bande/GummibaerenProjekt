@@ -71,6 +71,11 @@
 
 .answerButtonColor {
   --p-button-primary-background: #009682;
+  --p-button-primary-border-color: #009682;
+  --p-button-primary-hover-background: none;
+  --p-button-primary-hover-border-color: #009682;
+  --p-button-primary-active-background: #00000030;
+  --p-button-primary-active-border-color: #009682;
 }
 
 .answerButtonLeftFreeSpace {

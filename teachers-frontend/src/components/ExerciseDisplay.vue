@@ -207,6 +207,7 @@ export default {
 }
 
 .exerciseDisplay {
+  position: relative;
   height: 75px;
   width: 75px;
   border-radius: 50%;
@@ -219,18 +220,17 @@ export default {
 }
 
 .alternativeDisplay {
-  position: absolute;
+  position: relative;
+  bottom: 85px;
+  left: 35px;
   height: 35px;
   width: 35px;
   border-radius: 50%;
   color: black;
   font-size: 20px;
-  display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  top: 0px;
-  right: 0px;
+  
 }
 
 .exerciseDisplayButton {

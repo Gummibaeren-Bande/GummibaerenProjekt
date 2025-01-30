@@ -122,6 +122,7 @@ export default {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
+  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -151,23 +152,22 @@ export default {
   top: 0;
   z-index: 1;
   border: none;
+  border-bottom: 2px solid #009682;
 }
 
 .top-left-cell {
   z-index: 3;
-}
-
-.task-header {
-  max-width: 150px;
   overflow-wrap: break-word;
   white-space: normal;
-  border-bottom: 2px solid #009682;
 }
 
+.task-header,
 .task-cell {
   max-width: 150px;
   overflow-wrap: break-word;
   white-space: normal;
-  border-top: 2px solid #009682;
+  border-bottom: 2px solid #009682;
+  position: relative;
 }
+
 </style>
