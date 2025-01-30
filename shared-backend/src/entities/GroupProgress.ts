@@ -65,6 +65,9 @@ class GroupProgress extends ObservableEntity {
    * This method is used to finish the group progress.
    */
   public finishWork() {
+    if (this.finishedAfterSeconds) {
+      throw new Error("Die Bearbeitung der Gruppe wurde bereits beendet");
+    }
     this.stopTimer();
     this.notifySubscriber();
   }
@@ -76,7 +79,6 @@ class GroupProgress extends ObservableEntity {
     const started = this.getStartedAt();
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
-    this.notifySubscriber();
   }
 
   /**

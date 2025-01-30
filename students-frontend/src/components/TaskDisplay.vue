@@ -98,8 +98,13 @@ export default defineComponent({
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       } else if (response.isFinished) {
-        this.showFinishedWork()
+        const response = await this.serverConnection.finishWork(this.group.groupName)
+        if (response.success) {
+          this.showFinishedWork()
+        }
+        console.log(response.message)
       }
+      console.log(response.message)
     },
 
     /**
@@ -109,10 +114,13 @@ export default defineComponent({
       const response = await this.serverConnection.getCurrentExerciseOfGroup(this.group.groupName)
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
-      } else {
-        if (response.isFinished) this.showFinishedWork() //CurrentExercise gibt immer FinishedWork = False zurück.
+      } else if (response.isFinished) {
+        //CurrentExercise gibt immer isFinished = false zurück.
+        const response = await this.serverConnection.finishWork(this.group.groupName)
+        this.showFinishedWork()
         console.log(response.message)
       }
+      console.log(response.message)
     },
 
     /**

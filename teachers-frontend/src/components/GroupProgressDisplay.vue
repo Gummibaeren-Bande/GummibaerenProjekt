@@ -82,12 +82,11 @@ export default {
     },
     /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {
-      if (seconds === null) {
+      if (seconds === null || seconds === 0) {
         return ''
       }
-      if (seconds === 0) return ''
       const min = Math.floor(seconds / 60)
-      const sec = seconds % 60
+      const sec = Math.floor(seconds % 60)
       if (min > 60) {
         const hours = Math.floor(min / 60)
         return `${String(hours).padStart(2, '0')}:${String(min % 60).padStart(2, '0')}:${String(sec).padStart(2, '0')}`

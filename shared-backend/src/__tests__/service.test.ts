@@ -635,6 +635,13 @@ describe("ExerciseService", () => {
         null,
       ),
     );
+    groupProgressService.finishWork(groupIdentifier, callback);
+    expect(callback).toHaveBeenCalledWith(
+      new CallbackSuccessDTO(
+        false,
+        "Die Bearbeitung der Gruppe wurde bereits beendet",
+      ),
+    );
   });
 });
 
