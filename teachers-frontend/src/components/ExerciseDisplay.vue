@@ -63,7 +63,6 @@ import ServerConnection from '@/ServerConnection'
 import TrackableTaskDTO from '../../../shared-backend/src/dtos/TrackableTaskDTO'
 import TrackableTaskState from '../../../shared-backend/src/enums/TrackableTaskState'
 import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
-import GroupProgressDTO from '../../../shared-backend/src/dtos/GroupProgressDTO'
 </script>
 
 <script lang="ts">
@@ -86,10 +85,6 @@ export default {
     },
     groupName: {
       type: String,
-      required: true,
-    },
-    groupProgress: {
-      type: GroupProgressDTO,
       required: true,
     },
   },
@@ -119,16 +114,7 @@ export default {
       return this.trackableTask.state === TrackableTaskState.NotStarted
     },
     isTaskSkipRevertable(): boolean {
-      let indexOfThisTask = -1
-      for (let i = 0; i < this.groupProgress.progress.length; i++) {
-        if (this.trackableTask.task.id === this.groupProgress.progress[i].task.id) {
-          indexOfThisTask = i
-        }
-      }
-      return (
-        this.trackableTask.state === TrackableTaskState.Skipped &&
-        (indexOfThisTask > this.groupProgress.indexOfCurrentTask || indexOfThisTask === -1)
-      )
+      return this.trackableTask.isTaskSkipRevertable
     },
     isAlternativeChoosable(exercise: ExerciseDTO): boolean {
       const isNotAlreadyChoosen = !this.isChosenExercise(exercise)

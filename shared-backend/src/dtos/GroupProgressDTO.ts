@@ -7,16 +7,24 @@ class GroupProgressDTO {
   public readonly startedAt: Date;
   public readonly finishedAfterSeconds: number | null;
   public readonly finishedWork: boolean;
-  public readonly indexOfCurrentTask: number;
 
   constructor(groupProgress: GroupProgress) {
-    this.progress = groupProgress
-      .getProgress()
-      .map((tt) => new TrackableTaskDTO(tt));
+    let progressDTO: TrackableTaskDTO[] = [];
+    for (let i = 0; i < groupProgress.getProgress().length; i++) {
+      if (i > groupProgress.getIndexOfCurrentTask()) {
+        progressDTO.push(
+          new TrackableTaskDTO(groupProgress.getProgress()[i], true)
+        );
+      } else {
+        progressDTO.push(
+          new TrackableTaskDTO(groupProgress.getProgress()[i], false)
+        );
+      }
+    }
+    this.progress = progressDTO;
     this.startedAt = groupProgress.getStartedAt();
     this.finishedAfterSeconds = groupProgress.getFinishedAfterSeconds();
     this.finishedWork = groupProgress.getFinishedWork();
-    this.indexOfCurrentTask = groupProgress.getIndexOfCurrentTask();
   }
 }
 
