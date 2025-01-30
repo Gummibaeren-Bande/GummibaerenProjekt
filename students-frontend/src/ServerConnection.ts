@@ -124,10 +124,10 @@ class ServerConnection {
    * @param groupName the name of the group.
    * @returns the result of the request.
    */
-  async getNextExerciceOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
+  async getNextExerciseOfGroup(groupName: string): Promise<CallbackExerciseDTO> {
     return new Promise((resolve) => {
       console.log('Anfrage nach nächster Aufgabe.')
-      this.socket.emit('getNextExerciceOfGroup', groupName, (response: CallbackExerciseDTO) => {
+      this.socket.emit('getNextExerciseOfGroup', groupName, (response: CallbackExerciseDTO) => {
         if (response.message !== '') console.log(response.message)
         resolve(response)
       })

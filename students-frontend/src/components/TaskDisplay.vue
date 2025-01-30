@@ -94,7 +94,7 @@ export default defineComponent({
      * Request the next Exercise from the server and sets it as the new curren Exercise.
      */
     async loadNextExercise() {
-      const response = await this.serverConnection.getNextExerciceOfGroup(this.group.groupName)
+      const response = await this.serverConnection.getNextExerciseOfGroup(this.group.groupName)
       if (response.success && response.exercise) {
         this.currentExercise = response.exercise
       } else if (response.isFinished) {
