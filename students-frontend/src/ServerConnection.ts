@@ -128,6 +128,20 @@ class ServerConnection {
       })
     })
   }
+
+  /**
+   * Finish the work of the current group.
+   * @param {string} groupName - The name of the group.
+   * @returns {Promise<boolean>} - Returns CallbackSuccesDTO with the reults of the Server.
+   */
+  async finishWork(groupName: string): Promise<CallbackSuccessDTO> {
+    return new Promise((resolve) => {
+      this.socket.emit('finishWork', groupName, (response: CallbackSuccessDTO) => {
+        console.log(response.message)
+        resolve(response)
+      })
+    })
+  }
 }
 
 export default ServerConnection

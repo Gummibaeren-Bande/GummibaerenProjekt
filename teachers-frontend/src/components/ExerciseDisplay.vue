@@ -20,7 +20,10 @@
     </div>
     <!-- Each exercise has a timer. The timer is hidden and only is displayed once the task is started. -->
     <div :class="{ hidden: isNotStartedYet() }">
-      <Timer></Timer>
+      <TimerComponent
+        :startTime="trackableTask.startedAt?.toString()"
+        :finishedAfterSeconds="trackableTask.finishedAfterSeconds"
+      />
     </div>
 
     <!-- The options Popover with every option as a single button. -->
@@ -53,7 +56,7 @@
 </template>
 
 <script lang="ts" setup>
-import Timer from '@/components/Timer.vue'
+import TimerComponent from '@/components/TimerComponent.vue'
 import Popover from 'primevue/popover'
 import Button from 'primevue/button'
 import ServerConnection from '@/ServerConnection'

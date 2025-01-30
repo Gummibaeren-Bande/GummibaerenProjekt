@@ -69,8 +69,17 @@ class GroupProgressService implements GroupProgressServiceListener {
       callback(new CallbackSuccessDTO(false, "Group progress nicht gefunden"));
       return;
     }
-    groupProgress.finishWork();
-    callback(new CallbackSuccessDTO(true, "Alle Aufgaben wurden erledigt"));
+    try {
+      groupProgress.finishWork();
+      callback(new CallbackSuccessDTO(true, "Alle Aufgaben wurden erledigt"));
+    } catch (error) {
+      if (error instanceof Error) {
+        callback(new CallbackSuccessDTO(false, error.message));
+      } else {
+        //This Error is never reached
+        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+      }
+    }
   }
 
   /**
