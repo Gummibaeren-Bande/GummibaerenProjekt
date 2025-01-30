@@ -73,10 +73,8 @@ const io: IoServer = new Server<
     origin: [
       "http://localhost:8080",
       "http://localhost:8081",
-      "http://localhost:8082",
       `http://${ip}:8080`,
       `http://${ip}:8081`,
-      `http://${ip}:8082`,
     ], // specify who can access this backend
   },
 });
