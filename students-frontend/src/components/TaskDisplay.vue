@@ -117,9 +117,7 @@ export default defineComponent({
       } else if (response.isFinished) {
         //CurrentExercise gibt immer isFinished = false zurück.
         const response = await this.serverConnection.finishWork(this.group.groupName)
-        if (response.success) {
-          this.showFinishedWork()
-        }
+        this.showFinishedWork()
         console.log(response.message)
       }
       console.log(response.message)
