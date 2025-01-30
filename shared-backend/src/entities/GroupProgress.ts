@@ -77,12 +77,6 @@ class GroupProgress extends ObservableEntity {
    */
   private stopTimer() {
     const started = this.getStartedAt();
-    if (!started) {
-      //This Error is never reached
-      throw new Error(
-        "The task has not been started yet and therefore can't be finished",
-      );
-    }
     this.finishedAfterSeconds =
       (new Date().getTime() - started.getTime()) / 1000;
   }
