@@ -7,14 +7,14 @@
           {{ trackableTask.tries }}
         </span>
         <div
-      v-if="hasAlternatives()"
-      class="alternativeDisplay"
-      :style="{ backgroundColor: exerciseColor }"
-    >
-      <span>
-        {{ getChoosenExcerciseEnumerator() }}
-      </span>
-    </div>
+          v-if="hasAlternatives()"
+          class="alternativeDisplay"
+          :style="{ backgroundColor: exerciseColor }"
+        >
+          <span>
+            {{ getChoosenExcerciseEnumerator() }}
+          </span>
+        </div>
       </div>
     </Button>
     <!-- If the exercise has alternatives, the current chosen alternative is displayed in a smaller circle to the top right. -->

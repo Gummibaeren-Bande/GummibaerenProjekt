@@ -168,5 +168,4 @@ export default {
   overflow-wrap: break-word;
   white-space: normal;
 }
-
 </style>
