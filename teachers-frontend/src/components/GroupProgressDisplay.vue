@@ -122,7 +122,6 @@ export default {
   width: 100%;
   padding: 0;
   box-sizing: border-box;
-  table-layout: fixed;
   border-collapse: collapse;
 }
 
@@ -131,6 +130,7 @@ export default {
   padding: 0;
   padding-right: 10px;
   box-sizing: border-box;
+  border-bottom: 2px solid #009682;
 }
 
 .endTimer {
@@ -140,18 +140,17 @@ export default {
 
 .sticky-column {
   position: sticky;
-  background: white;
   left: 0;
   z-index: 2;
+  background: white;
   border-top: 2px solid #009682;
 }
 
 .sticky-header {
   position: sticky;
-  background: white;
   top: 0;
   z-index: 1;
-  border: none;
+  background: white;
   border-bottom: 2px solid #009682;
 }
 
@@ -159,6 +158,8 @@ export default {
   z-index: 3;
   overflow-wrap: break-word;
   white-space: normal;
+  border-top: none;
+  border-bottom: 2px solid #009682;
 }
 
 .task-header,
@@ -166,8 +167,6 @@ export default {
   max-width: 150px;
   overflow-wrap: break-word;
   white-space: normal;
-  border-bottom: 2px solid #009682;
-  position: relative;
 }
 
 </style>

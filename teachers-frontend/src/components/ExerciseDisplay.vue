@@ -215,6 +215,7 @@ export default {
 }
 
 .exerciseDisplay {
+  position: relative;
   height: 75px;
   width: 75px;
   border-radius: 50%;
