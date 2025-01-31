@@ -1,19 +1,25 @@
 <template>
   <div class="mainComponent mainDivSize">
     <NumericTask
-      v-if="currentExercise.type === 'numerical'"
+      v-if="currentExercise.type === 'numerical' && !showInfo"
       @submit-answer="submitAnswer"
       :exercise="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
     <MultipleChoiceTask
-      v-if="currentExercise.type === 'multiple-choice'"
+      v-if="currentExercise.type === 'multiple-choice' && !showInfo"
       @submit-answer="submitAnswer"
       :exercise="currentExercise"
       :group="group"
       :disable-to-answer="disableToAnswer"
     />
+    <InfoDisplay
+      v-if="showInfo"
+      @submit-answer="submitAnswer"
+      :info-content="infoContent"
+      :group="group"
+      :disable-to-answer="disableToAnswer" />
   </div>
 </template>
 
@@ -26,6 +32,7 @@ import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 import Answer from '../../../shared-backend/src/types/Answer'
 import NumericalExercise from '../../../shared-backend/src/entities/NumericalExercise'
+import InfoDisplay, { InfoContent } from './taskviews/InfoDisplay.vue'
 </script>
 
 <script lang="ts">
@@ -44,6 +51,8 @@ export default defineComponent({
     return {
       currentExercise: {} as ExerciseDTO,
       disableToAnswer: false as boolean,
+      showInfo: false as boolean,
+      infoContent: new InfoContent('', '', '') as InfoContent,
       group: {
         groupName: '',
         finishedTasks: 0,
@@ -137,10 +146,9 @@ export default defineComponent({
      * Loads a new Display to show the user that he has solved all Exercises.
      */
     showFinishedWork() {
-      this.currentExercise = new ExerciseDTO(
-        new NumericalExercise('Fertig', '', 'Du hast alle Aufgaben gelöst. Toll gemacht.', -1),
-      )
+      this.infoContent = new InfoContent('Fertig', 'Du hast alle Aufgaben gelöst. Toll gemacht.', '')
       this.disableToAnswer = true
+      this.showInfo = true
     },
   },
 
