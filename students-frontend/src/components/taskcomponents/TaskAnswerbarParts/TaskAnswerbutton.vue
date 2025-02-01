@@ -1,8 +1,7 @@
 <template>
-  <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
+  <div class="taskAnswerbarButtonDiv">
     <Button
       icon="pi pi-send"
-      class="margin5 answerButtonColor"
       label="Abschicken"
       fluid
       @click="submitAnswer()"

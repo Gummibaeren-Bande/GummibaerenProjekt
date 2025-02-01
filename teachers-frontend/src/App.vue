@@ -5,6 +5,7 @@
 </template>
 
 <script setup lang="ts">
+import '@/assets/Frontend.css'
 import ServerConnection from './ServerConnection'
 import TeacherView from './views/TeacherView.vue'
 </script>

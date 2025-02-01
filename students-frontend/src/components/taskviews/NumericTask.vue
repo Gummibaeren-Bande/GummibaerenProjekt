@@ -4,7 +4,7 @@
   <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer">
     <InputNumber
       v-model="value"
-      class="margin5 textAlignRight"
+      class="numberInput"
       input-id="integeronly"
       placeholder="Antwort"
       fluid
@@ -16,7 +16,6 @@
 </template>
 
 <script setup lang="ts">
-import '@/assets/Frontend.css'
 import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
 import InputNumber from 'primevue/inputnumber'
 import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'

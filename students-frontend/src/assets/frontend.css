@@ -1,14 +1,32 @@
-.mainComponent {
+body {
+  background-color: #009682;
+}
+
+/* Main Variabls for the Student frontend design */
+.main-variabls {
+  --p-button-primary-background: #00961b;
+  --p-button-primary-border-color: #00961b;
+  --p-button-primary-hover-background: #00b822;
+  --p-button-primary-hover-border-color: #00b822;
+  --p-button-border-radius: 8px;
+
+  color: black;
+
+  --p-overlay-transparancy: #ffffffc0;
+  --p-lineSpacing: 2px;
+  --p-main-roundness: 12px;
+  --p-font-size-smaller: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+  --p-font-size-normal: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+}
+
+/* Style for the hole Display */
+.taskDisplayStyle {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   width: inherit;
-  margin-bottom: 2px;
-}
-
-.mainComponentColor {
-  background-color: #ffffffc0;
+  margin-bottom: var(--p-lineSpacing);
 }
 
 .mainDivSize {
@@ -16,9 +34,19 @@
   height: 90vh;
 }
 
-.textColor {
-  color: black;
+/* Sytle for the Title bar */
+.taskTitleStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  margin-bottom: var(--p-lineSpacing);
+  background-color: var(--p-overlay-transparancy);
+  border-top-right-radius: var(--p-main-roundness);
+  border-top-left-radius: var(--p-main-roundness);
 }
+
 
 .textTitle {
   text-align: center;
@@ -27,21 +55,30 @@
   font-weight: 500;
 }
 
-.textBold {
-  font-weight: bold;
+/* Style for the Infobar */
+.InfoBarStyle {
+  background-color: var(--p-overlay-transparancy);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: inherit;
+  padding: 4px;
+  margin-bottom: var(--p-lineSpacing);
+  font-size: var(--p-font-size-smaller);
 }
 
-.textNormal {
-  text-align: center;
-  font-size: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+.InfoBarGroupnameStyle {
+  text-align: left;
+  padding-left: 20px;
 }
 
-.textSmaller {
-  text-align: center;
-  font-size: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+.InfoBarTaskCounterStyle {
+  text-align: right;
+  padding-right: 20px;
 }
 
-.taskBody {
+/* Style for the Taksbody */
+.taskBodyStyle {
+  background-color: var(--p-overlay-transparancy);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,49 +89,10 @@
   padding: 10px;
 }
 
-.taskAnswerbar {
-  display: flex;
-  height: inherit;
-}
-
-.answerBar {
-  display: grid;
-  grid-template-columns: 4fr 1fr;
-  width: inherit;
-  margin-top: 2px;
-  border-bottom-left-radius: 12px;
-}
-
-.margin5 {
-  margin: 5px;
-}
-
-.answerButtonColor {
-  --p-button-primary-background: #009682;
-  --p-button-primary-border-color: #009682;
-  --p-button-primary-hover-background: #00baa1;
-  --p-button-primary-hover-border-color: #00baa1;
-  --p-button-border-radius: 8px;
-}
-
-.answerButtonLeftFreeSpace {
-  margin-left: 2px;
-}
-
-.borderRadiusBottomLeft {
-  border-bottom-left-radius: 12px;
-}
-
-.borderRadiusBottomRight {
-  border-bottom-right-radius: 12px;
-}
-
-.borderRadiusTopLeft {
-  border-top-left-radius: 12px;
-}
-
-.borderRadiusTopRight {
-  border-top-right-radius: 12px;
+.taskDiscribtionStyle {
+  text-align: center;
+  font-size: var(--p-font-size-normal);
+  min-height: 0;
 }
 
 .taskDescriptionScrollpanel {
@@ -103,31 +101,27 @@
   height: 100%;
 }
 
-.InfoBar {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: inherit;
-  padding: 4px;
-  margin-bottom: 2px;
+.taskQuestionStyle {
+  text-align: center;
+  font-size: var(--p-font-size-normal);
+  font-weight: bold;
+  padding: 5px;
 }
 
-.InfoBarGroupname {
-  text-align: left;
-  padding-left: 20px;
+.numberInput {
+  margin: 5px;
 }
 
-.InfoBarTaskCounter {
+.numberInput input {
   text-align: right;
-  padding-right: 20px;
 }
 
-.textLeft {
-  text-align: left;
-  margin-left: 4px;
-}
-
-.textMargin {
-  margin: 4px;
+.taskChoiceContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
 }
 
 .divCheckbox {
@@ -139,51 +133,38 @@
   align-items: center;
 }
 
-.ChoiceContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  width: fit-content;
-}
-
-.RigthWrongOverlay {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 7px solid #009682;
-  width: 40vw;
-}
-
-.RigthColor {
-  background-color: rgb(173, 255, 47);
-}
-
-.WrongColor {
-  background-color: rgb(255, 47, 47);
-}
-
-.RigthWrongOverlayButton {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: fit-content;
-  margin-bottom: 5px;
-  width: 100%;
-}
-
-.marginOverlay {
-  margin: 5vw;
-}
-
-.divPadding5 {
-  padding: 5px;
-}
-
-.textAlignRight input {
-  text-align: right;
-}
-
-.curserPointer {
+.divCheckbox label {
+  font-size: var(--p-font-size-normal);
+  text-align: center;
   cursor: pointer;
+  padding-left: 5px;
+}
+
+/* styl for answerbar*/
+.answerBarStyle {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: inherit;
+  margin-top: var(--p-lineSpacing);
+}
+
+.answerBarStyle div {
+  background-color: var(--p-overlay-transparancy);
+}
+
+.taskAnswerbarSlot {
+  border-bottom-left-radius: var(--p-main-roundness);
+  display: flex;
+  height: inherit;
+}
+
+.taskAnswerbarButtonDiv {
+  border-bottom-right-radius: var(--p-main-roundness);
+  display: flex;
+  height: inherit;
+  margin-left: var(--p-lineSpacing);
+}
+
+.taskAnswerbarButtonDiv Button {
+  margin: 5px;
 }

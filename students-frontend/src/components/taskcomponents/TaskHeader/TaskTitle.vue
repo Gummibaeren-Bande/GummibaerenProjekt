@@ -1,6 +1,6 @@
 <template>
-  <div class="mainComponent mainComponentColor borderRadiusTopRight borderRadiusTopLeft">
-    <h1 class="textTitle textColor">{{ title }}</h1>
+  <div class="taskTitleStyle">
+    <h1 class="textTitle">{{ title }}</h1>
   </div>
 </template>
 

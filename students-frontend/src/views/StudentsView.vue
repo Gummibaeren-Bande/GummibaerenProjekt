@@ -15,11 +15,6 @@ import TaskDisplay from '../components/TaskDisplay.vue'
 import ServerConnection from '@/ServerConnection'
 </script>
 
-<style>
-body {
-  background-color: #009682;
-}
-</style>
 
 <script lang="ts">
 export default {

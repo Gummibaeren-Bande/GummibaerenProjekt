@@ -1,13 +1,13 @@
 <template>
-  <div class="ChoiceContainer">
-    <div v-for="option in options" :key="option.value" class="divCheckbox curserPointer">
+  <div class="taskChoiceContainer">
+    <div v-for="option in options" :key="option.value" class="divCheckbox">
       <Checkbox
         v-model="selectedOptions"
         :inputId="option.value"
         :value="option.value"
         :disabled="disabled"
       />
-      <label :for="option.value" class="textNormal textColor textLeft curserPointer">{{
+      <label :for="option.value">{{
         option.label
       }}</label>
     </div>

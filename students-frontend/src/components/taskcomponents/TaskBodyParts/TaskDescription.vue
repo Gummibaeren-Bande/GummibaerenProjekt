@@ -1,5 +1,5 @@
 <template>
-  <div id="TaksContainer" class="textNormal textColor">
+  <div class="taskDiscribtionStyle">
     <ScrollPanel class="taskDescriptionScrollpanel">
       <p>
         {{ description }}
@@ -25,9 +25,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scope>
-#TaksContainer {
-  min-height: 0;
-}
-</style>

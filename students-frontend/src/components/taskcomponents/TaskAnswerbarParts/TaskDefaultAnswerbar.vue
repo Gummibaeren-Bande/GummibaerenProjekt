@@ -1,9 +1,7 @@
 <template>
-  <div class="answerBar">
-    <div class="mainComponentColor borderRadiusBottomLeft">
-      <div class="taskAnswerbar">
-        <slot></slot>
-      </div>
+  <div class="answerBarStyle">
+    <div class="taskAnswerbarSlot">
+      <slot></slot>
     </div>
     <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" />
   </div>

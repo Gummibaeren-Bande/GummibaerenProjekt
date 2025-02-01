@@ -1,5 +1,5 @@
 <template>
-  <div class="taskBody taskAnswerbar mainComponentColor">
+  <div class="taskBodyStyle">
     <TaskDescription v-if="description" :description="description" />
     <TaskQuestion :question="question" />
     <slot></slot>

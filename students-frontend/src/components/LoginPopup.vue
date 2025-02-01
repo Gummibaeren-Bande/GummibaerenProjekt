@@ -25,6 +25,7 @@
 </template>
 
 <script setup lang="ts">
+import '@/assets/Frontend.css'
 import 'primeicons/primeicons.css'
 import ReconnectPopup from './ReconnectPopup.vue'
 import Dialog from 'primevue/dialog'

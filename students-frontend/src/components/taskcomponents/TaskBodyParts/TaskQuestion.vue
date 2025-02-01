@@ -1,5 +1,5 @@
 <template>
-  <div class="textNormal textColor textBold divPadding5">{{ question }}</div>
+  <div class="taskQuestionStyle">{{ question }}</div>
 </template>
 
 <script lang="ts">

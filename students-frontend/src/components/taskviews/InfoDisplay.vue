@@ -5,7 +5,6 @@
 </template>
   
 <script setup lang="ts">
-import '@/assets/Frontend.css'
   import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
   import InputNumber from 'primevue/inputnumber'
   import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'

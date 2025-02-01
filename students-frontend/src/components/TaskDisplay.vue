@@ -1,5 +1,5 @@
 <template>
-  <div class="mainComponent mainDivSize">
+  <div class="taskDisplayStyle mainDivSize">
     <NumericTask
       v-if="currentExercise.type === 'numerical' && !showInfo"
       @submit-answer="submitAnswer"
