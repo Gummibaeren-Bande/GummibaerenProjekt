@@ -8,7 +8,6 @@
       input-id="integeronly"
       placeholder="Antwort"
       fluid
-      showButtons
       locale="de-DE"
       :disabled="disableToAnswer"
       @keydown.enter="submitAnswer()"
