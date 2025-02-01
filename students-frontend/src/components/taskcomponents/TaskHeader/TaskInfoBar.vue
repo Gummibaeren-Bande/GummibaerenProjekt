@@ -1,9 +1,7 @@
 <template>
   <div class="InfoBarStyle">
     <div class="InfoBarGroupnameStyle">Gruppenname: {{ group.groupName }}</div>
-    <div class="InfoBarTaskCounterStyle">
-      Fertige Aufgaben: {{ group.finishedTasks }}
-    </div>
+    <div class="InfoBarTaskCounterStyle">Fertige Aufgaben: {{ group.finishedTasks }}</div>
   </div>
 </template>
 

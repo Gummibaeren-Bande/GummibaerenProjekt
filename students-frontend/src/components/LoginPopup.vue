@@ -1,8 +1,13 @@
 <template>
-  <Dialog v-model:visible="visible" :closable="false" class="custom-dialog" :draggable="false">
+  <Dialog
+    v-model:visible="visible"
+    :closable="false"
+    class="custom-dialog main-variabls"
+    :draggable="false"
+  >
     <div class="header-container">
       <h2 class="dialog-header">Wähle einen Teamnamen</h2>
-      <Button @click="openReconnect()" rounded variant="text"  icon="pi pi-sign-in" />
+      <Button @click="openReconnect()" rounded variant="text" icon="pi pi-sign-in" />
     </div>
     <div class="content-container">
       <InputText

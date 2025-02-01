@@ -7,9 +7,7 @@
         :value="option.value"
         :disabled="disabled"
       />
-      <label :for="option.value">{{
-        option.label
-      }}</label>
+      <label :for="option.value">{{ option.label }}</label>
     </div>
   </div>
 </template>

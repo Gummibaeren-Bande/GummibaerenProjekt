@@ -15,7 +15,6 @@ import TaskDisplay from '../components/TaskDisplay.vue'
 import ServerConnection from '@/ServerConnection'
 </script>
 
-
 <script lang="ts">
 export default {
   props: {

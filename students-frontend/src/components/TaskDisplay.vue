@@ -19,7 +19,8 @@
       @submit-answer="submitAnswer"
       :info-content="infoContent"
       :group="group"
-      :disable-to-answer="disableToAnswer" />
+      :disable-to-answer="disableToAnswer"
+    />
   </div>
 </template>
 
@@ -146,7 +147,11 @@ export default defineComponent({
      * Loads a new Display to show the user that he has solved all Exercises.
      */
     showFinishedWork() {
-      this.infoContent = new InfoContent('Fertig', 'Du hast alle Aufgaben gelöst. Toll gemacht.', '')
+      this.infoContent = new InfoContent(
+        'Fertig',
+        'Du hast alle Aufgaben gelöst. Toll gemacht.',
+        '',
+      )
       this.disableToAnswer = true
       this.showInfo = true
     },
