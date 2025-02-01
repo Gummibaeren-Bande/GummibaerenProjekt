@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import ScrollPanel from 'primevue/scrollpanel'
 import { defineComponent } from 'vue'
 

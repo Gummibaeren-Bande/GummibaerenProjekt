@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 

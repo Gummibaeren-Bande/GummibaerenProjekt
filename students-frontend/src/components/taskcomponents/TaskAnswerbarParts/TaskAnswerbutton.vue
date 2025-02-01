@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import Button from 'primevue/button'
 import 'primeicons/primeicons.css'
 import { defineComponent } from 'vue'

@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import Checkbox from 'primevue/checkbox'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'

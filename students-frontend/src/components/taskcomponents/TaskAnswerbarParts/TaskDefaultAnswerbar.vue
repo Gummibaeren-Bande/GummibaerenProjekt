@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import TaskAnswerbutton from './TaskAnswerbutton.vue'
 import { defineComponent } from 'vue'
 

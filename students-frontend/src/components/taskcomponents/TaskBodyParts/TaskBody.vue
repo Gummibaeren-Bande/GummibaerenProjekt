@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import TaskDescription from './TaskDescription.vue'
 import TaskQuestion from './TaskQuestion.vue'
 import { defineComponent } from 'vue'

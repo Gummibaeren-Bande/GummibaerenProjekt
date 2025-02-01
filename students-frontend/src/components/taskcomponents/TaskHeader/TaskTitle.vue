@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/Frontend.css'
 import { defineComponent } from 'vue'
 
 export default defineComponent({

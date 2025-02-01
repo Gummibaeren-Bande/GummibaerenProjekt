@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import '../taskcomponents/Task.css'
+import '@/assets/Frontend.css'
 import TaskDefaultAnswerbar from '../taskcomponents/TaskAnswerbarParts/TaskDefaultAnswerbar.vue'
 import TaskHeader from '../taskcomponents/TaskHeader/TaskHeader.vue'
 import TaskBody from '../taskcomponents/TaskBodyParts/TaskBody.vue'
