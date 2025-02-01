@@ -1,5 +1,5 @@
 <template>
-  <Dialog v-model:visible="visible" :closable="false" :modal="true" class="custom-dialog">
+  <Dialog v-model:visible="visible" :closable="false" class="custom-dialog" :draggable="false">
     <div class="header-container">
       <h2 class="dialog-header">Wähle einen Teamnamen</h2>
       <Button @click="openReconnect()" rounded variant="text"  icon="pi pi-sign-in" />

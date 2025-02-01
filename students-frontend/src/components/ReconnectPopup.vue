@@ -1,5 +1,5 @@
 <template>
-  <Dialog :visible="true" :closable="false" :modal="true" class="custom-dialog">
+  <Dialog :visible="true" :closable="false" class="custom-dialog" :draggable="false">
     <div class="header-container">
       <h2 class="dialog-header">Wiederverbinden:</h2>
       <Button @click="close()" icon="pi pi-times" rounded variant="text" aria-label="Cancel" />
