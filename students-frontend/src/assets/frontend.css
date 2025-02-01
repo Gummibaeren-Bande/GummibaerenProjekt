@@ -8,6 +8,12 @@ body {
   --p-button-primary-border-color: #00961b;
   --p-button-primary-hover-background: #00b822;
   --p-button-primary-hover-border-color: #00b822;
+
+  --p-checkbox-checked-background: #00961b;
+  --p-checkbox-checked-border-color: #00961b;
+  --p-checkbox-checked-hover-background: #00b822;
+  --p-checkbox-checked-hover-border-color: #00b822;
+
   --p-button-border-radius: 8px;
 
   color: black;
@@ -135,7 +141,7 @@ body {
 
 .divCheckbox label {
   font-size: var(--p-font-size-normal);
-  text-align: center;
+  text-align: left;
   cursor: pointer;
   padding-left: 5px;
 }
