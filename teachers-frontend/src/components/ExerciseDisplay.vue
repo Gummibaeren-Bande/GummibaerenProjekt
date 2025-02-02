@@ -2,14 +2,14 @@
   <div class="exercise">
     <!-- Button that both displays the amount of attempts and functions as the button to display the options Popover. -->
     <Button @click="showPopover($event)" class="exerciseDisplayButton" :disabled="!hasOptions()">
-      <div class="exerciseDisplay" :style="{ backgroundColor: exerciseColor }">
+      <div :class="['exerciseDisplay', getColor()]">
         <span>
           {{ trackableTask.tries }}
         </span>
+        <!-- If the exercise has alternatives, the current chosen alternative is displayed in a smaller circle to the top right. -->
         <div
           v-if="hasAlternatives()"
-          class="alternativeDisplay"
-          :style="{ backgroundColor: exerciseColor }"
+          :class="['alternativeDisplay', getColor()]"
         >
           <span>
             {{ getChoosenExcerciseEnumerator() }}
@@ -17,16 +17,6 @@
         </div>
       </div>
     </Button>
-    <!-- If the exercise has alternatives, the current chosen alternative is displayed in a smaller circle to the top right. -->
-    <!-- <div
-      v-if="hasAlternatives()"
-      class="alternativeDisplay"
-      :style="{ backgroundColor: exerciseColor }"
-    >
-      <span>
-        {{ getChoosenExcerciseEnumerator() }}
-      </span>
-    </div> -->
     <!-- Each exercise has a timer. The timer is hidden and only is displayed once the task is started. -->
     <div :class="{ hidden: isNotStartedYet() }">
       <TimerComponent
@@ -36,7 +26,7 @@
     </div>
 
     <!-- The options Popover with every option as a single button. -->
-    <Popover ref="overlay" class="optionsOverlay">
+    <Popover ref='overlay' class="optionsOverlay">
       <span class="headerOverlay">Optionen</span>
       <div>
         <Button
@@ -75,12 +65,6 @@ import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 </script>
 
 <script lang="ts">
-enum Colors {
-  SKIPPED_COLOR = 'rgb(162, 34, 35)',
-  IN_PROGRESS_COLOR = 'rgb(35, 161, 224)',
-  NOT_STARTED_COLOR = 'rgb(128, 128, 128)',
-  FINISHED_COLOR = 'rgb(140, 182, 60)',
-}
 
 export default {
   props: {
@@ -97,14 +81,7 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      exerciseColor: this.getColor(),
-    }
-  },
-  updated() {
-    this.exerciseColor = this.getColor()
-  },
+  
   methods: {
     /* Checks if the exercise has alternatives. Returns true if it has alternatives, false otherwise.*/
     hasAlternatives(): boolean {
@@ -153,23 +130,20 @@ export default {
       )
       this.hidePopover()
     },
-    /* Changes the Color of the displayed exercise to the given ColorPicker. */
-    changeColor(color: Colors) {
-      this.exerciseColor = color
-    },
 
-    getColor(): Colors {
+    getColor(): string {
       switch (this.trackableTask.state) {
         case TrackableTaskState.NotStarted:
-          return Colors.NOT_STARTED_COLOR
+          return 'notStartedColor'
         case TrackableTaskState.InProgress:
-          return Colors.IN_PROGRESS_COLOR
+          return 'inProgressColor'
         case TrackableTaskState.Skipped:
-          return Colors.SKIPPED_COLOR
+          return 'skippedColor'
         case TrackableTaskState.Completed:
-          return Colors.FINISHED_COLOR
+          return 'finishedColor'
       }
     },
+
     /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
     showPopover(event: Event) {
       // Access the overlay ref and show it
@@ -238,7 +212,7 @@ export default {
   justify-content: center;
   top: 0;
   right: 0;
-  transform: translate(30%, -15%);
+  transform: translate(30%, -26%);
 }
 
 .exerciseDisplayButton {
@@ -276,5 +250,26 @@ export default {
 
 .hidden {
   visibility: hidden;
+}
+
+.optionsOverlay {
+  --p-popover-background: red;
+  --p-popover-border-color: yellow;
+}
+
+.skippedColor {
+  background-color: rgb(162, 34, 35);
+}
+
+.inProgressColor {
+  background-color: rgb(35, 161, 224);
+}
+
+.notStartedColor {
+  background-color: rgb(182, 182, 182);
+}
+
+.finishedColor {
+  background-color: rgb(140, 182, 60);
 }
 </style>

@@ -133,6 +133,10 @@ export default {
   border-bottom: 2px solid #009682;
 }
 
+.exercise-display td {
+  padding-top: 12px;
+}
+
 .endTimer {
   font-weight: bold;
   color: rgb(140, 182, 60);
@@ -147,6 +151,7 @@ export default {
 }
 
 .sticky-header {
+  padding-top: 0;
   position: sticky;
   top: 0;
   z-index: 1;
