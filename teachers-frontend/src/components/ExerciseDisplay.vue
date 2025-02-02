@@ -6,10 +6,19 @@
         <span>
           {{ trackableTask.tries }}
         </span>
+        <div
+          v-if="hasAlternatives()"
+          class="alternativeDisplay"
+          :style="{ backgroundColor: exerciseColor }"
+        >
+          <span>
+            {{ getChoosenExcerciseEnumerator() }}
+          </span>
+        </div>
       </div>
     </Button>
     <!-- If the exercise has alternatives, the current chosen alternative is displayed in a smaller circle to the top right. -->
-    <div
+    <!-- <div
       v-if="hasAlternatives()"
       class="alternativeDisplay"
       :style="{ backgroundColor: exerciseColor }"
@@ -17,7 +26,7 @@
       <span>
         {{ getChoosenExcerciseEnumerator() }}
       </span>
-    </div>
+    </div> -->
     <!-- Each exercise has a timer. The timer is hidden and only is displayed once the task is started. -->
     <div :class="{ hidden: isNotStartedYet() }">
       <TimerComponent
@@ -198,7 +207,6 @@ export default {
 
 <style scoped>
 .exercise {
-  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -216,33 +224,35 @@ export default {
   justify-content: center;
   color: black;
   font-size: 40px;
-  text-align: center;
 }
 
 .alternativeDisplay {
-  position: relative;
-  bottom: 85px;
-  left: 35px;
+  position: absolute;
   height: 35px;
   width: 35px;
   border-radius: 50%;
+  display: flex;
   color: black;
   font-size: 20px;
   align-items: center;
   justify-content: center;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -15%);
 }
 
 .exerciseDisplayButton {
   height: 78px;
   width: 78px;
   border-radius: 50%;
+  padding: 0;
   --p-button-primary-border-color: none;
   --p-button-primary-background: none;
-  padding: 0;
   --p-button-primary-hover-background: #808080;
   --p-button-primary-hover-border-color: none;
   --p-button-primary-active-background: none;
   --p-button-primary-active-border-color: none;
+  overflow: visible;
 }
 
 .exerciseDisplayButton:disabled {
