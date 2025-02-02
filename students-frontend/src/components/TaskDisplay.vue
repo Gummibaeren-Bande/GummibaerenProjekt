@@ -25,7 +25,7 @@
 </template>
 
 <script lang="ts" setup>
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import NumericTask from './taskviews/NumericTask.vue'
 import { defineComponent } from 'vue'
 import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'

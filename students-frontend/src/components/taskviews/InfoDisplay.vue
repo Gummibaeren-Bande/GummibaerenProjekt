@@ -49,7 +49,7 @@ export default defineComponent({
   },
   emits: ['submitAnswer'],
   methods: {
-    // Submits answer to parent if a answerbuttin was pressed.
+    // Submits answer to parent if a answerbutton was pressed.
     submitAnswer() {
       this.$emit('submitAnswer')
     },

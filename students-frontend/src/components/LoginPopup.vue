@@ -2,7 +2,7 @@
   <Dialog
     v-model:visible="visible"
     :closable="false"
-    class="custom-dialog main-variabls"
+    class="custom-dialog main-variables"
     :draggable="false"
   >
     <div class="header-container">
@@ -30,7 +30,7 @@
 </template>
 
 <script setup lang="ts">
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import 'primeicons/primeicons.css'
 import ReconnectPopup from './ReconnectPopup.vue'
 import Dialog from 'primevue/dialog'

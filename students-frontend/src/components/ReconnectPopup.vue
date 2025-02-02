@@ -1,7 +1,7 @@
 <template>
-  <Dialog :visible="true" :closable="false" class="custom-dialog main-variabls" :draggable="false">
+  <Dialog :visible="true" :closable="false" class="custom-dialog main-variables" :draggable="false">
     <div class="header-container">
-      <h2 class="dialog-header">Wiederverbinden:</h2>
+      <h2 class="dialog-header">Wiederverbinden</h2>
       <Button @click="close()" icon="pi pi-times" rounded variant="text" aria-label="Cancel" />
     </div>
     <div class="content-container">
@@ -19,7 +19,7 @@
 </template>
 
 <script setup lang="ts">
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import 'primeicons/primeicons.css'
 import Dialog from 'primevue/dialog'
 import Button from 'primevue/button'

@@ -169,5 +169,4 @@ export default {
   border-bottom: 2px solid #009682;
   position: relative;
 }
-
 </style>
