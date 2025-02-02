@@ -1,5 +1,5 @@
 <template>
-  <div class="taskDiscribtionStyle">
+  <div class="taskDescriptionStyle">
     <ScrollPanel class="taskDescriptionScrollpanel">
       <p>
         {{ description }}
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import ScrollPanel from 'primevue/scrollpanel'
 import { defineComponent } from 'vue'
 

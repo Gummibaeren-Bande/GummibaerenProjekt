@@ -230,7 +230,6 @@ export default {
   font-size: 20px;
   align-items: center;
   justify-content: center;
-  
 }
 
 .exerciseDisplayButton {

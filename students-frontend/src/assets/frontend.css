@@ -2,8 +2,8 @@ body {
   background-color: #009682;
 }
 
-/* Main Variabls for the Student frontend design */
-.main-variabls {
+/* Main variables for the student frontend design */
+.main-variables {
   --p-button-primary-background: #00961b;
   --p-button-primary-border-color: #00961b;
   --p-button-primary-hover-background: #00b822;
@@ -25,7 +25,7 @@ body {
   --p-font-size-normal: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
 }
 
-/* Style for the hole Display */
+/* Style for the task display */
 .taskDisplayStyle {
   display: flex;
   flex-direction: column;
@@ -40,7 +40,7 @@ body {
   height: 90vh;
 }
 
-/* Sytle for the Title bar */
+/* Style for the title bar */
 .taskTitleStyle {
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@ body {
   padding-right: 20px;
 }
 
-/* Style for the Taksbody */
+/* Style for the taskbody */
 .taskBodyStyle {
   background-color: var(--p-overlay-transparancy);
   display: flex;
@@ -94,7 +94,7 @@ body {
   padding: 10px;
 }
 
-.taskDiscribtionStyle {
+.taskDescriptionStyle {
   text-align: center;
   font-size: var(--p-font-size-normal);
   min-height: 0;
@@ -146,7 +146,7 @@ body {
   padding-left: 5px;
 }
 
-/* styl for answerbar*/
+/* Style for answerbar */
 .answerBarStyle {
   display: grid;
   grid-template-columns: 4fr 1fr;
@@ -175,7 +175,7 @@ body {
   margin: 5px;
 }
 
-/* Style for Login and Reconnect Dialog */
+/* Style for login and reconnect dialog */
 .custom-dialog {
   position: relative;
   display: flex;
@@ -210,7 +210,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 50px; /* Adjust spacing below the header */
+  margin-top: 50px; /* Adjusts spacing below the header */
 }
 
 .teamname-input {

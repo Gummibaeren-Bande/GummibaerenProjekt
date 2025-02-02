@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts">
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import Button from 'primevue/button'
 import 'primeicons/primeicons.css'
 import { defineComponent } from 'vue'

@@ -1,5 +1,5 @@
 <template>
-  <div class="main-variabls">
+  <div class="main-variables">
     <Toast />
     <StudentsView :server-connection="new ServerConnection()" />
   </div>

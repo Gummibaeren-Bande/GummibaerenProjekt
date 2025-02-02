@@ -6,7 +6,7 @@
 </template>
 
 <script lang="ts">
-import '@/assets/Frontend.css'
+import '@/assets/frontend.css'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 
