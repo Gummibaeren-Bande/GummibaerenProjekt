@@ -1,6 +1,7 @@
 <template>
-  <div class="taskAnswerbarButtonDiv">
+  <div class="taskAnswerbarButtonDiv" :class = "{zeroMargin: !showButton}">
     <Button
+      v-show = "showButton"
       icon="pi pi-send"
       label="Abschicken"
       fluid
@@ -26,6 +27,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    showButton: {
+      type: Boolean,
+      required: true,
+    }
   },
   methods: {
     submitAnswer() {

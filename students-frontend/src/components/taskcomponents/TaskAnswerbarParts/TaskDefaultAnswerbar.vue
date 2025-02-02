@@ -3,7 +3,7 @@
     <div class="taskAnswerbarSlot">
       <slot></slot>
     </div>
-    <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" />
+    <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" :show-button="showButton" />
   </div>
 </template>
 
@@ -21,6 +21,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    showButton: {
+      type: Boolean,
+      default: true,
+    }
   },
   emits: ['submitAnswer'],
   methods: {

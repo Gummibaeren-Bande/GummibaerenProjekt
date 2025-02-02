@@ -148,6 +148,7 @@ body {
 
 /* Style for answerbar */
 .answerBarStyle {
+  min-height: 30px;
   display: grid;
   grid-template-columns: 4fr 1fr;
   width: inherit;
@@ -173,6 +174,10 @@ body {
 
 .taskAnswerbarButtonDiv Button {
   margin: 5px;
+}
+
+.zeroMargin {
+  margin: 0px;
 }
 
 /* Style for login and reconnect dialog */
