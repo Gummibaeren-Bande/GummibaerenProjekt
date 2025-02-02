@@ -1,21 +1,19 @@
 <template>
-  <div class="ChoiceContainer">
-    <div v-for="option in options" :key="option.value" class="divCheckbox curserPointer">
+  <div class="taskChoiceContainer">
+    <div v-for="option in options" :key="option.value" class="divCheckbox">
       <Checkbox
         v-model="selectedOptions"
         :inputId="option.value"
         :value="option.value"
         :disabled="disabled"
       />
-      <label :for="option.value" class="textNormal textColor textLeft curserPointer">{{
-        option.label
-      }}</label>
+      <label :for="option.value">{{ option.label }}</label>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import Checkbox from 'primevue/checkbox'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'

@@ -1,5 +1,5 @@
 <template>
-  <div class="taskBody taskAnswerbar mainComponentColor">
+  <div class="taskBodyStyle">
     <TaskDescription v-if="description" :description="description" />
     <TaskQuestion :question="question" />
     <slot></slot>
@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import TaskDescription from './TaskDescription.vue'
 import TaskQuestion from './TaskQuestion.vue'
 import { defineComponent } from 'vue'

@@ -1,0 +1,239 @@
+body {
+  background-color: #009682;
+}
+
+/* Main variables for the student frontend design */
+.main-variables {
+  --p-button-primary-background: #00961b;
+  --p-button-primary-border-color: #00961b;
+  --p-button-primary-hover-background: #00b822;
+  --p-button-primary-hover-border-color: #00b822;
+
+  --p-checkbox-checked-background: #00961b;
+  --p-checkbox-checked-border-color: #00961b;
+  --p-checkbox-checked-hover-background: #00b822;
+  --p-checkbox-checked-hover-border-color: #00b822;
+
+  --p-button-border-radius: 8px;
+
+  color: black;
+
+  --p-overlay-transparancy: #ffffffc0;
+  --p-lineSpacing: 2px;
+  --p-main-roundness: 12px;
+  --p-font-size-smaller: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+  --p-font-size-normal: calc(16px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+}
+
+/* Style for the task display */
+.taskDisplayStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  margin-bottom: var(--p-lineSpacing);
+}
+
+.mainDivSize {
+  width: 90vw;
+  height: 90vh;
+}
+
+/* Style for the title bar */
+.taskTitleStyle {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: inherit;
+  margin-bottom: var(--p-lineSpacing);
+  background-color: var(--p-overlay-transparancy);
+  border-top-right-radius: var(--p-main-roundness);
+  border-top-left-radius: var(--p-main-roundness);
+}
+
+.textTitle {
+  text-align: center;
+  font-size: calc(28px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
+  padding: 10px;
+  font-weight: 500;
+}
+
+/* Style for the Infobar */
+.InfoBarStyle {
+  background-color: var(--p-overlay-transparancy);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: inherit;
+  padding: 4px;
+  margin-bottom: var(--p-lineSpacing);
+  font-size: var(--p-font-size-smaller);
+}
+
+.InfoBarGroupnameStyle {
+  text-align: left;
+  padding-left: 20px;
+}
+
+.InfoBarTaskCounterStyle {
+  text-align: right;
+  padding-right: 20px;
+}
+
+/* Style for the taskbody */
+.taskBodyStyle {
+  background-color: var(--p-overlay-transparancy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 0;
+  height: 100%;
+  width: inherit;
+  padding: 10px;
+}
+
+.taskDescriptionStyle {
+  text-align: center;
+  font-size: var(--p-font-size-normal);
+  min-height: 0;
+}
+
+.taskDescriptionScrollpanel {
+  width: auto;
+  min-height: 0px;
+  height: 100%;
+}
+
+.taskQuestionStyle {
+  text-align: center;
+  font-size: var(--p-font-size-normal);
+  font-weight: bold;
+  padding: 5px;
+}
+
+.numberInput {
+  margin: 5px;
+}
+
+.numberInput input {
+  text-align: right;
+  border-radius: 8px;
+}
+
+.taskChoiceContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  width: fit-content;
+}
+
+.divCheckbox {
+  width: fit-content;
+  margin-bottom: 5px;
+  margin-left: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.divCheckbox label {
+  font-size: var(--p-font-size-normal);
+  text-align: left;
+  cursor: pointer;
+  padding-left: 5px;
+}
+
+/* Style for answerbar */
+.answerBarStyle {
+  min-height: 30px;
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  width: inherit;
+  margin-top: var(--p-lineSpacing);
+}
+
+.answerBarStyle div {
+  background-color: var(--p-overlay-transparancy);
+}
+
+.taskAnswerbarSlot {
+  border-bottom-left-radius: var(--p-main-roundness);
+  display: flex;
+  height: inherit;
+}
+
+.taskAnswerbarButtonDiv {
+  border-bottom-right-radius: var(--p-main-roundness);
+  display: flex;
+  height: inherit;
+  margin-left: var(--p-lineSpacing);
+}
+
+.taskAnswerbarButtonDiv Button {
+  margin: 5px;
+}
+
+.zeroMargin {
+  margin: 0px;
+}
+
+/* Style for login and reconnect dialog */
+.custom-dialog {
+  position: relative;
+  display: flex;
+  width: 50%;
+  min-width: 250px;
+  flex-direction: column;
+  padding: 1%;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  right: 20px;
+}
+
+.dialog-header {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.help-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.content-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px; /* Adjusts spacing below the header */
+}
+
+.teamname-input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.footer-container {
+  flex-grow: 1; /* Allow the footer to expand */
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Vertically center the button */
+}
+
+.start-button {
+  margin-top: 50px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}

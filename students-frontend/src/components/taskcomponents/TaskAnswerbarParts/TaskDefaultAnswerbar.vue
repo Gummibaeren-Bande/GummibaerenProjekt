@@ -1,16 +1,14 @@
 <template>
-  <div class="answerBar">
-    <div class="mainComponentColor borderRadiusBottomLeft">
-      <div class="taskAnswerbar">
-        <slot></slot>
-      </div>
+  <div class="answerBarStyle">
+    <div class="taskAnswerbarSlot">
+      <slot></slot>
     </div>
-    <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" />
+    <TaskAnswerbutton @submit-answer="submitAnswer()" :disabled="disabled" :show-button="showButton" />
   </div>
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import TaskAnswerbutton from './TaskAnswerbutton.vue'
 import { defineComponent } from 'vue'
 
@@ -23,6 +21,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    showButton: {
+      type: Boolean,
+      default: true,
+    }
   },
   emits: ['submitAnswer'],
   methods: {

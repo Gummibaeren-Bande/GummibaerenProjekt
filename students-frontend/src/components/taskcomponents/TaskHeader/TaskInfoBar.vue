@@ -1,14 +1,12 @@
 <template>
-  <div class="InfoBar mainComponent mainComponentColor">
-    <div class="textSmaller textColor InfoBarGroupname">Gruppenname: {{ group.groupName }}</div>
-    <div class="textSmaller textColor InfoBarTaskCounter">
-      Fertige Aufgaben: {{ group.finishedTasks }}
-    </div>
+  <div class="InfoBarStyle">
+    <div class="InfoBarGroupnameStyle">Gruppenname: {{ group.groupName }}</div>
+    <div class="InfoBarTaskCounterStyle">Fertige Aufgaben: {{ group.finishedTasks }}</div>
   </div>
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import { defineComponent } from 'vue'
 import type { PropType } from 'vue'
 

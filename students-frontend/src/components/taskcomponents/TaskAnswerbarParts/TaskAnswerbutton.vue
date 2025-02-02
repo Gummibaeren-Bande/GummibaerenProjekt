@@ -1,8 +1,8 @@
 <template>
-  <div class="taskAnswerbar mainComponentColor borderRadiusBottomRight answerButtonLeftFreeSpace">
+  <div class="taskAnswerbarButtonDiv" :class = "{zeroMargin: !showButton}">
     <Button
+      v-show = "showButton"
       icon="pi pi-send"
-      class="margin5 answerButtonColor"
       label="Abschicken"
       fluid
       @click="submitAnswer()"
@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import Button from 'primevue/button'
 import 'primeicons/primeicons.css'
 import { defineComponent } from 'vue'
@@ -27,6 +27,10 @@ export default defineComponent({
       type: Boolean,
       default: false,
     },
+    showButton: {
+      type: Boolean,
+      required: true,
+    }
   },
   methods: {
     submitAnswer() {

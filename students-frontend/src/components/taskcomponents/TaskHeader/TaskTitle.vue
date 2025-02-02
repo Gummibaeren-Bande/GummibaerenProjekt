@@ -1,11 +1,11 @@
 <template>
-  <div class="mainComponent mainComponentColor borderRadiusTopRight borderRadiusTopLeft">
-    <h1 class="textTitle textColor">{{ title }}</h1>
+  <div class="taskTitleStyle">
+    <h1 class="textTitle">{{ title }}</h1>
   </div>
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
