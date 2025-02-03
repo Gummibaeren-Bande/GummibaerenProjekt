@@ -52,13 +52,14 @@ export default {
 
 /* Style for the button */
 .TaskSetTitle .p-button {
-  margin-right: 0.5rem;
+  margin-right: 0.75%;
 }
+
 .buttonColor {
   --p-button-primary-background: #009682;
   --p-button-primary-border-color: #009682;
   --p-button-primary-hover-background: #00baa1;
   --p-button-primary-hover-border-color: #00baa1;
-  --p-button-border-radius: 8px;
+  --p-button-border-radius: 50%;
 }
 </style>

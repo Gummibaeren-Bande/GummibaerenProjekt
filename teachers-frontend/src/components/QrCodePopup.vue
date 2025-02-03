@@ -3,8 +3,12 @@
     <Dialog
       v-model:visible="isVisible"
       @hide="$emit('hide')"
+      maximizable
       header="Als Gruppe beitreten"
-      pt:mask:class="backdrop-blur-lg"
+      pt:mask:class="backdrop-blur-sm"
+      :dismissableMask="true"
+      :draggable="false"
+      :modal="true"
     >
       <div>
         <canvas class="qrCode" id="qrCodeCanvas" />
@@ -57,5 +61,9 @@ export default {
 .qrCode {
   min-height: 60vh;
   min-width: 60vh;
+}
+
+.p-dialog {
+  align-items: center;
 }
 </style>
