@@ -17,29 +17,29 @@ Um das Projekt auf dem eigenen Rechner kompilieren und auszuführen benötigt ma
 
 ## Aufgabenerstellung
 
-Es befindet sich aktuell [hier](/shared-backend/src/taskList.ts) die Aufgabenliste.<br>
-Ein Task ist eine Ansammlung an Exercises, wobei die erste Exercise die Standardaufgabe ist und alle weiteren die einstellbaren Alternativen sind. Aktuell gibt es zwei Exercise-Typen, einerseits NumericalExercise und MultipleChoiceExercise, wobei eine NumericalExercise eine Aufgabe ist welche eine Ganzzahl als Antwortmöglichkeit nimmt und eine MultipleChoiceExercise eine Liste an Antwortmöglichkeiten anbietet, in welcher eine oder mehrere richtig sind.<br>
-Um somit eine neue Task zu erstellen schreibt man:
+Die Aufgabenliste findet sich aktuell [hier](/shared-backend/src/taskList.ts).<br>
+Ein Task ist eine Ansammlung von Exercises. Die erste Exercise ist die Standardaufgabe, alle weiteren können während der Benutzung als Alternativen ausgewählt werden. Zur Zeit gibt es zwei Exercise-Typen, einerseits NumericalExercise die eine Ganzzahl als Lösung hat, andererseits MultipleChoiceExercise die ein Array an Lösungen hat.<br>
+Um eine neue Task zu erstellen schreibt man:
 
 ```TypeScript
-new Task("Aufgabenname in der Lehreransicht",
+new Task("Aufgabenname in der Lehrkraftansicht",
     [
-        new NumericalExercise("Aufgabentitel für Schüler", "Aufgabenbeschreibung", "Frage", Antwortzahl),
-        new MultipleChoiceExercise("Aufgabentitel für Schüler", "Aufgabenbeschreibung", "Frage",
-            ["Antwortmöglichkeit1", "Antwortmöglichkeit2", "Antwortmöglichkeit3"], [Antwortindex1, Antwortindex2]
+        new NumericalExercise("Aufgabentitel für Schüler:innen", "Aufgabenbeschreibung", "Frage", Lösungszahl),
+        new MultipleChoiceExercise("Aufgabentitel für Schüler:innen", "Aufgabenbeschreibung", "Frage",
+            ["Antwortmöglichkeit1", "Antwortmöglichkeit2", "Antwortmöglichkeit3"], [Lösungsindex1, Lösungsindex2]
             )
     ]
  )
 ```
 
-Die Antwortmöglichkeiten für die MultipleChoiceExercise können um beliebig viele erweitert werden, selbes gilt für die Antwortindizes. Die Antwortindizes bilden dar welche der Antwortmöglichkeiten richtig sind, dabei wäre der korrekte Index von Antwortmöglichkeit1 = 0 und der korrekte Index von Antwortmöglichkeit3 = 2.<br>
-Somit haben wir nun eine Aufgabe mit einer Alternative erstellt. Um nun zu einem Aufgabenset zu kommen kann man nun mehrere solcher Tasks in einem Array speichern dieses wird aktuell auf Zeile 8 geöffnet und in Zeile 55 geschlossen.<br>
-Da die Schüler direkt die erste Aufgabe laden wenn sie sich verbinden, lässt sich für diese keine Alternative einstellen, selbst wenn sie existiert.<br>
+MultipleChoiceExercise können eine beliebige Anzahl an Antwortmöglichkeiten und Lösungsindizes haben. Die Lösungsindizes geben dabei vor, welche der Antwortmöglichkeiten korrekt sind. Dabei ist der Lösungsindex von Antwortmöglichkeit1 0, von Antwortmöglichkeit2 1 usw.<br>
+Mit dieser Syntax wurde nun eine Aufgabe mit einer Alternative erstellt. Mehrere solcher Tasks können in einem Array gespeichert werden, um ein Aufgabenset zu erstellen. Dieses Array liegt [hier](/shared-backend/src/taskList.ts) und wird in Zeile 8 geöffnet.<br>
+Aktuell lässt sich, unabhängig davon, ob eine erstellt wurde, für die erste Aufgabe keine Alternative auswählen, da die Schüler:innen direkt mit der Bearbeitung der ersten Aufgabe starten sobald sie sich registriert haben.<br>
 Das Aufgabenset, welches in der taskList.ts Datei gespeichert ist wird aktuell beim Starten des Servers automatisch geladen.
 
 ## Nutzen des Systems
 
-Um das System nun selbst auszuführen, muss man folgende Befehle im Root-Ordner ausführen:
+Um das System nun selbst auszuführen, müssen folgende Befehle im Root-Ordner ausgeführt werden:
 
 ### Installation (muss nur beim ersten mal ausgeführt werden)
 
