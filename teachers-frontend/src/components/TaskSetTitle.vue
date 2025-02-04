@@ -2,7 +2,7 @@
 <template>
   <div class="TaskSetTitle">
     <h1>Projekt der Gummibärenbande</h1>
-    <Button class="buttonColor" icon="pi pi-qrcode" @click="showQrCode" />
+    <Button class="buttonColor" icon="pi pi-qrcode" @click="showQrCode" rounded />
     <QrCodePopup :visible="qrCodeVisible" @hide="closeQrCode"></QrCodePopup>
   </div>
 </template>
@@ -60,6 +60,5 @@ export default {
   --p-button-primary-border-color: #009682;
   --p-button-primary-hover-background: #00baa1;
   --p-button-primary-hover-border-color: #00baa1;
-  --p-button-border-radius: 50%;
 }
 </style>
