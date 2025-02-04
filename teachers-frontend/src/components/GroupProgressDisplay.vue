@@ -12,7 +12,7 @@
             <th class="sticky-column sticky-header top-left-cell">Gruppenname</th>
             <th
               v-for="task in currentState.tasks"
-              :key="task.name"
+              :key="task.id"
               class="task-header sticky-header"
             >
               {{ task.name }}
@@ -29,12 +29,12 @@
                 {{ displayEndTime(group.groupProgress.finishedAfterSeconds) }}
               </div>
             </td>
-            <td v-for="task in currentState.tasks" :key="task.name" class="task-cell">
+            <td v-for="task in currentState.tasks" :key="task.id" class="task-cell">
               <ExerciseDisplay
                 :serverConnection="serverConnection"
                 :trackableTask="
                   group.groupProgress.progress.find(
-                    (trackableTask) => trackableTask.task.name === task.name,
+                    (trackableTask) => trackableTask.task.id === task.id,
                   )!
                 "
                 :groupName="group.name"
