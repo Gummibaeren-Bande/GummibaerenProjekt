@@ -51,7 +51,7 @@ export default {
         ':3000/teachers',
         ':8080/aks/',
       )
-      QRCode.toCanvas(document.getElementById('qrCodeCanvas'), url)
+      QRCode.toCanvas(document.getElementById('qrCodeCanvas'), url, { scale: 50 })
     },
   },
 }
@@ -59,8 +59,8 @@ export default {
 
 <style>
 .qrCode {
-  min-height: 60vh;
-  min-width: 60vh;
+  height: 65vh !important;
+  width: 65vh !important;
 }
 
 .p-dialog {
