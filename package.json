@@ -1,0 +1,14 @@
+{
+    "name": "GummibaerenProjekt",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start:old": "node ./start.js",
+        "start": "concurrently --names \"shared-backend,students-frontend,teachers-frontend\" -c \"yellow.bold,green.bold,blue.bold,\" \"cd ./shared-backend/ && npm run start\" \"cd ./students-frontend/ && npm run build-only && npm run preview\" \"cd ./teachers-frontend/ && npm run build-only && npm run preview\"",
+        "setup:old": "node ./setup.js",
+        "setup": "npm i && concurrently --names \"shared-backend,students-frontend,teachers-frontend\" -c \"yellow.bold,green.bold,blue.bold,\" \"cd ./shared-backend/ && npm i\" \"cd ./students-frontend/ && npm i\" \"cd ./teachers-frontend/ && npm i\""
+    },
+    "dependencies": {
+        "concurrently": "^9.1.2"
+    }
+}
