@@ -241,3 +241,10 @@ body {
 .p-toast {
   max-width: calc(100vw - 40px);
 }
+
+/* Temp css styling for the Image in the Discribtion. */
+.Image {
+  border-radius: var(--p-main-roundness);
+  max-width: 100%;
+  height: auto;
+}
