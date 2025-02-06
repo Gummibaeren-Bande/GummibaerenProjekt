@@ -13,7 +13,7 @@ Mit dem "Aufgaben Kontroll-System" wird Unterricht smarter: Aufgaben verteilen, 
 Um das Projekt auf dem eigenen Rechner kompilieren und auszuführen benötigt man
 
 - [Node.js](https://nodejs.org/en/download) (version 22.12.1 oder höher)
-- NPM (version 10.9.0 oder höher)
+- npm (version 10.9.0 oder höher)
 
 ## Aufgabenerstellung
 
