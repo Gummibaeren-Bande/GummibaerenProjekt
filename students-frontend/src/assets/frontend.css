@@ -245,6 +245,6 @@ body {
 /* Temp css styling for the Image in the Discribtion. */
 .Image {
   border-radius: var(--p-main-roundness);
-  max-width: 100%;
+  max-width: 97%;
   height: auto;
 }
