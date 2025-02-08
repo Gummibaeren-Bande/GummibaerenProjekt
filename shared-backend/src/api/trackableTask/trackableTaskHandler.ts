@@ -6,18 +6,18 @@ import TrackableTaskService from "./TrackableTaskService";
  * handles trackable task related events
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function trackableTaskHandler(
   io: IoServer,
   socket: IoSocket,
-  service: TrackableTaskService,
+  service: TrackableTaskService
 ) {
   socket.on("skipTask", (taskId, groupName, callback) =>
-    service.skipTask(taskId, groupName, callback),
+    service.skipTask(taskId, groupName, callback)
   );
   socket.on("revertTaskSkip", (taskId, groupName, callback) =>
-    service.revertTaskSkip(taskId, groupName, callback),
+    service.revertTaskSkip(taskId, groupName, callback)
   );
   socket.on(
     "chooseAlternativForTask",
@@ -26,8 +26,8 @@ function trackableTaskHandler(
         taskId,
         groupName,
         indexOfAlternative,
-        callback,
-      ),
+        callback
+      )
   );
 }
 

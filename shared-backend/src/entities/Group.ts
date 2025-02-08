@@ -16,7 +16,7 @@ class Group extends ObservableEntity {
     name: string,
     socket: IoSocket,
     taskSet: TaskSet,
-    subscriber: EntityObserver,
+    subscriber: EntityObserver
   ) {
     super(subscriber);
     this.name = name;
@@ -39,7 +39,7 @@ class Group extends ObservableEntity {
   /**
    * set the assigned socket to null
    */
-  public deassignSocket(): void {
+  public unassignSocket(): void {
     this.assignedSocket = null;
   }
 

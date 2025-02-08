@@ -6,21 +6,21 @@ import GroupSetService from "./GroupSetService";
  * handles creation and rejoining of groups
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function groupSetHandler(
   io: IoServer,
   socket: IoSocket,
-  service: GroupSetService,
+  service: GroupSetService
 ) {
   socket.on("addGroup", (name, callback) =>
-    service.addGroup(name, callback, socket),
+    service.addGroup(name, callback, socket)
   );
   socket.on("reconnectToGroup", (name, callback) =>
-    service.reconnectToGroup(name, callback, socket),
+    service.reconnectToGroup(name, callback, socket)
   );
   socket.on("requestCurrentState", (callback) =>
-    service.requestCurrentState(callback),
+    service.requestCurrentState(callback)
   );
 }
 

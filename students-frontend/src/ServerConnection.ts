@@ -34,9 +34,9 @@ class ServerConnection {
   /**
    * Authenticates the group by sending the group name to the server.
    * @param {string} name - The name of the group to authenticate.
-   * @returns {Promise<boolean>} - Returns CallbackSuccesDTO with the reults of the Server.
+   * @returns {Promise<boolean>} - Returns CallbackSuccessDTO with the results of the Server.
    */
-  async authentificateGroup(name: string): Promise<CallbackSuccessDTO> {
+  async authenticateGroup(name: string): Promise<CallbackSuccessDTO> {
     return new Promise((resolve) => {
       this.socket.emit('addGroup', name, (response: CallbackSuccessDTO) => {
         console.log(response.message)
@@ -48,7 +48,7 @@ class ServerConnection {
   /**
    * Authenticates the group by sending the group name to the server.
    * @param {string} name - The name of the group to authenticate.
-   * @returns {Promise<boolean>} - Returns CallbackSuccesDTO with the reults of the Server.
+   * @returns {Promise<boolean>} - Returns CallbackSuccessDTO with the results of the Server.
    */
   async reconnectToGroup(name: string): Promise<CallbackSuccessDTO> {
     return new Promise((resolve) => {
@@ -60,12 +60,12 @@ class ServerConnection {
   }
 
   /**
-   * Sends the given answer to the server and returns a CallbackSucces with that reflects wether the
+   * Sends the given answer to the server and returns a CallbackSuccess with that reflects wether the
    * answer was right or wrong.
    * @param groupName name of the group.
    * @param exerciseId Id of the current Exercise.
    * @param answer given answer by the User.
-   * @returns a CallbackSucces.
+   * @returns a CallbackSuccess.
    */
   async answerCurrentExercise(
     groupName: string,
@@ -103,7 +103,7 @@ class ServerConnection {
   }
 
   /**
-   * Requests the Curren Number of soved Exercises by a group.
+   * Requests the Current Number of solved Exercises by a group.
    * @param groupName the name of the group.
    * @returns a CallbackNumberDTO with the number of solved Questions.
    */
@@ -137,7 +137,7 @@ class ServerConnection {
   /**
    * Finish the work of the current group.
    * @param {string} groupName - The name of the group.
-   * @returns {Promise<boolean>} - Returns CallbackSuccesDTO with the reults of the Server.
+   * @returns {Promise<boolean>} - Returns CallbackSuccessDTO with the results of the Server.
    */
   async finishWork(groupName: string): Promise<CallbackSuccessDTO> {
     return new Promise((resolve) => {

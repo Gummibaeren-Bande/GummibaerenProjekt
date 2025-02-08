@@ -13,21 +13,21 @@ import ServerToClientEvents from "./types/ServerToClientEvents";
 import GroupSetService from "./api/group-set/GroupSetService";
 import TaskService from "./api/task/TaskService";
 import GroupProgressService from "./api/group-progress/GroupProgressService";
-import ExerciseService from "./api/exercicse/ExerciseService";
+import ExerciseService from "./api/exercise/ExerciseService";
 import TrackableTaskService from "./api/trackableTask/TrackableTaskService";
 import GroupService from "./api/group/GroupService";
 import taskList from "./taskList";
 import groupProgressHandler from "./api/group-progress/groupProgressHandler";
 import trackableTaskHandler from "./api/trackableTask/trackableTaskHandler";
 import taskHandler from "./api/task/taskHandler";
-import exerciseHandler from "./api/exercicse/exerciseHandler";
+import exerciseHandler from "./api/exercise/exerciseHandler";
 import readline from "readline";
 import WelcomeService from "./api/welcome/WelcomeService";
 import TeacherEmitsService from "./api/teacher-emits/TeacherEmitsService";
 import fs from "fs";
 import dgram from "dgram";
 
-// set up ip of active port for testing puropses
+// set up ip of active port for testing purposes
 
 let ip = await (async () => {
   return await getActiveInterfaceIp();
@@ -37,11 +37,11 @@ let ip = await (async () => {
 console.log(`server ip: ${ip}`);
 fs.writeFileSync(
   "../students-frontend/server.env",
-  `VITE_SERVER_URL=http://${ip}:3000/students\n`,
+  `VITE_SERVER_URL=http://${ip}:3000/students\n`
 );
 fs.writeFileSync(
   "../teachers-frontend/server.env",
-  `VITE_SERVER_URL=http://${ip}:3000/teachers\n`,
+  `VITE_SERVER_URL=http://${ip}:3000/teachers\n`
 );
 
 async function getActiveInterfaceIp(): Promise<string> {

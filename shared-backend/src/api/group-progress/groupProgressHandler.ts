@@ -6,18 +6,18 @@ import GroupProgressService from "./GroupProgressService";
  * handles group progress related events
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function groupProgressHandler(
   io: IoServer,
   socket: IoSocket,
-  service: GroupProgressService,
+  service: GroupProgressService
 ) {
   socket.on("finishWork", (groupName, callback) =>
-    service.finishWork(groupName, callback),
+    service.finishWork(groupName, callback)
   );
   socket.on("getNumberOfFinishedTasks", (groupName, callback) =>
-    service.getNumberOfFinishedTasks(groupName, callback),
+    service.getNumberOfFinishedTasks(groupName, callback)
   );
 }
 
