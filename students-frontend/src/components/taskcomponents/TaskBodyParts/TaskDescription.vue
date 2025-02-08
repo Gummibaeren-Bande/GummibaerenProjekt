@@ -1,5 +1,5 @@
 <template>
-  <div id="TaksContainer" class="textNormal textColor">
+  <div class="taskDescriptionStyle">
     <ScrollPanel class="taskDescriptionScrollpanel">
       <p>
         {{ description }}
@@ -9,7 +9,7 @@
 </template>
 
 <script lang="ts">
-import '../Task.css'
+import '@/assets/frontend.css'
 import ScrollPanel from 'primevue/scrollpanel'
 import { defineComponent } from 'vue'
 
@@ -25,9 +25,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style scope>
-#TaksContainer {
-  min-height: 0;
-}
-</style>
