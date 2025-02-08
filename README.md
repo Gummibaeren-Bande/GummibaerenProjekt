@@ -17,11 +17,11 @@ Um das Projekt auf dem eigenen Rechner kompilieren und auszuführen benötigt ma
 
 ## Aufgabenerstellung
 
-Ein Guide zur Aufgabenerstellung befindet sich in der [ReadMe des Backends](/shared-backend/README.md)
+Einen Guide zur Aufgabenerstellung findet sich im [ReadMe des Backends](/shared-backend/README.md).
 
 ## Nutzen des Systems
 
-Um das System nun selbst auszuführen, müssen folgende Befehle im Root-Ordner ausgeführt werden:
+Um das System selbst auszuführen, müssen folgende Befehle im Root-Ordner ausgeführt werden:
 
 ### Installation (muss nur beim ersten Mal ausgeführt werden)
 
