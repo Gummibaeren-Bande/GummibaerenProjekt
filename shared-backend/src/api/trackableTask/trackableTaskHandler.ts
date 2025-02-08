@@ -11,13 +11,13 @@ import TrackableTaskService from "./TrackableTaskService";
 function trackableTaskHandler(
   io: IoServer,
   socket: IoSocket,
-  service: TrackableTaskService
+  service: TrackableTaskService,
 ) {
   socket.on("skipTask", (taskId, groupName, callback) =>
-    service.skipTask(taskId, groupName, callback)
+    service.skipTask(taskId, groupName, callback),
   );
   socket.on("revertTaskSkip", (taskId, groupName, callback) =>
-    service.revertTaskSkip(taskId, groupName, callback)
+    service.revertTaskSkip(taskId, groupName, callback),
   );
   socket.on(
     "chooseAlternativForTask",
@@ -26,8 +26,8 @@ function trackableTaskHandler(
         taskId,
         groupName,
         indexOfAlternative,
-        callback
-      )
+        callback,
+      ),
   );
 }
 

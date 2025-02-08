@@ -1,7 +1,11 @@
 <template>
   <TaskHeader :title="infoContent.title" :group="group" />
   <TaskBody :question="infoContent.question" :description="infoContent.description" />
-  <TaskDefaultAnswerbar @submit-answer="submitAnswer()" :disabled="disableToAnswer" :show-button="false" />
+  <TaskDefaultAnswerbar
+    @submit-answer="submitAnswer()"
+    :disabled="disableToAnswer"
+    :show-button="false"
+  />
 </template>
 
 <script setup lang="ts">

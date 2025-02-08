@@ -10,11 +10,7 @@
         <thead class="table-header">
           <tr>
             <th class="sticky-column sticky-header top-left-cell">Gruppenname</th>
-            <th
-              v-for="task in currentState.tasks"
-              :key="task.id"
-              class="task-header sticky-header"
-            >
+            <th v-for="task in currentState.tasks" :key="task.id" class="task-header sticky-header">
               {{ task.name }}
             </th>
           </tr>

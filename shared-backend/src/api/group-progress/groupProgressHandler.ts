@@ -11,13 +11,13 @@ import GroupProgressService from "./GroupProgressService";
 function groupProgressHandler(
   io: IoServer,
   socket: IoSocket,
-  service: GroupProgressService
+  service: GroupProgressService,
 ) {
   socket.on("finishWork", (groupName, callback) =>
-    service.finishWork(groupName, callback)
+    service.finishWork(groupName, callback),
   );
   socket.on("getNumberOfFinishedTasks", (groupName, callback) =>
-    service.getNumberOfFinishedTasks(groupName, callback)
+    service.getNumberOfFinishedTasks(groupName, callback),
   );
 }
 

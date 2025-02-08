@@ -12,12 +12,12 @@ function welcomeHandler(
   io: IoServer,
   socket: IoSocket,
   service: WelcomeService,
-  isTeacher: boolean
+  isTeacher: boolean,
 ) {
   service.socketConnectionOpened(socket, isTeacher);
 
   socket.on("disconnect", (reason) =>
-    service.socketConnectionClosed(socket, reason, isTeacher)
+    service.socketConnectionClosed(socket, reason, isTeacher),
   );
 }
 

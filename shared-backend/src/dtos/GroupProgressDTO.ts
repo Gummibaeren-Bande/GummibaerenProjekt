@@ -13,15 +13,15 @@ class GroupProgressDTO {
     for (let i = 0; i < groupProgress.getProgress().length; i++) {
       if (groupProgress.getFinishedAfterSeconds() !== null) {
         progressDTO.push(
-          new TrackableTaskDTO(groupProgress.getProgress()[i], false)
+          new TrackableTaskDTO(groupProgress.getProgress()[i], false),
         );
       } else if (i > groupProgress.getIndexOfCurrentTask()) {
         progressDTO.push(
-          new TrackableTaskDTO(groupProgress.getProgress()[i], true)
+          new TrackableTaskDTO(groupProgress.getProgress()[i], true),
         );
       } else {
         progressDTO.push(
-          new TrackableTaskDTO(groupProgress.getProgress()[i], false)
+          new TrackableTaskDTO(groupProgress.getProgress()[i], false),
         );
       }
     }

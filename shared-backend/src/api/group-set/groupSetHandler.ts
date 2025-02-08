@@ -11,16 +11,16 @@ import GroupSetService from "./GroupSetService";
 function groupSetHandler(
   io: IoServer,
   socket: IoSocket,
-  service: GroupSetService
+  service: GroupSetService,
 ) {
   socket.on("addGroup", (name, callback) =>
-    service.addGroup(name, callback, socket)
+    service.addGroup(name, callback, socket),
   );
   socket.on("reconnectToGroup", (name, callback) =>
-    service.reconnectToGroup(name, callback, socket)
+    service.reconnectToGroup(name, callback, socket),
   );
   socket.on("requestCurrentState", (callback) =>
-    service.requestCurrentState(callback)
+    service.requestCurrentState(callback),
   );
 }
 

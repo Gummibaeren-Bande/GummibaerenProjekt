@@ -10,7 +10,7 @@ interface TrackableTaskServiceListener {
   skipTask: (
     taskId: string,
     groupName: string,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) => void;
 
   /**
@@ -22,7 +22,7 @@ interface TrackableTaskServiceListener {
   revertTaskSkip: (
     taskId: string,
     groupName: string,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) => void;
 
   /**
@@ -36,7 +36,7 @@ interface TrackableTaskServiceListener {
     taskId: string,
     groupName: string,
     exerciseId: string,
-    callback: CallbackSuccess
+    callback: CallbackSuccess,
   ) => void;
 }
 

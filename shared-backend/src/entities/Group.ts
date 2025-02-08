@@ -16,7 +16,7 @@ class Group extends ObservableEntity {
     name: string,
     socket: IoSocket,
     taskSet: TaskSet,
-    subscriber: EntityObserver
+    subscriber: EntityObserver,
   ) {
     super(subscriber);
     this.name = name;
