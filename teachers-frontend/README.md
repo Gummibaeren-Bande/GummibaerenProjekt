@@ -8,7 +8,7 @@
 ## Scripts
 
 Mit `npm install` werden alle genutzten Packages dieses Frontends installiert.<br>
-Mit `npm run build` beziehungsweise `npm run build-only` wird dieses Frontend kompiliert und im `dist` Ordner zur Verfügung gestellt und kann dann mit `npm run preview` live hosted werden. Der Unterschied zwischen den beiden Build-Befehlen beläuft sich auf einen Type-Check.
+Mit `npm run build` beziehungsweise `npm run build-only` wird dieses Frontend kompiliert und im `dist` Ordner zur Verfügung gestellt und kann dann mit `npm run preview` live gehosted werden. Der Unterschied zwischen den beiden Build-Befehlen beläuft sich auf einen Type-Check.
 
 ## Gruppenübersicht
 
