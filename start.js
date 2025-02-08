@@ -32,7 +32,6 @@ folders.forEach((folder) => {
   if (platform === "win32") {
     // Construct the command to open a new cmd.exe window and execute the commands
     command = `start cmd.exe /K "cd ${fullPath} && ${commands}"`;
-    console.log("Command: ", command);
   } else if (platform === "darwin") {
     // Construct the command to open a new Terminal window on macOS and execute the commands
     command = `osascript -e 'tell application "Terminal" to do script "cd ${fullPath} && ${commands}"'`;
