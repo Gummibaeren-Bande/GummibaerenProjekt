@@ -1,4 +1,4 @@
-import ExerciseService from "../api/exercicse/ExerciseService";
+import ExerciseService from "../api/exercise/ExerciseService";
 import GroupProgressService from "../api/group-progress/GroupProgressService";
 import GroupService from "../api/group/GroupService";
 import GroupSetService from "../api/group-set/GroupSetService";
@@ -105,7 +105,7 @@ describe("GroupServices", () => {
     );
   });
   it("should reconnect to a group", () => {
-    groupService.deassignSocketFromGroup(SOCKET_1);
+    groupService.unassignSocketFromGroup(SOCKET_1);
     const callback = jest.fn();
     groupSetService.reconnectToGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(

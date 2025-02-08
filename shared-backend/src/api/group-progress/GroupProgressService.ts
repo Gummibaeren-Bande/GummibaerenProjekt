@@ -24,8 +24,8 @@ class GroupProgressService implements GroupProgressServiceListener {
   /**
    * tests if the group has a next task
    *
-   * @param groupName the anme of the given group
-   * @returns ture if the group has a next task
+   * @param groupName the name of the given group
+   * @returns true if the group has a next task
    */
   public hasNextTask(groupName: string): boolean | undefined {
     return this.getGroupProgressByGroupName(groupName)?.hasNextTask();

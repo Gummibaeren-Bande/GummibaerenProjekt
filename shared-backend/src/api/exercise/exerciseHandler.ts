@@ -6,7 +6,7 @@ import ExerciseService from "./ExerciseService";
  * handles exercise related events
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function exerciseHandler(
   io: IoServer,

@@ -21,7 +21,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   }
 
   /**
-   * just marks the current task as completed, doesnt go to the next task in GroupProgress, as this is a seperate call.
+   * just marks the current task as completed, doesn't go to the next task in GroupProgress, as this is a separate call.
    *
    * @param groupName the group name that completed the task
    */

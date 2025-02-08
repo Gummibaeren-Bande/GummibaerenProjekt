@@ -46,7 +46,7 @@ class WelcomeService {
     if (isTeacher) {
       this.teacherEmitsService.removeSocket(socket);
     } else {
-      this.groupService.deassignSocketFromGroup(socket);
+      this.groupService.unassignSocketFromGroup(socket);
     }
   }
 }

@@ -39,7 +39,7 @@ class Group extends ObservableEntity {
   /**
    * set the assigned socket to null
    */
-  public deassignSocket(): void {
+  public unassignSocket(): void {
     this.assignedSocket = null;
   }
 

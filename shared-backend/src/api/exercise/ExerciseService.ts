@@ -18,7 +18,7 @@ class ExerciseService implements ExerciseServiceListener {
   /**
    * try to answer the current exercise of the given group with the given answer
    * if, the answer is correct, the corresponding TrackableTask is marked as completed.
-   * Getting the next question is a seperate action.
+   * Getting the next question is a separate action.
    *
    * @param groupName the name of the answering group
    * @param answer the answer given by the group

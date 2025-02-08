@@ -14,7 +14,7 @@ interface TrackableTaskServiceListener {
   ) => void;
 
   /**
-   * revert the skiped marking of the task with the given id for the given group.
+   * revert the skipped marking of the task with the given id for the given group.
    *
    * @param taskId the id of the task to unskip
    * @param groupName the name of the group to unskip the task for

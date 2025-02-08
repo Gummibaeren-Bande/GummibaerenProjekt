@@ -32,7 +32,6 @@ import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 import ServerConnection from '@/ServerConnection'
 import MultipleChoiceTask from './taskviews/MultipleChoiceTask.vue'
 import Answer from '../../../shared-backend/src/types/Answer'
-import NumericalExercise from '../../../shared-backend/src/entities/NumericalExercise'
 import InfoDisplay, { InfoContent } from './taskviews/InfoDisplay.vue'
 </script>
 
@@ -118,7 +117,7 @@ export default defineComponent({
     },
 
     /**
-     * Loads the Current Exercise frome Server.
+     * Loads the Current Exercise from Server.
      */
     async loadCurrentExercise() {
       const response = await this.serverConnection.getCurrentExerciseOfGroup(this.group.groupName)
