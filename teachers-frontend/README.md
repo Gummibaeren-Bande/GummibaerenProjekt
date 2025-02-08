@@ -1,51 +1,19 @@
 # teachers-frontend
+## Gruppenübersicht
+Sobald die Lehrkraft das Programm gestartet hat, bekommt sie eine zu Beginn leere Tabelle angezeigt. Die sichtbare Zeile zeigt dabei die Namen der Aufgaben an, in der ersten Spalte werden die Namen der Gruppen angezeigt, sobald diese registriert sind.<br>
+Oben rechts befindet sich ein Button mit QR-Code Symbol. Durch Klicken dieses Buttons öffnet sich ein QR-Code, den die Schüler:innen scannen können, um sich als Gruppe zu registrieren.
+![](./readme-img/teacher-empty-view.png)<br><br>
+Diese Tabelle füllt sich, wenn sich nach und nach die Gruppen anmelden. Im Laufe der Bearbeitung könnte die Bearbeitung wie folgt aussehen:<br>
+![](./readme-img/teacher-view.png)<br>
+Dabei gibt es für die verschiedenen Bearbeitungsfortschritte der einzelnen Aufgaben vier Farben:<br>
+- Grau steht für eine unbearbeitete, noch nicht begonnene Aufgabe.
+- Grün steht für eine erfolgreich bearbeitete Aufgabe.
+- Blau steht für eine Aufgabe, die gerade bearbeitet wird.
+- Rot steht für eine Aufgabe, die übersprungen wurde.
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Compile and Hot-Reload for Development + Hosting
-
-```sh
-npm run host
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Unter begonnenen Aufgaben erscheint ein Timer, der anzeigt, wie lange die Gruppe für die jeweilige Aufgabe braucht. Dieser Timer stoppt, sobald die Aufgabe richtig beantwortet wurde.<br>
+In der Anzeige einer Aufgabe wird angezeigt, wie viele Antwortversuche die Gruppe bisher getätigt hat.<br>
+Falls eine Aufgabe Alternativ-Übungen hat, so werden diese in einem kleine Kreis oben rechts an der Aufgabe angezeigt. In dieser Anzeige steht auch immer, welche Übung gerade ausgewählt ist.<br>
+Sobald eine Gruppe mit allen Übungen fertig ist, erscheint unter ihrem Gruppennamen ein grüner Timer, der angibt, wie lange die Gruppe insgesamt zur Bearbeitung benötigt hat. Außerdem färbt sich der Gruppenname grün.<br>
+Durch Klicken der Aufgabe, öffnet sich ein Menü mit Optionen. Aufgaben, die keine Alternativ-Übungen haben, haben nur die Option, die Aufgabe zu überspringen. Falls die Aufgabe Alternativ-Übungen hat, so werden diese im Menü angezeigt. Eine übersprungen Aufgabe kann über das Menü reaktiviert werden.<br>
+![](./readme-img/teacher-options-view.png)
