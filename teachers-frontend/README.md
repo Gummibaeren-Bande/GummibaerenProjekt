@@ -1,11 +1,24 @@
 # teachers-frontend
+
+## Inhaltsverzeichnis
+
+- [Scripts](#scripts)
+- [Gruppenübersicht](#gruppenübersicht)
+
+## Scripts
+
+Mit `npm install` werden alle genutzten Packages dieses Frontends installiert.<br>
+Mit `npm run build` beziehungsweise `npm run build-only` wird dieses Frontend kompiliert und im `dist` Ordner zur Verfügung gestellt und kann dann mit `npm run preview` live hosted werden. Der Unterschied zwischen den beiden Build-Befehlen beläuft sich auf einen Type-Check.
+
 ## Gruppenübersicht
+
 Sobald die Lehrkraft das Programm gestartet hat, bekommt sie eine zu Beginn leere Tabelle angezeigt. Die sichtbare Zeile zeigt dabei die Namen der Aufgaben an, in der ersten Spalte werden die Namen der Gruppen angezeigt, sobald diese registriert sind.<br>
 Oben rechts befindet sich ein Button mit QR-Code Symbol. Durch Klicken dieses Buttons öffnet sich ein QR-Code, den die Schüler:innen scannen können, um sich als Gruppe zu registrieren.
 ![](./readme-img/teacher-empty-view.png)<br><br>
 Diese Tabelle füllt sich, wenn sich nach und nach die Gruppen anmelden. Im Laufe der Bearbeitung könnte die Bearbeitung wie folgt aussehen:<br>
 ![](./readme-img/teacher-view.png)<br>
 Dabei gibt es für die verschiedenen Bearbeitungsfortschritte der einzelnen Aufgaben vier Farben:<br>
+
 - Grau steht für eine unbearbeitete, noch nicht begonnene Aufgabe.
 - Grün steht für eine erfolgreich bearbeitete Aufgabe.
 - Blau steht für eine Aufgabe, die gerade bearbeitet wird.
