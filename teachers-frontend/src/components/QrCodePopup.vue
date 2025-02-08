@@ -18,6 +18,7 @@
 </template>
 
 <script setup lang="ts">
+import '@/assets/frontend.css'
 import QRCode from 'qrcode'
 import Dialog from 'primevue/dialog'
 import { nextTick } from 'vue'
@@ -56,14 +57,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.qrCode {
-  height: 65vh !important;
-  width: 65vh !important;
-}
-
-.p-dialog {
-  align-items: center;
-}
-</style>

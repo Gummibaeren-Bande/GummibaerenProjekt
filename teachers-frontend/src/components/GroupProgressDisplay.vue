@@ -4,24 +4,20 @@
  Also displays a timer for each task. -->
 
 <template>
-  <ScrollPanel class="outer-div">
-    <div class="inner-div">
-      <table class="exercise-display">
-        <thead class="table-header">
+  <ScrollPanel class="dataTableContainer">
+    <div class="dataTable">
+      <table class="exerciseInDataTable">
+        <thead>
           <tr>
-            <th class="sticky-column sticky-header top-left-cell">Gruppenname</th>
-            <th
-              v-for="task in currentState.tasks"
-              :key="task.id"
-              class="task-header sticky-header"
-            >
+            <th class="stickyColumn stickyHeader topLeftCell">Gruppenname</th>
+            <th v-for="task in currentState.tasks" :key="task.id" class="stickyHeader">
               {{ task.name }}
             </th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="group in currentState.groups" :key="group.name">
-            <td class="sticky-column">
+            <td class="stickyColumn">
               <span :class="{ endTimer: group.groupProgress.finishedWork }">
                 {{ group.name }}
               </span>
@@ -29,8 +25,8 @@
                 {{ displayEndTime(group.groupProgress.finishedAfterSeconds) }}
               </div>
             </td>
-            <td v-for="task in currentState.tasks" :key="task.id" class="task-cell">
-              <ExerciseDisplay
+            <td v-for="task in currentState.tasks" :key="task.id">
+              <ExerciseDisplayNew
                 :serverConnection="serverConnection"
                 :trackableTask="
                   group.groupProgress.progress.find(
@@ -48,7 +44,8 @@
 </template>
 
 <script lang="ts" setup>
-import ExerciseDisplay from './ExerciseDisplay.vue'
+import '@/assets/frontend.css'
+import ExerciseDisplayNew from './ExerciseDisplay.vue'
 import ScrollPanel from 'primevue/scrollpanel'
 import ServerConnection from '@/ServerConnection'
 import CurrentStateDTO from '../../../shared-backend/src/dtos/CurrentStateDTO'
@@ -96,81 +93,3 @@ export default {
   },
 }
 </script>
-
-<style>
-.outer-div {
-  background: white;
-  font-size: 20px;
-  color: black;
-  width: 100%;
-  overflow: auto;
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  padding: 1%;
-  box-sizing: border-box;
-}
-
-.inner-div {
-  max-height: 75vh;
-  overflow-y: auto;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.exercise-display {
-  text-align: center;
-  width: 100%;
-  padding: 0;
-  box-sizing: border-box;
-  border-collapse: collapse;
-}
-
-.exercise-display th,
-.exercise-display td {
-  padding: 0;
-  padding-right: 10px;
-  box-sizing: border-box;
-  border-bottom: 2px solid #009682;
-}
-
-.exercise-display td {
-  padding-top: 12px;
-}
-
-.endTimer {
-  font-weight: bold;
-  color: rgb(140, 182, 60);
-}
-
-.sticky-column {
-  position: sticky;
-  left: 0;
-  z-index: 2;
-  background: white;
-  border-top: 2px solid #009682;
-}
-
-.sticky-header {
-  padding-top: 0;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: white;
-  border-bottom: 2px solid #009682;
-}
-
-.top-left-cell {
-  z-index: 3;
-  overflow-wrap: break-word;
-  white-space: normal;
-  border-top: none;
-  border-bottom: 2px solid #009682;
-}
-
-.task-header,
-.task-cell {
-  max-width: 150px;
-  overflow-wrap: break-word;
-  white-space: normal;
-}
-</style>
