@@ -5,16 +5,16 @@
       :class="['exerciseButtonDisplay', getColor()]"
       :disabled="!hasOptions()"
     >
-    <div>
-      <span>
-        {{ trackableTask.tries }}
-      </span>
-      <div v-if="hasAlternatives()" :class="['alternativeDisplay', getColor()]">
+      <div>
         <span>
-          {{ getChoosenExcerciseEnumerator() }}
+          {{ trackableTask.tries }}
         </span>
+        <div v-if="hasAlternatives()" :class="['alternativeDisplay', getColor()]">
+          <span>
+            {{ getChoosenExcerciseEnumerator() }}
+          </span>
+        </div>
       </div>
-    </div>
     </Button>
     <div class="timer">
       <TimerComponent

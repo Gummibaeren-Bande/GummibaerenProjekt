@@ -31,8 +31,8 @@ body {
 }
 
 .qrCodeButton {
-    margin-right: 0.75%;
-    --p-button-primary-background: #009682;
+  margin-right: 0.75%;
+  --p-button-primary-background: #009682;
   --p-button-primary-border-color: #009682;
   --p-button-primary-hover-background: #00baa1;
   --p-button-primary-hover-border-color: #00baa1;
@@ -113,114 +113,113 @@ body {
 
 /* Style for the exercises (@ExerciseDisplay) */
 .exercise {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
 }
 
 .exerciseButtonDisplay {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 75px;
-    width: 75px;
-    color: black !important;
-    font-size: 40px !important;
-    padding: 0;
-    --p-button-primary-border-color: none;
-    --p-button-primary-hover-border-color: none;
-    --p-button-primary-active-border-color: none;
-    --p-button-border-radius: 50%;
-    overflow: visible !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  width: 75px;
+  color: black !important;
+  font-size: 40px !important;
+  padding: 0;
+  --p-button-primary-border-color: none;
+  --p-button-primary-hover-border-color: none;
+  --p-button-primary-active-border-color: none;
+  --p-button-border-radius: 50%;
+  overflow: visible !important;
 }
 
 .exerciseButtonDisplay:disabled {
-    opacity: 1 !important;
+  opacity: 1 !important;
 }
 
 /* Button colors depending of the completion-state of the exercise. */
 .skippedColor {
-background-color: rgb(220, 44, 37);
---p-button-primary-background: rgb(220, 44, 37);
---p-button-primary-hover-background: rgb(220, 44, 37, 0.85);
---p-button-primary-active-background: rgb(220, 44, 37, 0.8);
+  background-color: rgb(220, 44, 37);
+  --p-button-primary-background: rgb(220, 44, 37);
+  --p-button-primary-hover-background: rgb(220, 44, 37, 0.85);
+  --p-button-primary-active-background: rgb(220, 44, 37, 0.8);
 }
 
 .inProgressColor {
-background-color: rgb(35, 161, 224);
---p-button-primary-background: rgb(35, 161, 224);
---p-button-primary-hover-background: rgb(35, 161, 224, 0.85);
---p-button-primary-active-background: rgb(35, 161, 224, 0.8);
+  background-color: rgb(35, 161, 224);
+  --p-button-primary-background: rgb(35, 161, 224);
+  --p-button-primary-hover-background: rgb(35, 161, 224, 0.85);
+  --p-button-primary-active-background: rgb(35, 161, 224, 0.8);
 }
 
 .notStartedColor {
-background-color: rgb(182, 182, 182);
---p-button-primary-background: rgb(182, 182, 182);
---p-button-primary-hover-background: rgb(182, 182, 182, 0.85);
---p-button-primary-active-background: rgb(182, 182, 182, 0.8);
+  background-color: rgb(182, 182, 182);
+  --p-button-primary-background: rgb(182, 182, 182);
+  --p-button-primary-hover-background: rgb(182, 182, 182, 0.85);
+  --p-button-primary-active-background: rgb(182, 182, 182, 0.8);
 }
 
 .finishedColor {
-background-color: rgb(140, 182, 60);
---p-button-primary-background: rgb(140, 182, 60);
---p-button-primary-hover-background: rgb(140, 182, 60, 0.85);
---p-button-primary-active-background: rgb(140, 182, 60, 0.8);
+  background-color: rgb(140, 182, 60);
+  --p-button-primary-background: rgb(140, 182, 60);
+  --p-button-primary-hover-background: rgb(140, 182, 60, 0.85);
+  --p-button-primary-active-background: rgb(140, 182, 60, 0.8);
 }
 
 .alternativeDisplay {
-position: absolute;
-height: 35px;
-width: 35px;
-border-radius: 50%;
-display: flex;
-color: black;
-font-size: 20px;
-align-items: center;
-justify-content: center;
-top: 0;
-right: 0;
-transform: translate(30%, -26%);
+  position: absolute;
+  height: 35px;
+  width: 35px;
+  border-radius: 50%;
+  display: flex;
+  color: black;
+  font-size: 20px;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  right: 0;
+  transform: translate(30%, -26%);
 }
 
 .optionsPopover {
-    --p-popover-background: rgb(182, 182, 182);
-    --p-popover-border-color: rgb(128, 128, 128);
-    --p-popover-color: black;
-    font-size: 18px;
+  --p-popover-background: rgb(182, 182, 182);
+  --p-popover-border-color: rgb(128, 128, 128);
+  --p-popover-color: black;
+  font-size: 18px;
 }
 
 .popoverOptionsButton {
-color: black !important;
---p-button-primary-border-color: rgb(128, 128, 128);
---p-button-primary-hover-border-color: rgb(128, 128, 128);
---p-button-primary-active-border-color: rgb(128, 128, 128);
---p-button-primary-background: rgb(182, 182, 182);
---p-button-primary-hover-background: rgb(190, 190, 190);
---p-button-primary-active-background: rgb(198, 198, 198);
-width: 100%;
+  color: black !important;
+  --p-button-primary-border-color: rgb(128, 128, 128);
+  --p-button-primary-hover-border-color: rgb(128, 128, 128);
+  --p-button-primary-active-border-color: rgb(128, 128, 128);
+  --p-button-primary-background: rgb(182, 182, 182);
+  --p-button-primary-hover-background: rgb(190, 190, 190);
+  --p-button-primary-active-background: rgb(198, 198, 198);
+  width: 100%;
 }
 
 .timer {
-font-size: 26px;
-height: 30px;
-margin-bottom: 3%;
+  font-size: 26px;
+  height: 30px;
+  margin-bottom: 3%;
 }
 
 /* Style for finished timers. (@Timer)*/
 .text-green-500 {
-color: rgb(140, 182, 60);
+  color: rgb(140, 182, 60);
 }
-
 
 /* Style for the qr-code */
 .qrCode {
-    height: 65vh !important;
-    width: 65vh !important;
-  }
-  
-  .p-dialog {
-    align-items: center;
-  }
+  height: 65vh !important;
+  width: 65vh !important;
+}
+
+.p-dialog {
+  align-items: center;
+}
