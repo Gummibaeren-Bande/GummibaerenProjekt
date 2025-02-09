@@ -12,13 +12,13 @@
     <div class="content-container">
       <InputText
         class="teamname-input"
-        @keydown.enter="authentificateGroup(groupName)"
+        @keydown.enter="authenticateGroup(groupName)"
         v-model="groupName"
         placeholder="Teamname eingeben"
       />
     </div>
     <div class="footer-container">
-      <Button class="start-button" @click="authentificateGroup(groupName)">Starten</Button>
+      <Button class="start-button" @click="authenticateGroup(groupName)">Starten</Button>
     </div>
   </Dialog>
   <ReconnectPopup
@@ -85,15 +85,15 @@ export default {
      * @param {string} name - The name of the group to authenticate.
      * @returns {Promise<boolean>} - Returns `true` if the group is authenticated successfully, otherwise `false`.
      */
-    async authentificateGroup(name: string): Promise<boolean> {
-      const response = await this.serverConnection.authentificateGroup(name)
+    async authenticateGroup(name: string): Promise<boolean> {
+      const response = await this.serverConnection.authenticateGroup(name)
       return new Promise((resolve) => {
         if (response.success) {
-          this.diplayGroupCreationSuccess(response.message)
+          this.displayGroupCreationSuccess(response.message)
           this.validGroupSelected(name)
           resolve(true)
         } else {
-          this.diplayGroupCreationError(response.message)
+          this.displayGroupCreationError(response.message)
           this.groupName = ''
           resolve(false)
         }
@@ -116,7 +116,7 @@ export default {
      * Displays a group creation error
      * @param error the error message to display
      */
-    diplayGroupCreationError(error: string) {
+    displayGroupCreationError(error: string) {
       this.$toast.add({
         severity: 'error',
         summary: 'Fehler beim Erstellen der Gruppe',
@@ -129,7 +129,7 @@ export default {
      * Displays a group creation success
      * @param message the success message to display
      */
-    diplayGroupCreationSuccess(message: string) {
+    displayGroupCreationSuccess(message: string) {
       this.$toast.add({
         severity: 'success',
         summary: 'Gruppenerstellung erfolgreich',

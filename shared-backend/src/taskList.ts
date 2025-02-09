@@ -17,7 +17,7 @@ const taskList = [
   new Task("Gummibärchen Verteilung", [
     new NumericalExercise(
       "Gummibärchen Verteilung",
-      "In einer Gummibärchenpackung gibt es ingesamt 256 Gummibärchen. Diese sollen jetzt auf Tom, Alice, Jonas, Friedrich, Tabea, Michi, Lisa und Felix aufgeteilt werden.",
+      "In einer Gummibärchenpackung gibt es insgesamt 256 Gummibärchen. Diese sollen jetzt auf Tom, Alice, Jonas, Friedrich, Tabea, Michi, Lisa und Felix aufgeteilt werden.",
       "Wie viele Gummibärchen bekommt jeder?",
       32,
     ),

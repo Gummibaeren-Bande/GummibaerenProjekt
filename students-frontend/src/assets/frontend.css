@@ -18,7 +18,7 @@ body {
 
   color: black;
 
-  --p-overlay-transparancy: #ffffffc0;
+  --p-overlay-transparency: #ffffffc0;
   --p-lineSpacing: 2px;
   --p-main-roundness: 12px;
   --p-font-size-smaller: calc(10px + (28 - 16) * ((100vw - 320px) / (1600 - 320)));
@@ -48,7 +48,7 @@ body {
   align-items: center;
   width: inherit;
   margin-bottom: var(--p-lineSpacing);
-  background-color: var(--p-overlay-transparancy);
+  background-color: var(--p-overlay-transparency);
   border-top-right-radius: var(--p-main-roundness);
   border-top-left-radius: var(--p-main-roundness);
 }
@@ -62,7 +62,7 @@ body {
 
 /* Style for the Infobar */
 .InfoBarStyle {
-  background-color: var(--p-overlay-transparancy);
+  background-color: var(--p-overlay-transparency);
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: inherit;
@@ -83,7 +83,7 @@ body {
 
 /* Style for the taskbody */
 .taskBodyStyle {
-  background-color: var(--p-overlay-transparancy);
+  background-color: var(--p-overlay-transparency);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -156,7 +156,7 @@ body {
 }
 
 .answerBarStyle div {
-  background-color: var(--p-overlay-transparancy);
+  background-color: var(--p-overlay-transparency);
 }
 
 .taskAnswerbarSlot {

@@ -15,14 +15,14 @@ class GroupService {
   }
 
   /**
-   * finds the group with the given socket attached. after the group is found, the attached socket is deassigned.
+   * finds the group with the given socket attached. after the group is found, the attached socket is unassigned.
    *
    * @param socket the given socket
    */
-  public deassignSocketFromGroup(socket: IoSocket): void {
+  public unassignSocketFromGroup(socket: IoSocket): void {
     const group = this.groupSetService.getGroupSet().tryGroupBySocket(socket);
     if (group) {
-      group.deassignSocket();
+      group.unassignSocket();
     }
   }
 }

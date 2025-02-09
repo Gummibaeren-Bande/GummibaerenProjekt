@@ -77,17 +77,17 @@ describe("GroupSet", () => {
     expect(id).toBe(TEST_ID);
   });
 
-  it("should return null as socket id after the socket is deassigned", () => {
+  it("should return null as socket id after the socket is unassigned", () => {
     groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
     const group = groupSet.getGroupByName(GROUP_NAME);
-    group?.deassignSocket();
+    group?.unassignSocket();
     expect(group?.getAssignedSocketId()).toBeNull();
   });
 
-  it("hasAssignedSocket should return false if socket was deassigned", () => {
+  it("hasAssignedSocket should return false if socket was unassigned", () => {
     groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
     const group = groupSet.getGroupByName(GROUP_NAME);
-    group?.deassignSocket();
+    group?.unassignSocket();
     expect(group?.hasAssignedSocket()).toBeFalsy();
   });
 
@@ -105,10 +105,10 @@ describe("GroupSet", () => {
     );
   });
 
-  it("hasAssignedSocket should assigned a new socket if old socket was deassigned", () => {
+  it("hasAssignedSocket should assigned a new socket if old socket was unassigned", () => {
     groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
     const group = groupSet.getGroupByName(GROUP_NAME);
-    group?.deassignSocket();
+    group?.unassignSocket();
     group?.setAssignedSocket(SOCKET_2);
     expect(group?.getAssignedSocketId()).toBe(TEST_ID_2);
   });

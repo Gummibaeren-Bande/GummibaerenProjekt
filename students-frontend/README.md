@@ -1,49 +1,38 @@
 # students-frontend
 
-This template should help get you started developing with Vue 3 in Vite.
+## Inhaltsverzeichnis
 
-## npm version
+- [Scripts](#scripts)
+- [Login & Reconnect](#login-ansicht-und-reconnect)
+- [Aufgaben](#aufgabenansicht)
+- [Endansicht](#endansicht)
 
-this project uses npm version 22.11.0
+## Scripts
 
-## Recommended IDE Setup
+Mit `npm install` werden alle genutzten Packages dieses Frontends installiert.<br>
+Mit `npm run build` beziehungsweise `npm run build-only` wird dieses Frontend kompiliert und im `dist` Ordner zur Verfügung gestellt und kann dann mit `npm run preview` live gehosted werden. Der Unterschied zwischen den beiden Build-Befehlen beläuft sich auf einen Type-Check.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+## Login-Ansicht (und Reconnect)
 
-## Type Support for `.vue` Imports in TS
+Wenn die Schüler:innen den QR-Code gescannt oder den Link eingegeben haben, öffnet sich eine Login Seite. Hier können die Schüler:innen einen Gruppennamen eingeben und dann über den `Starten`-Button mit der Bearbeitung beginnen.<br>
+Sollte eine Gruppe währen der Bearbeitung das Gerät wechseln, so kann sie sich wieder einloggen und mit der Bearbeitung fortfahren. Das geht über den Reconnect-Button oben rechts im Login Fenster. Dort kann die Gruppe ihren Namen wieder eingeben und über den `Weiterarbeiten`-Button die Bearbeitung fortsetzen.<br>
+![](./readme-img/student-login-view.png)<br>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Aufgabenansicht
 
-## Customize configuration
+Jede Gruppe sieht oben im Fenster den Namen der aktuellen Aufgabe. Darunter steht links der Gruppenname, rechts wird angezeigt, wie viele Aufgaben die Gruppe bereits korrekt gelöst hat.
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+### Numerical Exercise
 
-## Project Setup
+Aufgaben mit numerischer Antwort bieten ein Eingabefeld in dem `Antwort` steht. Sobald die Schüler:innen in dieses Feld ihre Antwort als Ganzzahl eingegeben haben, können sie durch Klicken des `Abschicken`-Buttons ihre Antwort überprüfen lassen. Bei einer falschen Antwort poppt eine Benachrichtigung darüber auf und die Gruppe kann eine weitere Antwort eingeben. Bei einer richtigen Antwort wird die Gruppe direkt zur nächsten Aufgabe weitergeleitet.
+![](./readme-img/student-numerical-exercise-view.png)
 
-```sh
-npm install
-```
+### Multiple-Choice Exercise
 
-### Compile and Hot-Reload for Development
+Multiple-Choice Aufgaben zeigen die Antwortmöglichkeiten an. Diese können durch Klicken ausgewählt werden. Danach können die Schüler:innen wieder durch `Abschicken` ihre Lösung verifizieren lassen.
+![](./readme-img/student-multiple-choice-exercise-view.png)
 
-```sh
-npm run dev
-```
+## Endansicht
 
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Run Unit Tests with [Vitest](https://vitest.dev/)
-
-```sh
-npm run test:unit
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Wenn eine Gruppe alle Aufgaben fertig bearbeitet hat wird ihr eine abschließende Anzeige präsentiert.
+![](./readme-img/student-finish-view.png)

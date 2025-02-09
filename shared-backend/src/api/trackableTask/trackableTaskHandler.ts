@@ -6,7 +6,7 @@ import TrackableTaskService from "./TrackableTaskService";
  * handles trackable task related events
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function trackableTaskHandler(
   io: IoServer,

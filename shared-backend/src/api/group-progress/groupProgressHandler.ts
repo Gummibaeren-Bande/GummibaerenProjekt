@@ -6,7 +6,7 @@ import GroupProgressService from "./GroupProgressService";
  * handles group progress related events
  *
  * @param io the static server
- * @param socket the dynamic socket dependet on the current connection
+ * @param socket the dynamic socket dependent on the current connection
  */
 function groupProgressHandler(
   io: IoServer,

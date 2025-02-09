@@ -58,13 +58,13 @@ export default {
       const response = await this.serverConnection.reconnectToGroup(name)
       return new Promise((resolve) => {
         if (response.success) {
-          this.diplayGroupCreationSuccess(response.message)
+          this.displayGroupCreationSuccess(response.message)
           this.pushGroupNameToURL()
           this.$emit('joined-group', this.groupName) // Emit the group name
           this.close()
           resolve(true)
         } else {
-          this.diplayGroupCreationError(response.message)
+          this.displayGroupCreationError(response.message)
           this.groupName = ''
           resolve(false)
         }
@@ -87,7 +87,7 @@ export default {
      * Displays a group creation error
      * @param error the error message to display
      */
-    diplayGroupCreationError(error: string) {
+    displayGroupCreationError(error: string) {
       this.$toast.add({
         severity: 'error',
         summary: 'Fehler beim Erstellen der Gruppe',
@@ -100,7 +100,7 @@ export default {
      * Displays a group creation success
      * @param message the success message to display
      */
-    diplayGroupCreationSuccess(message: string) {
+    displayGroupCreationSuccess(message: string) {
       this.$toast.add({
         severity: 'success',
         summary: 'Gruppenerstellung erfolgreich',
