@@ -7,6 +7,7 @@
 </template>
 
 <script lang="ts">
+import '@/assets/frontend.css'
 import { defineComponent, type PropType } from 'vue'
 
 export default defineComponent({
@@ -79,12 +80,3 @@ export default defineComponent({
   },
 })
 </script>
-
-<style>
-.timer {
-  font-size: 26px;
-}
-.text-green-500 {
-  color: rgb(140, 182, 60);
-}
-</style>

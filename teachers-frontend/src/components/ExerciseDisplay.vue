@@ -1,55 +1,43 @@
 <template>
   <div class="exercise">
-    <!-- Button that both displays the amount of attempts and functions as the button to display the options Popover. -->
-    <Button @click="showPopover($event)" class="exerciseDisplayButton" :disabled="!hasOptions()">
-      <div class="exerciseDisplay" :style="{ backgroundColor: exerciseColor }">
+    <Button
+      @click="showPopover($event)"
+      :class="['exerciseButtonDisplay', getColor()]"
+      :disabled="!hasOptions()"
+    >
+      <div>
         <span>
           {{ trackableTask.tries }}
         </span>
-        <div
-          v-if="hasAlternatives()"
-          class="alternativeDisplay"
-          :style="{ backgroundColor: exerciseColor }"
-        >
+        <div v-if="hasAlternatives()" :class="['alternativeDisplay', getColor()]">
           <span>
             {{ getChoosenExcerciseEnumerator() }}
           </span>
         </div>
       </div>
     </Button>
-    <!-- If the exercise has alternatives, the current chosen alternative is displayed in a smaller circle to the top right. -->
-    <!-- <div
-      v-if="hasAlternatives()"
-      class="alternativeDisplay"
-      :style="{ backgroundColor: exerciseColor }"
-    >
-      <span>
-        {{ getChoosenExcerciseEnumerator() }}
-      </span>
-    </div> -->
-    <!-- Each exercise has a timer. The timer is hidden and only is displayed once the task is started. -->
-    <div :class="{ hidden: isNotStartedYet() }">
+    <div class="timer">
       <TimerComponent
+        v-if="!isNotStartedYet()"
         :startTime="trackableTask.startedAt?.toString()"
         :finishedAfterSeconds="trackableTask.finishedAfterSeconds"
       />
     </div>
 
-    <!-- The options Popover with every option as a single button. -->
-    <Popover ref="overlay" class="optionsOverlay">
-      <span class="headerOverlay">Optionen</span>
+    <Popover ref="popover" class="optionsPopover">
+      <span>Optionen</span>
       <div>
         <Button
           v-if="isTaskSkippable()"
           label="Aufgabe überspringen"
           @click="skipTask"
-          class="optionsButton"
+          class="popoverOptionsButton"
         />
         <Button
           v-if="isTaskSkipRevertable()"
           label="Aufgabe reaktivieren"
           @click="revertTaskSkip"
-          class="optionsButton"
+          class="popoverOptionsButton"
         />
       </div>
       <div v-for="exercise of trackableTask.task.exercises" :key="exercise.id">
@@ -57,7 +45,7 @@
           v-if="isAlternativeChoosable(exercise)"
           :label="getExerciseLabel(exercise)"
           @click="changeExercise(exercise.id)"
-          class="optionsButton"
+          class="popoverOptionsButton"
         />
       </div>
     </Popover>
@@ -65,7 +53,8 @@
 </template>
 
 <script lang="ts" setup>
-import TimerComponent from '@/components/TimerComponent.vue'
+import '@/assets/frontend.css'
+import TimerComponent from '@/components/Timer.vue'
 import Popover from 'primevue/popover'
 import Button from 'primevue/button'
 import ServerConnection from '@/ServerConnection'
@@ -75,13 +64,6 @@ import ExerciseDTO from '../../../shared-backend/src/dtos/ExerciseDTO'
 </script>
 
 <script lang="ts">
-enum Colors {
-  SKIPPED_COLOR = 'rgb(162, 34, 35)',
-  IN_PROGRESS_COLOR = 'rgb(35, 161, 224)',
-  NOT_STARTED_COLOR = 'rgb(128, 128, 128)',
-  FINISHED_COLOR = 'rgb(140, 182, 60)',
-}
-
 export default {
   props: {
     serverConnection: {
@@ -97,14 +79,7 @@ export default {
       required: true,
     },
   },
-  data() {
-    return {
-      exerciseColor: this.getColor(),
-    }
-  },
-  updated() {
-    this.exerciseColor = this.getColor()
-  },
+
   methods: {
     /* Checks if the exercise has alternatives. Returns true if it has alternatives, false otherwise.*/
     hasAlternatives(): boolean {
@@ -153,32 +128,29 @@ export default {
       )
       this.hidePopover()
     },
-    /* Changes the Color of the displayed exercise to the given ColorPicker. */
-    changeColor(color: Colors) {
-      this.exerciseColor = color
-    },
 
-    getColor(): Colors {
+    getColor(): string {
       switch (this.trackableTask.state) {
         case TrackableTaskState.NotStarted:
-          return Colors.NOT_STARTED_COLOR
+          return 'notStartedColor'
         case TrackableTaskState.InProgress:
-          return Colors.IN_PROGRESS_COLOR
+          return 'inProgressColor'
         case TrackableTaskState.Skipped:
-          return Colors.SKIPPED_COLOR
+          return 'skippedColor'
         case TrackableTaskState.Completed:
-          return Colors.FINISHED_COLOR
+          return 'finishedColor'
       }
     },
+
     /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
     showPopover(event: Event) {
-      // Access the overlay ref and show it
-      if (this.hasOptions()) (this.$refs.overlay as InstanceType<typeof Popover>).show(event)
+      // Access the popover ref and show it
+      if (this.hasOptions()) (this.$refs.popover as InstanceType<typeof Popover>).show(event)
     },
     /* Closes the Popover. */
     hidePopover() {
-      // Access the overlay ref and hide it
-      ;(this.$refs.overlay as InstanceType<typeof Popover>).hide()
+      // Access the popover ref and hide it
+      ;(this.$refs.popover as InstanceType<typeof Popover>).hide()
     },
     hasOptions(): boolean {
       return (
@@ -204,77 +176,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.exercise {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-}
-
-.exerciseDisplay {
-  position: relative;
-  height: 75px;
-  width: 75px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: black;
-  font-size: 40px;
-}
-
-.alternativeDisplay {
-  position: absolute;
-  height: 35px;
-  width: 35px;
-  border-radius: 50%;
-  display: flex;
-  color: black;
-  font-size: 20px;
-  align-items: center;
-  justify-content: center;
-  top: 0;
-  right: 0;
-  transform: translate(30%, -15%);
-}
-
-.exerciseDisplayButton {
-  height: 78px;
-  width: 78px;
-  border-radius: 50%;
-  padding: 0;
-  --p-button-primary-border-color: none;
-  --p-button-primary-background: none;
-  --p-button-primary-hover-background: #808080;
-  --p-button-primary-hover-border-color: none;
-  --p-button-primary-active-background: none;
-  --p-button-primary-active-border-color: none;
-  overflow: visible;
-}
-
-.exerciseDisplayButton:disabled {
-  opacity: 1;
-}
-
-.headerOverlay {
-  font-size: 16px;
-  color: black;
-}
-
-.optionsButton {
-  --p-button-primary-background: none;
-  --p-button-primary-hover-background: #ffffff66;
-  --p-button-primary-hover-border-color: none;
-  --p-button-primary-active-background: #ffffff66;
-  --p-button-primary-active-border-color: none;
-  border: 2px solid #ffffff66;
-  width: 100%;
-}
-
-.hidden {
-  visibility: hidden;
-}
-</style>
