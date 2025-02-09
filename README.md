@@ -18,7 +18,7 @@ Um das Projekt auf dem eigenen Rechner kompilieren und auszuführen benötigt ma
 
 ## Aufgabenerstellung
 
-Einen Guide zur Aufgabenerstellung findet sich im [ReadMe des Backends](/shared-backend/README.md).
+Einen Guide zur Aufgabenerstellung befindet sich im [ReadMe des Backends](/shared-backend/README.md).
 
 ## Nutzen des Systems
 
