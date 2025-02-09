@@ -5,9 +5,9 @@ Mit dem "Aufgaben Kontroll-System" wird Unterricht smarter: Aufgaben verteilen, 
 ## Inhaltsverzeichnis
 
 - [Technische Voraussetzungen](#technische-voraussetzungen)
-- [Aufgabenerstellung](#aufgabenerstellung)
 - [Nutzung des Systems](#nutzen-des-systems)
-- [Weitere Readme-Dateien](#readme-dateien-der-einzelnen-systemmodule)
+- [Ansichten der Frontends](#ansichten-der-frontends)
+- [Aufgabenerstellung](#aufgabenerstellung)
 
 ## Technische Voraussetzungen
 
@@ -15,10 +15,6 @@ Um das Projekt auf dem eigenen Rechner kompilieren und auszuführen benötigt ma
 
 - [Node.js](https://nodejs.org/en/download) (Version 22.12.1 oder höher)
 - npm (Version 10.9.0 oder höher)
-
-## Aufgabenerstellung
-
-Einen Guide zur Aufgabenerstellung befindet sich im [ReadMe des Backends](/shared-backend/README.md).
 
 ## Nutzen des Systems
 
@@ -41,8 +37,11 @@ node ./start.js
 Das Installationsskript bewegt sich in die einzelnen Modulordner und führt dort `npm install` aus.<br>
 Das Startskript öffnet zuerst ein Konsolenfenster, welches im `shared-backend` den Befehl `npm run start` ausführt, welches den Backendserver auf Port 3000 startet und öffnet dann zwei weitere Konsolenfenster welche im `teachers-frontend` & `students-frontend` die Befehle `npm run build-only` und `npm run preview` ausführen, diese kompilieren die Websites und versuchen diese über die Ports 8080 für das Students-Frontend und 8081 für das Teachers-Frontend zu starten.
 
-## Readme-Dateien der einzelnen Systemmodule
+## Ansichten der Frontends
 
-- [Backend](shared-backend/README.md)
 - [Students-Frontend](students-frontend/README.md)
 - [Teachers-Frontend](teachers-frontend/README.md)
+
+## Aufgabenerstellung
+
+Einen Guide zur Aufgabenerstellung befindet sich im [ReadMe des Backends](/shared-backend/README.md).
