@@ -100,7 +100,7 @@ describe("TrackableTask", () => {
     expect(trackableTask.getState()).toEqual("Skipped");
   });
 
-  it("should unskip the task", () => {
+  it("should un-skip the task", () => {
     trackableTask.setSkipped(true);
     expect(trackableTask.getState()).toEqual("Skipped");
     trackableTask.setSkipped(false);
