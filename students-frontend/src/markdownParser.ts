@@ -15,6 +15,7 @@ const rules = [
     [/_([^_`]+)_/g, "<i>$1</i>"],
     [/([^\n]+\n?)/g, "<p>$1</p>"],
     
+    /* Links sind fürs erste deaktiviert. */
     //links
     //[
     //  /\[([^\]]+)\]\(([^)]+)\)/g,

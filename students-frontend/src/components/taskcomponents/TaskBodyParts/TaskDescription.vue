@@ -11,7 +11,7 @@ import '@/assets/frontend.css'
 import ScrollPanel from 'primevue/scrollpanel'
 import { defineComponent, ref } from 'vue'
 import { Image } from 'primevue'
-import mardownRenderer from '@/mardownRenderer'
+import markdownParser from '@/markdownParser'
 
 export default defineComponent({
   components: {
@@ -27,7 +27,7 @@ export default defineComponent({
   methods: {
     /* This method parses the Description through a Markdown parser */
     markdown() {
-      return mardownRenderer.bind(this.description)
+      return markdownParser.bind(this.description)
     },
   },
 })
