@@ -9,7 +9,7 @@ const taskList = [
   new Task("Binärzahlumrechnung", [
     new NumericalExercise(
       "Binärzahl in Dezimalzahl umrechnen",
-      "Wandle die folgende Binärzahl in eine Dezimalzahl um.",
+      "###Wandle die folgende Binärzahl in eine Dezimalzahl um. ![](https://platform.physik.kit.edu/hedgedoc/uploads/299d27bd-f820-4233-9b44-d57920bf31f3.jpg)",
       "01010010",
       82,
     ),
