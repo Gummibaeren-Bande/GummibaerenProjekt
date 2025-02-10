@@ -1,7 +1,7 @@
 import Task from "../entities/Task";
 import ExerciseDTO from "./ExerciseDTO";
 
-// a dto to transfer a task
+// a data transferable object to transfer a task
 class TaskDTO {
   public readonly id: string;
   public readonly name: string;

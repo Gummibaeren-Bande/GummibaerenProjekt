@@ -2,7 +2,7 @@ import TrackableTask from "../entities/TrackableTask";
 import TrackableTaskState from "../enums/TrackableTaskState";
 import TaskDTO from "./TaskDTO";
 
-// a dto to transfer a trackable task
+// a data transferable object to transfer a trackable task
 class TrackableTaskDTO {
   public readonly task: TaskDTO;
   public readonly chosenExerciseIndex: number;
@@ -26,6 +26,7 @@ class TrackableTaskDTO {
     }
   }
 
+  // checks if the task is skipped and can be reverted
   public checkIfSkipRevertable(): boolean {
     return this.state === TrackableTaskState.Skipped;
   }

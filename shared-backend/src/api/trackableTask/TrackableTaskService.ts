@@ -71,8 +71,13 @@ class TrackableTaskService implements TrackableTaskServiceListener {
         callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
       }
     }
-  }
 
+  /**
+   * revert the skipped marking of the task with the given id for the given group.
+   *
+   * @param taskId the id of the task to un-skip
+   * @param groupName the name of the group to un-skip the task for
+   */
   public revertTaskSkip(
     taskId: string,
     groupName: string,
@@ -105,13 +110,16 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     } catch (error) {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
-      } else {
-        //This Error is never reached
-        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
       }
-    }
   }
 
+  /**
+   * choose an alternative Exercise for the task with the given id for the given group name
+   *
+   * @param taskId the id of the task to choose the alternative exercise for
+   * @param groupName the name of the group which gets the alternative exercise
+   * @param exerciseId the id of the alternative exercise
+   */
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,

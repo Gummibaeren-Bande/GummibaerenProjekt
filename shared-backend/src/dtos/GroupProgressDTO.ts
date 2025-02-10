@@ -1,7 +1,7 @@
 import GroupProgress from "../entities/GroupProgress";
 import TrackableTaskDTO from "./TrackableTaskDTO";
 
-// a dto to transfer an group progress
+// a data transferable object to transfer an group progress
 class GroupProgressDTO {
   public readonly progress: TrackableTaskDTO[];
   public readonly startedAt: Date;
@@ -10,6 +10,7 @@ class GroupProgressDTO {
 
   constructor(groupProgress: GroupProgress) {
     let progressDTO: TrackableTaskDTO[] = [];
+    // iterate through the progress of the group progress and create a TrackableTaskDTO for each task
     for (let i = 0; i < groupProgress.getProgress().length; i++) {
       if (groupProgress.getFinishedAfterSeconds() !== null) {
         progressDTO.push(

@@ -45,7 +45,6 @@ class GroupProgressService implements GroupProgressServiceListener {
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      //This Error is never reached
       throw new Error("Group progress not found for this group!");
     }
     return groupProgress.goToNextTask();

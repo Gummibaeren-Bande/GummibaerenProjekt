@@ -1,7 +1,7 @@
-import Exercise from "../abstract-classes/Exercise";
+import Exercise from "../entities/abstract/Exercise";
 import MultipleChoiceExercise from "../entities/MultipleChoiceExercise";
 
-// a dto to transfer an exercise
+// a data transferable object to transfer an exercise
 class ExerciseDTO {
   // initialized with "A", "B", "C", ...
   public readonly enumerator: string;
