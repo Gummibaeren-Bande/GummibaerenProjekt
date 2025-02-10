@@ -1,6 +1,6 @@
 // Exercise abstract class
 
-import Answer from "../types/Answer";
+import Answer from "../../types/Answer";
 
 export default abstract class Exercise {
   id!: string;
