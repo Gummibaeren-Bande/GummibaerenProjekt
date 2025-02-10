@@ -2,7 +2,7 @@ import GroupSet from "../entities/GroupSet";
 import Group from "../entities/Group";
 import GroupProgress from "../entities/GroupProgress";
 import TaskSet from "../entities/TaskSet";
-import taskList from "../taskList";
+import testList from "../taskList";
 import TrackableTask from "../entities/TrackableTask";
 import TrackableTaskState from "../enums/TrackableTaskState";
 import IoSocket from "../types/IoSocket";
@@ -26,7 +26,7 @@ describe("GroupSet", () => {
 
   beforeEach(() => {
     taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     taskService = new TaskService();
     teacherEmitsService = new TeacherEmitsService();
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
@@ -38,27 +38,27 @@ describe("GroupSet", () => {
     groupSet.addNewGroup(
       NON_EXISTENT_GROUP_NAME,
       null as unknown as IoSocket,
-      taskSet,
+      taskSet
     );
     const groupNamesInGroupSet: string[] = groupSet
       .getGroupList()
       .map((el) => el.getName());
     expect(groupNamesInGroupSet).toMatchObject([
       GROUP_NAME,
-      NON_EXISTENT_GROUP_NAME,
+      NON_EXISTENT_GROUP_NAME
     ]);
   });
 
   it("should add a new group with the given name and task set", () => {
     expect(
-      groupSet.addNewGroup(GROUP_NAME, null as unknown as IoSocket, taskSet),
+      groupSet.addNewGroup(GROUP_NAME, null as unknown as IoSocket, taskSet)
     ).toBe(true);
   });
 
   it("should not add a new group with the same name", () => {
     groupSet.addNewGroup(GROUP_NAME, null as unknown as IoSocket, taskSet);
     expect(
-      groupSet.addNewGroup(GROUP_NAME, null as unknown as IoSocket, taskSet),
+      groupSet.addNewGroup(GROUP_NAME, null as unknown as IoSocket, taskSet)
     ).toBe(false);
   });
 
@@ -101,7 +101,7 @@ describe("GroupSet", () => {
     groupSet.addNewGroup(GROUP_NAME, SOCKET_1, taskSet);
     const group = groupSet.getGroupByName(GROUP_NAME);
     expect(() => group?.setAssignedSocket(SOCKET_2)).toThrow(
-      `Socket for group ${group?.getName()} is already assigned!`,
+      `Socket for group ${group?.getName()} is already assigned!`
     );
   });
 
@@ -140,12 +140,12 @@ describe("Group", () => {
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
     groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     group = new Group(
       GROUP_NAME,
       null as unknown as IoSocket,
       taskSet,
-      groupSetService,
+      groupSetService
     );
   });
 
@@ -168,18 +168,18 @@ describe("GroupProgress", () => {
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
     groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     const group = new Group(
       GROUP_NAME,
       null as unknown as IoSocket,
       taskSet,
-      groupSetService,
+      groupSetService
     );
     groupProgress = group.getGroupProgress();
   });
 
   it("should return a plausible group progress", () => {
-    expect(groupProgress.getProgress().length).toBe(taskList.length);
+    expect(groupProgress.getProgress().length).toBe(testList.length);
   });
 
   it("should get the started date", () => {
@@ -188,13 +188,13 @@ describe("GroupProgress", () => {
 
   it("should throw an error if trying to goto the next task before completing it", () => {
     expect(() => groupProgress.goToNextTask()).toThrow(
-      "The current task has not been completed yet",
+      "The current task has not been completed yet"
     );
   });
 
   it("should find a task by Id", () => {
-    expect(groupProgress.getTaskById(taskList[0].getId())).toBe(
-      groupProgress.getCurrentTask(),
+    expect(groupProgress.getTaskById(testList[0].getId())).toBe(
+      groupProgress.getCurrentTask()
     );
   });
 
@@ -210,7 +210,7 @@ describe("GroupProgress", () => {
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(0);
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.getCurrentTask().getState()).toBe(
-      TrackableTaskState.Completed,
+      TrackableTaskState.Completed
     );
     expect(groupProgress.getNumberOfFinishedTasks()).toBe(1);
   });
@@ -228,7 +228,7 @@ describe("GroupProgress", () => {
   });
 
   it("should correctly handle has next task when all are skipped tasks", () => {
-    for (const task of taskList) {
+    for (const task of testList) {
       try {
         let thisTask = groupProgress.getTaskById(task.getId());
         if (thisTask) {
@@ -237,7 +237,7 @@ describe("GroupProgress", () => {
       } catch (error) {
         if (error instanceof Error) {
           expect(error.message).toBe(
-            "The task is in progress and can't be skipped",
+            "The task is in progress and can't be skipped"
           );
         }
       }
@@ -246,11 +246,11 @@ describe("GroupProgress", () => {
   });
 
   it("should correctly advance a task when one is skipped", () => {
-    groupProgress.getTaskById(taskList[1].getId())?.setSkipped(true);
+    groupProgress.getTaskById(testList[1].getId())?.setSkipped(true);
     groupProgress.getCurrentTask().complete();
     groupProgress.goToNextTask();
     expect(groupProgress.getCurrentTask()).toBe(
-      groupProgress.getTaskById(taskList[2].getId()),
+      groupProgress.getTaskById(testList[2].getId())
     );
   });
 
@@ -263,11 +263,11 @@ describe("GroupProgress", () => {
     groupProgress.getCurrentTask().complete();
     expect(groupProgress.hasNextTask()).toBe(false);
     expect(() => groupProgress.goToNextTask()).toThrow(
-      "No more tasks left to work on",
+      "No more tasks left to work on"
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);
-    expect(groupProgress.getNumberOfFinishedTasks()).toBe(taskList.length);
+    expect(groupProgress.getNumberOfFinishedTasks()).toBe(testList.length);
     expect(groupProgress.getFinishedAfterSeconds()).not.toBeNull();
     expect(groupProgress.getFinishedAfterSeconds()).toBeGreaterThan(0);
   });
