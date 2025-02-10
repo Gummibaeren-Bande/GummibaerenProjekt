@@ -12,33 +12,33 @@ const exercise1a = new NumericalExercise(
   "Exercise 1a",
   "Description 1a",
   "Question 1a",
-  1
+  1,
 );
 const exercise1b = new MultipleChoiceExercise(
   "Exercise 1b",
   "Description 1b",
   "Question 1b",
   ["Answer 1", "Answer 2", "Answer 3"],
-  [0, 1]
+  [0, 1],
 );
 const exercise2 = new NumericalExercise(
   "Exercise 2",
   "Description 2",
   "Question 2",
-  2
+  2,
 );
 const exercise3a = new NumericalExercise(
   "Exercise 3a",
   "Description 3a",
   "Question 3a",
-  3
+  3,
 );
 const exercise3b = new MultipleChoiceExercise(
   "Exercise 3b",
   "Description 3b",
   "Question 3b",
   ["Answer 1", "Answer 2", "Answer 3"],
-  [0]
+  [0],
 );
 
 const task1 = new Task("Task 1", [exercise1a, exercise1b]);
@@ -109,7 +109,7 @@ describe("TrackableTask", () => {
 
   it("should throw an error when trying to complete a task that hasn't started", () => {
     expect(() => trackableTask.complete()).toThrow(
-      "The task has not been started yet and therefore can't be finished"
+      "The task has not been started yet and therefore can't be finished",
     );
   });
 
@@ -120,19 +120,19 @@ describe("TrackableTask", () => {
   it("should return the correct exercise index", () => {
     expect(trackableTask.getChosenExerciseIndex()).toEqual(0);
     trackableTask.setAlternativeExerciseById(
-      trackableTask.getTask().getExercises()[1].id
+      trackableTask.getTask().getExercises()[1].id,
     );
     expect(trackableTask.getChosenExerciseIndex()).toEqual(1);
   });
 
   it("should set an alternative exercise", () => {
     trackableTask.setAlternativeExerciseById(
-      trackableTask.getTask().getExercises()[1].id
+      trackableTask.getTask().getExercises()[1].id,
     );
     expect(trackableTask.getChosenExercise()).toEqual(exercise1b);
     trackableTask.setSkipped(true);
     trackableTask.setAlternativeExerciseById(
-      trackableTask.getTask().getExercises()[0].id
+      trackableTask.getTask().getExercises()[0].id,
     );
     expect(trackableTask.getChosenExercise()).toEqual(exercise1a);
   });
@@ -149,7 +149,7 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to start a task that has already started", () => {
     trackableTask.startTask();
     expect(() => trackableTask.startTask()).toThrow(
-      "The task has already been started"
+      "The task has already been started",
     );
   });
 
@@ -174,7 +174,7 @@ describe("TrackableTask", () => {
   it("should throw an error when trying to skip a task in progress", () => {
     trackableTask.startTask();
     expect(() => trackableTask.setSkipped(true)).toThrow(
-      "The task is in progress and can't be skipped"
+      "The task is in progress and can't be skipped",
     );
   });
 
@@ -182,8 +182,8 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     expect(() =>
       trackableTask.setAlternativeExerciseById(
-        trackableTask.getTask().getExercises()[0].id
-      )
+        trackableTask.getTask().getExercises()[0].id,
+      ),
     ).toThrow("The task is in progress and can't be changed");
   });
 
@@ -205,7 +205,7 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     trackableTask.complete();
     expect(() => trackableTask.setSkipped(true)).toThrow(
-      "The task is already completed and can't be skipped"
+      "The task is already completed and can't be skipped",
     );
   });
 
@@ -214,8 +214,8 @@ describe("TrackableTask", () => {
     trackableTask.complete();
     expect(() =>
       trackableTask.setAlternativeExerciseById(
-        trackableTask.getTask().getExercises()[0].id
-      )
+        trackableTask.getTask().getExercises()[0].id,
+      ),
     ).toThrow("The task is already completed and can't be changed");
   });
 });

@@ -11,16 +11,16 @@ const testList = [
       "TestExercise1",
       "TestDescription1",
       "TestQuestion1",
-      1
-    )
+      1,
+    ),
   ]),
   new Task("TestTask2", [
     new NumericalExercise(
       "TestExercise2",
       "TestDescription2",
       "TestQuestion2",
-      2
-    )
+      2,
+    ),
   ]),
   new Task("TestTask3", [
     new MultipleChoiceExercise(
@@ -28,15 +28,15 @@ const testList = [
       "TestDescription3a",
       "TestQuestion3a",
       ["TestOption1a", "TestOption2a", "TestOption3a"],
-      [0]
+      [0],
     ),
     new MultipleChoiceExercise(
       "TestExercise3b",
       "TestDescription3b",
       "TestQuestion3b",
       ["TestOption1b", "TestOption2b", "TestOption3b"],
-      [0, 1]
-    )
+      [0, 1],
+    ),
   ]),
   new Task("TestTask4", [
     new MultipleChoiceExercise(
@@ -44,9 +44,9 @@ const testList = [
       "TestDescription4",
       "TestQuestion4",
       ["TestOption1", "TestOption2", "TestOption3"],
-      [0]
-    )
-  ])
+      [0],
+    ),
+  ]),
 ];
 
 export default testList;
