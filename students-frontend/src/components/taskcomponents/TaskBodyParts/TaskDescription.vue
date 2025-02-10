@@ -16,7 +16,7 @@ import markdownParser from '@/markdownParser'
 export default defineComponent({
   components: {
     ScrollPanel,
-    Image
+    Image,
   },
   props: {
     description: {

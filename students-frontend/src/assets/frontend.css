@@ -242,7 +242,7 @@ body {
   max-width: calc(100vw - 40px);
 }
 
-/* CSS styling for the Image in the Discribtion. */
+/* CSS styling for an image in the description. */
 .Image {
   border-radius: var(--p-main-roundness);
   max-width: 97%;

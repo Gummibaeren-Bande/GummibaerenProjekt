@@ -65,7 +65,7 @@ export default defineComponent({
   },
 
   /**
-   * Is called when proporties change before the display is rerenderd.
+   * Is called when properties change before the display is rerendered.
    */
   beforeUpdate() {
     this.value = undefined //clears the numeric input when a new exercise is loaded.
