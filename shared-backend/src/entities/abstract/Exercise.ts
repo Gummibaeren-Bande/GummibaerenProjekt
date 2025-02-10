@@ -1,4 +1,4 @@
-// Exercise interface
+// Exercise abstract class
 
 import Answer from "../types/Answer";
 

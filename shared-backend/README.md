@@ -17,7 +17,7 @@ Mit `npm run start` wird das Backend gestartet.
 ### Ansicht einer Aufgabe aus Sicht der Schüler:innen
 
 Die Schüler:innen bearbeiten die Aufgaben eines Aufgabensets. Dieses Aufgabenset besteht aus einer oder mehreren Aufgaben ([Task](./src/entities/Task.ts)).<br>
-Jede Aufgabe besteht aus einer oder mehreren Übungen ([Exercise](./src/abstract-classes/Exercise.ts)). Die sichtbaren Bestandteile einer Übung sind ein Übungsname (blauer Kasten), eine Beschreibung (gelber Kasten) sowie eine Fragestellung (schwarzer Kasten). Jeder Übung wird beim Starten automatisch eine ID zugeordnet, außerdem muss die Lösung im Vorfeld festgelegt werden. Es gibt [verschiedene Übungstypen](#übungstypen) und je nach Übungstyp wird die Lösung unterschiedlich übergeben. Wie das geschieht wird [weiter unten](#aufgabenerstellung) erklärt.<br><br>
+Jede Aufgabe besteht aus einer oder mehreren Übungen ([Exercise](./src/entities/abstract/Exercise.ts)). Die sichtbaren Bestandteile einer Übung sind ein Übungsname (blauer Kasten), eine Beschreibung (gelber Kasten) sowie eine Fragestellung (schwarzer Kasten). Jeder Übung wird beim Starten automatisch eine ID zugeordnet, außerdem muss die Lösung im Vorfeld festgelegt werden. Es gibt [verschiedene Übungstypen](#übungstypen) und je nach Übungstyp wird die Lösung unterschiedlich übergeben. Wie das geschieht wird [weiter unten](#aufgabenerstellung) erklärt.<br><br>
 ![](./readme-img/Aufgabe-im-SF.png)<br>
 
 ### Ansicht der Lehrkräfte

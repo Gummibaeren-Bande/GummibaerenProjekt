@@ -1,5 +1,5 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
-import Exercise from "../abstract-classes/Exercise";
+import Exercise from "./abstract/Exercise";
 import Task from "./Task";
 import EntityObserver from "../api/group-set/interfaces/EntityObserver";
 import ObservableEntity from "./abstract/ObservableEntity";
