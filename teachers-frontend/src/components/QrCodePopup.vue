@@ -1,3 +1,5 @@
+<!-- Implements the QR-Code Popup. -->
+
 <template>
   <div>
     <Dialog

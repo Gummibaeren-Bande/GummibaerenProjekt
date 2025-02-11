@@ -1,3 +1,5 @@
+<!-- Implements the dispaly circle for a single exercise. If Alternatives exist, they are displayed in a smaller circle to the top right.-->
+
 <template>
   <div class="exercise">
     <Button
@@ -24,6 +26,7 @@
       />
     </div>
 
+    <!-- The options menu with every option as a single button. -->
     <Popover ref="popover" class="optionsPopover">
       <span>Optionen</span>
       <div>
@@ -81,7 +84,6 @@ export default {
   },
 
   methods: {
-    /* Checks if the exercise has alternatives. Returns true if it has alternatives, false otherwise.*/
     hasAlternatives(): boolean {
       return this.trackableTask.task.numberOfAlternatives > 0
     },
@@ -110,7 +112,6 @@ export default {
         this.trackableTask.task.exercises[this.trackableTask.chosenExerciseIndex].id === exercise.id
       )
     },
-    /* skippes the exercise by sending a request to the server. Then hides the Popover. */
     skipTask() {
       this.serverConnection.skipTask(this.trackableTask.task.id, this.groupName)
       this.hidePopover()
@@ -119,7 +120,6 @@ export default {
       this.serverConnection.revertTaskSkip(this.trackableTask.task.id, this.groupName)
       this.hidePopover()
     },
-    /* chooses a new exercise by sending a request to the server. Then hides the Popover. */
     changeExercise(newExerciseId: string) {
       this.serverConnection.chooseAlternativForTask(
         this.trackableTask.task.id,
@@ -128,7 +128,6 @@ export default {
       )
       this.hidePopover()
     },
-
     getColor(): string {
       switch (this.trackableTask.state) {
         case TrackableTaskState.NotStarted:
@@ -141,15 +140,10 @@ export default {
           return 'finishedColor'
       }
     },
-
-    /* Opens a Popover showing the options for the exercise. Possible options are skip exercise and change alternative. */
     showPopover(event: Event) {
-      // Access the popover ref and show it
       if (this.hasOptions()) (this.$refs.popover as InstanceType<typeof Popover>).show(event)
     },
-    /* Closes the Popover. */
     hidePopover() {
-      // Access the popover ref and hide it
       ;(this.$refs.popover as InstanceType<typeof Popover>).hide()
     },
     hasOptions(): boolean {
@@ -159,7 +153,6 @@ export default {
         this.isTaskSkipRevertable()
       )
     },
-    /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {
       if (seconds === null) {
         return ''
