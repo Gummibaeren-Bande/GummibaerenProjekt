@@ -162,8 +162,8 @@ describe("TrackableTask", () => {
     expect(trackableTask.getTries()).toEqual(0);
   });
 
-  it("should increment the number of tries", () => {
-    trackableTask.incrementTries();
+  it("should increment the number of tries when registering wrong answer", () => {
+    trackableTask.registerWrongAnswer();
     expect(trackableTask.getTries()).toEqual(1);
   });
 
@@ -191,6 +191,7 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     trackableTask.complete();
     expect(trackableTask.getState()).toEqual(TrackableTaskState.Completed);
+    expect(trackableTask.getTries()).toEqual(1);
   });
 
   it("should return a valid completion time", async () => {

@@ -204,11 +204,11 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     return this.groupProgressService.goToNextTask(groupName);
   }
 
-  public incrementAttempts(groupName: string) {
+  public registerWrongAnswer(groupName: string) {
     this.groupProgressService
       .getGroupProgressByGroupName(groupName)
       ?.getCurrentTask()
-      .incrementTries();
+      .registerWrongAnswer();
   }
 }
 

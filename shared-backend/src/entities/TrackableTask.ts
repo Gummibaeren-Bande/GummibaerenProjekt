@@ -88,6 +88,15 @@ class TrackableTask extends ObservableEntity {
   public complete(): void {
     this.stopTimer();
     this.setState(TrackableTaskState.Completed);
+    this.incrementTries();
+    this.notifySubscriber();
+  }
+
+  /**
+   * Registers a wrong answer.
+   */
+  public registerWrongAnswer(): void {
+    this.incrementTries();
     this.notifySubscriber();
   }
 
@@ -102,9 +111,8 @@ class TrackableTask extends ObservableEntity {
       (new Date().getTime() - started.getTime()) / 1000;
   }
 
-  public incrementTries(): void {
+  private incrementTries(): void {
     this.tries++;
-    this.notifySubscriber();
   }
 
   /**
@@ -129,6 +137,7 @@ class TrackableTask extends ObservableEntity {
         this.chosenExerciseIndex = correspondingIndex;
         break;
     }
+    console.log("set alternative, notifying");
     this.notifySubscriber();
   }
 

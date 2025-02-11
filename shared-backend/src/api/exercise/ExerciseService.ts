@@ -53,9 +53,10 @@ class ExerciseService implements ExerciseServiceListener {
       if (correct) {
         this.trackableTaskService.handleTaskCompleted(groupName);
         callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
+      } else {
+        this.trackableTaskService.registerWrongAnswer(groupName);
+        callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
       }
-      callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
-      this.trackableTaskService.incrementAttempts(groupName);
     } catch (error) {
       callback(
         new CallbackSuccessDTO(false, "Ein unbekannter Fehler ist aufgetreten"),
