@@ -7,8 +7,14 @@
 
 ## Scripts
 
-Mit `npm install` werden alle genutzten Packages dieses Frontends installiert.<br>
-Mit `npm run build` beziehungsweise `npm run build-only` wird dieses Frontend kompiliert und im `dist` Ordner zur Verfügung gestellt und kann dann mit `npm run preview` live gehosted werden. Der Unterschied zwischen den beiden Build-Befehlen beläuft sich auf einen Type-Check.
+| Konsolenbefehle      |                                             |
+| :------------------- | :------------------------------------------ |
+| `npm install`        | Installiert alle Packages dieses Frontends  |
+| `npm run build`      | Kompiliert das Projekt **mit** Type-Checks  |
+| `npm run build-only` | Kompiliert das Projekt **ohne** Type-Checks |
+| `npm preview`        | Hosted das Frontend auf Port 8081           |
+
+Das kompilierte Frontend kann im `dist`-Ordner gefunden werden
 
 ## Gruppenübersicht
 

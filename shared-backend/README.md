@@ -9,8 +9,10 @@
 
 ## Scripts
 
-Mit `npm install` werden alle genutzten Packages des Backends installiert.<br>
-Mit `npm run start` wird das Backend gestartet.
+| Konsolenbefehle |                                        |
+| :-------------- | :------------------------------------- |
+| `npm install`   | Installiert alle Packages des Backends |
+| `npm run start` | Startet das Backend                    |
 
 ## Ansichten und Aufbau der Aufgaben
 
