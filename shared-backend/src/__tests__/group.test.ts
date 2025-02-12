@@ -254,6 +254,13 @@ describe("GroupProgress", () => {
     );
   });
 
+  it("should return the correct index of the current task", () => {
+    expect(groupProgress.getIndexOfCurrentTask()).toBe(0);
+    groupProgress.getCurrentTask().complete();
+    groupProgress.goToNextTask();
+    expect(groupProgress.getIndexOfCurrentTask()).toBe(1);
+  });
+
   it("should finish the work", async () => {
     while (groupProgress.hasNextTask()) {
       groupProgress.getCurrentTask().complete();

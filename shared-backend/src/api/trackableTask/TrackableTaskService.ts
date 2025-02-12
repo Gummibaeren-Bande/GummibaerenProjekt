@@ -74,7 +74,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
-        //This Error is never reached
         callback(
           new CallbackSuccessDTO(
             false,
@@ -185,7 +184,6 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
-        //This Error is never reached
         callback(
           new CallbackSuccessDTO(
             false,
