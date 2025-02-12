@@ -44,4 +44,4 @@ Das Startskript öffnet zuerst ein Konsolenfenster, welches im `shared-backend` 
 
 ## Aufgabenerstellung
 
-Einen Guide zur Aufgabenerstellung befindet sich im [ReadMe des Backends](/shared-backend/README.md).
+Einen Guide zur Aufgabenerstellung findet sich im [ReadMe des Backends](/shared-backend/README.md).

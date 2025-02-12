@@ -1,6 +1,7 @@
 import ExerciseDTO from "../ExerciseDTO";
 import CallbackSuccessDTO from "./CallbackSuccessDTO";
 
+// a data transferable object used for CallbackExercise
 class CallbackExerciseDTO extends CallbackSuccessDTO {
   readonly isFinished: boolean;
   readonly exercise: ExerciseDTO | null;

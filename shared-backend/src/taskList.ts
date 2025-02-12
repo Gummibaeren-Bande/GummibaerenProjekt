@@ -3,7 +3,7 @@ import NumericalExercise from "./entities/NumericalExercise";
 import MultipleChoiceExercise from "./entities/MultipleChoiceExercise";
 
 /**
- * This is a list of dummy tasks that will be used for testing.
+ * This is the list of tasks that will be used for the application.
  */
 const taskList = [
   new Task("Binärzahlumrechnung", [

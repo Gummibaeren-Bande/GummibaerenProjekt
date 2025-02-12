@@ -31,6 +31,12 @@ class TeacherSocketsManager {
     this.sockets = this.sockets.filter((el) => el.id !== socket.id);
   }
 
+  /**
+   * Sends the group set to all stored sockets, used for updating the teachers view
+   *
+   * @param groupSet the group set to be sent to all sockets
+   * @param taskSet the task set to be sent to all sockets
+   */
   public emitChangedGroupSetToAllSockets(groupSet: GroupSet, taskSet: TaskSet) {
     this.sockets.forEach((el) =>
       el.emit("stateChanged", new CurrentStateDTO(groupSet, taskSet)),

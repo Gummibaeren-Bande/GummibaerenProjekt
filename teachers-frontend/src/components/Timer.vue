@@ -1,5 +1,6 @@
 <!-- Implements a timer that shows the time in minutes and seconds starting by 00:00.
  Has methods to start and stop the timer. The timer ist displayed in a component. -->
+
 <template>
   <div :class="textColorClass" class="timer">
     {{ displayTime }}

@@ -36,6 +36,11 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     );
   }
 
+  /**
+   * ask the server to send an emit of the current state to all teacher frontends
+   *
+   * @param callback calls back if the operation was successful or not
+   */
   requestCurrentState(callback: CallbackSuccess): void {
     try {
       this.update();
@@ -45,6 +50,12 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     callback(new CallbackSuccessDTO(true, "Anfrage erfolgreich"));
   }
 
+  /**
+   * tries to add a new group, with a unique given group name
+   *
+   * @param name the given group name
+   * @param callback calls back if the operation was successful or not
+   */
   addGroup(name: string, callback: CallbackSuccess, socket?: IoSocket): void {
     if (!socket) {
       callback(
@@ -78,6 +89,12 @@ class GroupSetService implements GroupSetServiceListeners, EntityObserver {
     );
   }
 
+  /**
+   * tries to add the current socket to a existing group, with the given group name
+   *
+   * @param name the given group name
+   * @param callback calls back if the operation was successful or not
+   */
   reconnectToGroup(
     name: string,
     callback: CallbackSuccess,

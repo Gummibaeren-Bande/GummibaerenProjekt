@@ -28,12 +28,17 @@ class TrackableTaskService implements TrackableTaskServiceListener {
   public handleTaskCompleted(groupName: string) {
     const currentTask = this.getCurrentTaskByGroupName(groupName);
     if (!currentTask) {
-      //This Error is never reached
       throw new Error("Current Task not found for the given group name");
     }
     currentTask.complete();
   }
 
+  /**
+   * mark the task with the given id for the given group as skipped.
+   *
+   * @param taskId the id of the task to skip
+   * @param groupName the name of the group to skip the task for
+   */
   public skipTask(
     taskId: string,
     groupName: string,
@@ -45,7 +50,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!",
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
         ),
       );
       return;
@@ -55,24 +60,37 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Task with the given id could not be found!",
+          "Task mit der gegebenen ID konnte nicht gefunden werden",
         ),
       );
       return;
     }
     try {
       task.setSkipped(true);
-      callback(new CallbackSuccessDTO(true, "Task was successfully skipped"));
+      callback(
+        new CallbackSuccessDTO(true, "Task wurde erfolgreich übersprungen"),
+      );
     } catch (error) {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
         //This Error is never reached
-        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+        callback(
+          new CallbackSuccessDTO(
+            false,
+            "Ein unbekannter Fehler ist aufgetreten",
+          ),
+        );
       }
     }
   }
 
+  /**
+   * revert the skipped marking of the task with the given id for the given group.
+   *
+   * @param taskId the id of the task to un-skip
+   * @param groupName the name of the group to un-skip the task for
+   */
   public revertTaskSkip(
     taskId: string,
     groupName: string,
@@ -84,7 +102,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!",
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
         ),
       );
       return;
@@ -94,24 +112,40 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Task with the given id could not be found!",
+          "Task mit der gegebenen ID konnte nicht gefunden werden",
         ),
       );
       return;
     }
     try {
       task.setSkipped(false);
-      callback(new CallbackSuccessDTO(true, "Task skip successfully reverted"));
+      callback(
+        new CallbackSuccessDTO(
+          true,
+          "Das Überspringen wurde erfolgreich rückgängig gemacht",
+        ),
+      );
     } catch (error) {
       if (error instanceof Error) {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
-        //This Error is never reached
-        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+        callback(
+          new CallbackSuccessDTO(
+            false,
+            "Ein unbekannter Fehler ist aufgetreten",
+          ),
+        );
       }
     }
   }
 
+  /**
+   * choose an alternative Exercise for the task with the given id for the given group name
+   *
+   * @param taskId the id of the task to choose the alternative exercise for
+   * @param groupName the name of the group which gets the alternative exercise
+   * @param exerciseId the id of the alternative exercise
+   */
   public chooseAlternativForTask(
     taskId: string,
     groupName: string,
@@ -124,7 +158,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Group progress not found for this group!",
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
         ),
       );
       return;
@@ -134,7 +168,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           false,
-          "Task with the given id could not be found!",
+          "Task mit der gegebenen ID konnte nicht gefunden werden",
         ),
       );
       return;
@@ -144,7 +178,7 @@ class TrackableTaskService implements TrackableTaskServiceListener {
       callback(
         new CallbackSuccessDTO(
           true,
-          "Alternative exercise was successfully chosen",
+          "Alternative exercise wurde erfolgreich festgelegt",
         ),
       );
     } catch (error) {
@@ -152,7 +186,12 @@ class TrackableTaskService implements TrackableTaskServiceListener {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
         //This Error is never reached
-        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+        callback(
+          new CallbackSuccessDTO(
+            false,
+            "Ein unbekannter Fehler ist aufgetreten",
+          ),
+        );
       }
     }
   }
@@ -165,11 +204,11 @@ class TrackableTaskService implements TrackableTaskServiceListener {
     return this.groupProgressService.goToNextTask(groupName);
   }
 
-  public incrementAttempts(groupName: string) {
+  public registerWrongAnswer(groupName: string) {
     this.groupProgressService
       .getGroupProgressByGroupName(groupName)
       ?.getCurrentTask()
-      .incrementTries();
+      .registerWrongAnswer();
   }
 }
 

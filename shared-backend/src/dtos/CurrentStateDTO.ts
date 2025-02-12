@@ -3,7 +3,7 @@ import TaskSet from "../entities/TaskSet";
 import GroupDTO from "./GroupDTO";
 import TaskDTO from "./TaskDTO";
 
-// a dto to transfer an group set
+// a data transferable object to transfer an group set
 class CurrentStateDTO {
   public readonly groups: GroupDTO[];
   public readonly tasks: TaskDTO[];

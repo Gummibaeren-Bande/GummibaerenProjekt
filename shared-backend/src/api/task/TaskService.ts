@@ -15,8 +15,9 @@ class TaskService implements TaskServiceListener {
   }
 
   /**
-   * uploads the given tasks to the taskSet
-   * @param tasks the tasks to upload
+   * Sets the task set to the given array of tasks.
+   *
+   * @param tasks the task array to be uploaded
    */
   public uploadTaskSet(tasks: Task[]) {
     this.taskSet.uploadTaskSet(tasks);

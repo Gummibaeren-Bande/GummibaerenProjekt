@@ -7,7 +7,6 @@ import TrackableTaskState from "../enums/TrackableTaskState";
 import TaskService from "../api/task/TaskService";
 import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
 import GroupSetService from "../api/group-set/GroupSetService";
-import GroupSet from "../entities/GroupSet";
 
 const exercise1a = new NumericalExercise(
   "Exercise 1a",
@@ -101,7 +100,7 @@ describe("TrackableTask", () => {
     expect(trackableTask.getState()).toEqual("Skipped");
   });
 
-  it("should unskip the task", () => {
+  it("should un-skip the task", () => {
     trackableTask.setSkipped(true);
     expect(trackableTask.getState()).toEqual("Skipped");
     trackableTask.setSkipped(false);
@@ -163,8 +162,8 @@ describe("TrackableTask", () => {
     expect(trackableTask.getTries()).toEqual(0);
   });
 
-  it("should increment the number of tries", () => {
-    trackableTask.incrementTries();
+  it("should increment the number of tries when registering wrong answer", () => {
+    trackableTask.registerWrongAnswer();
     expect(trackableTask.getTries()).toEqual(1);
   });
 
@@ -192,6 +191,7 @@ describe("TrackableTask", () => {
     trackableTask.startTask();
     trackableTask.complete();
     expect(trackableTask.getState()).toEqual(TrackableTaskState.Completed);
+    expect(trackableTask.getTries()).toEqual(1);
   });
 
   it("should return a valid completion time", async () => {

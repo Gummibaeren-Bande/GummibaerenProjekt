@@ -1,7 +1,7 @@
 import Group from "../entities/Group";
 import GroupProgressDTO from "./GroupProgressDTO";
 
-// a dto to transfer a group
+// a data transferable object to transfer a group
 class GroupDTO {
   public readonly name: string;
   public readonly groupProgress: GroupProgressDTO;

@@ -77,7 +77,6 @@ export default {
         console.log(this.currentState)
       })
     },
-    /* displays a timer if the group is finished. */
     displayEndTime(seconds: number | null): string {
       if (seconds === null || seconds === 0) {
         return ''

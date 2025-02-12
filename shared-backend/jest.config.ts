@@ -9,7 +9,7 @@ import type { Config } from "jest";
 const config: Config = {
   testEnvironment: "node",
   transform: {
-    "^.+.tsx?$": ["ts-jest", {}],
+    "^.+.tsx?$": ["ts-jest", {}]
   },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
@@ -18,7 +18,6 @@ const config: Config = {
   // bail: 0,
 
   // The directory where Jest should store its cached dependency information
-  // cacheDirectory: "C:\\Users\\felix\\AppData\\Local\\Temp\\jest",
 
   // Automatically clear mock calls, instances, contexts and results before every test
   // clearMocks: false,
@@ -30,7 +29,7 @@ const config: Config = {
   collectCoverageFrom: [
     "src/entities/*.ts",
     "src/api/**!(interfaces)/*.ts",
-    "!src/api/**/*Handler.ts",
+    "!src/api/**/*Handler.ts"
   ],
 
   // The directory where Jest should output its coverage files
@@ -162,10 +161,7 @@ const config: Config = {
   // testLocationInResults: false,
 
   // The glob patterns Jest uses to detect test files
-  // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
-  // ],
+  testMatch: ["**/?(*.)+(test).ts"]
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
   // testPathIgnorePatterns: [

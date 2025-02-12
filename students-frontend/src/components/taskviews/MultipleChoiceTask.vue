@@ -1,4 +1,3 @@
-<!--rechtschreibfehler im name-->
 <template>
   <TaskHeader :title="exercise.title" :group="group" />
   <TaskBody :question="exercise.question" :description="exercise.description">

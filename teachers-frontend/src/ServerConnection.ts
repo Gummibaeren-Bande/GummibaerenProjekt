@@ -65,8 +65,8 @@ class ServerConnection {
   /**
    * revert the skiped marking of the task with the given id for the given group.
    *
-   * @param taskId the id of the task to unskip
-   * @param groupName the name of the group to unskip the task for
+   * @param taskId the id of the task to un-skip
+   * @param groupName the name of the group to un-skip the task for
    */
   revertTaskSkip(taskId: string, groupName: string): Promise<CallbackSuccessDTO> {
     return new Promise((resolve) => {

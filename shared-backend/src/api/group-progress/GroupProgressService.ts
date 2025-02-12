@@ -40,12 +40,10 @@ class GroupProgressService implements GroupProgressServiceListener {
    */
   public goToNextTask(groupName: string): TrackableTask {
     if (!this.hasNextTask(groupName)) {
-      //This Error is never reached
       throw new Error("there is no next task for this group!");
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      //This Error is never reached
       throw new Error("Group progress not found for this group!");
     }
     return groupProgress.goToNextTask();
@@ -66,7 +64,12 @@ class GroupProgressService implements GroupProgressServiceListener {
     }
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
-      callback(new CallbackSuccessDTO(false, "Group progress nicht gefunden"));
+      callback(
+        new CallbackSuccessDTO(
+          false,
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
+        ),
+      );
       return;
     }
     try {
@@ -77,7 +80,12 @@ class GroupProgressService implements GroupProgressServiceListener {
         callback(new CallbackSuccessDTO(false, error.message));
       } else {
         //This Error is never reached
-        callback(new CallbackSuccessDTO(false, "An unknown error occurred"));
+        callback(
+          new CallbackSuccessDTO(
+            false,
+            "Ein unbekannter Fehler ist aufgetreten",
+          ),
+        );
       }
     }
   }
@@ -92,12 +100,22 @@ class GroupProgressService implements GroupProgressServiceListener {
     const groupProgress = this.getGroupProgressByGroupName(groupName);
     if (!groupProgress) {
       callback(
-        new CallbackNumberDTO(false, "Group progress nicht gefunden", -1),
+        new CallbackNumberDTO(
+          false,
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
+          -1,
+        ),
       );
       return;
     }
     const numberOfFinishedTasks = groupProgress.getNumberOfFinishedTasks();
-    callback(new CallbackNumberDTO(true, "", numberOfFinishedTasks));
+    callback(
+      new CallbackNumberDTO(
+        true,
+        "Hier die Anzahl der fertigen Tasks",
+        numberOfFinishedTasks,
+      ),
+    );
   }
 }
 

@@ -1,3 +1,4 @@
+// a data transferable object used for CallbackSuccess
 class CallbackSuccessDTO {
   public readonly success: boolean;
   public readonly message: string;

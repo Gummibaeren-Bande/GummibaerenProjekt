@@ -1,5 +1,5 @@
 import TrackableTaskState from "../enums/TrackableTaskState";
-import Exercise from "../abstract-classes/Exercise";
+import Exercise from "./abstract/Exercise";
 import Task from "./Task";
 import EntityObserver from "../api/group-set/interfaces/EntityObserver";
 import ObservableEntity from "./abstract/ObservableEntity";
@@ -35,7 +35,6 @@ class TrackableTask extends ObservableEntity {
 
   public startTask(): void {
     if (this.startedAt) {
-      //This Error is never reached
       throw new Error("The task has already been started");
     }
     this.startedAt = new Date();
@@ -51,13 +50,18 @@ class TrackableTask extends ObservableEntity {
   }
 
   public getSkipped(): boolean {
-    //This method is only called in the test file
     if (this.state === TrackableTaskState.Skipped) {
       return true;
     }
     return false;
   }
 
+  /**
+   * Changes the state of the task to skipped if the task is not started yet and given the parameter true
+   * or changes the state to not started if the task is skipped and given the parameter false.
+   * Throws an error otherwise.
+   * @param skipState wether to skip the task or not
+   */
   public setSkipped(skipState: boolean): void {
     switch (this.state) {
       case TrackableTaskState.NotStarted:
@@ -78,16 +82,27 @@ class TrackableTask extends ObservableEntity {
     this.notifySubscriber();
   }
 
+  /**
+   * Completes the task and stops the timer.
+   */
   public complete(): void {
     this.stopTimer();
     this.setState(TrackableTaskState.Completed);
+    this.incrementTries();
+    this.notifySubscriber();
+  }
+
+  /**
+   * Registers a wrong answer.
+   */
+  public registerWrongAnswer(): void {
+    this.incrementTries();
     this.notifySubscriber();
   }
 
   private stopTimer(): void {
     const started = this.getStartedAt();
     if (!started) {
-      //This Error is never reached
       throw new Error(
         "The task has not been started yet and therefore can't be finished",
       );
@@ -96,11 +111,15 @@ class TrackableTask extends ObservableEntity {
       (new Date().getTime() - started.getTime()) / 1000;
   }
 
-  public incrementTries(): void {
+  private incrementTries(): void {
     this.tries++;
-    this.notifySubscriber();
   }
 
+  /**
+   * Changes the chosen exercise of the task to the one with the given id.
+   *
+   * @param id The id of the exercise that should be set as the alternative exercise
+   */
   public setAlternativeExerciseById(id: string): void {
     const correspondingIndex = this.getTask()
       .getExercises()
@@ -118,6 +137,7 @@ class TrackableTask extends ObservableEntity {
         this.chosenExerciseIndex = correspondingIndex;
         break;
     }
+    console.log("set alternative, notifying");
     this.notifySubscriber();
   }
 

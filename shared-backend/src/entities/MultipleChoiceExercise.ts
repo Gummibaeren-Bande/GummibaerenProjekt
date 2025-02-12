@@ -1,4 +1,4 @@
-import Exercise from "../abstract-classes/Exercise";
+import Exercise from "./abstract/Exercise";
 import Answer from "../types/Answer";
 import { v4 as uuidv4 } from "uuid";
 
@@ -27,6 +27,11 @@ class MultipleChoiceExercise extends Exercise {
     this.correctOptionIndexes = correctOptionIndexes;
   }
 
+  /**
+   * This method checks if the answer is correct.
+   * @param answer takes in an answer and checks if it is correct
+   * @returns true if the answer is correct, false otherwise
+   */
   public answer(answer: Answer): boolean {
     if (!Array.isArray(answer)) {
       throw new Error("Answer must be an array of indexes");

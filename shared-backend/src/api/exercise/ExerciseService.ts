@@ -53,21 +53,14 @@ class ExerciseService implements ExerciseServiceListener {
       if (correct) {
         this.trackableTaskService.handleTaskCompleted(groupName);
         callback(new CallbackSuccessDTO(true, "Die Antwort war richtig"));
-      }
-      callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
-      this.trackableTaskService.incrementAttempts(groupName);
-    } catch (error) {
-      //This catch is never entered because the errors are never reached
-      if (error instanceof Error) {
-        callback(new CallbackSuccessDTO(false, error.message));
       } else {
-        callback(
-          new CallbackSuccessDTO(
-            false,
-            "Ein unbekannter Fehler ist aufgetreten",
-          ),
-        );
+        this.trackableTaskService.registerWrongAnswer(groupName);
+        callback(new CallbackSuccessDTO(false, "Die Antwort war falsch"));
       }
+    } catch (error) {
+      callback(
+        new CallbackSuccessDTO(false, "Ein unbekannter Fehler ist aufgetreten"),
+      );
     }
   }
 
@@ -106,7 +99,14 @@ class ExerciseService implements ExerciseServiceListener {
       return;
     }
     const currentExercise = new ExerciseDTO(currentTask.getChosenExercise());
-    callback(new CallbackExerciseDTO(true, "", false, currentExercise));
+    callback(
+      new CallbackExerciseDTO(
+        true,
+        "Hier ist die aktuelle Aufgabe",
+        false,
+        currentExercise,
+      ),
+    );
   }
 
   /**
@@ -126,7 +126,14 @@ class ExerciseService implements ExerciseServiceListener {
             .getNextTaskOfGroup(groupName)
             .getChosenExercise(),
         );
-        callback(new CallbackExerciseDTO(true, "", false, nextExercise));
+        callback(
+          new CallbackExerciseDTO(
+            true,
+            "Hier ist die nächste Aufgabe",
+            false,
+            nextExercise,
+          ),
+        );
       } catch (error) {
         if (error instanceof Error) {
           callback(new CallbackExerciseDTO(false, error.message, false, null));

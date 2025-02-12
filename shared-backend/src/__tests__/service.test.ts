@@ -7,7 +7,7 @@ import TeacherEmitsService from "../api/teacher-emits/TeacherEmitsService";
 import TrackableTaskService from "../api/trackableTask/TrackableTaskService";
 import WelcomeService from "../api/welcome/WelcomeService";
 import CallbackSuccessDTO from "../dtos/CallbackDTOs/CallbackSuccessDTO";
-import taskList from "../taskList";
+import testList from "./testList";
 import IoSocket from "../types/IoSocket";
 import GroupSet from "../entities/GroupSet";
 import CallbackNumberDTO from "../dtos/CallbackDTOs/CallbackNumberDTO";
@@ -23,7 +23,7 @@ const SOCKET_2 = { id: TEST_ID_2, emit: jest.fn() } as unknown as IoSocket;
 describe("TaskService", () => {
   const taskService = new TaskService();
   it("should return a taskSet", () => {
-    taskService.uploadTaskSet(taskList);
+    taskService.uploadTaskSet(testList);
     expect(taskService.getTaskSet()).toBeDefined();
   });
 });
@@ -68,7 +68,7 @@ describe("GroupServices", () => {
   const taskService = new TaskService();
   const teacherEmitsService = new TeacherEmitsService();
   const groupSetService = new GroupSetService(taskService, teacherEmitsService);
-  taskService.uploadTaskSet(taskList);
+  taskService.uploadTaskSet(testList);
   const groupService = new GroupService(groupSetService);
   const groupSet = groupSetService.getGroupSet();
   const groupProgressService = new GroupProgressService(groupService);
@@ -211,20 +211,29 @@ describe("GroupServices", () => {
       callback = jest.fn();
       groupProgressService.finishWork("groupIdentifier", callback);
       expect(callback).toHaveBeenCalledWith(
-        new CallbackSuccessDTO(false, "Group progress nicht gefunden"),
+        new CallbackSuccessDTO(
+          false,
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
+        ),
       );
     });
     it("should get number of finished tasks", () => {
       let callback = jest.fn();
       groupProgressService.getNumberOfFinishedTasks(groupIdentifier, callback);
-      expect(callback).toHaveBeenCalledWith(new CallbackNumberDTO(true, "", 0));
+      expect(callback).toHaveBeenCalledWith(
+        new CallbackNumberDTO(true, "Hier die Anzahl der fertigen Tasks", 0),
+      );
       callback = jest.fn();
       groupProgressService.getNumberOfFinishedTasks(
         "groupIdentifier",
         callback,
       );
       expect(callback).toHaveBeenCalledWith(
-        new CallbackNumberDTO(false, "Group progress nicht gefunden", -1),
+        new CallbackNumberDTO(
+          false,
+          "Der Progress dieser Gruppe konnte nicht gefunden werden",
+          -1,
+        ),
       );
     });
   });
@@ -232,7 +241,7 @@ describe("GroupServices", () => {
 
 describe("TrackableTaskService", () => {
   const taskService = new TaskService();
-  taskService.uploadTaskSet(taskList);
+  taskService.uploadTaskSet(testList);
   const teacherEmitsService = new TeacherEmitsService();
   const groupSetService = new GroupSetService(taskService, teacherEmitsService);
   const groupService = new GroupService(groupSetService);
@@ -248,7 +257,10 @@ describe("TrackableTaskService", () => {
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "Group progress not found for this group!"),
+      new CallbackSuccessDTO(
+        false,
+        "Der Progress dieser Gruppe konnte nicht gefunden werden",
+      ),
     );
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
     trackableTaskService.chooseAlternativForTask(
@@ -260,7 +272,7 @@ describe("TrackableTaskService", () => {
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         false,
-        "Task with the given id could not be found!",
+        "Task mit der gegebenen ID konnte nicht gefunden werden",
       ),
     );
     trackableTaskService.chooseAlternativForTask(
@@ -296,7 +308,7 @@ describe("TrackableTaskService", () => {
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         true,
-        "Alternative exercise was successfully chosen",
+        "Alternative exercise wurde erfolgreich festgelegt",
       ),
     );
     trackableTaskService.chooseAlternativForTask(
@@ -320,14 +332,17 @@ describe("TrackableTaskService", () => {
     const callback = jest.fn();
     trackableTaskService.skipTask("taskId", "groupName", callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "Group progress not found for this group!"),
+      new CallbackSuccessDTO(
+        false,
+        "Der Progress dieser Gruppe konnte nicht gefunden werden",
+      ),
     );
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
     trackableTaskService.skipTask("taskId", groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         false,
-        "Task with the given id could not be found!",
+        "Task mit der gegebenen ID konnte nicht gefunden werden",
       ),
     );
     trackableTaskService.skipTask(
@@ -355,21 +370,24 @@ describe("TrackableTaskService", () => {
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(true, "Task was successfully skipped"),
+      new CallbackSuccessDTO(true, "Task wurde erfolgreich übersprungen"),
     );
   });
   it("should revert a task skip", () => {
     const callback = jest.fn();
     trackableTaskService.revertTaskSkip("taskId", "groupName", callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(false, "Group progress not found for this group!"),
+      new CallbackSuccessDTO(
+        false,
+        "Der Progress dieser Gruppe konnte nicht gefunden werden",
+      ),
     );
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
     trackableTaskService.revertTaskSkip("taskId", groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
       new CallbackSuccessDTO(
         false,
-        "Task with the given id could not be found!",
+        "Task mit der gegebenen ID konnte nicht gefunden werden",
       ),
     );
     trackableTaskService.revertTaskSkip(
@@ -397,14 +415,17 @@ describe("TrackableTaskService", () => {
       callback,
     );
     expect(callback).toHaveBeenCalledWith(
-      new CallbackSuccessDTO(true, "Task skip successfully reverted"),
+      new CallbackSuccessDTO(
+        true,
+        "Das Überspringen wurde erfolgreich rückgängig gemacht",
+      ),
     );
   });
 });
 
 describe("ExerciseService", () => {
   const taskService = new TaskService();
-  taskService.uploadTaskSet(taskList);
+  taskService.uploadTaskSet(testList);
   const teacherEmitsService = new TeacherEmitsService();
   const groupSetService = new GroupSetService(taskService, teacherEmitsService);
   const groupService = new GroupService(groupSetService);
@@ -426,7 +447,12 @@ describe("ExerciseService", () => {
     groupSetService.addGroup(groupIdentifier, jest.fn(), SOCKET_1);
     exerciseService.getCurrentExerciseOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackExerciseDTO(true, "", false, expect.any(ExerciseDTO)),
+      new CallbackExerciseDTO(
+        true,
+        "Hier ist die aktuelle Aufgabe",
+        false,
+        expect.any(ExerciseDTO),
+      ),
     );
   });
   it("should fail to get the next exercise", () => {
@@ -494,7 +520,7 @@ describe("ExerciseService", () => {
         exerciseService.answerCurrentExercise(
           groupIdentifier,
           exerciseId,
-          82,
+          1,
           callback,
         );
         expect(callback).toHaveBeenCalledWith(
@@ -507,7 +533,12 @@ describe("ExerciseService", () => {
     const callback = jest.fn();
     exerciseService.getNextExerciseOfGroup(groupIdentifier, callback);
     expect(callback).toHaveBeenCalledWith(
-      new CallbackExerciseDTO(true, "", false, expect.any(ExerciseDTO)),
+      new CallbackExerciseDTO(
+        true,
+        "Hier ist die nächste Aufgabe",
+        false,
+        expect.any(ExerciseDTO),
+      ),
     );
     exerciseService.getCurrentExerciseOfGroup(
       groupIdentifier,
@@ -519,7 +550,7 @@ describe("ExerciseService", () => {
         exerciseService.answerCurrentExercise(
           groupIdentifier,
           exerciseId,
-          32,
+          2,
           callback,
         );
         expect(callback).toHaveBeenCalledWith(
@@ -646,7 +677,7 @@ describe("ExerciseService", () => {
 
 describe("WelcomeService", () => {
   const taskService = new TaskService();
-  taskService.uploadTaskSet(taskList);
+  taskService.uploadTaskSet(testList);
   const teacherEmitsService = new TeacherEmitsService();
   const groupSetService = new GroupSetService(taskService, teacherEmitsService);
   const groupService = new GroupService(groupSetService);

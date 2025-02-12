@@ -2,7 +2,7 @@ import GroupSet from "../entities/GroupSet";
 import Group from "../entities/Group";
 import GroupProgress from "../entities/GroupProgress";
 import TaskSet from "../entities/TaskSet";
-import taskList from "../taskList";
+import testList from "../taskList";
 import TrackableTask from "../entities/TrackableTask";
 import TrackableTaskState from "../enums/TrackableTaskState";
 import IoSocket from "../types/IoSocket";
@@ -26,7 +26,7 @@ describe("GroupSet", () => {
 
   beforeEach(() => {
     taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     taskService = new TaskService();
     teacherEmitsService = new TeacherEmitsService();
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
@@ -140,7 +140,7 @@ describe("Group", () => {
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
     groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     group = new Group(
       GROUP_NAME,
       null as unknown as IoSocket,
@@ -168,7 +168,7 @@ describe("GroupProgress", () => {
     groupSetService = new GroupSetService(taskService, teacherEmitsService);
     groupSet = new GroupSet(groupSetService);
     const taskSet = new TaskSet();
-    taskSet.uploadTaskSet(taskList);
+    taskSet.uploadTaskSet(testList);
     const group = new Group(
       GROUP_NAME,
       null as unknown as IoSocket,
@@ -179,7 +179,7 @@ describe("GroupProgress", () => {
   });
 
   it("should return a plausible group progress", () => {
-    expect(groupProgress.getProgress().length).toBe(taskList.length);
+    expect(groupProgress.getProgress().length).toBe(testList.length);
   });
 
   it("should get the started date", () => {
@@ -193,7 +193,7 @@ describe("GroupProgress", () => {
   });
 
   it("should find a task by Id", () => {
-    expect(groupProgress.getTaskById(taskList[0].getId())).toBe(
+    expect(groupProgress.getTaskById(testList[0].getId())).toBe(
       groupProgress.getCurrentTask(),
     );
   });
@@ -228,7 +228,7 @@ describe("GroupProgress", () => {
   });
 
   it("should correctly handle has next task when all are skipped tasks", () => {
-    for (const task of taskList) {
+    for (const task of testList) {
       try {
         let thisTask = groupProgress.getTaskById(task.getId());
         if (thisTask) {
@@ -246,11 +246,11 @@ describe("GroupProgress", () => {
   });
 
   it("should correctly advance a task when one is skipped", () => {
-    groupProgress.getTaskById(taskList[1].getId())?.setSkipped(true);
+    groupProgress.getTaskById(testList[1].getId())?.setSkipped(true);
     groupProgress.getCurrentTask().complete();
     groupProgress.goToNextTask();
     expect(groupProgress.getCurrentTask()).toBe(
-      groupProgress.getTaskById(taskList[2].getId()),
+      groupProgress.getTaskById(testList[2].getId()),
     );
   });
 
@@ -267,7 +267,7 @@ describe("GroupProgress", () => {
     );
     groupProgress.finishWork();
     expect(groupProgress.getFinishedWork()).toBe(true);
-    expect(groupProgress.getNumberOfFinishedTasks()).toBe(taskList.length);
+    expect(groupProgress.getNumberOfFinishedTasks()).toBe(testList.length);
     expect(groupProgress.getFinishedAfterSeconds()).not.toBeNull();
     expect(groupProgress.getFinishedAfterSeconds()).toBeGreaterThan(0);
   });
