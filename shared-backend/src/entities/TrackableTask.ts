@@ -137,7 +137,6 @@ class TrackableTask extends ObservableEntity {
         this.chosenExerciseIndex = correspondingIndex;
         break;
     }
-    console.log("set alternative, notifying");
     this.notifySubscriber();
   }
 
