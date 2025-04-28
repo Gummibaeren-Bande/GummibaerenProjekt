@@ -32,7 +32,7 @@ const rules = [
   [/([^\n]+)(\*)([^\n]+)/g, '<ul><li>$3</li></ul>'],
 
   //Image
-  [/\!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1" title="$3" class = "Image" />'],
+  [/\!\[(.*?)\]\((.*?)\)/g, '<p><img src="$2" alt="$1" title="$3" class = "Image" /></p>'],
 ]
 export default {
   bind(html: string | undefined): string | undefined {
