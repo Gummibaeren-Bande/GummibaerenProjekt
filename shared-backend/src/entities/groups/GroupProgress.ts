@@ -1,8 +1,8 @@
-import EntityObserver from "../api/group-set/interfaces/EntityObserver";
-import TrackableTaskState from "../enums/TrackableTaskState";
-import ObservableEntity from "./abstract/ObservableEntity";
-import TaskSet from "./TaskSet";
-import TrackableTask from "./TrackableTask";
+import EntityObserver from "../../api/group-set/interfaces/EntityObserver";
+import TrackableTaskState from "../../enums/TrackableTaskState";
+import ObservableEntity from "../data/exercise/abstract/ObservableEntity";
+import TaskSet from "../data/TaskSet";
+import TrackableTask from "../data/TrackableTask";
 /**
  * This class is used to track the progress of a group on their tasks.
  */

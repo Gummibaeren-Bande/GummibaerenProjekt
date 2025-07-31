@@ -1,14 +1,14 @@
-import EntityObserver from "../api/group-set/interfaces/EntityObserver";
-import IoSocket from "../types/IoSocket";
+import EntityObserver from "../../api/group-set/interfaces/EntityObserver";
+import IoSocket from "../../types/IoSocket";
 import ObservableEntity from "../abstract/ObservableEntity";
 import GroupProgress from "./GroupProgress";
-import TaskSet from "./TaskSet";
+import TaskSet from "../data/TaskSet";
 
 /**
  * This class represents a group in the database.
  */
 class Group extends ObservableEntity {
-  private readonly name: string;
+  private name: string;
   private readonly groupProgress: GroupProgress;
   private assignedSocket: IoSocket | null;
 
@@ -26,6 +26,11 @@ class Group extends ObservableEntity {
 
   public getName() {
     return this.name;
+  }
+
+  public setName(name: string) {
+    this.name = name;
+    this.notifySubscriber();
   }
 
   public getGroupProgress(): GroupProgress {
