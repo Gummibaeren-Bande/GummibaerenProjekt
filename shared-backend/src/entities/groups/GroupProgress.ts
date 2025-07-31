@@ -1,7 +1,9 @@
 import EntityObserver from "../../api/group-set/interfaces/EntityObserver";
 import TrackableTaskState from "../../enums/TrackableTaskState";
 import ObservableEntity from "../data/exercise/abstract/ObservableEntity";
+import Prerequisite from "../data/Prerequisite";
 import TaskSet from "../data/TaskSet";
+import TrackablePrerequisite from "../data/TrackablePrerequisite";
 import TrackableTask from "../data/TrackableTask";
 /**
  * This class is used to track the progress of a group on their tasks.
@@ -10,15 +12,38 @@ class GroupProgress extends ObservableEntity {
   private readonly progress: TrackableTask[];
   private startedAt: Date;
   private finishedAfterSeconds: number | null;
-  private indexOfCurrentTask = 0;
+  private indexOfCurrentTask: number;
+  private idOfCurrentTask: string;
+  private readonly prerequisites: TrackablePrerequisite[];
 
   constructor(taskSet: TaskSet, subscriber: EntityObserver) {
     super(subscriber);
     this.progress = [];
+    this.prerequisites = [];
     for (const task of taskSet.getTasks()) {
       this.progress.push(new TrackableTask(task, subscriber));
     }
+    for (const prerequisite of taskSet.getPrerequisites()) {
+      const task = this.getTaskById(prerequisite.getTask().getId());
+      const requirement = this.getTaskById(
+        prerequisite.getRequirement().getId()
+      );
+      if (!task || !requirement) {
+        throw new Error(
+          `Task or requirement not found for prerequisite: ${prerequisite.getTask().getId()} -> ${prerequisite.getRequirement().getId()}`
+        );
+      }
+      this.prerequisites.push(
+        new TrackablePrerequisite(
+          task,
+          requirement,
+          prerequisite.isEquals(),
+          prerequisite.getState()
+        )
+      );
+    }
     this.indexOfCurrentTask = 0;
+    this.idOfCurrentTask = this.progress[0].getTask().getId();
     this.startedAt = new Date();
     this.finishedAfterSeconds = null;
     this.progress[this.indexOfCurrentTask].startTask();

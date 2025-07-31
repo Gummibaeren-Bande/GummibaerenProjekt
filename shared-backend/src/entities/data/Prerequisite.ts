@@ -3,17 +3,28 @@ import Task from "./Task";
 
 class Prerequisite {
   private readonly task: Task;
+  private readonly requirement: Task;
   private readonly equals: boolean;
   private readonly state: TrackableTaskState;
 
-  constructor(task: Task, equals: boolean, state: TrackableTaskState) {
+  constructor(
+    task: Task,
+    prerequisite: Task,
+    equals: boolean,
+    state: TrackableTaskState
+  ) {
     this.task = task;
+    this.requirement = prerequisite;
     this.equals = equals;
     this.state = state;
   }
 
   public getTask(): Task {
     return this.task;
+  }
+
+  public getRequirement(): Task {
+    return this.requirement;
   }
 
   public isEquals(): boolean {
