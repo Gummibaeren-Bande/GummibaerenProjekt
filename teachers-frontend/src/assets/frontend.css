@@ -192,6 +192,7 @@ body {
   --p-popover-border-color: rgb(128, 128, 128);
   --p-popover-color: black;
   font-size: 18px;
+  max-width: 25vw;
 }
 
 .popoverOptionsButton {
@@ -205,13 +206,18 @@ body {
   width: 100%;
 }
 
+.popoverOptionsButton .p-button-label {
+  flex-grow: 1;
+  text-align: left;
+}
+
 .timer {
   font-size: 26px;
   height: 30px;
   margin-bottom: 3%;
 }
 
-/* Style for finished timers. (@Timer)*/
+/* Style for finished timers. (@Timer) */
 .text-green-500 {
   color: rgb(140, 182, 60);
 }
